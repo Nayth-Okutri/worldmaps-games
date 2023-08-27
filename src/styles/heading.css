@@ -89,3 +89,30 @@ p {
   bottom: -5px; /* Adjust the distance of the stroke from the link */
   left: 0;
 }
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+}
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .heading {
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .title {
+    margin-bottom: 10px;
+  }
+
+  .title a {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+
+  .divider {
+    display: none; /* Hide the divider on smaller screens */
+  }
+}

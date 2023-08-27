@@ -4,14 +4,13 @@ import "../styles/heading.css";
 const Heading = () => {
   return (
     <div className="heading">
-      {" "}
-      <div className="title">
+      <div className="logo-container">
         <img src={require("../assets/Logo.png")} alt="Logo" />{" "}
-      </div>
-      <div className="title">
-        <Link to="/worldmaps">Worldmaps</Link>
-        <div className="stroke"></div>
-        <p>game</p>
+        <div className="title">
+          <Link to="/worldmaps">Worldmaps</Link>
+          <div className="stroke"></div>
+          <p>Nayth quizz game</p>
+        </div>
       </div>
       <div className="divider"></div> {/* Empty divider */}
       <div className="Header-Link">

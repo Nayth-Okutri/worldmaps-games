@@ -59,7 +59,6 @@ function App() {
     setWeekOfYear(
       Math.ceil(
         (currentDate.getDay() +
-          1 +
           Math.floor(
             (currentDate - new Date(currentDate.getFullYear(), 0, 1)) /
               (24 * 60 * 60 * 1000)
