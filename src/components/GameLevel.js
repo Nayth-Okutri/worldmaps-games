@@ -40,6 +40,7 @@ const GameLevel = ({
   const [clickNumber, setClickNumber] = useState(1);
   const [questResult, setQuestResult] = useState(false);
   const [gameEnded, setGameEnded] = useState(false);
+  const [indicators, setIndicators] = useState([]);
   let navigate = useNavigate();
 
   const [descriptionIsSticky, setDescriptionIsSticky] = useState(false);
@@ -96,16 +97,16 @@ const GameLevel = ({
     return () => {
       observer.unobserve(cachedRef);
       clearInterval(interval); // Nettoyer l'intervalle lorsque le composant est démonté
-
-      const circularIndicators = document.querySelectorAll(
-        ".circular-indicator"
-      );
-      circularIndicators.forEach((indicator) => {
-        console.log("demontage");
-        indicator.remove();
-      });
     };
-  }, [levelData, hits, currentQuest, questCount, gameEnded, numberOfRightHits]);
+  }, [
+    levelData,
+    hits,
+    currentQuest,
+    questCount,
+    gameEnded,
+    numberOfRightHits,
+    indicators,
+  ]);
 
   function isClickWithinElement(topCoord, bottomCoord, clickX, clickY) {
     const isWithinXBoundary = clickX >= topCoord.x && clickX <= bottomCoord.x;
@@ -208,16 +209,17 @@ const GameLevel = ({
     console.log(hitObject[currentQuest]);
     setHits(hitObject);
   };
-  const evaluateMultipleTargetHit = (e, xPositionOnImage, yPositionOnImage) => {
+  const evaluateMultipleTargetHit = (
+    x,
+    y,
+    xPositionOnImage,
+    yPositionOnImage
+  ) => {
     setShowHitTarget(false);
+    const prevIndicator = clickNumber === 1 ? [] : indicators;
     if (clickNumber === 1) {
-      console.log(clickNumber);
-      const circularIndicators = document.querySelectorAll(
-        ".circular-indicator"
-      );
-      circularIndicators.forEach((indicator) => {
-        indicator.remove();
-      });
+      setIndicators([]);
+      console.log("indicators " + JSON.stringify(indicators));
     }
     setClickNumber(clickNumber + 1);
     for (let i = 0; i < maxQuestHit; i++) {
@@ -269,13 +271,15 @@ const GameLevel = ({
     }
 
     //console.log([xPositionOnImage, yPositionOnImage]);
+    const newIndicator = {
+      x,
+      y,
+      clickNumber,
+      display: "inline",
+    };
+    setIndicators([...prevIndicator, newIndicator]);
+    console.log("indicators " + JSON.stringify(indicators));
 
-    const indicator = document.createElement("div");
-    indicator.className = "circular-indicator";
-    indicator.style.left = `${e.pageX}px`;
-    indicator.style.top = `${e.pageY}px`;
-    indicator.textContent = clickNumber;
-    document.body.appendChild(indicator);
     console.log("questHits" + JSON.stringify(questHits));
     console.log("clickNumber " + clickNumber);
     //console.log(clickResult);
@@ -304,7 +308,7 @@ const GameLevel = ({
   };
   const handleImageClick = (e) => {
     setShowHitTarget(true);
-
+    const bounds = e.target.getBoundingClientRect();
     const xPositionOnImage = computexPositionOnImage(e);
     const yPositionOnImage = computeyPositionOnImage(e);
 
@@ -312,7 +316,12 @@ const GameLevel = ({
     if (questType === 1) {
       evaluateSingleTargetHit(xPositionOnImage, yPositionOnImage);
     } else if (questType === 2) {
-      evaluateMultipleTargetHit(e, xPositionOnImage, yPositionOnImage);
+      evaluateMultipleTargetHit(
+        e.clientX - bounds.left,
+        e.clientY - bounds.top,
+        xPositionOnImage,
+        yPositionOnImage
+      );
     }
     evaluateEndOfGame();
   };
@@ -337,8 +346,9 @@ const GameLevel = ({
             !isNaN(currentQuest) &&
             levelData.quests[currentQuest] && (
               <p className="question">
-                {numberOfRightHits +
-                  1 +
+                {`quest ${
+                  !endGame ? numberOfRightHits + 1 : numberOfRightHits
+                }` +
                   "/" +
                   questCount +
                   " " +
@@ -346,6 +356,7 @@ const GameLevel = ({
               </p>
             )}
         </div>
+        <div className="divider"></div> {/* Empty divider */}
         <div className="column">
           <div className="timer">{currentTime}s</div>
         </div>
@@ -366,6 +377,19 @@ const GameLevel = ({
             }}
           ></div>
         )}
+        {indicators.map((indicator, index) => (
+          <div
+            key={index}
+            className="circular-indicator"
+            style={{
+              position: "absolute",
+              left: `${indicator.x}px`,
+              top: `${indicator.y}px`,
+            }}
+          >
+            {indicator.clickNumber}
+          </div>
+        ))}
         <SelectionMenu
           x={menuX}
           y={menuY}
