@@ -1,0 +1,68 @@
+.leaderboard {
+  padding: 32px 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.buttons button {
+  font-size: 1.1rem;
+  padding: 12px 18px;
+  border-radius: 8px;
+  border: none;
+}
+
+.buttons .play {
+  color: white;
+  background-color: #f87171;
+  border: none;
+}
+
+.buttons .play:hover {
+  background-color: #ef4444;
+}
+
+.buttons .play:active {
+  background-color: #dc2626;
+}
+
+.buttons .back {
+  color: #ef4444;
+  background-color: white;
+}
+
+.buttons .back:hover {
+  background-color: #fef2f2;
+}
+
+.buttons .back:active {
+  background-color: #fecaca;
+}
+
+.data table {
+  text-align: left;
+  table-layout: fixed;
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  border-collapse: collapse;
+}
+
+.data th,
+.data td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.data td {
+  font-size: 0.9rem;
+}
+
+.data tbody:last-child {
+  border-bottom: none;
+}
