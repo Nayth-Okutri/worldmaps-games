@@ -182,7 +182,18 @@ const GameLevel = ({
     }
     console.log("numberOfRightHits " + numberOfRightQuestHits);
   };
-
+  const skipQuestion = () => {
+    let newQuest = Math.floor(Math.random() * questCount);
+    setShouldDisplayMenu(false);
+    setIndicators([]);
+    if (Object.keys(hits).length !== 0) {
+      do {
+        newQuest = Math.floor(Math.random() * questCount);
+      } while (Object.keys(hits).includes(newQuest) || hits[newQuest] === true);
+    }
+    setQuestHits([]);
+    setCurrentQuest(newQuest);
+  };
   const evaluateSingleTargetHit = (xPositionOnImage, yPositionOnImage) => {
     console.log("eval for " + levelData.quests[currentQuest].position.top.x);
     const hit = isClickWithinElement(
@@ -339,7 +350,7 @@ const GameLevel = ({
             levelData.quests[currentQuest] && (
               <p className="question">
                 {`quest ${
-                  !endGame ? numberOfRightHits + 1 : numberOfRightHits
+                  !gameEnded ? numberOfRightHits + 1 : numberOfRightHits
                 }` +
                   "/" +
                   questCount +
@@ -347,6 +358,23 @@ const GameLevel = ({
                   levelData.quests[currentQuest].question}
               </p>
             )}
+          <img
+            style={{
+              height: "20px",
+              cursor: "pointer",
+              transition: "opacity 0.3s",
+            }}
+            src={require("../assets/SkipIcon.png")}
+            alt="Skip"
+            onClick={skipQuestion}
+            title="Skip this question" // Add a tooltip description
+            onMouseOver={(e) => {
+              e.target.style.opacity = 0.7; // Change opacity on hover
+            }}
+            onMouseOut={(e) => {
+              e.target.style.opacity = 1; // Restore opacity when not hovering
+            }}
+          />
         </div>
         <div className="divider"></div> {/* Empty divider */}
         <div className="column">

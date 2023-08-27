@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
 
-  /*align-items: center;*/
+  /* align-items: center;*/
   height: 100vh; /* Set the height to 100% of the viewport height */
   /*width: 100vw;*/
   scroll-behavior: smooth;
@@ -12,7 +12,7 @@
 
 .level-description {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   position: sticky;
   top: -1px;
@@ -131,6 +131,7 @@
   }
   .level-description {
     position: fixed;
+    height: 80px;
     flex-direction: column; /* Stack items vertically */
     align-items: center; /* Center horizontally */
     text-align: center; /* Center text horizontally */
