@@ -3,7 +3,15 @@ body {
   font-family: sans-serif;
   height: 100%;
 }
+@font-face {
+  font-family: "Oswald-Bold";
+  src: local("Oswald-Bold"),
+    url(../assets/fonts/Oswald-Bold.ttf) format("truetype");
+}
 
+h1 {
+  font-family: Oswald-Bold;
+}
 .red {
   color: #ef4444;
 }

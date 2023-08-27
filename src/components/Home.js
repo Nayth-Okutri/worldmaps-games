@@ -12,16 +12,6 @@ const Home = ({ levelsData }) => {
   return (
     <div className="home">
       <LevelsDisplay levelsData={levelsData} clickFunction={levelClick} />
-
-      <div className="leaderboard-card">
-        <div>
-          <h3>Are you the king of Otaku?</h3>
-          <h3 className="red">View the leaderboard</h3>
-        </div>
-        <Link to="leaderboard">
-          <button className="leaderboard-button">View Leaderboard</button>
-        </Link>
-      </div>
     </div>
   );
 };

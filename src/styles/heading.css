@@ -2,27 +2,44 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100px;
   box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.2);
   /*position: sticky;*/
   width: 100%;
   top: 0;
   background-color: white;
   z-index: 10;
+  margin-bottom: 10px;
 }
-
+.stroke {
+  width: 80px;
+  height: 2px;
+  background-color: #000;
+  margin: 0px;
+}
 .heading .title {
+  font-family: Oswald-Bold;
   margin: 0;
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: bold;
+  color: #0000;
 }
-
+p {
+  margin-top: 5px; /* Adjust this value as needed */
+  font-size: 1rem;
+  color: #777;
+}
 .heading .title a {
   text-decoration: none;
   display: flex;
   align-items: center;
   gap: 8px;
+  color: #000; /* Set the color to black or any valid color code */
 }
-
+.heading .title a:link,
+.heading .title a:visited {
+  color: #000; /* Set the color to black or any desired color code */
+}
 .heading .blue {
   color: #3b82f6;
 }
@@ -31,4 +48,44 @@
   height: 100px;
   width: auto;
   margin-right: 8px;
+}
+
+.heading .Header-Link {
+  font-family: Oswald-Bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+}
+
+/* Styles for the link */
+.heading .Header-Link a {
+  font-size: 1rem; /* Adjust the font size as needed */
+  color: #000;
+  text-decoration: none;
+  position: relative; /* Add relative positioning */
+  transition: color 0.3s;
+}
+
+/* Hover effect */
+.heading .Header-Link a:hover {
+  color: #777; /* Change to desired hover color */
+}
+/* Style for the empty divider */
+.divider {
+  width: 2px; /* Adjust the width of the divider */
+  height: 20px; /* Adjust the height of the divider */
+  background-color: transparent; /* Adjust the color of the divider */
+  margin: 0 15px; /* Adjust the margin around the divider */
+}
+/* Styles for the stroke below the link */
+.heading .Header-Link a:hover::before {
+  content: "";
+  width: 100%; /* Make the stroke width 100% of the link's width */
+  height: 2px;
+  background-color: #777;
+  position: absolute;
+  bottom: -5px; /* Adjust the distance of the stroke from the link */
+  left: 0;
 }

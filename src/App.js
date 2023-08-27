@@ -14,6 +14,7 @@ import Leaderboard from "./components/Leaderboard";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "./firebaseConfig";
 import "./styles/app.css";
+import "./assets/fonts/Oswald-Bold.ttf";
 
 function App() {
   initializeApp(firebaseConfig);
