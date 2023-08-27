@@ -34,7 +34,7 @@ const GameLevel = ({
   const [numberOfRightHits, setNumberOfRightHits] = useState(0);
   const [showHitTarget, setShowHitTarget] = useState(false);
   const [questCount, setQuestCount] = useState(0);
-  const [questType, setQuestType] = useState();
+
   const [maxQuestHit, setMaxQuestHit] = useState(0);
   const [questHits, setQuestHits] = useState([]);
   const [clickNumber, setClickNumber] = useState(1);
@@ -79,12 +79,9 @@ const GameLevel = ({
       }
     }
     if (levelData && levelData.quests[currentQuest]) {
-      setQuestType(levelData.quests[currentQuest].type);
-      if (levelData.quests[currentQuest].type === 2) {
-        setMaxQuestHit(
-          Object.keys(levelData.quests[currentQuest].positions).length
-        );
-      }
+      setMaxQuestHit(
+        Object.keys(levelData.quests[currentQuest].positions).length
+      );
     }
     const interval = setInterval(() => {
       setCurrentTime(
@@ -215,7 +212,6 @@ const GameLevel = ({
     xPositionOnImage,
     yPositionOnImage
   ) => {
-    setShowHitTarget(false);
     const prevIndicator = clickNumber === 1 ? [] : indicators;
     if (clickNumber === 1) {
       setIndicators([]);
@@ -307,22 +303,19 @@ const GameLevel = ({
     return (y / ch) * ih;
   };
   const handleImageClick = (e) => {
-    setShowHitTarget(true);
     const bounds = e.target.getBoundingClientRect();
-    const xPositionOnImage = computexPositionOnImage(e);
-    const yPositionOnImage = computeyPositionOnImage(e);
+    const xPositionOnImage = Math.floor(computexPositionOnImage(e));
+    const yPositionOnImage = Math.floor(computeyPositionOnImage(e));
 
     console.log([xPositionOnImage, yPositionOnImage]);
-    if (questType === 1) {
-      evaluateSingleTargetHit(xPositionOnImage, yPositionOnImage);
-    } else if (questType === 2) {
-      evaluateMultipleTargetHit(
-        e.clientX - bounds.left,
-        e.clientY - bounds.top,
-        xPositionOnImage,
-        yPositionOnImage
-      );
-    }
+
+    evaluateMultipleTargetHit(
+      e.clientX - bounds.left,
+      e.clientY - bounds.top,
+      xPositionOnImage,
+      yPositionOnImage
+    );
+
     evaluateEndOfGame();
   };
 
@@ -332,7 +325,6 @@ const GameLevel = ({
       onClick={(e) => {
         if (!(e.target.tagName === "IMG")) {
           setShouldDisplayMenu(false);
-          setShowHitTarget(false);
         }
       }}
     >
@@ -362,12 +354,12 @@ const GameLevel = ({
         </div>
       </div>
       <div className="game" onClick={handleImageClick}>
-        {showHitTarget && questType === 1 && (
+        {maxQuestHit === 1 && indicators.length > 0 && (
           <div
             style={{
               position: "absolute",
-              left: `${lastClickX}px`,
-              top: `${lastClickY}px`,
+              left: `${indicators[0].x}px`,
+              top: `${indicators[0].y}px`,
               width: "20px",
               height: "20px",
               backgroundColor: questResult
@@ -377,19 +369,21 @@ const GameLevel = ({
             }}
           ></div>
         )}
-        {indicators.map((indicator, index) => (
-          <div
-            key={index}
-            className="circular-indicator"
-            style={{
-              position: "absolute",
-              left: `${indicator.x}px`,
-              top: `${indicator.y}px`,
-            }}
-          >
-            {indicator.clickNumber}
-          </div>
-        ))}
+
+        {maxQuestHit > 1 &&
+          indicators.map((indicator, index) => (
+            <div
+              key={index}
+              className="circular-indicator"
+              style={{
+                position: "absolute",
+                left: `${indicator.x}px`,
+                top: `${indicator.y}px`,
+              }}
+            >
+              {indicator.clickNumber}
+            </div>
+          ))}
         <SelectionMenu
           x={menuX}
           y={menuY}

@@ -4,17 +4,15 @@ import { collection, getFirestore, setDoc, doc } from "firebase/firestore";
 const level1Data = {
   quests: [
     {
-      type: 2,
       question: "Find duplicate Pokemon",
       positions: [
-        { top: { x: 463, y: 1487 }, bottom: { x: 579, y: 1716 } },
-        { top: { x: 1713, y: 247 }, bottom: { x: 1788, y: 333 } },
+        { top: { x: 352, y: 1138 }, bottom: { x: 446, y: 1320 } },
+        { top: { x: 1317, y: 190 }, bottom: { x: 1373, y: 255 } },
       ],
     },
     {
-      type: 1,
       question: "Find Evee",
-      position: { top: { x: 688, y: 690 }, bottom: { x: 773, y: 758 } },
+      positions: [{ top: { x: 530, y: 521 }, bottom: { x: 589, y: 580 } }],
     },
   ],
   name: "Pokemon Fair",
@@ -24,14 +22,12 @@ const level1Data = {
 const level2Data = {
   quests: [
     {
-      type: 1,
       question: "Find Miyazaki",
-      position: { top: { x: 1300, y: 1120 }, bottom: { x: 1330, y: 1230 } },
+      positions: [{ top: { x: 991, y: 859 }, bottom: { x: 1024, y: 949 } }],
     },
     {
-      type: 1,
       question: "Find Baron",
-      position: { top: { x: 1337, y: 1615 }, bottom: { x: 1415, y: 1671 } },
+      positions: [{ top: { x: 1048, y: 1234 }, bottom: { x: 1086, y: 1284 } }],
     },
   ],
   name: "Ghibli",
