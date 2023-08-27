@@ -109,3 +109,12 @@
 .button-section .submit:active {
   background-color: #dc2626;
 }
+
+@media screen and (max-width: 768px) {
+  .user-form {
+    width: 100%; /* Set the width to 100% for smaller screens */
+    max-width: 100%; /* Ensure the form doesn't exceed the screen width */
+  }
+
+  /* Adjust other styles as needed for smaller screens */
+}
