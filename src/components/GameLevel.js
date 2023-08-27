@@ -105,7 +105,7 @@ const GameLevel = ({
         indicator.remove();
       });
     };
-  }, [levelData, hits, currentQuest, questCount, numberOfRightHits]);
+  }, [levelData, hits, currentQuest, questCount, gameEnded, numberOfRightHits]);
 
   function isClickWithinElement(topCoord, bottomCoord, clickX, clickY) {
     const isWithinXBoundary = clickX >= topCoord.x && clickX <= bottomCoord.x;
@@ -115,7 +115,7 @@ const GameLevel = ({
   }
 
   const handleUserNameInput = (e) => {
-    const newUserName = e.target.value;
+    const newUserName = e.target.value.slice(0, 20);
     if (useFormValidation) {
       if (isNameInLeaderboardRepeated(newUserName, level)) {
         setShowErrorMessage(true);
@@ -141,6 +141,7 @@ const GameLevel = ({
         name: name,
         time: time,
         level: level,
+        date: new Date(),
       });
     } catch (error) {
       console.error("Error writing new score to Firebase Database", error);
@@ -294,11 +295,8 @@ const GameLevel = ({
   };
   const computeyPositionOnImage = (e) => {
     const bounds = e.target.getBoundingClientRect();
-    const x = e.clientX - bounds.left;
     const y = e.clientY - bounds.top;
-    const cw = e.target.clientWidth;
     const ch = e.target.clientHeight;
-    const iw = e.target.naturalWidth;
     const ih = e.target.naturalHeight;
     setMenuY(y);
     setLastClickY(y - 8);

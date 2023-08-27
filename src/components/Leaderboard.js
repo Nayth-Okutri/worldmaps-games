@@ -38,8 +38,15 @@ const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
 
     const leaderboardSnapshot = await getDocs(scoresCollectionRef);
     leaderboardSnapshot.forEach((score) => {
-      newLeaderboardData.push(score.data());
-      console.log(score.data());
+      const scoreData = score.data();
+      if (
+        !newLeaderboardData.some(
+          (existingScore) => existingScore.name === scoreData.name
+        )
+      ) {
+        newLeaderboardData.push(score.data());
+        console.log(score.data());
+      }
     });
     const sortedLevelLeaderboardData = [...newLeaderboardData].sort(
       (a, b) => a.time - b.time
