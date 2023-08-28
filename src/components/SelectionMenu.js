@@ -10,6 +10,12 @@ const SelectionMenu = ({ x, y, shouldDisplay, questResult }) => {
 
   return (
     <div className="selection-menu" style={positionStyle}>
+      <img
+        src={require(questResult
+          ? "../assets/Okdesu.png"
+          : "../assets/NOkdesu.png")}
+        alt={questResult ? "Correct answer" : "Incorrect answer"}
+      />
       <p>{questResult ? "Correct answer" : "Incorrect answer"}</p>
     </div>
   );

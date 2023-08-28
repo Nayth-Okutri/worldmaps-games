@@ -319,14 +319,27 @@ const GameLevel = ({
     const yPositionOnImage = Math.floor(computeyPositionOnImage(e));
 
     console.log([xPositionOnImage, yPositionOnImage]);
+    let target = e.target;
+    let isInsideSelectionMenu = false;
 
-    evaluateMultipleTargetHit(
-      e.clientX - bounds.left,
-      e.clientY - bounds.top,
-      xPositionOnImage,
-      yPositionOnImage
-    );
+    while (target) {
+      if (target.classList.contains("selection-menu")) {
+        isInsideSelectionMenu = true;
+        break;
+      }
+      target = target.parentElement;
+    }
 
+    if (!isInsideSelectionMenu) {
+      evaluateMultipleTargetHit(
+        e.clientX - bounds.left,
+        e.clientY - bounds.top,
+        xPositionOnImage,
+        yPositionOnImage
+      );
+    } else {
+      setShouldDisplayMenu(false);
+    }
     evaluateEndOfGame();
   };
 
