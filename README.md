@@ -1,4 +1,4 @@
-# Where's Waldo Game
+# Worldmaps Game
 
 ![screenshot](waldo.png)
 
