@@ -59,7 +59,24 @@ const GameLevel = ({
     );
 
     observer.observe(cachedRef);
+    const image = document.getElementById("levelImage");
+    const container = document.querySelector(".game-container");
 
+    const toggleCenteringClass = () => {
+      if (image && container) {
+        const isImageWiderThanViewport = image.clientWidth > window.innerWidth;
+        console.log(image.naturalWidth);
+        console.log(window.innerWidth);
+        console.log("isImageTallerThanViewport " + isImageWiderThanViewport);
+        if (isImageWiderThanViewport) {
+          container.classList.remove("center-only-when-fit");
+        } else {
+          container.classList.add("center-only-when-fit");
+        }
+      }
+    };
+    toggleCenteringClass();
+    window.addEventListener("resize", toggleCenteringClass);
     if (levelData) {
       const currentQuestCount = Object.keys(levelData.quests).length;
       setQuestCount(currentQuestCount);
@@ -101,6 +118,7 @@ const GameLevel = ({
     return () => {
       observer.unobserve(cachedRef);
       clearInterval(interval); // Nettoyer l'intervalle lorsque le composant est démonté
+      window.removeEventListener("resize", toggleCenteringClass);
     };
   }, [
     levelData,
@@ -310,9 +328,10 @@ const GameLevel = ({
     const x = e.clientX - bounds.left;
     const cw = e.target.clientWidth;
     const iw = e.target.naturalWidth;
+    const screenWidth = window.innerWidth;
     setMenuX(x);
     setLastClickX(x - 8);
-    setClickCloseRight(cw - x <= 150);
+    setClickCloseRight(screenWidth - x <= 150);
     return (x / cw) * iw;
   };
   const computeYPositionOnImage = (e) => {
@@ -320,9 +339,11 @@ const GameLevel = ({
     const y = e.clientY - bounds.top;
     const ch = e.target.clientHeight;
     const ih = e.target.naturalHeight;
+    const screenHeight = window.innerHeight;
     setMenuY(y);
     setLastClickY(y - 8);
-    setClickCloseBottom(ch - y <= 150);
+    console.log(screenHeight - y);
+    setClickCloseBottom(screenHeight - y <= 150);
     return (y / ch) * ih;
   };
   const handleImageClick = (e) => {
@@ -416,8 +437,8 @@ const GameLevel = ({
           <div
             style={{
               position: "absolute",
-              left: `${indicators[0].x}px`,
-              top: `${indicators[0].y}px`,
+              left: `${indicators[0].x - 20}px`,
+              top: `${indicators[0].y - 20}px`,
               width: "40px",
               height: "40px",
               borderRadius: "50%",
@@ -445,7 +466,7 @@ const GameLevel = ({
             </div>
           ))}
         <SelectionMenu
-          x={clickCloseRight ? menuX - 150 : menuX}
+          x={clickCloseRight ? menuX - 100 : menuX}
           y={clickCloseBottom ? menuY - 120 : menuY}
           shouldDisplay={shouldDisplayMenu}
           questResult={questResult}
@@ -458,6 +479,7 @@ const GameLevel = ({
           showErrorMessage={showErrorMessage}
         />
         <img
+          id="levelImage"
           src={require(`../assets/level-${level}.jpg`)}
           alt={`Level ${level}`}
         />

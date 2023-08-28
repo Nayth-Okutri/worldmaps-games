@@ -14,6 +14,14 @@ const Heading = () => {
       </div>
       <div className="divider"></div> {/* Empty divider */}
       <div className="Header-Link">
+        <a
+          href="https://www.instagram.com/n.a.y.t.h/"
+          className="external-link"
+        >
+          INSTAGRAM
+        </a>
+      </div>
+      <div className="Header-Link">
         <a href="https://nayth.art/shop/" className="external-link">
           SHOP
         </a>
