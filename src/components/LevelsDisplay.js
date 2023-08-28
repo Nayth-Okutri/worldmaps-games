@@ -81,6 +81,7 @@ const LevelsDisplay = ({
             <img
               src={require(`../assets/level-${level}.jpg`)}
               alt={`Level ${level}`}
+              style={{ opacity: level === highlight ? 1 : 0.5 }}
             />
             <div className="description">{`Level ${level} : ${levelData.name}`}</div>
           </div>
