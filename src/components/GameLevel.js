@@ -44,6 +44,10 @@ const GameLevel = ({
   const [clickCloseBottom, setClickCloseBottom] = useState(false);
   const [indicators, setIndicators] = useState([]);
   const [showRedQuestion, setShowRedQuestion] = useState(false);
+
+  const [zoomLevel, setZoomLevel] = useState(70);
+  const [scaledWidth, setScaledWidth] = useState(100); // Initial zoom level is 100%
+  const [scaledHeight, setScaledHeight] = useState(100);
   let navigate = useNavigate();
 
   const [descriptionIsSticky, setDescriptionIsSticky] = useState(false);
@@ -75,6 +79,9 @@ const GameLevel = ({
         }
       }
     };
+    setScaledWidth(image.naturalWidth * (zoomLevel / 100));
+    setScaledHeight(image.naturalHeight * (zoomLevel / 100));
+
     toggleCenteringClass();
     window.addEventListener("resize", toggleCenteringClass);
     if (levelData) {
@@ -128,8 +135,17 @@ const GameLevel = ({
     gameEnded,
     numberOfRightHits,
     indicators,
+    zoomLevel,
   ]);
+  const handleZoomIn = () => {
+    setZoomLevel((prevZoom) => Math.min(prevZoom + 10, 100)); // Increase zoom level by 10%
+  };
 
+  const handleZoomOut = () => {
+    setZoomLevel((prevZoom) =>
+      Math.max(prevZoom - 10, window.innerWidth > 768 ? 50 : 30)
+    ); // Decrease zoom level by 10%
+  };
   function isClickWithinElement(topCoord, bottomCoord, clickX, clickY) {
     const isWithinXBoundary = clickX >= topCoord.x && clickX <= bottomCoord.x;
     const isWithinYBoundary = clickY >= topCoord.y && clickY <= bottomCoord.y;
@@ -409,23 +425,59 @@ const GameLevel = ({
                   levelData.quests[currentQuest].question}
               </p>
             )}
-          <img
-            style={{
-              height: "20px",
-              cursor: "pointer",
-              transition: "opacity 0.3s",
-            }}
-            src={require("../assets/SkipIcon.png")}
-            alt="Skip"
-            onClick={skipQuestion}
-            title="Skip this question" // Add a tooltip description
-            onMouseOver={(e) => {
-              e.target.style.opacity = 0.7; // Change opacity on hover
-            }}
-            onMouseOut={(e) => {
-              e.target.style.opacity = 1; // Restore opacity when not hovering
-            }}
-          />
+          <div>
+            <img
+              style={{
+                height: "20px",
+                cursor: "pointer",
+                transition: "opacity 0.3s",
+              }}
+              src={require("../assets/ZoomInIcon.png")}
+              alt="ZoomIn"
+              onClick={handleZoomIn}
+              title="ZoomIn" // Add a tooltip description
+              onMouseOver={(e) => {
+                e.target.style.opacity = 0.7; // Change opacity on hover
+              }}
+              onMouseOut={(e) => {
+                e.target.style.opacity = 1; // Restore opacity when not hovering
+              }}
+            />
+            <img
+              style={{
+                height: "20px",
+                cursor: "pointer",
+                transition: "opacity 0.3s",
+              }}
+              src={require("../assets/ZoomOutIcon.png")}
+              alt="ZoomOut"
+              onClick={handleZoomOut}
+              title="ZoomOut" // Add a tooltip description
+              onMouseOver={(e) => {
+                e.target.style.opacity = 0.7; // Change opacity on hover
+              }}
+              onMouseOut={(e) => {
+                e.target.style.opacity = 1; // Restore opacity when not hovering
+              }}
+            />
+            <img
+              style={{
+                height: "20px",
+                cursor: "pointer",
+                transition: "opacity 0.3s",
+              }}
+              src={require("../assets/SkipIcon.png")}
+              alt="Skip"
+              onClick={skipQuestion}
+              title="Skip this question" // Add a tooltip description
+              onMouseOver={(e) => {
+                e.target.style.opacity = 0.7; // Change opacity on hover
+              }}
+              onMouseOut={(e) => {
+                e.target.style.opacity = 1; // Restore opacity when not hovering
+              }}
+            />
+          </div>
         </div>
         <div className="divider"></div> {/* Empty divider */}
         <div className="column">
@@ -482,6 +534,8 @@ const GameLevel = ({
           id="levelImage"
           src={require(`../assets/level-${level}.jpg`)}
           alt={`Level ${level}`}
+          width={scaledWidth}
+          height={scaledHeight}
         />
       </div>
     </div>

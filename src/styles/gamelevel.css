@@ -84,9 +84,9 @@
 }
 
 .game img {
-  max-width: 1170px;
+  /*max-width: 1170px;
   width: auto;
-  height: auto;
+  height: auto;*/
 }
 .column {
   display: flex;
