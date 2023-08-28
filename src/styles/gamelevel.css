@@ -95,7 +95,10 @@
   font-weight: bold;
   margin-bottom: 10px;
 }
-
+.red-question {
+  color: red; /* Set the text color to red */
+  transition: color 2s ease-in-out; /* Use ease-in-out timing function for smoother transition */
+}
 .timer {
   font-size: 1.2rem;
   font-weight: bold;

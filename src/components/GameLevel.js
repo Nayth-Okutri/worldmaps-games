@@ -32,7 +32,7 @@ const GameLevel = ({
 
   const [currentQuest, setCurrentQuest] = useState();
   const [numberOfRightHits, setNumberOfRightHits] = useState(0);
-  const [showHitTarget, setShowHitTarget] = useState(false);
+  const [showHitTarget, setShowHitTarget] = useState(true);
   const [questCount, setQuestCount] = useState(0);
 
   const [maxQuestHit, setMaxQuestHit] = useState(0);
@@ -40,7 +40,10 @@ const GameLevel = ({
   const [clickNumber, setClickNumber] = useState(1);
   const [questResult, setQuestResult] = useState(false);
   const [gameEnded, setGameEnded] = useState(false);
+  const [clickCloseRight, setClickCloseRight] = useState(false);
+  const [clickCloseBottom, setClickCloseBottom] = useState(false);
   const [indicators, setIndicators] = useState([]);
+  const [showRedQuestion, setShowRedQuestion] = useState(false);
   let navigate = useNavigate();
 
   const [descriptionIsSticky, setDescriptionIsSticky] = useState(false);
@@ -76,6 +79,10 @@ const GameLevel = ({
         }
         setQuestHits([]);
         setCurrentQuest(newQuest);
+        setShowRedQuestion(true); // Set the showRedQuestion state to true
+        setTimeout(() => {
+          setShowRedQuestion(false); // Reset the showRedQuestion state after 1 second
+        }, 1000);
       }
     }
     if (levelData && levelData.quests[currentQuest]) {
@@ -185,6 +192,7 @@ const GameLevel = ({
   const skipQuestion = () => {
     let newQuest = Math.floor(Math.random() * questCount);
     setShouldDisplayMenu(false);
+    setShowHitTarget(false);
     setIndicators([]);
     if (Object.keys(hits).length !== 0) {
       do {
@@ -247,6 +255,7 @@ const GameLevel = ({
     }
     if (clickNumber >= maxQuestHit) {
       if (!shouldDisplayMenu) setShouldDisplayMenu(true);
+      if (!showHitTarget) setShowHitTarget(true);
       const hitObject = questHits;
       const numberOfRightQuestHits = Object.keys(hitObject).reduce(
         (previous, current) => {
@@ -274,6 +283,7 @@ const GameLevel = ({
       } else setQuestResult(false);
     } else {
       setShouldDisplayMenu(false);
+
       //setClickNumber(clickNumber + 1);
     }
 
@@ -295,28 +305,30 @@ const GameLevel = ({
       setClickNumber(1);
     }
   };
-  const computexPositionOnImage = (e) => {
+  const computeXPositionOnImage = (e) => {
     const bounds = e.target.getBoundingClientRect();
     const x = e.clientX - bounds.left;
     const cw = e.target.clientWidth;
     const iw = e.target.naturalWidth;
     setMenuX(x);
     setLastClickX(x - 8);
+    setClickCloseRight(cw - x <= 150);
     return (x / cw) * iw;
   };
-  const computeyPositionOnImage = (e) => {
+  const computeYPositionOnImage = (e) => {
     const bounds = e.target.getBoundingClientRect();
     const y = e.clientY - bounds.top;
     const ch = e.target.clientHeight;
     const ih = e.target.naturalHeight;
     setMenuY(y);
     setLastClickY(y - 8);
+    setClickCloseBottom(ch - y <= 150);
     return (y / ch) * ih;
   };
   const handleImageClick = (e) => {
     const bounds = e.target.getBoundingClientRect();
-    const xPositionOnImage = Math.floor(computexPositionOnImage(e));
-    const yPositionOnImage = Math.floor(computeyPositionOnImage(e));
+    const xPositionOnImage = Math.floor(computeXPositionOnImage(e));
+    const yPositionOnImage = Math.floor(computeYPositionOnImage(e));
 
     console.log([xPositionOnImage, yPositionOnImage]);
     let target = e.target;
@@ -338,7 +350,9 @@ const GameLevel = ({
         yPositionOnImage
       );
     } else {
+      console.log(isInsideSelectionMenu);
       setShouldDisplayMenu(false);
+      setShowHitTarget(false);
     }
     evaluateEndOfGame();
   };
@@ -349,6 +363,7 @@ const GameLevel = ({
       onClick={(e) => {
         if (!(e.target.tagName === "IMG")) {
           setShouldDisplayMenu(false);
+          setShowHitTarget(false);
         }
       }}
     >
@@ -361,7 +376,9 @@ const GameLevel = ({
             typeof currentQuest !== "undefined" &&
             !isNaN(currentQuest) &&
             levelData.quests[currentQuest] && (
-              <p className="question">
+              <p
+                className={`question ${showRedQuestion ? "red-question" : ""}`}
+              >
                 {`quest ${
                   !gameEnded ? numberOfRightHits + 1 : numberOfRightHits
                 }` +
@@ -395,14 +412,15 @@ const GameLevel = ({
         </div>
       </div>
       <div className="game" onClick={handleImageClick}>
-        {maxQuestHit === 1 && indicators.length > 0 && (
+        {maxQuestHit === 1 && indicators.length > 0 && showHitTarget && (
           <div
             style={{
               position: "absolute",
               left: `${indicators[0].x}px`,
               top: `${indicators[0].y}px`,
-              width: "20px",
-              height: "20px",
+              width: "40px",
+              height: "40px",
+              borderRadius: "50%",
               backgroundColor: questResult
                 ? "rgba(0, 0, 255, 0.2)"
                 : "rgba(255, 0, 0, 0.2)",
@@ -412,6 +430,7 @@ const GameLevel = ({
         )}
 
         {maxQuestHit > 1 &&
+          showHitTarget &&
           indicators.map((indicator, index) => (
             <div
               key={index}
@@ -426,8 +445,8 @@ const GameLevel = ({
             </div>
           ))}
         <SelectionMenu
-          x={menuX}
-          y={menuY}
+          x={clickCloseRight ? menuX - 150 : menuX}
+          y={clickCloseBottom ? menuY - 120 : menuY}
           shouldDisplay={shouldDisplayMenu}
           questResult={questResult}
         />
