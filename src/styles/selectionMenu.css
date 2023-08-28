@@ -41,3 +41,44 @@
   height: auto;
   width: auto;
 }
+
+.level {
+  /* ... your existing styles ... */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.level .image-container {
+  position: relative;
+}
+
+.level .type-animation {
+  font-family: Oswald-Bold;
+  font-size: 2rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 8px;
+  transition: opacity 0.2s;
+  pointer-events: none; /* Make the TypeAnimation component not capture pointer events */
+  opacity: 0; /* Start with opacity 0, will become 1 on hover */
+  -webkit-text-stroke: 2px white;
+}
+.level:hover .type-animation {
+  opacity: 1; /* Show the TypeAnimation component on hover */
+}
+
+/* Adjust font size for smaller screens */
+@media screen and (max-width: 768px) {
+  .level .type-animation {
+    font-size: 1.5rem;
+  }
+}
+
+/* Further adjustments for even smaller screens */
+@media screen and (max-width: 480px) {
+  .level .type-animation {
+    font-size: 1rem;
+  }
+}

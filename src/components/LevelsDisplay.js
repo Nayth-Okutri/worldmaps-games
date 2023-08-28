@@ -1,6 +1,7 @@
 import "../styles/levelsDisplay.css";
+import { useState } from "react";
 import { collection, getFirestore, setDoc, doc } from "firebase/firestore";
-
+import { TypeAnimation } from "react-type-animation";
 const level1Data = {
   quests: [
     {
@@ -66,24 +67,45 @@ const LevelsDisplay = ({
   displayIcons = true,
   highlight,
 }) => {
+  const [hoveredLevel, setHoveredLevel] = useState(0); // State for tracking hovered level
+
   return (
     <div className="levels-display">
       {levelsData.map((levelData) => {
         const level = levelData.level;
+        const isHighlighted = hoveredLevel === level;
+
         return (
           <div
             className={`level${level === highlight ? " highlight" : ""}`}
+            onMouseEnter={() => setHoveredLevel(level)} // Set hovered level on mouse enter
+            onMouseLeave={() => setHoveredLevel(null)} // Clear hovered level on mouse leave
             onClick={() => {
               clickFunction(level);
             }}
             key={level}
           >
-            <img
-              src={require(`../assets/level-${level}.jpg`)}
-              alt={`Level ${level}`}
-              style={{ opacity: level === highlight ? 1 : 0.5 }}
-            />
-            <div className="description">{`Level ${level} : ${levelData.name}`}</div>
+            <div className="image-container">
+              <img
+                src={require(`../assets/level-${level}.jpg`)}
+                alt={`Level ${level}`}
+                style={{
+                  opacity: level === highlight || isHighlighted ? 1 : 0.5,
+                }}
+              />
+            </div>
+
+            {isHighlighted && (
+              <div className="type-animation">
+                <TypeAnimation
+                  sequence={`${levelData.name.toUpperCase()}`}
+                  speed={50}
+                  repeat={0}
+                  cursor={false}
+                  style={{ fontSize: "2em" }}
+                />
+              </div>
+            )}
           </div>
         );
       })}
