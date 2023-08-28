@@ -99,7 +99,7 @@ function App() {
         >
           <Route path=":level" element={<div></div>} />
         </Route>
-        <Route path="game">
+        <Route path="/worldmaps/game">
           <Route
             path=":level"
             element={
@@ -118,7 +118,3 @@ function App() {
 }
 
 export default App;
-
-// TODOS:
-// Add X mark in hit spots
-// Add start button before game starts

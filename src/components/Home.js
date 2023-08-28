@@ -6,7 +6,7 @@ const Home = ({ levelsData }) => {
   let navigate = useNavigate();
 
   const levelClick = (level) => {
-    navigate(`/game/${level}`);
+    navigate(`/worldmaps/game/${level}`);
   };
 
   return (
