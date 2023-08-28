@@ -135,6 +135,9 @@
   .divider {
     display: none; /* Hide the divider on smaller screens */
   }
+  .game-container {
+    margin-top: 100px;
+  }
   .level-description {
     position: fixed;
     height: 80px;

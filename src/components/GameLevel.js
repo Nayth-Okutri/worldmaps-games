@@ -138,10 +138,14 @@ const GameLevel = ({
     zoomLevel,
   ]);
   const handleZoomIn = () => {
+    setShouldDisplayMenu(false);
+    setShowHitTarget(false);
     setZoomLevel((prevZoom) => Math.min(prevZoom + 10, 100)); // Increase zoom level by 10%
   };
 
   const handleZoomOut = () => {
+    setShouldDisplayMenu(false);
+    setShowHitTarget(false);
     setZoomLevel((prevZoom) =>
       Math.max(prevZoom - 10, window.innerWidth > 768 ? 50 : 30)
     ); // Decrease zoom level by 10%
@@ -378,7 +382,7 @@ const GameLevel = ({
       }
       target = target.parentElement;
     }
-
+    setShowHitTarget(true);
     if (!isInsideSelectionMenu) {
       evaluateMultipleTargetHit(
         e.clientX - bounds.left,
@@ -426,57 +430,63 @@ const GameLevel = ({
               </p>
             )}
           <div>
-            <img
-              style={{
-                height: "20px",
-                cursor: "pointer",
-                transition: "opacity 0.3s",
-              }}
-              src={require("../assets/ZoomInIcon.png")}
-              alt="ZoomIn"
-              onClick={handleZoomIn}
-              title="ZoomIn" // Add a tooltip description
-              onMouseOver={(e) => {
-                e.target.style.opacity = 0.7; // Change opacity on hover
-              }}
-              onMouseOut={(e) => {
-                e.target.style.opacity = 1; // Restore opacity when not hovering
-              }}
-            />
-            <img
-              style={{
-                height: "20px",
-                cursor: "pointer",
-                transition: "opacity 0.3s",
-              }}
-              src={require("../assets/ZoomOutIcon.png")}
-              alt="ZoomOut"
-              onClick={handleZoomOut}
-              title="ZoomOut" // Add a tooltip description
-              onMouseOver={(e) => {
-                e.target.style.opacity = 0.7; // Change opacity on hover
-              }}
-              onMouseOut={(e) => {
-                e.target.style.opacity = 1; // Restore opacity when not hovering
-              }}
-            />
-            <img
-              style={{
-                height: "20px",
-                cursor: "pointer",
-                transition: "opacity 0.3s",
-              }}
-              src={require("../assets/SkipIcon.png")}
-              alt="Skip"
-              onClick={skipQuestion}
-              title="Skip this question" // Add a tooltip description
-              onMouseOver={(e) => {
-                e.target.style.opacity = 0.7; // Change opacity on hover
-              }}
-              onMouseOut={(e) => {
-                e.target.style.opacity = 1; // Restore opacity when not hovering
-              }}
-            />
+            <span style={{ paddingRight: "10px" }}>
+              <img
+                style={{
+                  height: "20px",
+                  cursor: "pointer",
+                  transition: "opacity 0.3s",
+                }}
+                src={require("../assets/ZoomInIcon.png")}
+                alt="ZoomIn"
+                onClick={handleZoomIn}
+                title="ZoomIn" // Add a tooltip description
+                onMouseOver={(e) => {
+                  e.target.style.opacity = 0.7; // Change opacity on hover
+                }}
+                onMouseOut={(e) => {
+                  e.target.style.opacity = 1; // Restore opacity when not hovering
+                }}
+              />
+            </span>
+            <span style={{ paddingRight: "10px" }}>
+              <img
+                style={{
+                  height: "20px",
+                  cursor: "pointer",
+                  transition: "opacity 0.3s",
+                }}
+                src={require("../assets/ZoomOutIcon.png")}
+                alt="ZoomOut"
+                onClick={handleZoomOut}
+                title="ZoomOut" // Add a tooltip description
+                onMouseOver={(e) => {
+                  e.target.style.opacity = 0.7; // Change opacity on hover
+                }}
+                onMouseOut={(e) => {
+                  e.target.style.opacity = 1; // Restore opacity when not hovering
+                }}
+              />
+            </span>
+            <span style={{ paddingRight: "10px" }}>
+              <img
+                style={{
+                  height: "20px",
+                  cursor: "pointer",
+                  transition: "opacity 0.3s",
+                }}
+                src={require("../assets/SkipIcon.png")}
+                alt="Skip"
+                onClick={skipQuestion}
+                title="Skip this question" // Add a tooltip description
+                onMouseOver={(e) => {
+                  e.target.style.opacity = 0.7; // Change opacity on hover
+                }}
+                onMouseOut={(e) => {
+                  e.target.style.opacity = 1; // Restore opacity when not hovering
+                }}
+              />
+            </span>
           </div>
         </div>
         <div className="divider"></div> {/* Empty divider */}
