@@ -97,10 +97,14 @@
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 10px;
+  transition: color 0.5s ease-in-out; /* Use ease-in-out timing function for smoother transition */
 }
 .red-question {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
   color: red; /* Set the text color to red */
-  transition: color 2s ease-in-out; /* Use ease-in-out timing function for smoother transition */
+  transition: color 0.5s ease-in-out; /* Use ease-in-out timing function for smoother transition */
 }
 .timer {
   font-size: 1.2rem;

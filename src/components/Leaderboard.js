@@ -92,7 +92,7 @@ const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
           .toDateString()
           .slice(0, -4)} - ${weekDates.end.toDateString()}`}</h1>
         <div className="buttons">
-          <Link to={`/game/${currentLevel}`}>
+          <Link to={`/worldmaps/game/${currentLevel}`}>
             <button className="play">Play This Level</button>
           </Link>
         </div>

@@ -7,6 +7,8 @@ const UserForm = ({
   submitScore,
   handleInput,
   userName,
+  feedback,
+  handleFeedbackInput,
   showErrorMessage = false,
 }) => {
   const positionStyle = {};
@@ -32,6 +34,19 @@ const UserForm = ({
               onInput={handleInput}
               className={showErrorMessage ? "error" : ""}
             />
+            <div style={{ padding: "10px 0" }}>
+              <label htmlFor="feedback to Nayth">Feedback to Nayth</label>
+              <textarea
+                name="feedback to Nayth"
+                value={feedback}
+                onChange={handleFeedbackInput}
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "200px",
+                  overflowY: "auto", // Add vertical scroll
+                }}
+              />
+            </div>
             <span
               className={"error-message" + (showErrorMessage ? "" : " hide")}
             >

@@ -27,6 +27,7 @@ const GameLevel = ({
   const [currentTime, setCurrentTime] = useState(0);
 
   const [userName, setUserName] = useState("");
+  const [feedback, setFeedback] = useState("");
   const [useFormValidation, setUseFormValidation] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
@@ -168,7 +169,11 @@ const GameLevel = ({
     }
     setUserName(e.target.value);
   };
+  const handleFeedbackInput = (e) => {
+    const newUserName = e.target.value.slice(0, 20);
 
+    setFeedback(e.target.value);
+  };
   const saveScore = async (name, time) => {
     try {
       const leaderboardCollectionRef = collection(
@@ -182,6 +187,7 @@ const GameLevel = ({
       console.log("scoresCollectionRef " + scoresCollectionRef);
       await addDoc(scoresCollectionRef, {
         name: name,
+        feedback,
         time: time,
         level: level,
         date: new Date(),
@@ -538,6 +544,7 @@ const GameLevel = ({
           time={endTime}
           submitScore={submitScore}
           handleInput={handleUserNameInput}
+          handleFeedbackInput={handleFeedbackInput}
           showErrorMessage={showErrorMessage}
         />
         <img
