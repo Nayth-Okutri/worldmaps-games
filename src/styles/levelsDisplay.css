@@ -14,7 +14,17 @@
 .level:hover {
   box-shadow: 0 1px 8px 1px rgba(0, 0, 0, 0.25);
 }
-
+.level::before {
+  content: "";
+  position: absolute;
+  top: 100px;
+  right: 100px;
+  bottom: 100px;
+  left: 100px;
+  background-color: transparent;
+  border: 100px solid transparent; /* Crop 10px from each side */
+  z-index: 1;
+}
 .level img {
   width: 100%;
   height: 14rem;
@@ -26,7 +36,7 @@
 .level img:hover {
   box-shadow: 0 5px 8px 1px rgba(234, 175, 63, 0.7);
   opacity: 1;
-  transition: all 0.5s;
+  transition: all 0.2s;
 }
 
 .level .description {

@@ -15,6 +15,43 @@ const level1Data = {
       question: "Find Evee",
       positions: [{ top: { x: 530, y: 521 }, bottom: { x: 589, y: 580 } }],
     },
+    {
+      question: "Find Snubbull",
+      positions: [{ top: { x: 1017, y: 1142 }, bottom: { x: 1075, y: 1211 } }],
+    },
+    {
+      question: "Find Slowpoke",
+      positions: [{ top: { x: 785, y: 792 }, bottom: { x: 840, y: 842 } }],
+    },
+    {
+      question: "Find all starter Pokemons (4 groups)",
+      positions: [
+        { top: { x: 1150, y: 620 }, bottom: { x: 1253, y: 689 } },
+        { top: { x: 875, y: 858 }, bottom: { x: 969, y: 963 } },
+        { top: { x: 946, y: 789 }, bottom: { x: 1000, y: 865 } },
+        { top: { x: 1344, y: 1303 }, bottom: { x: 1430, y: 1355 } },
+      ],
+    },
+    {
+      question: "Find Furret",
+      positions: [{ top: { x: 412, y: 635 }, bottom: { x: 480, y: 687 } }],
+    },
+    {
+      question: "Find Pinsir",
+      positions: [{ top: { x: 0, y: 420 }, bottom: { x: 38, y: 483 } }],
+    },
+    {
+      question: "Find Moltress",
+      positions: [{ top: { x: 994, y: 1 }, bottom: { x: 1102, y: 94 } }],
+    },
+    {
+      question: "Find Mareep",
+      positions: [{ top: { x: 1113, y: 1165 }, bottom: { x: 1207, y: 1238 } }],
+    },
+    {
+      question: "Find Grimer",
+      positions: [{ top: { x: 568, y: 731 }, bottom: { x: 635, y: 783 } }],
+    },
   ],
   name: "Pokemon Fair",
   level: 1,
@@ -82,28 +119,112 @@ const level2Data = {
   level: 2,
   updateDate: new Date(),
 };
+const level3Data = {
+  quests: [
+    {
+      question: "Find Sora",
+      positions: [{ top: { x: 1344, y: 1230 }, bottom: { x: 1388, y: 1278 } }],
+    },
+    {
+      question: "Find the Highwind",
+      positions: [{ top: { x: 523, y: 223 }, bottom: { x: 626, y: 275 } }],
+    },
+    {
+      question: "Find Cloud",
+      positions: [{ top: { x: 712, y: 998 }, bottom: { x: 740, y: 1042 } }],
+    },
+    {
+      question: "Find Ashley (Vagrant Story)",
+      positions: [{ top: { x: 928, y: 998 }, bottom: { x: 959, y: 1042 } }],
+    },
+    {
+      question: "Find Terra (Final Fantasy)",
+      positions: [{ top: { x: 1130, y: 673 }, bottom: { x: 1195, y: 742 } }],
+    },
+    {
+      question: "Find Bombo (Final Fantasy)",
+      positions: [{ top: { x: 1295, y: 1213 }, bottom: { x: 1322, y: 1249 } }],
+    },
+    {
+      question: "Find Justin (Grandia)",
+      positions: [{ top: { x: 1787, y: 1154 }, bottom: { x: 1819, y: 1195 } }],
+    },
+    {
+      question: "Find 2B, 9s (Nier)",
+      positions: [{ top: { x: 275, y: 1120 }, bottom: { x: 308, y: 1168 } }],
+    },
+    {
+      question: "Find Vivi (Final Fantasy)",
+      positions: [{ top: { x: 386, y: 916 }, bottom: { x: 410, y: 950 } }],
+    },
+    {
+      question: "Find Flamy (Legend of Mana)",
+      positions: [{ top: { x: 439, y: 92 }, bottom: { x: 523, y: 188 } }],
+    },
+    {
+      question: "Find Nina (Breath of Fire)",
+      positions: [{ top: { x: 1496, y: 1226 }, bottom: { x: 1511, y: 1261 } }],
+    },
+  ],
+  name: "JRPG",
+  level: 3,
+  updateDate: new Date(),
+};
+const level4Data = {
+  quests: [
+    {
+      question: "Find Link",
+      positions: [{ top: { x: 1107, y: 775 }, bottom: { x: 1144, y: 846 } }],
+    },
+    {
+      question: "Find Niko",
+      positions: [{ top: { x: 1278, y: 929 }, bottom: { x: 1319, y: 992 } }],
+    },
+    {
+      question: "Find Malon",
+      positions: [{ top: { x: 1488, y: 485 }, bottom: { x: 1520, y: 543 } }],
+    },
+    {
+      question: "Find King of Red Lions",
+      positions: [{ top: { x: 330, y: 677 }, bottom: { x: 426, y: 1063 } }],
+    },
+    {
+      question: "Find 4 Zelda princesses",
+      hint: "From Wind waker, Breath of the Wild, Ocarina of Time and Spirit Tracks",
+      positions: [
+        { top: { x: 144, y: 1138 }, bottom: { x: 178, y: 1196 } },
+        { top: { x: 460, y: 533 }, bottom: { x: 508, y: 600 } },
+        { top: { x: 1357, y: 205 }, bottom: { x: 1393, y: 266 } },
+        { top: { x: 833, y: 90 }, bottom: { x: 904, y: 180 } },
+      ],
+    },
+    {
+      question: "Find Medli",
+      hint: "Priestress from Wind Waker",
+      positions: [{ top: { x: 648, y: 456 }, bottom: { x: 695, y: 526 } }],
+    },
+  ],
+  name: "ZELDA",
+  level: 4,
+  updateDate: new Date(),
+};
 const importLevels = async () => {
   try {
     //<button onClick={importLevels}>UPLOAD DATA</button>
+    const levelsData = [level1Data, level2Data, level3Data, level4Data];
     const dataLevelCollectionRef = collection(getFirestore(), "levelData");
-    let docRef = doc(getFirestore(), "levelData", "level1");
-    console.log("dataLevelCollectionRef " + dataLevelCollectionRef);
-    setDoc(docRef, level1Data, { merge: true })
-      .then(() => {
-        console.log("Document added or updated successfully!");
-      })
-      .catch((error) => {
-        console.error("Error adding or updating document: ", error);
-      });
-    docRef = doc(getFirestore(), "levelData", "level2");
-    console.log("dataLevelCollectionRef " + dataLevelCollectionRef);
-    setDoc(docRef, level2Data, { merge: true })
-      .then(() => {
-        console.log("Document added or updated successfully!");
-      })
-      .catch((error) => {
-        console.error("Error adding or updating document: ", error);
-      });
+    let docRef;
+    levelsData.forEach((levelData) => {
+      docRef = doc(getFirestore(), "levelData", "level" + levelData.level);
+
+      setDoc(docRef, levelData, { merge: true })
+        .then(() => {
+          console.log("Document added or updated successfully!");
+        })
+        .catch((error) => {
+          console.error("Error adding or updating document: ", error);
+        });
+    });
   } catch (error) {
     console.error("Error writing new score to Firebase Database", error);
   }
@@ -118,6 +239,7 @@ const LevelsDisplay = ({
 
   return (
     <div className="levels-display">
+      <button onClick={importLevels}>UPLOAD DATA</button>
       {levelsData.map((levelData) => {
         const level = levelData.level;
         const isHighlighted = hoveredLevel === level;

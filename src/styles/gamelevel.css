@@ -3,8 +3,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 100vh; /* Set the height to 100% of the viewport height */
+  /*height: 100vh;  Set the height to 100% of the viewport height */
   scroll-behavior: smooth;
+  white-space: nowrap; /* Prevent line breaks inside the container */
   overflow: auto; /* Enable scrolling for the component's content */
 }
 
@@ -77,17 +78,19 @@
 }
 
 .game {
+  height: 100%; /* Set the height to match the container's height */
+  object-fit: contain;
   display: inline-block;
   justify-content: center;
   align-items: center;
   position: relative;
 }
-
+/*
 .game img {
-  /*max-width: 1170px;
+max-width: 1170px;
   width: auto;
-  height: auto;*/
-}
+  height: auto;
+}*/
 .column {
   display: flex;
   flex-direction: column;

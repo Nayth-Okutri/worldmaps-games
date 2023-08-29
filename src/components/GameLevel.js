@@ -4,6 +4,7 @@ import SelectionMenu from "./SelectionMenu";
 import { useParams, useNavigate } from "react-router-dom";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import UserForm from "./UserForm";
+import HintPop from "./HintPop";
 
 const GameLevel = ({
   levelsData,
@@ -45,7 +46,7 @@ const GameLevel = ({
   const [clickCloseBottom, setClickCloseBottom] = useState(false);
   const [indicators, setIndicators] = useState([]);
   const [showRedQuestion, setShowRedQuestion] = useState(false);
-
+  const [showHint, setShowHint] = useState(false);
   const [zoomLevel, setZoomLevel] = useState(70);
   const [scaledWidth, setScaledWidth] = useState(100); // Initial zoom level is 100%
   const [scaledHeight, setScaledHeight] = useState(100);
@@ -141,15 +142,27 @@ const GameLevel = ({
   const handleZoomIn = () => {
     setShouldDisplayMenu(false);
     setShowHitTarget(false);
+    setShowHint(false);
     setZoomLevel((prevZoom) => Math.min(prevZoom + 10, 100)); // Increase zoom level by 10%
   };
 
   const handleZoomOut = () => {
     setShouldDisplayMenu(false);
     setShowHitTarget(false);
+    setShowHint(false);
     setZoomLevel((prevZoom) =>
       Math.max(prevZoom - 10, window.innerWidth > 768 ? 50 : 30)
     ); // Decrease zoom level by 10%
+  };
+  const handleHint = (e) => {
+    setShowHint(true);
+    setShouldDisplayMenu(false);
+    const bounds = e.target.getBoundingClientRect();
+    const x = e.clientX;
+    const y = e.clientY;
+    console.log(x);
+    setMenuX(x);
+    setMenuY(y);
   };
   function isClickWithinElement(topCoord, bottomCoord, clickX, clickY) {
     const isWithinXBoundary = clickX >= topCoord.x && clickX <= bottomCoord.x;
@@ -237,6 +250,7 @@ const GameLevel = ({
     let newQuest = Math.floor(Math.random() * questCount);
     setShouldDisplayMenu(false);
     setShowHitTarget(false);
+    setShowHint(false);
     setIndicators([]);
     if (Object.keys(hits).length !== 0) {
       do {
@@ -376,7 +390,7 @@ const GameLevel = ({
     const bounds = e.target.getBoundingClientRect();
     const xPositionOnImage = Math.floor(computeXPositionOnImage(e));
     const yPositionOnImage = Math.floor(computeYPositionOnImage(e));
-
+    setShowHint(false);
     console.log([xPositionOnImage, yPositionOnImage]);
     let target = e.target;
     let isInsideSelectionMenu = false;
@@ -411,9 +425,26 @@ const GameLevel = ({
         if (!(e.target.tagName === "IMG")) {
           setShouldDisplayMenu(false);
           setShowHitTarget(false);
+          setShowHint(false);
         }
       }}
     >
+      {" "}
+      {levelData &&
+        typeof currentQuest !== "undefined" &&
+        !isNaN(currentQuest) &&
+        levelData.quests[currentQuest] && (
+          <HintPop
+            x={menuX}
+            y={menuY + 120}
+            shouldDisplay={showHint}
+            content={
+              typeof levelData.quests[currentQuest].hint !== "undefined"
+                ? levelData.quests[currentQuest].hint
+                : "No hints"
+            }
+          />
+        )}
       <div
         ref={descriptionRef}
         className={`level-description ${descriptionIsSticky ? "sticky" : ""}`}
@@ -466,6 +497,25 @@ const GameLevel = ({
                 alt="ZoomOut"
                 onClick={handleZoomOut}
                 title="ZoomOut" // Add a tooltip description
+                onMouseOver={(e) => {
+                  e.target.style.opacity = 0.7; // Change opacity on hover
+                }}
+                onMouseOut={(e) => {
+                  e.target.style.opacity = 1; // Restore opacity when not hovering
+                }}
+              />
+            </span>
+            <span style={{ paddingRight: "10px" }}>
+              <img
+                style={{
+                  height: "20px",
+                  cursor: "pointer",
+                  transition: "opacity 0.3s",
+                }}
+                src={require("../assets/HintIcon.png")}
+                alt="Hint"
+                onClick={handleHint}
+                title="Hint" // Add a tooltip description
                 onMouseOver={(e) => {
                   e.target.style.opacity = 0.7; // Change opacity on hover
                 }}
@@ -539,6 +589,7 @@ const GameLevel = ({
           shouldDisplay={shouldDisplayMenu}
           questResult={questResult}
         />
+
         <UserForm
           shouldDisplay={shouldDisplayForm}
           time={endTime}
