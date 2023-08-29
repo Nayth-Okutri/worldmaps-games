@@ -5,7 +5,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import UserForm from "./UserForm";
 import HintPop from "./HintPop";
-
+import {
+  GAME_MODE_DUPLICATE,
+  GAME_MODE_10_QUESTS,
+  GAME_MODE_TIMEATTACK,
+  GAME_MODE_ALLQUESTS,
+} from "./Constants";
 const GameLevel = ({
   levelsData,
   isNameInLeaderboardRepeated,
@@ -52,6 +57,8 @@ const GameLevel = ({
   const [scaledHeight, setScaledHeight] = useState(100);
   let navigate = useNavigate();
 
+  const queryParams = new URLSearchParams(navigate.search);
+  const gameMode = queryParams.get("mode"); // This will get the value of the 'mode' parameter
   const [descriptionIsSticky, setDescriptionIsSticky] = useState(false);
   const descriptionRef = useRef();
   useEffect(() => {
