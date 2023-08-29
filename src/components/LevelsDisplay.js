@@ -7,6 +7,7 @@ const level1Data = {
   quests: [
     {
       question: "Find duplicate Pokemon",
+      type: 1,
       positions: [
         { top: { x: 352, y: 1138 }, bottom: { x: 446, y: 1320 } },
         { top: { x: 1317, y: 190 }, bottom: { x: 1373, y: 255 } },
@@ -194,7 +195,7 @@ const level3Data = {
       positions: [{ top: { x: 1496, y: 1226 }, bottom: { x: 1511, y: 1261 } }],
     },
   ],
-  name: "JRPG",
+  name: "J-RPG",
   level: 3,
   updateDate: new Date(),
 };
@@ -280,6 +281,7 @@ const LevelsDisplay = ({
   levelsData,
   clickFunction,
   displayIcons = true,
+  useClickFunction = false,
   highlight,
 }) => {
   const [openedNumber, setOpenedNumber] = useState(-1);
@@ -317,8 +319,8 @@ const LevelsDisplay = ({
             <div
               className="image-container"
               onClick={() => {
-                //clickFunction(level);
-                handleClick();
+                if (useClickFunction) clickFunction(level);
+                else handleClick();
               }}
             >
               <img

@@ -100,7 +100,7 @@ const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
       <LevelsDisplay
         levelsData={levelsData}
         clickFunction={changeLevelInDisplay}
-        displayIcons={false}
+        useClickFunction={true}
         highlight={currentLevel}
       />
       <div className="data">
