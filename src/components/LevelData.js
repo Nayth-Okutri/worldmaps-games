@@ -14,6 +14,11 @@ export const level1Data = {
       positions: [{ top: { x: 530, y: 521 }, bottom: { x: 589, y: 580 } }],
     },
     {
+      question: "Find Evee",
+      hint: "He is on the merry go round",
+      positions: [{ top: { x: 530, y: 521 }, bottom: { x: 589, y: 580 } }],
+    },
+    {
       question: "Find Snubbull",
       hint: "He is like a dog",
       positions: [{ top: { x: 1017, y: 1142 }, bottom: { x: 1075, y: 1211 } }],

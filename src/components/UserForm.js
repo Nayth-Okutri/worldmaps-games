@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import "../styles/userForm.css";
-
+import {
+  GAME_MODE_DUPLICATE,
+  GAME_MODE_10_QUESTS,
+  GAME_MODE_TIMEATTACK,
+  GAME_MODE_ALLQUESTS,
+} from "./Constants";
 const UserForm = ({
   shouldDisplay,
   time,
@@ -10,6 +15,8 @@ const UserForm = ({
   feedback,
   handleFeedbackInput,
   showErrorMessage = false,
+  numberOfRightHits,
+  gameMode,
 }) => {
   const positionStyle = {};
   if (!shouldDisplay) positionStyle["display"] = "none";
@@ -23,7 +30,12 @@ const UserForm = ({
       style={positionStyle}
     >
       <div className="user-form">
-        <h3>You finished in {time} seconds!</h3>
+        {gameMode !== GAME_MODE_TIMEATTACK ? (
+          <h3>You finished in {time} seconds!</h3>
+        ) : (
+          <h3>You got {numberOfRightHits} answers!</h3>
+        )}
+
         <form>
           <div className="input-section">
             <p>Enter your name to save your score on the global leaderboard.</p>

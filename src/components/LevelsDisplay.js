@@ -112,23 +112,6 @@ const LevelsDisplay = ({
                         height: "50px",
                         cursor: "pointer",
                         transition: "opacity 0.3s",
-                        opacity: selectedMode === "duplicate" ? 1 : 0.3,
-                      }}
-                      src={require("../assets/DuplicateIcon.png")}
-                      alt="Duplicate"
-                      title="Duplicate Mode" // Add a tooltip description
-                      onClick={() => {
-                        setSelectedMode("duplicate");
-                        setGameMode(GAME_MODE_DUPLICATE);
-                      }}
-                    />
-                  </span>
-                  <span style={{ paddingRight: "10px" }}>
-                    <img
-                      style={{
-                        height: "50px",
-                        cursor: "pointer",
-                        transition: "opacity 0.3s",
                         opacity: selectedMode === "10-quests" ? 1 : 0.3,
                       }}
                       src={require("../assets/10Icon.png")}
@@ -138,6 +121,23 @@ const LevelsDisplay = ({
                         setGameMode(GAME_MODE_10_QUESTS);
                       }}
                       title="Duplicate Mode" // Add a tooltip description
+                    />
+                  </span>
+                  <span style={{ paddingRight: "10px" }}>
+                    <img
+                      style={{
+                        height: "50px",
+                        cursor: "pointer",
+                        transition: "opacity 0.3s",
+                        opacity: selectedMode === "duplicate" ? 1 : 0.3,
+                      }}
+                      src={require("../assets/DuplicateIcon.png")}
+                      alt="Duplicate"
+                      title="Duplicate Mode" // Add a tooltip description
+                      onClick={() => {
+                        setSelectedMode("duplicate");
+                        setGameMode(GAME_MODE_DUPLICATE);
+                      }}
                     />
                   </span>
                   <span style={{ paddingRight: "10px" }}>
@@ -178,33 +178,32 @@ const LevelsDisplay = ({
                 {selectedMode === "duplicate" && (
                   <div className="mode-description">
                     <p>
-                      Selected Mode: Duplicate Hunt. Find duplicate in an image
-                      filled with various objects, characters, or elements.
+                      Duplicate Hunt. Find duplicate in an image filled with
+                      various objects, characters, or elements.
                     </p>
                   </div>
                 )}
                 {selectedMode === "10-quests" && (
                   <div className="mode-description">
                     <p>
-                      Selected Mode: 10 Random Questions. Put your Geek
-                      knowledge to the test and locate the elements that match
-                      the given questions.
+                      10 Random Questions. Put your Geek knowledge to the test
+                      and locate the elements that match the given questions.
                     </p>
                   </div>
                 )}
                 {selectedMode === "time-attack" && (
                   <div className="mode-description">
                     <p>
-                      Selected Mode: Time Attack. Take on the clock and respond
-                      to as many questions as you can within a single minute.
+                      Time Attack. Take on the clock and respond to as many
+                      questions as you can within a single minute.
                     </p>
                   </div>
                 )}
                 {selectedMode === "all-quests" && (
                   <div className="mode-description">
                     <p>
-                      Selected Mode: Otaku Mastery. Demonstrate your expertise
-                      by swiftly answering all the questions from the deck.
+                      Otaku Mastery. Demonstrate your expertise by swiftly
+                      answering all the questions from the deck.
                     </p>
                   </div>
                 )}

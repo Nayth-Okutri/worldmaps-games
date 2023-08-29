@@ -56,13 +56,16 @@ const GameLevel = ({
   const [scaledWidth, setScaledWidth] = useState(100); // Initial zoom level is 100%
   const [scaledHeight, setScaledHeight] = useState(100);
   let navigate = useNavigate();
-
-  const queryParams = new URLSearchParams(navigate.search);
-  const gameMode = queryParams.get("mode"); // This will get the value of the 'mode' parameter
+  const [gameMode, setGameMode] = useState(0);
+  const [timerStarted, setTimerStarted] = useState(false);
+  const [workingQuests, setWorkingQuests] = useState([]);
   const [descriptionIsSticky, setDescriptionIsSticky] = useState(false);
   const descriptionRef = useRef();
   useEffect(() => {
     const cachedRef = descriptionRef.current;
+    const queryParams = new URLSearchParams(window.location.search);
+    const modeParam = parseInt(queryParams.get("mode"));
+    setGameMode(modeParam); // This will set the value of the 'mode' parameter
 
     const observer = new IntersectionObserver(
       ([e]) => setDescriptionIsSticky(e.intersectionRatio < 1),
@@ -78,9 +81,9 @@ const GameLevel = ({
     const toggleCenteringClass = () => {
       if (image && container) {
         const isImageWiderThanViewport = image.clientWidth > window.innerWidth;
-        console.log(image.naturalWidth);
-        console.log(window.innerWidth);
-        console.log("isImageTallerThanViewport " + isImageWiderThanViewport);
+        //console.log(image.naturalWidth);
+        //console.log(window.innerWidth);
+        //console.log("isImageTallerThanViewport " + isImageWiderThanViewport);
         if (isImageWiderThanViewport) {
           container.classList.remove("center-only-when-fit");
         } else {
@@ -93,47 +96,147 @@ const GameLevel = ({
 
     toggleCenteringClass();
     window.addEventListener("resize", toggleCenteringClass);
-    if (levelData) {
-      const currentQuestCount = Object.keys(levelData.quests).length;
-      setQuestCount(currentQuestCount);
-      if (
-        currentQuestCount > 0 &&
-        (typeof currentQuest === "undefined" || hits[currentQuest] === true) &&
-        Object.keys(hits).length !== currentQuestCount
-      ) {
-        let newQuest = Math.floor(Math.random() * currentQuestCount);
-        if (Object.keys(hits).length !== 0) {
-          do {
-            newQuest = Math.floor(Math.random() * currentQuestCount);
-          } while (
-            Object.keys(hits).includes(newQuest) ||
-            hits[newQuest] === true
+
+    switch (gameMode) {
+      case GAME_MODE_DUPLICATE:
+        if (levelData) {
+          let duplicateQuests;
+          if (!timerStarted) {
+            duplicateQuests = levelData.quests.filter(
+              (quest) => quest.type === 1
+            );
+            setWorkingQuests(duplicateQuests);
+            const duplicateQuestCount = Object.keys(workingQuests).length;
+            if (duplicateQuestCount === 0) endGame();
+          }
+
+          const duplicateQuestCount = Object.keys(workingQuests).length;
+          setQuestCount(duplicateQuestCount);
+          console.log("workingQuests " + JSON.stringify(workingQuests));
+          console.log("duplicateQuestCount " + duplicateQuestCount);
+          if (
+            duplicateQuestCount > 0 &&
+            (typeof currentQuest === "undefined" ||
+              hits[currentQuest] === true) &&
+            Object.keys(hits).length !== duplicateQuestCount
+          ) {
+            let newQuest = Math.floor(Math.random() * duplicateQuestCount);
+            if (Object.keys(hits).length !== 0) {
+              do {
+                newQuest = Math.floor(Math.random() * duplicateQuestCount);
+              } while (
+                Object.keys(hits).includes(newQuest) ||
+                hits[newQuest] === true
+              );
+            }
+            setQuestHits([]);
+            setCurrentQuest(newQuest);
+            console.log("newQuest " + newQuest);
+            setShowRedQuestion(true); // Set the showRedQuestion state to true
+            setTimeout(() => {
+              setShowRedQuestion(false); // Reset the showRedQuestion state after 1 second
+            }, 1000);
+          }
+        }
+        if (levelData && workingQuests[currentQuest]) {
+          setMaxQuestHit(
+            Object.keys(workingQuests[currentQuest].positions).length
           );
         }
-        setQuestHits([]);
-        setCurrentQuest(newQuest);
-        setShowRedQuestion(true); // Set the showRedQuestion state to true
-        setTimeout(() => {
-          setShowRedQuestion(false); // Reset the showRedQuestion state after 1 second
-        }, 1000);
-      }
+
+        break;
+      case GAME_MODE_10_QUESTS:
+      case GAME_MODE_ALLQUESTS:
+      case GAME_MODE_TIMEATTACK:
+        if (levelData) {
+          setWorkingQuests(levelData.quests);
+          const currentQuestCount = Object.keys(workingQuests).length;
+          setQuestCount(currentQuestCount);
+          console.log("currentQuestCount " + currentQuestCount);
+          if (
+            currentQuestCount > 0 &&
+            (typeof currentQuest === "undefined" ||
+              hits[currentQuest] === true) &&
+            Object.keys(hits).length !== currentQuestCount
+          ) {
+            let newQuest = Math.floor(Math.random() * currentQuestCount);
+            if (Object.keys(hits).length !== 0) {
+              do {
+                newQuest = Math.floor(Math.random() * currentQuestCount);
+              } while (
+                Object.keys(hits).includes(newQuest) ||
+                hits[newQuest] === true
+              );
+            }
+            setQuestHits([]);
+            setCurrentQuest(newQuest);
+            console.log("newQuest " + newQuest);
+            setShowRedQuestion(true); // Set the showRedQuestion state to true
+            setTimeout(() => {
+              setShowRedQuestion(false); // Reset the showRedQuestion state after 1 second
+            }, 1000);
+          }
+        }
+        if (levelData && workingQuests[currentQuest]) {
+          setMaxQuestHit(
+            Object.keys(workingQuests[currentQuest].positions).length
+          );
+        }
+        break;
+      default:
     }
-    if (levelData && levelData.quests[currentQuest]) {
-      setMaxQuestHit(
-        Object.keys(levelData.quests[currentQuest].positions).length
-      );
+
+    switch (gameMode) {
+      case GAME_MODE_DUPLICATE:
+      case GAME_MODE_10_QUESTS:
+      case GAME_MODE_ALLQUESTS:
+        if (!gameEnded) {
+          setTimerStarted(true);
+          const interval = setInterval(() => {
+            setCurrentTime(
+              (Math.floor(Date.now() - startTime.current) / 1000).toFixed(1)
+            );
+          }, 1000);
+          if (gameEnded) {
+            clearInterval(interval);
+          }
+          return () => clearInterval(interval);
+        }
+        break;
+
+      case GAME_MODE_TIMEATTACK:
+        // Code to start the timer at one minute and count down to zero
+        if (!gameEnded) {
+          setTimerStarted(true);
+          const initialTime = 2; // 1 minute in seconds
+          if (!timerStarted) setCurrentTime(initialTime);
+
+          const interval = setInterval(() => {
+            setCurrentTime((prevTime) => {
+              if (prevTime > 0) {
+                return prevTime - 1;
+              } else {
+                clearInterval(interval);
+                endGame();
+                return 0;
+              }
+            });
+          }, 1000);
+          console.log("currentTime " + currentTime);
+
+          return () => clearInterval(interval);
+        }
+        break;
+      case GAME_MODE_DUPLICATE:
+        // Handle timer behavior for game mode 1
+        break;
+      default:
+        break;
     }
-    const interval = setInterval(() => {
-      setCurrentTime(
-        (Math.floor(Date.now() - startTime.current) / 1000).toFixed(1)
-      );
-    }, 1000);
-    if (gameEnded) {
-      clearInterval(interval);
-    }
+
     return () => {
       observer.unobserve(cachedRef);
-      clearInterval(interval); // Nettoyer l'intervalle lorsque le composant est démonté
+
       window.removeEventListener("resize", toggleCenteringClass);
     };
   }, [
@@ -145,6 +248,8 @@ const GameLevel = ({
     numberOfRightHits,
     indicators,
     zoomLevel,
+    gameMode,
+    workingQuests,
   ]);
   const handleZoomIn = () => {
     setShouldDisplayMenu(false);
@@ -164,7 +269,7 @@ const GameLevel = ({
   const handleHint = (e) => {
     setShowHint(true);
     setShouldDisplayMenu(false);
-    const bounds = e.target.getBoundingClientRect();
+
     const x = e.clientX;
     const y = e.clientY;
     console.log(x);
@@ -194,23 +299,26 @@ const GameLevel = ({
   };
   const saveScore = async (name, time) => {
     try {
-      const leaderboardCollectionRef = collection(
-        getFirestore(),
-        "leaderboard"
-      );
-      const scoresCollectionRef = collection(
-        leaderboardCollectionRef,
-        String(weekOfYear) + "/level" + String(level)
-      );
-      console.log("scoresCollectionRef " + scoresCollectionRef);
-      await addDoc(scoresCollectionRef, {
-        name: name,
-        feedback,
-        time: time,
-        score: numberOfRightHits,
-        level: level,
-        date: new Date(),
-      });
+      if (numberOfRightHits > 1) {
+        const leaderboardCollectionRef = collection(
+          getFirestore(),
+          "leaderboard"
+        );
+        const scoresCollectionRef = collection(
+          leaderboardCollectionRef,
+          String(weekOfYear) + "/level" + String(level)
+        );
+        console.log("scoresCollectionRef " + scoresCollectionRef);
+        await addDoc(scoresCollectionRef, {
+          name: name,
+          feedback,
+          time: time,
+          gameMode,
+          score: numberOfRightHits,
+          level: level,
+          date: new Date(),
+        });
+      }
     } catch (error) {
       console.error("Error writing new score to Firebase Database", error);
     }
@@ -247,7 +355,23 @@ const GameLevel = ({
       0
     );
     setNumberOfRightHits(numberOfRightQuestHits);
-    if (numberOfRightQuestHits === Object.keys(levelData.quests).length) {
+    switch (gameMode) {
+      case GAME_MODE_10_QUESTS:
+        if (numberOfRightQuestHits === 10) {
+          endGame();
+        }
+        break;
+      case GAME_MODE_DUPLICATE:
+      case GAME_MODE_ALLQUESTS:
+        if (numberOfRightQuestHits === Object.keys(workingQuests).length) {
+          endGame();
+        }
+        break;
+      case GAME_MODE_TIMEATTACK:
+        if (currentTime <= 0) endGame();
+        break;
+    }
+    if (numberOfRightQuestHits === Object.keys(workingQuests).length) {
       endGame();
     }
     console.log("numberOfRightHits " + numberOfRightQuestHits);
@@ -267,10 +391,10 @@ const GameLevel = ({
     setCurrentQuest(newQuest);
   };
   const evaluateSingleTargetHit = (xPositionOnImage, yPositionOnImage) => {
-    console.log("eval for " + levelData.quests[currentQuest].position.top.x);
+    console.log("eval for " + workingQuests[currentQuest].position.top.x);
     const hit = isClickWithinElement(
-      levelData.quests[currentQuest].position.top,
-      levelData.quests[currentQuest].position.bottom,
+      workingQuests[currentQuest].position.top,
+      workingQuests[currentQuest].position.bottom,
       xPositionOnImage,
       yPositionOnImage
     );
@@ -298,14 +422,14 @@ const GameLevel = ({
     const prevIndicator = clickNumber === 1 ? [] : indicators;
     if (clickNumber === 1) {
       setIndicators([]);
-      console.log("indicators " + JSON.stringify(indicators));
+      //console.log("indicators " + JSON.stringify(indicators));
     }
     setClickNumber(clickNumber + 1);
     for (let i = 0; i < maxQuestHit; i++) {
       if (
         isClickWithinElement(
-          levelData.quests[currentQuest].positions[i].top,
-          levelData.quests[currentQuest].positions[i].bottom,
+          workingQuests[currentQuest].positions[i].top,
+          workingQuests[currentQuest].positions[i].bottom,
           xPositionOnImage,
           yPositionOnImage
         )
@@ -439,14 +563,14 @@ const GameLevel = ({
       {levelData &&
         typeof currentQuest !== "undefined" &&
         !isNaN(currentQuest) &&
-        levelData.quests[currentQuest] && (
+        workingQuests[currentQuest] && (
           <HintPop
             x={menuX}
             y={menuY + 120}
             shouldDisplay={showHint}
             content={
-              typeof levelData.quests[currentQuest].hint !== "undefined"
-                ? levelData.quests[currentQuest].hint
+              typeof workingQuests[currentQuest].hint !== "undefined"
+                ? workingQuests[currentQuest].hint
                 : "No hints"
             }
           />
@@ -459,7 +583,7 @@ const GameLevel = ({
           {levelData &&
             typeof currentQuest !== "undefined" &&
             !isNaN(currentQuest) &&
-            levelData.quests[currentQuest] && (
+            workingQuests[currentQuest] && (
               <p
                 className={`question ${showRedQuestion ? "red-question" : ""}`}
               >
@@ -467,9 +591,9 @@ const GameLevel = ({
                   !gameEnded ? numberOfRightHits + 1 : numberOfRightHits
                 }` +
                   "/" +
-                  questCount +
+                  `${gameMode !== GAME_MODE_10_QUESTS ? questCount : 10}` +
                   " " +
-                  levelData.quests[currentQuest].question}
+                  workingQuests[currentQuest].question}
               </p>
             )}
           <div>
@@ -603,6 +727,8 @@ const GameLevel = ({
           handleInput={handleUserNameInput}
           handleFeedbackInput={handleFeedbackInput}
           showErrorMessage={showErrorMessage}
+          numberOfRightHits={numberOfRightHits}
+          gameMode={gameMode}
         />
         <img
           id="levelImage"
