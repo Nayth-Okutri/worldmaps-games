@@ -16,6 +16,7 @@
 
 .level-description {
   display: flex;
+  max-width: 765px;
   justify-content: center;
   align-items: center;
   position: sticky;

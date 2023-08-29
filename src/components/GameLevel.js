@@ -183,8 +183,6 @@ const GameLevel = ({
     setUserName(e.target.value);
   };
   const handleFeedbackInput = (e) => {
-    const newUserName = e.target.value.slice(0, 20);
-
     setFeedback(e.target.value);
   };
   const saveScore = async (name, time) => {
@@ -202,6 +200,7 @@ const GameLevel = ({
         name: name,
         feedback,
         time: time,
+        score: numberOfRightHits,
         level: level,
         date: new Date(),
       });

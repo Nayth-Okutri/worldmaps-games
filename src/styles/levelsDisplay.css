@@ -14,17 +14,7 @@
 .level:hover {
   box-shadow: 0 1px 8px 1px rgba(0, 0, 0, 0.25);
 }
-.level::before {
-  content: "";
-  position: absolute;
-  top: 100px;
-  right: 100px;
-  bottom: 100px;
-  left: 100px;
-  background-color: transparent;
-  border: 100px solid transparent; /* Crop 10px from each side */
-  z-index: 1;
-}
+
 .level img {
   width: 100%;
   height: 14rem;
@@ -58,4 +48,44 @@
 
 .level.highlight {
   background-color: rgba(234, 175, 63, 0.4);
+}
+
+.image-container {
+  cursor: pointer;
+  overflow: hidden;
+}
+.gamemode-select {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  border-radius: 15px;
+  transition: 1s;
+  overflow: hidden;
+  color: white;
+  padding: 5px;
+  transition: 1s all ease-in-out;
+  box-sizing: content-box;
+  max-width: 100%; /* Limit the maximum width if needed */
+  width: 100%;
+}
+
+.play {
+  font-size: 1.5rem;
+  padding: 10px 10px;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  background-color: #f87171;
+}
+
+.modes {
+  flex-direction: column;
+}
+.mode-description {
+  max-width: 100px;
+  overflow-wrap: break-word;
+}
+.play:hover {
+  background-color: #ef4444;
 }
