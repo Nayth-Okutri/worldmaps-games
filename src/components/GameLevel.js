@@ -92,6 +92,7 @@ const GameLevel = ({
         }
       }
     };
+    if (!timerStarted) setZoomLevel(window.innerWidth > 768 ? 70 : 60);
     setScaledWidth(image.naturalWidth * (zoomLevel / 100));
     setScaledHeight(image.naturalHeight * (zoomLevel / 100));
 
@@ -270,9 +271,9 @@ const GameLevel = ({
   const handleHint = (e) => {
     setShowHint(true);
     setShouldDisplayMenu(false);
-
     const x = e.clientX;
     const y = e.clientY;
+
     console.log(x);
     setMenuX(x);
     setMenuY(y);
@@ -569,7 +570,7 @@ const GameLevel = ({
         workingQuests[currentQuest] && (
           <HintPop
             x={menuX}
-            y={menuY + 120}
+            y={window.innerWidth > 768 ? menuY + 120 : menuY + 130}
             shouldDisplay={showHint}
             content={
               typeof workingQuests[currentQuest].hint !== "undefined"
