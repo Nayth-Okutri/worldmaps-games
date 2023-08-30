@@ -10,6 +10,7 @@ import {
   GAME_MODE_10_QUESTS,
   GAME_MODE_TIMEATTACK,
   GAME_MODE_ALLQUESTS,
+  TIMEATTACK_TIME,
 } from "./Constants";
 const GameLevel = ({
   levelsData,
@@ -66,7 +67,7 @@ const GameLevel = ({
     const queryParams = new URLSearchParams(window.location.search);
     const modeParam = parseInt(queryParams.get("mode"));
     setGameMode(modeParam); // This will set the value of the 'mode' parameter
-
+    if (isNaN(modeParam)) setGameMode(GAME_MODE_10_QUESTS);
     const observer = new IntersectionObserver(
       ([e]) => setDescriptionIsSticky(e.intersectionRatio < 1),
       {
@@ -106,7 +107,7 @@ const GameLevel = ({
               (quest) => quest.type === 1
             );
             setWorkingQuests(duplicateQuests);
-            const duplicateQuestCount = Object.keys(workingQuests).length;
+            const duplicateQuestCount = Object.keys(duplicateQuests).length;
             if (duplicateQuestCount === 0) endGame();
           }
 
@@ -208,7 +209,7 @@ const GameLevel = ({
         // Code to start the timer at one minute and count down to zero
         if (!gameEnded) {
           setTimerStarted(true);
-          const initialTime = 2; // 1 minute in seconds
+          const initialTime = TIMEATTACK_TIME; // 1 minute in seconds
           if (!timerStarted) setCurrentTime(initialTime);
 
           const interval = setInterval(() => {
@@ -299,7 +300,7 @@ const GameLevel = ({
   };
   const saveScore = async (name, time) => {
     try {
-      if (numberOfRightHits > 1) {
+      if (numberOfRightHits >= 1) {
         const leaderboardCollectionRef = collection(
           getFirestore(),
           "leaderboard"
@@ -309,11 +310,13 @@ const GameLevel = ({
           String(weekOfYear) + "/level" + String(level)
         );
         console.log("scoresCollectionRef " + scoresCollectionRef);
+        const reccordedTime =
+          gameMode !== GAME_MODE_TIMEATTACK ? time : TIMEATTACK_TIME - time;
         await addDoc(scoresCollectionRef, {
           name: name,
-          feedback,
-          time: time,
-          gameMode,
+          feedback: feedback,
+          time: reccordedTime,
+          gameMode: gameMode,
           score: numberOfRightHits,
           level: level,
           date: new Date(),
@@ -332,7 +335,7 @@ const GameLevel = ({
 
   const submitScore = (event) => {
     event.preventDefault();
-    if (userName && !isNameInLeaderboardRepeated(userName, level)) {
+    if (userName) {
       saveScore(userName, endTime);
       updateLeaderboardData();
       navigate(`/worldmaps/leaderboard/${level}`);

@@ -39,12 +39,12 @@ const LevelsDisplay = ({
   displayIcons = true,
   useClickFunction = false,
   highlight,
+  bareMode = false,
+  overrideIconClick,
 }) => {
   const [openedNumber, setOpenedNumber] = useState(-1);
   const [hoveredLevel, setHoveredLevel] = useState(0); // State for tracking hovered level
-  const [isSlidingDown, setIsSlidingDown] = useState(false); // State for sliding div visibility
   const [selectedMode, setSelectedMode] = useState("duplicate");
-  const [show, setShow] = useState(false);
   const [gameMode, setGameMode] = useState();
   let navigate = useNavigate();
   const showStyle = {
@@ -77,8 +77,10 @@ const LevelsDisplay = ({
             <div
               className="image-container"
               onClick={() => {
-                if (useClickFunction) clickFunction(level);
-                else handleClick();
+                if (useClickFunction) {
+                  clickFunction(level);
+                  handleClick();
+                } else handleClick();
               }}
             >
               <img
@@ -117,8 +119,13 @@ const LevelsDisplay = ({
                       src={require("../assets/10Icon.png")}
                       alt="Duplicate"
                       onClick={() => {
-                        setSelectedMode("10-quests");
-                        setGameMode(GAME_MODE_10_QUESTS);
+                        if (useClickFunction) {
+                          overrideIconClick(GAME_MODE_10_QUESTS);
+                          setSelectedMode("10-quests");
+                        } else {
+                          setSelectedMode("10-quests");
+                          setGameMode(GAME_MODE_10_QUESTS);
+                        }
                       }}
                       title="Duplicate Mode" // Add a tooltip description
                     />
@@ -135,8 +142,13 @@ const LevelsDisplay = ({
                       alt="Duplicate"
                       title="Duplicate Mode" // Add a tooltip description
                       onClick={() => {
-                        setSelectedMode("duplicate");
-                        setGameMode(GAME_MODE_DUPLICATE);
+                        if (useClickFunction) {
+                          overrideIconClick(GAME_MODE_DUPLICATE);
+                          setSelectedMode("duplicate");
+                        } else {
+                          setSelectedMode("duplicate");
+                          setGameMode(GAME_MODE_DUPLICATE);
+                        }
                       }}
                     />
                   </span>
@@ -151,8 +163,13 @@ const LevelsDisplay = ({
                       src={require("../assets/TimerIcon.png")}
                       alt="Duplicate"
                       onClick={() => {
-                        setSelectedMode("time-attack");
-                        setGameMode(GAME_MODE_TIMEATTACK);
+                        if (useClickFunction) {
+                          overrideIconClick(GAME_MODE_TIMEATTACK);
+                          setSelectedMode("time-attack");
+                        } else {
+                          setSelectedMode("time-attack");
+                          setGameMode(GAME_MODE_TIMEATTACK);
+                        }
                       }}
                       title="Duplicate Mode" // Add a tooltip description
                     />
@@ -168,14 +185,19 @@ const LevelsDisplay = ({
                       src={require("../assets/UntilEndIcon.png")}
                       alt="Duplicate"
                       onClick={() => {
-                        setSelectedMode("all-quests");
-                        setGameMode(GAME_MODE_ALLQUESTS);
+                        if (useClickFunction) {
+                          overrideIconClick(GAME_MODE_ALLQUESTS);
+                          setSelectedMode("all-quests");
+                        } else {
+                          setSelectedMode("all-quests");
+                          setGameMode(GAME_MODE_ALLQUESTS);
+                        }
                       }}
                       title="Duplicate Mode" // Add a tooltip description
                     />
                   </span>{" "}
                 </div>
-                {selectedMode === "duplicate" && (
+                {!bareMode && selectedMode === "duplicate" && (
                   <div className="mode-description">
                     <p>
                       Duplicate Hunt. Find duplicate in an image filled with
@@ -183,7 +205,7 @@ const LevelsDisplay = ({
                     </p>
                   </div>
                 )}
-                {selectedMode === "10-quests" && (
+                {!bareMode && selectedMode === "10-quests" && (
                   <div className="mode-description">
                     <p>
                       10 Random Questions. Put your Geek knowledge to the test
@@ -191,7 +213,8 @@ const LevelsDisplay = ({
                     </p>
                   </div>
                 )}
-                {selectedMode === "time-attack" && (
+
+                {!bareMode && selectedMode === "time-attack" && (
                   <div className="mode-description">
                     <p>
                       Time Attack. Take on the clock and respond to as many
@@ -199,7 +222,7 @@ const LevelsDisplay = ({
                     </p>
                   </div>
                 )}
-                {selectedMode === "all-quests" && (
+                {!bareMode && selectedMode === "all-quests" && (
                   <div className="mode-description">
                     <p>
                       Otaku Mastery. Demonstrate your expertise by swiftly
@@ -207,12 +230,14 @@ const LevelsDisplay = ({
                     </p>
                   </div>
                 )}
-                <button
-                  className="play"
-                  onClick={() => levelClick(level, gameMode)}
-                >
-                  Play Game
-                </button>
+                {!bareMode && (
+                  <button
+                    className="play"
+                    onClick={() => levelClick(level, gameMode)}
+                  >
+                    Play Game
+                  </button>
+                )}
               </div>
             </div>
           </div>

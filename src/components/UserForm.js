@@ -31,7 +31,9 @@ const UserForm = ({
     >
       <div className="user-form">
         {gameMode !== GAME_MODE_TIMEATTACK ? (
-          <h3>You finished in {time} seconds!</h3>
+          <h3>
+            You finished in {time} seconds with a score {numberOfRightHits}
+          </h3>
         ) : (
           <h3>You got {numberOfRightHits} answers!</h3>
         )}

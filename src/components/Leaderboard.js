@@ -9,14 +9,23 @@ import {
   getDoc,
   getFirestore,
 } from "firebase/firestore";
+import {
+  GAME_MODE_DUPLICATE,
+  GAME_MODE_10_QUESTS,
+  GAME_MODE_TIMEATTACK,
+  GAME_MODE_ALLQUESTS,
+  TIMEATTACK_TIME,
+} from "./Constants";
 const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
   const [levelLeaderboardData, setLevelLeaderboardData] = useState([]);
+  const [displayedLeaderboardData, setDisplayedLeaderboardData] = useState([]);
   const level = +useParams().level || 1;
   const [currentLevel, setCurrentLevel] = useState(level);
   const [weekDates, setWeekDates] = useState({
     start: new Date(),
     end: new Date(),
   });
+  const [gameMode, setGameMode] = useState(0);
   console.log(weekOfYear);
   leaderboardData = leaderboardData.filter(
     (data) => data.level === currentLevel
@@ -25,6 +34,10 @@ const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
 
   const changeLevelInDisplay = (level) => {
     setCurrentLevel(level);
+  };
+  const changeGameModeInDisplay = (mode) => {
+    setGameMode(mode);
+    setGameMode(mode);
   };
   const getWeekDates = (year, weekNumber) => {
     const date = new Date(year, 0, 1); // January 1st of the year
@@ -51,10 +64,6 @@ const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
   };
   const getLeaderboardDataForLevel = async (level) => {
     setLevelLeaderboardData([]);
-
-    const docRef = doc(getFirestore(), "leaderboard", String(weekOfYear));
-    const docSnap = await getDoc(docRef);
-    //const levelCount = docSnap.data().levelCount;
 
     let newLeaderboardData = [];
     const leaderboardCollectionRef = collection(getFirestore(), "leaderboard");
@@ -84,7 +93,15 @@ const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
   useEffect(() => {
     getLeaderboardDates();
     getLeaderboardDataForLevel(currentLevel);
-  }, [currentLevel]);
+    if (gameMode !== 0) {
+      console.log("gameMode " + gameMode);
+      const subList = levelLeaderboardData.filter(
+        (data) => data.gameMode === gameMode
+      );
+      console.log(JSON.stringify(subList));
+      setDisplayedLeaderboardData(subList);
+    }
+  }, [currentLevel, gameMode]);
   return (
     <div className="leaderboard">
       <div>
@@ -92,9 +109,15 @@ const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
           .toDateString()
           .slice(0, -4)} - ${weekDates.end.toDateString()}`}</h1>
         <div className="buttons">
-          <Link to={`/worldmaps/game/${currentLevel}`}>
-            <button className="play">Play This Level</button>
-          </Link>
+          {gameMode ? (
+            <Link to={`/worldmaps/game/${currentLevel}?mode=${gameMode}`}>
+              <button className="play">Play This Level</button>
+            </Link>
+          ) : (
+            <button className="play" disabled>
+              Select a Game Mode
+            </button>
+          )}
         </div>
       </div>
       <LevelsDisplay
@@ -102,21 +125,52 @@ const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
         clickFunction={changeLevelInDisplay}
         useClickFunction={true}
         highlight={currentLevel}
+        bareMode={true}
+        overrideIconClick={changeGameModeInDisplay}
       />
       <div className="data">
+        {gameMode === GAME_MODE_DUPLICATE && (
+          <h1>High scores for the mode Duplicate Hunt</h1>
+        )}
+        {gameMode === GAME_MODE_10_QUESTS && (
+          <h1>High scores for the mode Random 10 Quests</h1>
+        )}
+        {gameMode === GAME_MODE_TIMEATTACK && (
+          <h1>High scores for the mode Time Attack</h1>
+        )}
+        {gameMode === GAME_MODE_ALLQUESTS && (
+          <h1>High scores for the mode Otaku Mastery</h1>
+        )}
+
         <table>
           <thead>
             <tr>
+              <th>RANK</th>
               <th>NAME</th>
+              <th>SCORE</th>
               <th>TIME (SECONDS)</th>
             </tr>
           </thead>
           <tbody>
-            {levelLeaderboardData &&
-              levelLeaderboardData.map((data) => {
+            {displayedLeaderboardData &&
+              displayedLeaderboardData.map((data, index) => {
+                const rank = index + 1; // Rank starts from 1
+                const isHighlight = index === 0;
                 return (
                   <tr key={data.name}>
+                    <td>
+                      {rank}
+                      {isHighlight && (
+                        <img
+                          src={require("../assets/ChampionIcon.png")}
+                          alt="Image"
+                          className="rank-image"
+                          style={{ height: "15px" }}
+                        />
+                      )}
+                    </td>
                     <td>{data.name}</td>
+                    <td>{data.score}</td>
                     <td>{data.time}</td>
                   </tr>
                 );
