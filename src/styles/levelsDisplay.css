@@ -68,6 +68,8 @@
   box-sizing: content-box;
   max-width: 100%; /* Limit the maximum width if needed */
   width: 100%;
+  overflow-wrap: break-word;
+  flex-flow: wrap;
 }
 
 .play {
@@ -83,7 +85,9 @@
   flex-direction: column;
 }
 .mode-description {
-  max-width: 100px;
+  display: flex;
+  flex-flow: wrap;
+  width: 100px;
   overflow-wrap: break-word;
 }
 .play:hover {

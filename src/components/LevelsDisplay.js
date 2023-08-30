@@ -49,6 +49,7 @@ const LevelsDisplay = ({
   let navigate = useNavigate();
   const showStyle = {
     height: "auto",
+    maxWidth: "90%",
   };
   const levelClick = (level, gameMode = 2) => {
     const mode = gameMode !== undefined ? gameMode : 2;
