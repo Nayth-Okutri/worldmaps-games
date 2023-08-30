@@ -56,6 +56,7 @@ const GameLevel = ({
   const [zoomLevel, setZoomLevel] = useState(70);
   const [scaledWidth, setScaledWidth] = useState(100); // Initial zoom level is 100%
   const [scaledHeight, setScaledHeight] = useState(100);
+  const [imageSource, setImageSource] = useState(null);
   let navigate = useNavigate();
   const [gameMode, setGameMode] = useState(0);
   const [timerStarted, setTimerStarted] = useState(false);
@@ -103,12 +104,16 @@ const GameLevel = ({
       case GAME_MODE_DUPLICATE:
         if (levelData) {
           let duplicateQuests;
-          if (!timerStarted) {
+          //console.log("levelData " + JSON.stringify(levelData.quests));
+          if (questCount === 0) {
             duplicateQuests = levelData.quests.filter(
               (quest) => quest.type === 1
             );
+
             setWorkingQuests(duplicateQuests);
             const duplicateQuestCount = Object.keys(duplicateQuests).length;
+            console.log("duplicateQuestCount " + duplicateQuestCount);
+
             if (duplicateQuestCount === 0) endGame();
           }
 
@@ -134,6 +139,7 @@ const GameLevel = ({
             setQuestHits([]);
             setCurrentQuest(newQuest);
             console.log("newQuest " + newQuest);
+            getImageSource(newQuest);
             setShowRedQuestion(true); // Set the showRedQuestion state to true
             setTimeout(() => {
               setShowRedQuestion(false); // Reset the showRedQuestion state after 1 second
@@ -151,7 +157,14 @@ const GameLevel = ({
       case GAME_MODE_ALLQUESTS:
       case GAME_MODE_TIMEATTACK:
         if (levelData) {
-          setWorkingQuests(levelData.quests);
+          let regularQuests;
+
+          if (!timerStarted) {
+            regularQuests = levelData.quests.filter(
+              (quest) => typeof quest.type === "undefined" || quest.type !== 1
+            );
+            setWorkingQuests(regularQuests);
+          }
           const currentQuestCount = Object.keys(workingQuests).length;
           setQuestCount(currentQuestCount);
           console.log("currentQuestCount " + currentQuestCount);
@@ -172,6 +185,7 @@ const GameLevel = ({
             }
             setQuestHits([]);
             setCurrentQuest(newQuest);
+            getImageSource(newQuest);
             console.log("newQuest " + newQuest);
             setShowRedQuestion(true); // Set the showRedQuestion state to true
             setTimeout(() => {
@@ -252,6 +266,7 @@ const GameLevel = ({
     zoomLevel,
     gameMode,
     workingQuests,
+    scaledWidth,
   ]);
   const handleZoomIn = () => {
     setShouldDisplayMenu(false);
@@ -397,6 +412,11 @@ const GameLevel = ({
     }
     setQuestHits([]);
     setCurrentQuest(newQuest);
+    getImageSource(newQuest);
+    setShowRedQuestion(true); // Set the showRedQuestion state to true
+    setTimeout(() => {
+      setShowRedQuestion(false); // Reset the showRedQuestion state after 1 second
+    }, 1000);
   };
   const evaluateMultipleTargetHit = (
     x,
@@ -532,7 +552,63 @@ const GameLevel = ({
     }
     evaluateEndOfGame();
   };
+  // Helper function to generate hashed asset paths
+  const getHashedAssetPath = (filename) => {
+    console.log(filename);
+    //const hashedFilename = require(`../assets/level-${level}.jpg`);
+    const hashedFilename = require(`../assets/${filename}.jpg`);
+    return hashedFilename; // In case you're using ES modules
+  };
+  const getImageSource = (currentquest) => {
+    console.log("getImageSource " + workingQuests);
+    console.log("workingQuests[currentQuest] " + currentquest);
+    console.log("gameMode " + gameMode);
+    console.log(workingQuests);
+    if (
+      typeof workingQuests !== "undefined" &&
+      typeof workingQuests[currentquest] !== "undefined" &&
+      gameMode !== GAME_MODE_DUPLICATE
+    ) {
+      {
+        console.log("ici");
+        const image = new Image();
 
+        const hashedImagePath = getHashedAssetPath(`level-${level}`);
+        console.log("hashedImagePath " + hashedImagePath);
+        image.src = hashedImagePath;
+        image.onload = () => {
+          console.log("image.naturalWidth " + image.naturalWidth);
+          setScaledWidth(image.naturalWidth * (zoomLevel / 100));
+          setScaledHeight(image.naturalHeight * (zoomLevel / 100));
+        };
+
+        setImageSource(hashedImagePath);
+      }
+    } else if (
+      typeof workingQuests !== "undefined" &&
+      typeof workingQuests[currentquest] !== "undefined" &&
+      typeof workingQuests[currentquest].image !== "undefined"
+    ) {
+      {
+        console.log("la");
+        const image = new Image();
+        const hashedImagePath = getHashedAssetPath(
+          `${workingQuests[currentquest].image}`
+        );
+        image.src = hashedImagePath;
+        console.log("image " + image.naturalWidth);
+        console.log("hashedImagePath " + hashedImagePath);
+        image.onload = () => {
+          console.log("image.naturalWidth" + image.naturalWidth);
+          setScaledWidth(image.naturalWidth * (zoomLevel / 100));
+          setScaledHeight(image.naturalHeight * (zoomLevel / 100));
+        };
+        setImageSource(hashedImagePath);
+      }
+    } else {
+      console.log("nothing"); // or provide a default image source
+    }
+  };
   return (
     <div
       className="game-container"
@@ -717,7 +793,7 @@ const GameLevel = ({
         />
         <img
           id="levelImage"
-          src={require(`../assets/level-${level}.jpg`)}
+          src={`${imageSource}`}
           alt={`Level ${level}`}
           width={scaledWidth}
           height={scaledHeight}

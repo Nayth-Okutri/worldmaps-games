@@ -50,7 +50,7 @@ const RankingTable = ({ gameMode, displayedLeaderboardData }) => {
                   </td>
                   <td>{data.name}</td>
                   <td>{data.score}</td>
-                  <td>{data.time}</td>
+                  <td>{data.time.toFixed(2)}</td>
                 </tr>
               );
             })}

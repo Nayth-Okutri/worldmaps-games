@@ -39,7 +39,7 @@ const Heading = () => {
           <div className="title">
             <Link to="/worldmaps">Worldmaps</Link>
             <div className="stroke"></div>
-            <p>Nayth quizz game</p>
+            <p>Geek Seek Quizz Quest</p>
           </div>
         </div>
         <div className="divider"></div> {/* Empty divider */}
