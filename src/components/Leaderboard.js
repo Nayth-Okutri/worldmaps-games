@@ -2,13 +2,7 @@ import LevelsDisplay from "./LevelsDisplay";
 import "../styles/leaderboard.css";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {
-  collection,
-  getDocs,
-  doc,
-  getDoc,
-  getFirestore,
-} from "firebase/firestore";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 import {
   GAME_MODE_DUPLICATE,
   GAME_MODE_10_QUESTS,
@@ -16,23 +10,26 @@ import {
   GAME_MODE_ALLQUESTS,
   TIMEATTACK_TIME,
 } from "./Constants";
+import RankingTable from "./RankingTable";
 const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
   const [levelLeaderboardData, setLevelLeaderboardData] = useState([]);
   const [displayedLeaderboardData, setDisplayedLeaderboardData] = useState([]);
   const level = +useParams().level || 1;
   const [currentLevel, setCurrentLevel] = useState(level);
+  const [gameMode, setGameMode] = useState(0);
   const [weekDates, setWeekDates] = useState({
     start: new Date(),
     end: new Date(),
   });
-  const [gameMode, setGameMode] = useState(0);
-  console.log(weekOfYear);
+
+  //console.log(weekOfYear);
   leaderboardData = leaderboardData.filter(
     (data) => data.level === currentLevel
   );
   leaderboardData.sort((a, b) => a.time - b.time);
 
   const changeLevelInDisplay = (level) => {
+    setDisplayedLeaderboardData([]);
     setCurrentLevel(level);
   };
   const changeGameModeInDisplay = (mode) => {
@@ -59,8 +56,8 @@ const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
     const date = new Date();
     const newWeekDates = getWeekDates(date.getFullYear(), weekOfYear);
     setWeekDates(newWeekDates);
-    console.log("Start date:", weekDates.start.toDateString());
-    console.log("End date:", weekDates.end.toDateString());
+    //console.log("Start date:", weekDates.start.toDateString());
+    //console.log("End date:", weekDates.end.toDateString());
   };
   const getLeaderboardDataForLevel = async (level) => {
     setLevelLeaderboardData([]);
@@ -89,18 +86,28 @@ const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
       (a, b) => a.time - b.time
     );
     setLevelLeaderboardData(sortedLevelLeaderboardData);
+    return sortedLevelLeaderboardData;
   };
   useEffect(() => {
     getLeaderboardDates();
-    getLeaderboardDataForLevel(currentLevel);
-    if (gameMode !== 0) {
-      console.log("gameMode " + gameMode);
-      const subList = levelLeaderboardData.filter(
-        (data) => data.gameMode === gameMode
-      );
-      console.log(JSON.stringify(subList));
-      setDisplayedLeaderboardData(subList);
-    }
+    getLeaderboardDataForLevel(currentLevel)
+      .then((newLevelLeaderboardData) => {
+        if (gameMode !== 0) {
+          console.log("gameMode " + gameMode);
+          let subList = newLevelLeaderboardData.filter(
+            (data) => data.gameMode === gameMode
+          );
+          if (gameMode === GAME_MODE_TIMEATTACK)
+            subList = [...subList].sort((a, b) => b.score - a.score);
+          console.log(JSON.stringify(subList));
+          setDisplayedLeaderboardData(subList);
+        } else {
+          setDisplayedLeaderboardData(newLevelLeaderboardData);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching leaderboard data:", error);
+      });
   }, [currentLevel, gameMode]);
   return (
     <div className="leaderboard">
@@ -109,7 +116,7 @@ const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
           .toDateString()
           .slice(0, -4)} - ${weekDates.end.toDateString()}`}</h1>
         <div className="buttons">
-          {gameMode ? (
+          {currentLevel && gameMode ? (
             <Link to={`/worldmaps/game/${currentLevel}?mode=${gameMode}`}>
               <button className="play">Play This Level</button>
             </Link>
@@ -127,57 +134,13 @@ const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
         highlight={currentLevel}
         bareMode={true}
         overrideIconClick={changeGameModeInDisplay}
+        nestedComponent={
+          <RankingTable
+            gameMode={gameMode}
+            displayedLeaderboardData={displayedLeaderboardData}
+          />
+        }
       />
-      <div className="data">
-        {gameMode === GAME_MODE_DUPLICATE && (
-          <h1>High scores for the mode Duplicate Hunt</h1>
-        )}
-        {gameMode === GAME_MODE_10_QUESTS && (
-          <h1>High scores for the mode Random 10 Quests</h1>
-        )}
-        {gameMode === GAME_MODE_TIMEATTACK && (
-          <h1>High scores for the mode Time Attack</h1>
-        )}
-        {gameMode === GAME_MODE_ALLQUESTS && (
-          <h1>High scores for the mode Otaku Mastery</h1>
-        )}
-
-        <table>
-          <thead>
-            <tr>
-              <th>RANK</th>
-              <th>NAME</th>
-              <th>SCORE</th>
-              <th>TIME (SECONDS)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {displayedLeaderboardData &&
-              displayedLeaderboardData.map((data, index) => {
-                const rank = index + 1; // Rank starts from 1
-                const isHighlight = index === 0;
-                return (
-                  <tr key={data.name}>
-                    <td>
-                      {rank}
-                      {isHighlight && (
-                        <img
-                          src={require("../assets/ChampionIcon.png")}
-                          alt="Image"
-                          className="rank-image"
-                          style={{ height: "15px" }}
-                        />
-                      )}
-                    </td>
-                    <td>{data.name}</td>
-                    <td>{data.score}</td>
-                    <td>{data.time}</td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
-      </div>
     </div>
   );
 };

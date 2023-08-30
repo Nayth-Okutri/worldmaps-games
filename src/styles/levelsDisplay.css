@@ -47,7 +47,7 @@
 }
 
 .level.highlight {
-  background-color: rgba(234, 175, 63, 0.4);
+  background-color: rgba(234, 175, 63, 0);
 }
 
 .image-container {
@@ -84,12 +84,21 @@
 .modes {
   flex-direction: column;
 }
-.mode-description {
-  display: flex;
-  flex-flow: wrap;
-  width: 100px;
-  overflow-wrap: break-word;
-}
+
 .play:hover {
   background-color: #ef4444;
+}
+.nested-component-container {
+  width: 100%; /* Set to 100% to fill the width of the parent container */
+  padding: 20px; /* Add some padding for spacing */
+  box-sizing: border-box; /* Include padding in the width calculation */
+  color: black;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.nested-component-container img {
+  padding: 0px 5px;
+  opacity: 1;
 }

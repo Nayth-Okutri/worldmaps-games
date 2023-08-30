@@ -313,6 +313,7 @@ const GameLevel = ({
         console.log("scoresCollectionRef " + scoresCollectionRef);
         const reccordedTime =
           gameMode !== GAME_MODE_TIMEATTACK ? time : TIMEATTACK_TIME - time;
+        console.log("time " + time);
         await addDoc(scoresCollectionRef, {
           name: name,
           feedback: feedback,
@@ -337,7 +338,10 @@ const GameLevel = ({
   const submitScore = (event) => {
     event.preventDefault();
     if (userName) {
-      saveScore(userName, endTime);
+      let reccordedTime;
+      if (gameMode !== GAME_MODE_TIMEATTACK) reccordedTime = endTime;
+      else reccordedTime = currentTime;
+      saveScore(userName, reccordedTime);
       updateLeaderboardData();
       navigate(`/worldmaps/leaderboard/${level}`);
     } else {
@@ -393,29 +397,6 @@ const GameLevel = ({
     }
     setQuestHits([]);
     setCurrentQuest(newQuest);
-  };
-  const evaluateSingleTargetHit = (xPositionOnImage, yPositionOnImage) => {
-    console.log("eval for " + workingQuests[currentQuest].position.top.x);
-    const hit = isClickWithinElement(
-      workingQuests[currentQuest].position.top,
-      workingQuests[currentQuest].position.bottom,
-      xPositionOnImage,
-      yPositionOnImage
-    );
-    setQuestResult(hit);
-
-    if (!shouldDisplayMenu) setShouldDisplayMenu(true);
-    const hitObject = hits;
-    //console.log(someHit);
-    if (
-      !Object.keys(hits).includes(currentQuest) ||
-      hits[currentQuest] === false
-    ) {
-      hitObject[currentQuest] = hit;
-    }
-
-    console.log(hitObject[currentQuest]);
-    setHits(hitObject);
   };
   const evaluateMultipleTargetHit = (
     x,

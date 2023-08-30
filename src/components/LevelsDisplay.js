@@ -2,7 +2,6 @@ import "../styles/levelsDisplay.css";
 import { useState } from "react";
 import { collection, getFirestore, setDoc, doc } from "firebase/firestore";
 import { TypeAnimation } from "react-type-animation";
-import { Link, useNavigate } from "react-router-dom";
 
 import {
   GAME_MODE_DUPLICATE,
@@ -39,22 +38,19 @@ const LevelsDisplay = ({
   displayIcons = true,
   useClickFunction = false,
   highlight,
-  bareMode = false,
   overrideIconClick,
+  nestedComponent,
 }) => {
   const [openedNumber, setOpenedNumber] = useState(-1);
   const [hoveredLevel, setHoveredLevel] = useState(0); // State for tracking hovered level
   const [selectedMode, setSelectedMode] = useState("duplicate");
   const [gameMode, setGameMode] = useState();
-  let navigate = useNavigate();
+
   const showStyle = {
     height: "auto",
-    maxWidth: "90%",
+    maxWidth: "100%",
   };
-  const levelClick = (level, gameMode = 2) => {
-    const mode = gameMode !== undefined ? gameMode : 2;
-    navigate(`/worldmaps/game/${level}?mode=${mode}`);
-  };
+
   return (
     <div className="levels-display">
       {levelsData.map((levelData) => {
@@ -198,46 +194,10 @@ const LevelsDisplay = ({
                     />
                   </span>{" "}
                 </div>
-                {!bareMode && selectedMode === "duplicate" && (
-                  <div className="mode-description">
-                    <p>
-                      Duplicate Hunt. Find duplicate in an image filled with
-                      various objects, characters, or elements.
-                    </p>
+                {nestedComponent && (
+                  <div className="nested-component-container">
+                    {nestedComponent}
                   </div>
-                )}
-                {!bareMode && selectedMode === "10-quests" && (
-                  <div className="mode-description">
-                    <p>
-                      10 Random Questions. Put your Geek knowledge to the test
-                      and locate the elements that match the given questions.
-                    </p>
-                  </div>
-                )}
-
-                {!bareMode && selectedMode === "time-attack" && (
-                  <div className="mode-description">
-                    <p>
-                      Time Attack. Take on the clock and respond to as many
-                      questions as you can within a single minute.
-                    </p>
-                  </div>
-                )}
-                {!bareMode && selectedMode === "all-quests" && (
-                  <div className="mode-description">
-                    <p>
-                      Otaku Mastery. Demonstrate your expertise by swiftly
-                      answering all the questions from the deck.
-                    </p>
-                  </div>
-                )}
-                {!bareMode && (
-                  <button
-                    className="play"
-                    onClick={() => levelClick(level, gameMode)}
-                  >
-                    Play Game
-                  </button>
                 )}
               </div>
             </div>

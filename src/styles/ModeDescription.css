@@ -1,0 +1,6 @@
+.mode-description {
+  display: flex;
+  flex-flow: wrap;
+  width: 100px;
+  overflow-wrap: break-word;
+}
