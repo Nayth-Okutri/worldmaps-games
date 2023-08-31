@@ -42,7 +42,7 @@ const UserForm = ({
         ) : (
           <h3>
             {t("UserFormTitle2Part1")}
-            {numberOfRightHits} {t("UserFormTitle2Part1")}
+            {numberOfRightHits} {t("UserFormTitle2Part2")}
           </h3>
         )}
 
@@ -61,7 +61,7 @@ const UserForm = ({
                 {t("UserFormScoreFeedbackDescription")}
               </label>
               <textarea
-                name="feedback to Nayth"
+                name={t("UserFormScoreFeedbackDescription")}
                 value={feedback}
                 onChange={handleFeedbackInput}
                 style={{

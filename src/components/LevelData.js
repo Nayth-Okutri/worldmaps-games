@@ -19,6 +19,15 @@ export const level1Data = {
       ],
     },
     {
+      question: "quest12",
+      type: 1,
+      image: "level-1-dup2",
+      positions: [
+        { top: { x: 1348, y: 571 }, bottom: { x: 1412, y: 647 } },
+        { top: { x: 824, y: 801 }, bottom: { x: 912, y: 903 } },
+      ],
+    },
+    {
       question: "quest1",
       positions: [
         { top: { x: 352, y: 1138 }, bottom: { x: 446, y: 1320 } },
