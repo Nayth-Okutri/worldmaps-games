@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "../styles/userForm.css";
+import { useTranslation } from "react-i18next";
 import {
   GAME_MODE_DUPLICATE,
   GAME_MODE_10_QUESTS,
@@ -18,6 +19,7 @@ const UserForm = ({
   numberOfRightHits,
   gameMode,
 }) => {
+  const { t } = useTranslation("menu");
   const positionStyle = {};
   if (!shouldDisplay) positionStyle["display"] = "none";
 
@@ -32,15 +34,21 @@ const UserForm = ({
       <div className="user-form">
         {gameMode !== GAME_MODE_TIMEATTACK ? (
           <h3>
-            You finished in {time} seconds with a score {numberOfRightHits}
+            {t("UserFormTitle1Part1")}
+            {time}
+            {t("UserFormTitle1Part2")}
+            {numberOfRightHits}
           </h3>
         ) : (
-          <h3>You got {numberOfRightHits} answers!</h3>
+          <h3>
+            {t("UserFormTitle2Part1")}
+            {numberOfRightHits} {t("UserFormTitle2Part1")}
+          </h3>
         )}
 
         <form>
           <div className="input-section">
-            <p>Enter your name to save your score on the global leaderboard.</p>
+            <p>{t("UserFormScoreDescription")}</p>
             <label htmlFor="username">Username</label>
             <input
               name="username"
@@ -49,7 +57,9 @@ const UserForm = ({
               className={showErrorMessage ? "error" : ""}
             />
             <div style={{ padding: "10px 0" }}>
-              <label htmlFor="feedback to Nayth">Feedback to Nayth</label>
+              <label htmlFor="feedback to Nayth">
+                {t("UserFormScoreFeedbackDescription")}
+              </label>
               <textarea
                 name="feedback to Nayth"
                 value={feedback}

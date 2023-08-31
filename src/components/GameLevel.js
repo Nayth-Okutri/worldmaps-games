@@ -12,6 +12,7 @@ import {
   GAME_MODE_ALLQUESTS,
   TIMEATTACK_TIME,
 } from "./Constants";
+import { useTranslation } from "react-i18next";
 const GameLevel = ({
   levelsData,
   isNameInLeaderboardRepeated,
@@ -63,6 +64,8 @@ const GameLevel = ({
   const [workingQuests, setWorkingQuests] = useState([]);
   const [descriptionIsSticky, setDescriptionIsSticky] = useState(false);
   const descriptionRef = useRef();
+  const [translationSpace, setTranslationSpace] = useState();
+  const { t } = useTranslation("gamequests");
   useEffect(() => {
     const cachedRef = descriptionRef.current;
     const queryParams = new URLSearchParams(window.location.search);
@@ -103,6 +106,7 @@ const GameLevel = ({
     switch (gameMode) {
       case GAME_MODE_DUPLICATE:
         if (levelData) {
+          setTranslationSpace(levelData.translationSpace);
           let duplicateQuests;
           //console.log("levelData " + JSON.stringify(levelData.quests));
           if (questCount === 0) {
@@ -158,8 +162,8 @@ const GameLevel = ({
       case GAME_MODE_TIMEATTACK:
         if (levelData) {
           let regularQuests;
-
-          if (!timerStarted) {
+          setTranslationSpace(levelData.translationSpace);
+          if (questCount === 0) {
             regularQuests = levelData.quests.filter(
               (quest) => typeof quest.type === "undefined" || quest.type !== 1
             );
@@ -266,7 +270,6 @@ const GameLevel = ({
     zoomLevel,
     gameMode,
     workingQuests,
-    scaledWidth,
   ]);
   const handleZoomIn = () => {
     setShouldDisplayMenu(false);
@@ -554,8 +557,6 @@ const GameLevel = ({
   };
   // Helper function to generate hashed asset paths
   const getHashedAssetPath = (filename) => {
-    console.log(filename);
-    //const hashedFilename = require(`../assets/level-${level}.jpg`);
     const hashedFilename = require(`../assets/${filename}.jpg`);
     return hashedFilename; // In case you're using ES modules
   };
@@ -630,8 +631,10 @@ const GameLevel = ({
             y={window.innerWidth > 768 ? menuY + 120 : menuY + 130}
             shouldDisplay={showHint}
             content={
-              typeof workingQuests[currentQuest].hint !== "undefined"
-                ? workingQuests[currentQuest].hint
+              typeof workingQuests[currentQuest].question !== "undefined"
+                ? t(
+                    `${translationSpace}.${workingQuests[currentQuest].question}.hint`
+                  )
                 : "No hints"
             }
           />
@@ -648,13 +651,14 @@ const GameLevel = ({
               <p
                 className={`question ${showRedQuestion ? "red-question" : ""}`}
               >
-                {`quest ${
-                  !gameEnded ? numberOfRightHits + 1 : numberOfRightHits
-                }` +
+                {t("quest") +
+                  ` ${!gameEnded ? numberOfRightHits + 1 : numberOfRightHits}` +
                   "/" +
                   `${gameMode !== GAME_MODE_10_QUESTS ? questCount : 10}` +
                   " " +
-                  workingQuests[currentQuest].question}
+                  t(
+                    `${translationSpace}.${workingQuests[currentQuest].question}.title`
+                  )}
               </p>
             )}
           <div>
@@ -706,7 +710,7 @@ const GameLevel = ({
                 src={require("../assets/HintIcon.png")}
                 alt="Hint"
                 onClick={handleHint}
-                title="Hint" // Add a tooltip description
+                title={t("hint")} // Add a tooltip description
                 onMouseOver={(e) => {
                   e.target.style.opacity = 0.7; // Change opacity on hover
                 }}
@@ -725,7 +729,7 @@ const GameLevel = ({
                 src={require("../assets/SkipIcon.png")}
                 alt="Skip"
                 onClick={skipQuestion}
-                title="Skip this question" // Add a tooltip description
+                title={t("skip")} // Add a tooltip description
                 onMouseOver={(e) => {
                   e.target.style.opacity = 0.7; // Change opacity on hover
                 }}

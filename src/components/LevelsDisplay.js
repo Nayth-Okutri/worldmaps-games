@@ -43,7 +43,7 @@ const LevelsDisplay = ({
 }) => {
   const [openedNumber, setOpenedNumber] = useState(-1);
   const [hoveredLevel, setHoveredLevel] = useState(0); // State for tracking hovered level
-  const [selectedMode, setSelectedMode] = useState("duplicate");
+  const [selectedMode, setSelectedMode] = useState();
   const [gameMode, setGameMode] = useState();
 
   const showStyle = {
@@ -114,7 +114,7 @@ const LevelsDisplay = ({
                         opacity: selectedMode === "10-quests" ? 1 : 0.3,
                       }}
                       src={require("../assets/10Icon.png")}
-                      alt="Duplicate"
+                      alt="10-quests"
                       onClick={() => {
                         if (useClickFunction) {
                           overrideIconClick(GAME_MODE_10_QUESTS);

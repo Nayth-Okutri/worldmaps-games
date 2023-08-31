@@ -22,7 +22,7 @@ const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
     end: new Date(),
   });
 
-  //console.log(weekOfYear);
+  console.log(weekOfYear);
   leaderboardData = leaderboardData.filter(
     (data) => data.level === currentLevel
   );

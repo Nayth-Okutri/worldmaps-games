@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import "../styles/heading.css";
 import { useState, useRef, useEffect } from "react";
+import LanguageDropdown from "./LanguageDropdown";
 const Heading = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -26,6 +27,9 @@ const Heading = () => {
     window.addEventListener("resize", handleResize);
 
     return () => {
+      menuLinks.forEach((link) => {
+        link.removeEventListener("click", handleMenuLinkClick);
+      });
       window.removeEventListener("resize", handleResize);
     };
   }, []);
@@ -39,7 +43,7 @@ const Heading = () => {
           <div className="title">
             <Link to="/worldmaps">Worldmaps</Link>
             <div className="stroke"></div>
-            <p>Geek Seek Quizz Quest</p>
+            <p>Geek Seek Quest</p>
           </div>
         </div>
         <div className="divider"></div> {/* Empty divider */}
@@ -59,6 +63,7 @@ const Heading = () => {
         <div className="Header-Link">
           <Link to="/worldmaps/leaderboard">RANKING</Link>
         </div>
+        <LanguageDropdown />
       </div>
       {isGameScreen && (
         <div
@@ -91,6 +96,9 @@ const Heading = () => {
         </div>
         <div className="Header-Link">
           <Link to="/worldmaps/leaderboard">RANKING</Link>
+        </div>
+        <div className="Header-Link">
+          <LanguageDropdown />
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 import "../styles/selectionMenu.css";
+import { useTranslation } from "react-i18next";
 
 const SelectionMenu = ({ x, y, shouldDisplay, questResult }) => {
+  const { t } = useTranslation("menu");
   const positionStyle = {
     top: y + 15,
     left: x + 15,
@@ -14,9 +16,9 @@ const SelectionMenu = ({ x, y, shouldDisplay, questResult }) => {
         src={require(questResult
           ? "../assets/Okdesu.png"
           : "../assets/NOkdesu.png")}
-        alt={questResult ? "Correct answer" : "Incorrect answer"}
+        alt={questResult ? t("OKResult") : t("NOKResult")}
       />
-      <p>{questResult ? "Correct answer" : "Incorrect answer"}</p>
+      <p>{questResult ? t("OKResult") : t("NOKResult")}</p>
     </div>
   );
 };

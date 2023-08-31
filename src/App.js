@@ -15,10 +15,29 @@ import { initializeApp } from "firebase/app";
 import firebaseConfig from "./firebaseConfig";
 import "./styles/app.css";
 import "./assets/fonts/Oswald-Bold.ttf";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import { format, getISOWeek } from "date-fns";
+import en from "./i18n/en";
+import fr from "./i18n/fr";
 
 function App() {
   initializeApp(firebaseConfig);
-
+  i18n.init({
+    lng: "fr", // Default language
+    resources: {
+      en,
+      fr,
+    }, // the files with the translations
+  });
+  // Initialize react-i18next
+  i18n.use(initReactI18next).init({
+    lng: "fr", // Default language
+    resources: {
+      en,
+      fr,
+    },
+  });
   const [levelsData, setLevelsData] = useState([]);
   const [leaderboardData, setLeaderboardData] = useState([]);
   const [weekOfYear, setWeekOfYear] = useState(0);
@@ -56,16 +75,7 @@ function App() {
 
   useEffect(() => {
     const currentDate = new Date();
-    setWeekOfYear(
-      Math.ceil(
-        (currentDate.getDay() +
-          Math.floor(
-            (currentDate - new Date(currentDate.getFullYear(), 0, 1)) /
-              (24 * 60 * 60 * 1000)
-          )) /
-          7
-      )
-    );
+    setWeekOfYear(getISOWeek(currentDate));
     getLevelData();
     getLeaderboardData();
   }, []);
