@@ -1,7 +1,7 @@
 export const level1Data = {
   quests: [
     {
-      question: "quest1",
+      question: "dquest1",
       type: 1,
       image: "level-1",
       positions: [
@@ -10,7 +10,7 @@ export const level1Data = {
       ],
     },
     {
-      question: "quest11",
+      question: "dquest2",
       type: 1,
       image: "level-1-dup1",
       positions: [
@@ -19,12 +19,21 @@ export const level1Data = {
       ],
     },
     {
-      question: "quest12",
+      question: "dquest3",
       type: 1,
       image: "level-1-dup2",
       positions: [
         { top: { x: 1348, y: 571 }, bottom: { x: 1412, y: 647 } },
         { top: { x: 824, y: 801 }, bottom: { x: 912, y: 903 } },
+      ],
+    },
+    {
+      question: "dquest4",
+      type: 1,
+      image: "level-1-dup3",
+      positions: [
+        { top: { x: 743, y: 1230 }, bottom: { x: 820, y: 1353 } },
+        { top: { x: 402, y: 602 }, bottom: { x: 461, y: 676 } },
       ],
     },
     {
@@ -229,6 +238,15 @@ export const level2Data = {
       hint: "",
       positions: [{ top: { x: 847, y: 89 }, bottom: { x: 902, y: 216 } }],
     },
+    {
+      question: "dquest1",
+      type: 1,
+      image: "level-2-dup1",
+      positions: [
+        { top: { x: 1043, y: 225 }, bottom: { x: 1093, y: 311 } },
+        { top: { x: 1338, y: 990 }, bottom: { x: 1374, y: 1055 } },
+      ],
+    },
   ],
   translationSpace: "ghibli",
   name: "Ghibli",
@@ -380,6 +398,15 @@ export const level3Data = {
       description: "Find the Triforce",
       hint: "from Zelda",
       positions: [{ top: { x: 565, y: 930 }, bottom: { x: 629, y: 985 } }],
+    },
+    {
+      question: "dquest1",
+      type: 1,
+      image: "level-3-dup1",
+      positions: [
+        { top: { x: 507, y: 954 }, bottom: { x: 532, y: 974 } },
+        { top: { x: 997, y: 811 }, bottom: { x: 1073, y: 881 } },
+      ],
     },
   ],
   translationSpace: "jrpg",
@@ -533,6 +560,15 @@ export const level4Data = {
       positions: [
         { top: { x: 721, y: 380 }, bottom: { x: 895, y: 505 } },
         { top: { x: 1718, y: 563 }, bottom: { x: 1768, y: 640 } },
+      ],
+    },
+    {
+      question: "dquest1",
+      type: 1,
+      image: "level-4-dup1",
+      positions: [
+        { top: { x: 1338, y: 429 }, bottom: { x: 1397, y: 490 } },
+        { top: { x: 1123, y: 1096 }, bottom: { x: 1154, y: 1154 } },
       ],
     },
   ],

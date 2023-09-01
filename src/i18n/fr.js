@@ -44,6 +44,22 @@ const translation = {
       },
       quest11: { title: "Trouve le Pokemon en double", hint: "Bonne chance" },
       quest12: { title: "Trouve le Pokemon en double", hint: "Bonne chance" },
+      dquest1: {
+        title: "Trouve le Pokemon en double",
+        hint: "Un au premier plan un au dernier plan",
+      },
+      dquest2: {
+        title: "Trouve le Pokemon en double",
+        hint: "bon courage",
+      },
+      dquest3: {
+        title: "Trouve le Pokemon en double",
+        hint: "bon courage",
+      },
+      dquest4: {
+        title: "Trouve le Pokemon en double",
+        hint: "bon courage",
+      },
     },
     ghibli: {
       quest1: {
@@ -109,6 +125,10 @@ const translation = {
         hint: "",
       },
       quest23: { title: "Trouver San", hint: "" },
+      dquest1: {
+        title: "Trouve le personnage en double",
+        hint: "",
+      },
     },
     jrpg: {
       quest1: {
@@ -180,6 +200,10 @@ const translation = {
         hint: "de Dragon Quest fishing",
       },
       quest23: { title: "Trouver la Triforce", hint: "de Zelda" },
+      dquest1: {
+        title: "Trouve le personnage en double",
+        hint: "",
+      },
     },
     zelda: {
       quest1: {
@@ -243,6 +267,10 @@ const translation = {
       quest22: {
         title: "Trouver un autre Ganondorf",
         hint: "vilain",
+      },
+      dquest1: {
+        title: "Trouve le personnage en double",
+        hint: "",
       },
     },
   },

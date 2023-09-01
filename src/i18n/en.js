@@ -39,11 +39,20 @@ const translation = {
       quest8: { title: "Find Moltress", hint: "He is legendary" },
       quest9: { title: "Find Mareep", hint: "He looks like a sheep" },
       quest10: { title: "Find Grimer", hint: "He looks like goo" },
-      quest11: {
+      dquest1: {
+        title: "Find duplicate Pokemon",
+        hint: "One in front one in the back",
+      },
+      dquest2: {
         title: "Find duplicate Pokemon",
         hint: "Good luck",
       },
-      quest12: {
+      dquest3: {
+        title: "Find duplicate Pokemon",
+        hint: "Good luck",
+      },
+
+      dquest4: {
         title: "Find duplicate Pokemon",
         hint: "Good luck",
       },
@@ -103,6 +112,10 @@ const translation = {
       },
       quest22: {
         title: "Find San",
+        hint: "",
+      },
+      dquest1: {
+        title: "Find the duplicate character",
         hint: "",
       },
     },
@@ -182,6 +195,10 @@ const translation = {
         hint: "from Dragon Quest fishing",
       },
       quest23: { title: "Find the Triforce", hint: "from Zelda" },
+      dquest1: {
+        title: "Find the duplicate character",
+        hint: "",
+      },
     },
     zelda: {
       quest1: {
@@ -248,6 +265,10 @@ const translation = {
       quest22: {
         title: "Find different Ganondorf",
         hint: "vilain",
+      },
+      dquest1: {
+        title: "Find the duplicate character",
+        hint: "",
       },
     },
   },
