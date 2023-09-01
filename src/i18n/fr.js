@@ -43,6 +43,7 @@ const translation = {
         hint: "Il ressemble à de la bouillie",
       },
       quest11: { title: "Trouve le Pokemon en double", hint: "Bonne chance" },
+      quest12: { title: "Trouve le Pokemon en double", hint: "Bonne chance" },
     },
     ghibli: {
       quest1: {
@@ -202,10 +203,6 @@ const translation = {
         hint: "C'est Midna",
       },
       quest9: { title: "Trouvez Saria", hint: "d'Ocarina of Time" },
-      quest10: {
-        title: "Trouvez la princesse du crépuscule",
-        hint: "C'est Midna",
-      },
       quest10: {
         title: "Trouver la vieille Impa",
         hint: "de Skyward Sword",

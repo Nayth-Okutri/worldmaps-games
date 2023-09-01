@@ -2,9 +2,18 @@ import { Link, useLocation } from "react-router-dom";
 import "../styles/heading.css";
 import { useState, useRef, useEffect } from "react";
 import LanguageDropdown from "./LanguageDropdown";
+import Registration from "./Registration";
 const Heading = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showRegistrationModal, setShowRegistrationModal] = useState(false);
 
+  const openRegistrationModal = () => {
+    setShowRegistrationModal(true);
+  };
+
+  const closeRegistrationModal = () => {
+    setShowRegistrationModal(false);
+  };
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -63,6 +72,7 @@ const Heading = () => {
         <div className="Header-Link">
           <Link to="/worldmaps/leaderboard">RANKING</Link>
         </div>
+        <div className="Header-Link"></div>
         <LanguageDropdown />
       </div>
       {isGameScreen && (
@@ -100,6 +110,7 @@ const Heading = () => {
         <div className="Header-Link">
           <LanguageDropdown />
         </div>
+        <div className="Header-Link"></div>
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ import Heading from "./components/Heading";
 import Home from "./components/Home";
 import Leaderboard from "./components/Leaderboard";
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import firebaseConfig from "./firebaseConfig";
 import "./styles/app.css";
 import "./assets/fonts/Oswald-Bold.ttf";
@@ -20,9 +21,8 @@ import { initReactI18next } from "react-i18next";
 import { format, getISOWeek } from "date-fns";
 import en from "./i18n/en";
 import fr from "./i18n/fr";
-
+const app = initializeApp(firebaseConfig);
 function App() {
-  initializeApp(firebaseConfig);
   i18n.init({
     lng: "fr", // Default language
     resources: {
@@ -43,8 +43,7 @@ function App() {
   const [weekOfYear, setWeekOfYear] = useState(0);
   const getLeaderboardData = async () => {
     console.log("weekOfYear " + weekOfYear);
-    const leaderboardCollectionRef = collection(getFirestore(), "leaderboard");
-    //const scoresCollectionRef = collection(leaderboardCollectionRef, String(week)+"/level"+String(level));
+
     const leaderboardQuery = query(
       collection(getFirestore(), "leaderboard"),
       orderBy("level", "asc")
@@ -97,6 +96,7 @@ function App() {
       <Heading />
       <Routes>
         <Route path="/worldmaps" element={<Home levelsData={levelsData} />} />
+
         <Route
           path="worldmaps/leaderboard"
           element={
@@ -126,5 +126,5 @@ function App() {
     </BrowserRouter>
   );
 }
-
+export const auth = getAuth(app);
 export default App;
