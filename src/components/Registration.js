@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../App";
 
-import "../styles/AuthForm.css"; // Import the shared styles
 import "../styles/RegistrationModal.css"; // Import the modal styles
 const Registration = ({ onClose }) => {
   const [email, setEmail] = useState("");
