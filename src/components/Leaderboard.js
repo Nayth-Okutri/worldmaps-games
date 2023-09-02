@@ -11,7 +11,7 @@ import {
   TIMEATTACK_TIME,
 } from "./Constants";
 import RankingTable from "./RankingTable";
-const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
+const Leaderboard = ({ levelsData, weekOfYear }) => {
   const [levelLeaderboardData, setLevelLeaderboardData] = useState([]);
   const [displayedLeaderboardData, setDisplayedLeaderboardData] = useState([]);
   const level = +useParams().level || 1;
@@ -23,10 +23,6 @@ const Leaderboard = ({ levelsData, leaderboardData, weekOfYear }) => {
   });
 
   console.log(weekOfYear);
-  leaderboardData = leaderboardData.filter(
-    (data) => data.level === currentLevel
-  );
-  leaderboardData.sort((a, b) => a.time - b.time);
 
   const changeLevelInDisplay = (level) => {
     setDisplayedLeaderboardData([]);

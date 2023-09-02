@@ -39,24 +39,9 @@ function App() {
     },
   });
   const [levelsData, setLevelsData] = useState([]);
-  const [leaderboardData, setLeaderboardData] = useState([]);
+
   const [weekOfYear, setWeekOfYear] = useState(0);
-  const getLeaderboardData = async () => {
-    console.log("weekOfYear " + weekOfYear);
 
-    const leaderboardQuery = query(
-      collection(getFirestore(), "leaderboard"),
-      orderBy("level", "asc")
-    );
-
-    const leaderboardSnapshot = await getDocs(leaderboardQuery);
-    let newLeaderboardData = [];
-    leaderboardSnapshot.forEach((score) => {
-      newLeaderboardData.push(score.data());
-      //console.log(score.data());
-    });
-    setLeaderboardData(newLeaderboardData);
-  };
   const getLevelData = async () => {
     const levelsQuery = query(
       collection(getFirestore(), "levelData"),
@@ -76,20 +61,7 @@ function App() {
     const currentDate = new Date();
     setWeekOfYear(getISOWeek(currentDate));
     getLevelData();
-    getLeaderboardData();
   }, []);
-
-  const isNameInLeaderboardRepeated = (name, level) => {
-    const scoresFromLevel = leaderboardData.filter(
-      (data) => data.level === level
-    );
-    const hasName =
-      scoresFromLevel.filter(
-        (score) => score.name.toLowerCase() === name.toLowerCase()
-      ).length > 0;
-
-    return hasName;
-  };
 
   return (
     <BrowserRouter>
@@ -100,11 +72,7 @@ function App() {
         <Route
           path="worldmaps/leaderboard"
           element={
-            <Leaderboard
-              levelsData={levelsData}
-              leaderboardData={leaderboardData}
-              weekOfYear={weekOfYear}
-            />
+            <Leaderboard levelsData={levelsData} weekOfYear={weekOfYear} />
           }
         >
           <Route path=":level" element={<div></div>} />
@@ -113,12 +81,7 @@ function App() {
           <Route
             path=":level"
             element={
-              <GameLevel
-                levelsData={levelsData}
-                isNameInLeaderboardRepeated={isNameInLeaderboardRepeated}
-                updateLeaderboardData={getLeaderboardData}
-                weekOfYear={weekOfYear}
-              />
+              <GameLevel levelsData={levelsData} weekOfYear={weekOfYear} />
             }
           />
         </Route>
