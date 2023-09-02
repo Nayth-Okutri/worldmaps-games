@@ -167,6 +167,7 @@ p {
   display: block;
 }
 .classic-menu {
+  margin: 15px auto;
   display: flex;
   align-items: center;
   gap: 15px; /* Add some gap between menu items */

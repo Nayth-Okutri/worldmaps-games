@@ -72,7 +72,6 @@ const Heading = () => {
         <div className="Header-Link">
           <Link to="/worldmaps/leaderboard">RANKING</Link>
         </div>
-        <div className="Header-Link"></div>
         <LanguageDropdown />
       </div>
       {isGameScreen && (
@@ -110,7 +109,6 @@ const Heading = () => {
         <div className="Header-Link">
           <LanguageDropdown />
         </div>
-        <div className="Header-Link"></div>
       </div>
     </div>
   );

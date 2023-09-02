@@ -86,6 +86,7 @@ const Leaderboard = ({ levelsData, weekOfYear }) => {
   };
   useEffect(() => {
     getLeaderboardDates();
+    //Charge a tous les changements de gamemode au lieu de lire dans le level data !!
     getLeaderboardDataForLevel(currentLevel)
       .then((newLevelLeaderboardData) => {
         if (gameMode !== 0) {
