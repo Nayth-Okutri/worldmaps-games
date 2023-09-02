@@ -103,103 +103,101 @@ const LevelsDisplay = ({
               className="gamemode-select"
               style={openedNumber === level ? showStyle : hideStyle}
             >
-              <div className="modes">
-                <div className="icons">
-                  <span style={{ paddingRight: "10px" }}>
-                    <img
-                      style={{
-                        height: "50px",
-                        cursor: "pointer",
-                        transition: "opacity 0.3s",
-                        opacity: selectedMode === "10-quests" ? 1 : 0.3,
-                      }}
-                      src={require("../assets/10Icon.png")}
-                      alt="10-quests"
-                      onClick={() => {
-                        if (useClickFunction) {
-                          overrideIconClick(GAME_MODE_10_QUESTS);
-                          setSelectedMode("10-quests");
-                        } else {
-                          setSelectedMode("10-quests");
-                          setGameMode(GAME_MODE_10_QUESTS);
-                        }
-                      }}
-                      title="Duplicate Mode" // Add a tooltip description
-                    />
-                  </span>
-                  <span style={{ paddingRight: "10px" }}>
-                    <img
-                      style={{
-                        height: "50px",
-                        cursor: "pointer",
-                        transition: "opacity 0.3s",
-                        opacity: selectedMode === "duplicate" ? 1 : 0.3,
-                      }}
-                      src={require("../assets/DuplicateIcon.png")}
-                      alt="Duplicate"
-                      title="Duplicate Mode" // Add a tooltip description
-                      onClick={() => {
-                        if (useClickFunction) {
-                          overrideIconClick(GAME_MODE_DUPLICATE);
-                          setSelectedMode("duplicate");
-                        } else {
-                          setSelectedMode("duplicate");
-                          setGameMode(GAME_MODE_DUPLICATE);
-                        }
-                      }}
-                    />
-                  </span>
-                  <span style={{ paddingRight: "10px" }}>
-                    <img
-                      style={{
-                        height: "50px",
-                        cursor: "pointer",
-                        transition: "opacity 0.3s",
-                        opacity: selectedMode === "time-attack" ? 1 : 0.3,
-                      }}
-                      src={require("../assets/TimerIcon.png")}
-                      alt="Duplicate"
-                      onClick={() => {
-                        if (useClickFunction) {
-                          overrideIconClick(GAME_MODE_TIMEATTACK);
-                          setSelectedMode("time-attack");
-                        } else {
-                          setSelectedMode("time-attack");
-                          setGameMode(GAME_MODE_TIMEATTACK);
-                        }
-                      }}
-                      title="Duplicate Mode" // Add a tooltip description
-                    />
-                  </span>
-                  <span style={{ paddingRight: "10px" }}>
-                    <img
-                      style={{
-                        height: "50px",
-                        cursor: "pointer",
-                        transition: "opacity 0.3s",
-                        opacity: selectedMode === "all-quests" ? 1 : 0.3,
-                      }}
-                      src={require("../assets/UntilEndIcon.png")}
-                      alt="Duplicate"
-                      onClick={() => {
-                        if (useClickFunction) {
-                          overrideIconClick(GAME_MODE_ALLQUESTS);
-                          setSelectedMode("all-quests");
-                        } else {
-                          setSelectedMode("all-quests");
-                          setGameMode(GAME_MODE_ALLQUESTS);
-                        }
-                      }}
-                      title="Duplicate Mode" // Add a tooltip description
-                    />
-                  </span>{" "}
-                </div>
-                {nestedComponent && (
-                  <div className="nested-component-container">
-                    {nestedComponent}
-                  </div>
-                )}
+              <div className="icons">
+                <span style={{ paddingRight: "10px" }}>
+                  <img
+                    style={{
+                      height: "50px",
+                      cursor: "pointer",
+                      transition: "opacity 0.3s",
+                      opacity: selectedMode === "10-quests" ? 1 : 0.3,
+                    }}
+                    src={require("../assets/10Icon.png")}
+                    alt="10-quests"
+                    onClick={() => {
+                      if (useClickFunction) {
+                        overrideIconClick(GAME_MODE_10_QUESTS);
+                        setSelectedMode("10-quests");
+                      } else {
+                        setSelectedMode("10-quests");
+                        setGameMode(GAME_MODE_10_QUESTS);
+                      }
+                    }}
+                    title="Duplicate Mode" // Add a tooltip description
+                  />
+                </span>
+                <span style={{ paddingRight: "10px" }}>
+                  <img
+                    style={{
+                      height: "50px",
+                      cursor: "pointer",
+                      transition: "opacity 0.3s",
+                      opacity: selectedMode === "duplicate" ? 1 : 0.3,
+                    }}
+                    src={require("../assets/DuplicateIcon.png")}
+                    alt="Duplicate"
+                    title="Duplicate Mode" // Add a tooltip description
+                    onClick={() => {
+                      if (useClickFunction) {
+                        overrideIconClick(GAME_MODE_DUPLICATE);
+                        setSelectedMode("duplicate");
+                      } else {
+                        setSelectedMode("duplicate");
+                        setGameMode(GAME_MODE_DUPLICATE);
+                      }
+                    }}
+                  />
+                </span>
+                <span style={{ paddingRight: "10px" }}>
+                  <img
+                    style={{
+                      height: "50px",
+                      cursor: "pointer",
+                      transition: "opacity 0.3s",
+                      opacity: selectedMode === "time-attack" ? 1 : 0.3,
+                    }}
+                    src={require("../assets/TimerIcon.png")}
+                    alt="Duplicate"
+                    onClick={() => {
+                      if (useClickFunction) {
+                        overrideIconClick(GAME_MODE_TIMEATTACK);
+                        setSelectedMode("time-attack");
+                      } else {
+                        setSelectedMode("time-attack");
+                        setGameMode(GAME_MODE_TIMEATTACK);
+                      }
+                    }}
+                    title="Duplicate Mode" // Add a tooltip description
+                  />
+                </span>
+                <span style={{ paddingRight: "10px" }}>
+                  <img
+                    style={{
+                      height: "50px",
+                      cursor: "pointer",
+                      transition: "opacity 0.3s",
+                      opacity: selectedMode === "all-quests" ? 1 : 0.3,
+                    }}
+                    src={require("../assets/UntilEndIcon.png")}
+                    alt="Duplicate"
+                    onClick={() => {
+                      if (useClickFunction) {
+                        overrideIconClick(GAME_MODE_ALLQUESTS);
+                        setSelectedMode("all-quests");
+                      } else {
+                        setSelectedMode("all-quests");
+                        setGameMode(GAME_MODE_ALLQUESTS);
+                      }
+                    }}
+                    title="Duplicate Mode" // Add a tooltip description
+                  />
+                </span>{" "}
               </div>
+              {nestedComponent && (
+                <div className="nested-component-container">
+                  {nestedComponent}
+                </div>
+              )}
             </div>
           </div>
         );

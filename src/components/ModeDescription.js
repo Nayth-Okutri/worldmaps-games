@@ -16,26 +16,16 @@ const ModeDescription = ({ level, gameMode }) => {
   }, [level, gameMode]);
 
   return (
-    <div>
+    <div className="mode-description">
       {gameMode === GAME_MODE_DUPLICATE && (
-        <div className="mode-description">
-          <p>{t("duplicateGameModeDescription")}</p>
-        </div>
+        <p>{t("duplicateGameModeDescription")}</p>
       )}
-      {gameMode === GAME_MODE_10_QUESTS && (
-        <div className="mode-description">
-          <p>{t("tenGameModeDescription")}</p>
-        </div>
-      )}
+      {gameMode === GAME_MODE_10_QUESTS && <p>{t("tenGameModeDescription")}</p>}
       {gameMode === GAME_MODE_TIMEATTACK && (
-        <div className="mode-description">
-          <p>{t("timeAttackGameModeDescription")}</p>
-        </div>
+        <p>{t("timeAttackGameModeDescription")}</p>
       )}
       {gameMode === GAME_MODE_ALLQUESTS && (
-        <div className="mode-description">
-          <p>{t("allQuestsAttackGameModeDescription")}</p>
-        </div>
+        <p>{t("allQuestsAttackGameModeDescription")}</p>
       )}
       {level && gameMode ? (
         <Link to={`/worldmaps/game/${level}?mode=${gameMode}`}>

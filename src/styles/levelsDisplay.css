@@ -7,6 +7,8 @@
 .level {
   box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.1);
   transition: all 0.2s;
+  display: flex;
+
   border-radius: 15px;
   cursor: pointer;
 }
@@ -81,10 +83,6 @@
   background-color: #f87171;
 }
 
-.modes {
-  flex-direction: column;
-}
-
 .play:hover {
   background-color: #ef4444;
 }
@@ -95,6 +93,7 @@
   color: black;
   padding: 0px;
   display: flex;
+  flex-flow: wrap;
   flex-direction: column;
   gap: 24px;
 }

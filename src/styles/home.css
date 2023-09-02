@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   gap: 48px;
-  white-space: nowrap; /* Prevent wrapping of .leaderboard-card elements */
 }
 
 .leaderboard-card {
