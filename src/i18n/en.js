@@ -17,6 +17,10 @@ const translation = {
     UserFormScoreDescription:
       "Enter your name to save your score on the global leaderboard.",
     UserFormScoreFeedbackDescription: "Feedback to Nayth",
+    HomeTitle:
+      "Search for your favourite Japanese pop culture characters on giant Worldmaps!",
+    HomeGameDescription:
+      "Once you pick your favorite universe, take on a series of quiz questions. Click on the requested character and race to the finish. It's your quest, your way!",
   },
   gamequests: {
     quest: "quest",

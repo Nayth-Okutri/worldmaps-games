@@ -17,6 +17,10 @@ const translation = {
     UserFormScoreDescription:
       "Entrez votre nom pour enregistrer votre score sur le tableau de classement mondial.",
     UserFormScoreFeedbackDescription: "Feedback à Nayth",
+    HomeTitle:
+      "Recherchez vos personnages préférés de la culture pop japonaise sur des cartes du monde géantes !",
+    HomeGameDescription:
+      "Une fois que vous avez choisi votre univers préféré, répondez à une série de questions. Cliquez sur le personnage demandé et courez jusqu'à l'arrivée. Choisissez votre quête !",
   },
   gamequests: {
     quest: "quête",
