@@ -39,9 +39,25 @@ function App() {
     },
   });
   const [levelsData, setLevelsData] = useState([]);
-
+  const [leaderboardData, setLeaderboardData] = useState([]);
   const [weekOfYear, setWeekOfYear] = useState(0);
+  const getLeaderboardData = async () => {
+    console.log("weekOfYear " + weekOfYear);
+    const leaderboardCollectionRef = collection(getFirestore(), "leaderboard");
+    //const scoresCollectionRef = collection(leaderboardCollectionRef, String(week)+"/level"+String(level));
+    const leaderboardQuery = query(
+      collection(getFirestore(), "leaderboard"),
+      orderBy("level", "asc")
+    );
 
+    const leaderboardSnapshot = await getDocs(leaderboardQuery);
+    let newLeaderboardData = [];
+    leaderboardSnapshot.forEach((score) => {
+      newLeaderboardData.push(score.data());
+      //console.log(score.data());
+    });
+    setLeaderboardData(newLeaderboardData);
+  };
   const getLevelData = async () => {
     const levelsQuery = query(
       collection(getFirestore(), "levelData"),
@@ -72,7 +88,11 @@ function App() {
         <Route
           path="worldmaps/leaderboard"
           element={
-            <Leaderboard levelsData={levelsData} weekOfYear={weekOfYear} />
+            <Leaderboard
+              levelsData={levelsData}
+              weekOfYear={weekOfYear}
+              leaderboardData={leaderboardData}
+            />
           }
         >
           <Route path=":level" element={<div></div>} />
@@ -81,7 +101,11 @@ function App() {
           <Route
             path=":level"
             element={
-              <GameLevel levelsData={levelsData} weekOfYear={weekOfYear} />
+              <GameLevel
+                levelsData={levelsData}
+                updateLeaderboardData={getLeaderboardData}
+                weekOfYear={weekOfYear}
+              />
             }
           />
         </Route>

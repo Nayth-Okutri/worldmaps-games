@@ -2,7 +2,14 @@ import LevelsDisplay from "./LevelsDisplay";
 import "../styles/leaderboard.css";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  orderBy,
+  limit,
+} from "firebase/firestore";
 import {
   GAME_MODE_DUPLICATE,
   GAME_MODE_10_QUESTS,
@@ -65,8 +72,10 @@ const Leaderboard = ({ levelsData, weekOfYear }) => {
       leaderboardCollectionRef,
       String(weekOfYear) + "/level" + String(level)
     );
-
-    const leaderboardSnapshot = await getDocs(scoresCollectionRef);
+    //A CHANGER
+    const leaderboardSnapshot = await getDocs(
+      query(scoresCollectionRef, orderBy("score"), limit(100))
+    );
     leaderboardSnapshot.forEach((score) => {
       const scoreData = score.data();
       if (

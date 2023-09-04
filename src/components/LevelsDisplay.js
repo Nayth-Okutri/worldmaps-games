@@ -81,7 +81,7 @@ const LevelsDisplay = ({
               }}
             >
               <img
-                src={require(`../assets/level-${level}.jpg`)}
+                src={require(`../assets/level-${level}-thumb.jpg`)}
                 alt={`Level ${level}`}
                 style={{
                   opacity: level === highlight || isHighlighted ? 1 : 0.5,
