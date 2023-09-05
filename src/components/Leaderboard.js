@@ -18,7 +18,12 @@ import {
   TIMEATTACK_TIME,
 } from "./Constants";
 import RankingTable from "./RankingTable";
-const Leaderboard = ({ levelsData, weekOfYear }) => {
+const Leaderboard = ({
+  levelsData,
+  weekOfYear,
+  userId,
+  minimalMode = false,
+}) => {
   const [levelLeaderboardData, setLevelLeaderboardData] = useState([]);
   const [displayedLeaderboardData, setDisplayedLeaderboardData] = useState([]);
   const level = +useParams().level || 1;
@@ -95,44 +100,67 @@ const Leaderboard = ({ levelsData, weekOfYear }) => {
   };
   useEffect(() => {
     getLeaderboardDates();
-    //Charge a tous les changements de gamemode au lieu de lire dans le level data !!
-    getLeaderboardDataForLevel(currentLevel)
-      .then((newLevelLeaderboardData) => {
-        if (gameMode !== 0) {
-          console.log("gameMode " + gameMode);
+    console.log(userId);
+    if (typeof userId === "undefined")
+      //Charge a tous les changements de gamemode au lieu de lire dans le level data !!
+      getLeaderboardDataForLevel(currentLevel)
+        .then((newLevelLeaderboardData) => {
+          if (gameMode !== 0) {
+            console.log("gameMode " + gameMode);
+            let subList = newLevelLeaderboardData.filter(
+              (data) => data.gameMode === gameMode
+            );
+            if (gameMode === GAME_MODE_TIMEATTACK)
+              subList = [...subList].sort((a, b) => b.score - a.score);
+            console.log(JSON.stringify(subList));
+            setDisplayedLeaderboardData(subList);
+          } else {
+            setDisplayedLeaderboardData(newLevelLeaderboardData);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching leaderboard data:", error);
+        });
+    else {
+      getLeaderboardDataForLevel(currentLevel)
+        .then((newLevelLeaderboardData) => {
           let subList = newLevelLeaderboardData.filter(
             (data) => data.gameMode === gameMode
           );
+          subList = subList.filter((data) => data.userId === userId);
           if (gameMode === GAME_MODE_TIMEATTACK)
             subList = [...subList].sort((a, b) => b.score - a.score);
           console.log(JSON.stringify(subList));
           setDisplayedLeaderboardData(subList);
-        } else {
-          setDisplayedLeaderboardData(newLevelLeaderboardData);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching leaderboard data:", error);
-      });
+        })
+        .catch((error) => {
+          console.error("Error fetching leaderboard data:", error);
+        });
+    }
   }, [currentLevel, gameMode]);
   return (
     <div className="leaderboard">
-      <div>
-        <h1>{`Leaderboard ${weekDates.start
-          .toDateString()
-          .slice(0, -4)} - ${weekDates.end.toDateString()}`}</h1>
-        <div className="buttons">
-          {currentLevel && gameMode ? (
-            <Link to={`/worldmaps/game/${currentLevel}?mode=${gameMode}`}>
-              <button className="play">Play This Level</button>
-            </Link>
-          ) : (
-            <button className="play" disabled>
-              Select a Game Mode
-            </button>
-          )}
+      {minimalMode ? (
+        <div></div>
+      ) : (
+        <div>
+          <h1>{`Leaderboard ${weekDates.start
+            .toDateString()
+            .slice(0, -4)} - ${weekDates.end.toDateString()}`}</h1>
+          <div className="buttons">
+            {currentLevel && gameMode ? (
+              <Link to={`/worldmaps/game/${currentLevel}?mode=${gameMode}`}>
+                <button className="play">Play This Level</button>
+              </Link>
+            ) : (
+              <button className="play" disabled>
+                Select a Game Mode
+              </button>
+            )}
+          </div>
         </div>
-      </div>
+      )}
+
       <LevelsDisplay
         levelsData={levelsData}
         clickFunction={changeLevelInDisplay}
@@ -144,8 +172,10 @@ const Leaderboard = ({ levelsData, weekOfYear }) => {
           <RankingTable
             gameMode={gameMode}
             displayedLeaderboardData={displayedLeaderboardData}
+            minimalMode={minimalMode}
           />
         }
+        minimalMode={minimalMode}
       />
     </div>
   );

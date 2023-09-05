@@ -21,7 +21,20 @@ const translation = {
       "Search for your favourite Japanese pop culture characters on giant Worldmaps!",
     HomeGameDescription:
       "Once you pick your favorite universe, take on a series of quiz questions. Click on the requested character and race to the finish. It's your quest, your way!",
+    ProfileMyScore: "My scores of the week",
+    LoadingUserProfile: "Loading user profile...",
+    InfoNoticeLogin:
+      "Create a profile to keep your scores persistent over time!",
+    error: {
+      LoginUserAlreadyExists: "User Name already in use",
+      EmailNotValid: "Please enter a valid email address.",
+      UserNameTooShort: "Username must be at least 3 characters long.",
+      PassWordTooShort: "Password must be at least 6 characters long.",
+      PasswordMustMatch: "Passwords must match",
+      EmailAlreadyInUse: "Email already in use",
+    },
   },
+
   gamequests: {
     quest: "quest",
     hint: "hint",

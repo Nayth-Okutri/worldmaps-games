@@ -66,3 +66,8 @@
 .data tbody:last-child {
   border-bottom: none;
 }
+@media screen and (max-width: 768px) {
+  .leaderboard {
+    padding: 10px;
+  }
+}

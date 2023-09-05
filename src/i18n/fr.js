@@ -21,7 +21,21 @@ const translation = {
       "Recherchez vos personnages préférés de la culture pop japonaise sur des cartes du monde géantes !",
     HomeGameDescription:
       "Une fois que vous avez choisi votre univers préféré, répondez à une série de questions. Cliquez sur le personnage demandé et courez jusqu'à l'arrivée. Choisissez votre quête !",
+    ProfileMyScore: "Mes scores de la semaine",
+    LoadingUserProfile: "Chargement du profil de l'utilisateur...",
+    InfoNoticeLogin:
+      "Créez un profil pour conserver vos scores au fil du temps !",
+    error: {
+      LoginUserAlreadyExists: "Nom d'utilisateur déjà utilisé",
+      EmailNotValid: "Veuillez saisir une adresse électronique valide",
+      UserNameTooShort:
+        "Le nom d'utilisateur doit comporter au moins 3 caractères.",
+      PassWordTooShort: "Le mot de passe doit comporter au moins 6 caractères",
+      PasswordMustMatch: "Les mots de passe doivent correspondre",
+      EmailAlreadyInUse: "Email déjà utilisé",
+    },
   },
+
   gamequests: {
     quest: "quête",
     hint: "indice",

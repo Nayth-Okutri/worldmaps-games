@@ -3,15 +3,24 @@ import "../styles/heading.css";
 import { useState, useRef, useEffect } from "react";
 import LanguageDropdown from "./LanguageDropdown";
 import Registration from "./Registration";
+import Login from "./Login";
+import Logout from "./Logout";
+import { useAuth } from "../auth";
 const Heading = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegistrationModal, setShowRegistrationModal] = useState(false);
-
+  const { currentUser } = useAuth();
+  const openLoginModal = () => {
+    console.log(currentUser);
+    setShowLoginModal(true);
+  };
   const openRegistrationModal = () => {
+    setShowLoginModal(false);
     setShowRegistrationModal(true);
   };
-
-  const closeRegistrationModal = () => {
+  const closeModal = () => {
+    setShowLoginModal(false);
     setShowRegistrationModal(false);
   };
   const toggleMenu = () => {
@@ -72,6 +81,35 @@ const Heading = () => {
         <div className="Header-Link">
           <Link to="/worldmaps/leaderboard">RANKING</Link>
         </div>
+        {!currentUser ? (
+          <div className="Header-Link">
+            <button onClick={openLoginModal}>LOGIN</button>
+            {showLoginModal ? (
+              <Login
+                onClose={closeModal}
+                onRegistration={openRegistrationModal}
+              />
+            ) : (
+              showRegistrationModal && <Registration onClose={closeModal} />
+            )}
+          </div>
+        ) : (
+          <div>
+            <Link to="/worldmaps/profile ">
+              <img
+                style={{
+                  height: "30px",
+                  cursor: "pointer",
+                  transition: "opacity 0.3s",
+                }}
+                src={require("../assets/ProfileIcon.png")}
+                alt="profile"
+                title="profile"
+              />
+            </Link>
+            <Logout />
+          </div>
+        )}
         <LanguageDropdown />
       </div>
       {isGameScreen && (
@@ -106,7 +144,37 @@ const Heading = () => {
         <div className="Header-Link">
           <Link to="/worldmaps/leaderboard">RANKING</Link>
         </div>
+        {!currentUser ? (
+          <div className="Header-Link">
+            <button onClick={openLoginModal}>LOGIN</button>
+            {showLoginModal ? (
+              <Login
+                onClose={closeModal}
+                onRegistration={openRegistrationModal}
+              />
+            ) : (
+              showRegistrationModal && <Registration onClose={closeModal} />
+            )}
+          </div>
+        ) : (
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Link to="/worldmaps/profile ">
+              <img
+                style={{
+                  height: "30px",
+                  cursor: "pointer",
+                  transition: "opacity 0.3s",
+                }}
+                src={require("../assets/ProfileIcon.png")}
+                alt="profile"
+                title="profile"
+              />
+            </Link>
+            <Logout />
+          </div>
+        )}
         <div className="Header-Link">
+          {" "}
           <LanguageDropdown />
         </div>
       </div>

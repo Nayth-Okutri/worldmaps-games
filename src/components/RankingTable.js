@@ -5,19 +5,23 @@ import {
   GAME_MODE_TIMEATTACK,
   GAME_MODE_ALLQUESTS,
 } from "./Constants";
-const RankingTable = ({ gameMode, displayedLeaderboardData }) => {
+const RankingTable = ({
+  gameMode,
+  displayedLeaderboardData,
+  minimalMode = false,
+}) => {
   return (
     <div className="data">
-      {gameMode === GAME_MODE_DUPLICATE && (
+      {!minimalMode && gameMode === GAME_MODE_DUPLICATE && (
         <h1>High scores for the mode Duplicate Hunt</h1>
       )}
-      {gameMode === GAME_MODE_10_QUESTS && (
+      {!minimalMode && gameMode === GAME_MODE_10_QUESTS && (
         <h1>High scores for the mode Random 10 Quests</h1>
       )}
-      {gameMode === GAME_MODE_TIMEATTACK && (
+      {!minimalMode && gameMode === GAME_MODE_TIMEATTACK && (
         <h1>High scores for the mode Time Attack</h1>
       )}
-      {gameMode === GAME_MODE_ALLQUESTS && (
+      {!minimalMode && gameMode === GAME_MODE_ALLQUESTS && (
         <h1>High scores for the mode Otaku Mastery</h1>
       )}
 
@@ -35,6 +39,7 @@ const RankingTable = ({ gameMode, displayedLeaderboardData }) => {
             displayedLeaderboardData.map((data, index) => {
               const rank = index + 1; // Rank starts from 1
               const isHighlight = index === 0;
+              const isBold = !!data.userId;
               return (
                 <tr key={data.name}>
                   <td>
@@ -48,7 +53,7 @@ const RankingTable = ({ gameMode, displayedLeaderboardData }) => {
                       />
                     )}
                   </td>
-                  <td>{data.name}</td>
+                  <td className={isBold ? "bold-text" : ""}>{data.name}</td>
                   <td>{data.score}</td>
                   <td>{data.time.toFixed(2)}</td>
                 </tr>

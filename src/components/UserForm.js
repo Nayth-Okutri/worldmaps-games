@@ -18,6 +18,7 @@ const UserForm = ({
   showErrorMessage = false,
   numberOfRightHits,
   gameMode,
+  player,
 }) => {
   const { t } = useTranslation("menu");
   const positionStyle = {};
@@ -50,12 +51,17 @@ const UserForm = ({
           <div className="input-section">
             <p>{t("UserFormScoreDescription")}</p>
             <label htmlFor="username">Username</label>
-            <input
-              name="username"
-              value={userName}
-              onInput={handleInput}
-              className={showErrorMessage ? "error" : ""}
-            />
+            {player ? (
+              <h2>{player.userName}</h2>
+            ) : (
+              <input
+                name="username"
+                value={userName}
+                onInput={handleInput}
+                className={showErrorMessage ? "error" : ""}
+              />
+            )}
+
             <div style={{ padding: "10px 0" }}>
               <label htmlFor="feedback to Nayth">
                 {t("UserFormScoreFeedbackDescription")}

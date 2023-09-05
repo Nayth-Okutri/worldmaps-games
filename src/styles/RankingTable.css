@@ -1,7 +1,7 @@
 .data table {
   text-align: left;
   table-layout: fixed;
-  width: 100%;
+  width: 98%;
   border-radius: 18px;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
   border-collapse: collapse;
@@ -19,4 +19,17 @@
 
 .data tbody:last-child {
   border-bottom: none;
+}
+.data th:nth-child(2) {
+  width: 60%;
+}
+@media screen and (max-width: 768px) {
+  .data th {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 0.8rem; /* Reduced font size for mobile */
+  }
+}
+.bold-text {
+  font-weight: bold;
 }

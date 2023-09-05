@@ -40,6 +40,7 @@ const LevelsDisplay = ({
   highlight,
   overrideIconClick,
   nestedComponent,
+  minimalMode = false,
 }) => {
   const [openedNumber, setOpenedNumber] = useState(-1);
   const [hoveredLevel, setHoveredLevel] = useState(0); // State for tracking hovered level
@@ -66,39 +67,55 @@ const LevelsDisplay = ({
         };
         return (
           <div
-            className={`level${level === highlight ? " highlight" : ""}`}
+            className={`level${
+              level === highlight || minimalMode ? " highlight" : ""
+            }`}
             onMouseEnter={() => setHoveredLevel(level)} // Set hovered level on mouse enter
             onMouseLeave={() => setHoveredLevel(null)} // Clear hovered level on mouse leave
             key={level}
           >
-            <div
-              className="image-container"
-              onClick={() => {
-                if (useClickFunction) {
-                  clickFunction(level);
-                  handleClick();
-                } else handleClick();
-              }}
-            >
-              <img
-                src={require(`../assets/level-${level}-thumb.jpg`)}
-                alt={`Level ${level}`}
-                style={{
-                  opacity: level === highlight || isHighlighted ? 1 : 0.5,
+            {minimalMode ? (
+              <div
+                onClick={() => {
+                  if (useClickFunction) {
+                    clickFunction(level);
+                    handleClick();
+                  } else handleClick();
                 }}
-              />{" "}
-              {isHighlighted && (
-                <div className="type-animation">
-                  <TypeAnimation
-                    sequence={`${levelData.name.toUpperCase()}`}
-                    speed={50}
-                    repeat={0}
-                    cursor={false}
-                    style={{ fontSize: "2em" }}
-                  />
-                </div>
-              )}{" "}
-            </div>
+              >
+                <h2>{`${levelData.name.toUpperCase()}`}</h2>
+              </div>
+            ) : (
+              <div
+                className="image-container"
+                onClick={() => {
+                  if (useClickFunction) {
+                    clickFunction(level);
+                    handleClick();
+                  } else handleClick();
+                }}
+              >
+                <img
+                  src={require(`../assets/level-${level}-thumb.jpg`)}
+                  alt={`Level ${level}`}
+                  style={{
+                    opacity: level === highlight || isHighlighted ? 1 : 0.5,
+                  }}
+                />{" "}
+                {isHighlighted && (
+                  <div className="type-animation">
+                    <TypeAnimation
+                      sequence={`${levelData.name.toUpperCase()}`}
+                      speed={50}
+                      repeat={0}
+                      cursor={false}
+                      style={{ fontSize: "2em" }}
+                    />
+                  </div>
+                )}{" "}
+              </div>
+            )}
+
             <div
               className="gamemode-select"
               style={openedNumber === level ? showStyle : hideStyle}

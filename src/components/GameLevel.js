@@ -13,6 +13,8 @@ import {
   TIMEATTACK_TIME,
 } from "./Constants";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "../auth";
+import { useUser } from "../userContext";
 const GameLevel = ({
   levelsData,
   isNameInLeaderboardRepeated,
@@ -66,6 +68,8 @@ const GameLevel = ({
   const descriptionRef = useRef();
   const [translationSpace, setTranslationSpace] = useState();
   const { t } = useTranslation("gamequests");
+  const { currentUser } = useAuth();
+  const { player } = useUser();
   useEffect(() => {
     const cachedRef = descriptionRef.current;
     const queryParams = new URLSearchParams(window.location.search);
@@ -81,21 +85,6 @@ const GameLevel = ({
 
     observer.observe(cachedRef);
     const image = document.getElementById("levelImage");
-    const container = document.querySelector(".game-container");
-
-    const toggleCenteringClass = () => {
-      if (image && container) {
-        const isImageWiderThanViewport = image.clientWidth > window.innerWidth;
-        //console.log(image.naturalWidth);
-        //console.log(window.innerWidth);
-        //console.log("isImageTallerThanViewport " + isImageWiderThanViewport);
-        if (isImageWiderThanViewport) {
-          container.classList.remove("center-only-when-fit");
-        } else {
-          container.classList.add("center-only-when-fit");
-        }
-      }
-    };
     if (!timerStarted) setZoomLevel(window.innerWidth > 768 ? 70 : 60);
     setScaledWidth(image.naturalWidth * (zoomLevel / 100));
     setScaledHeight(image.naturalHeight * (zoomLevel / 100));
@@ -271,6 +260,25 @@ const GameLevel = ({
     gameMode,
     workingQuests,
   ]);
+
+  const toggleCenteringClass = () => {
+    const image = document.getElementById("levelImage");
+    const container = document.querySelector(".game-container");
+    if (image && container) {
+      const isImageWiderThanViewport = image.clientWidth > window.innerWidth;
+      //console.log(image.naturalWidth);
+      console.log(window.innerWidth);
+      //console.log("isImageTallerThanViewport " + isImageWiderThanViewport);
+      if (isImageWiderThanViewport) {
+        container.classList.remove("center-only-when-fit");
+      } else {
+        //console.log("image.naturalWidth " + image.naturalWidth);
+        //console.log("window.innerWidth " + window.innerWidth);
+        if (image.naturalWidth !== 0)
+          container.classList.add("center-only-when-fit");
+      }
+    } else if (container) container.classList.remove("center-only-when-fit");
+  };
   const handleZoomIn = () => {
     setShouldDisplayMenu(false);
     setShowHitTarget(false);
@@ -332,14 +340,16 @@ const GameLevel = ({
         const reccordedTime =
           gameMode !== GAME_MODE_TIMEATTACK ? time : TIMEATTACK_TIME - time;
         console.log("time " + time);
+
         await addDoc(scoresCollectionRef, {
-          name: name,
+          name: player ? player.userName : name,
           feedback: feedback,
           time: reccordedTime,
           gameMode: gameMode,
           score: numberOfRightHits,
           level: level,
           date: new Date(),
+          userId: currentUser ? currentUser.uid : "",
         });
       }
     } catch (error) {
@@ -355,7 +365,7 @@ const GameLevel = ({
 
   const submitScore = (event) => {
     event.preventDefault();
-    if (userName) {
+    if (userName || player) {
       let reccordedTime;
       if (gameMode !== GAME_MODE_TIMEATTACK) reccordedTime = endTime;
       else reccordedTime = currentTime;
@@ -582,7 +592,7 @@ const GameLevel = ({
           setScaledWidth(image.naturalWidth * (zoomLevel / 100));
           setScaledHeight(image.naturalHeight * (zoomLevel / 100));
         };
-
+        toggleCenteringClass();
         setImageSource(hashedImagePath);
       }
     } else if (
@@ -604,6 +614,7 @@ const GameLevel = ({
           setScaledWidth(image.naturalWidth * (zoomLevel / 100));
           setScaledHeight(image.naturalHeight * (zoomLevel / 100));
         };
+        toggleCenteringClass();
         setImageSource(hashedImagePath);
       }
     } else {
@@ -794,6 +805,7 @@ const GameLevel = ({
           showErrorMessage={showErrorMessage}
           numberOfRightHits={numberOfRightHits}
           gameMode={gameMode}
+          player={player}
         />
         <img
           id="levelImage"

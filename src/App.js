@@ -8,6 +8,7 @@ import {
   query,
 } from "firebase/firestore";
 import GameLevel from "./components/GameLevel";
+import Profile from "./components/Profile";
 import Heading from "./components/Heading";
 import Home from "./components/Home";
 import Leaderboard from "./components/Leaderboard";
@@ -19,6 +20,7 @@ import "./assets/fonts/Oswald-Bold.ttf";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import { format, getISOWeek } from "date-fns";
+
 import en from "./i18n/en";
 import fr from "./i18n/fr";
 const app = initializeApp(firebaseConfig);
@@ -84,7 +86,10 @@ function App() {
       <Heading />
       <Routes>
         <Route path="/worldmaps" element={<Home levelsData={levelsData} />} />
-
+        <Route
+          path="/worldmaps/profile"
+          element={<Profile levelsData={levelsData} weekOfYear={weekOfYear} />}
+        />
         <Route
           path="worldmaps/leaderboard"
           element={
@@ -92,6 +97,7 @@ function App() {
               levelsData={levelsData}
               weekOfYear={weekOfYear}
               leaderboardData={leaderboardData}
+              minimalMode={false}
             />
           }
         >
