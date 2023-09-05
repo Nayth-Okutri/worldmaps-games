@@ -31,7 +31,7 @@ const RankingTable = ({
             <th>RANK</th>
             <th>NAME</th>
             <th>SCORE</th>
-            <th>TIME (SECONDS)</th>
+            <th>TIME (SEC)</th>
           </tr>
         </thead>
         <tbody>

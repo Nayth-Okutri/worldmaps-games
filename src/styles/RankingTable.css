@@ -24,8 +24,10 @@
   width: 60%;
 }
 @media screen and (max-width: 768px) {
+  .data th:nth-child(2) {
+    width: 50%;
+  }
   .data th {
-    width: 100%;
     box-sizing: border-box;
     font-size: 0.8rem; /* Reduced font size for mobile */
   }
