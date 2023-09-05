@@ -25,8 +25,12 @@ const translation = {
     LoadingUserProfile: "Chargement du profil de l'utilisateur...",
     InfoNoticeLogin:
       "Créez un profil pour conserver vos scores au fil du temps !",
+    LeaderBoardPrevWeek: "Semaine précédente",
+    LeaderBoardNextWeek: "Semaine suivante",
     error: {
       LoginUserAlreadyExists: "Nom d'utilisateur déjà utilisé",
+      LoginWrongPassword: "Mot de passe incorrect",
+      LoginNotFound: "Utilisateur non trouvé",
       EmailNotValid: "Veuillez saisir une adresse électronique valide",
       UserNameTooShort:
         "Le nom d'utilisateur doit comporter au moins 3 caractères.",

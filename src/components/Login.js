@@ -40,10 +40,10 @@ const Login = ({ onClose, onRegistration }) => {
       } catch (error) {
         switch (error.code) {
           case "auth/wrong-password":
-            setError("Wrong password");
+            setError(t("error.LoginWrongPassword"));
             break;
           case "auth/user-not-found":
-            setError("User not found");
+            setError(t("error.LoginNotFound"));
             break;
           default:
             setError(error.message);

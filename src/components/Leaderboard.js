@@ -18,6 +18,8 @@ import {
   TIMEATTACK_TIME,
 } from "./Constants";
 import RankingTable from "./RankingTable";
+
+import { useTranslation } from "react-i18next";
 const Leaderboard = ({
   levelsData,
   weekOfYear,
@@ -33,9 +35,9 @@ const Leaderboard = ({
     start: new Date(),
     end: new Date(),
   });
-
+  const [displayedWeek, setDisplayedWeek] = useState(0);
   console.log(weekOfYear);
-
+  const { t } = useTranslation("menu");
   const changeLevelInDisplay = (level) => {
     setDisplayedLeaderboardData([]);
     setCurrentLevel(level);
@@ -60,9 +62,16 @@ const Leaderboard = ({
       end: endDate,
     };
   };
+  const changeWeek = (direction) => {
+    if (direction === "prev") {
+      setDisplayedWeek(displayedWeek - 1);
+    } else if (direction === "next") {
+      setDisplayedWeek(displayedWeek + 1);
+    }
+  };
   const getLeaderboardDates = () => {
     const date = new Date();
-    const newWeekDates = getWeekDates(date.getFullYear(), weekOfYear);
+    const newWeekDates = getWeekDates(date.getFullYear(), displayedWeek);
     setWeekDates(newWeekDates);
     //console.log("Start date:", weekDates.start.toDateString());
     //console.log("End date:", weekDates.end.toDateString());
@@ -75,7 +84,7 @@ const Leaderboard = ({
 
     const scoresCollectionRef = collection(
       leaderboardCollectionRef,
-      String(weekOfYear) + "/level" + String(level)
+      String(displayedWeek) + "/level" + String(level)
     );
     //A CHANGER
     const leaderboardSnapshot = await getDocs(
@@ -99,6 +108,7 @@ const Leaderboard = ({
     return sortedLevelLeaderboardData;
   };
   useEffect(() => {
+    if (displayedWeek === 0) setDisplayedWeek(weekOfYear);
     getLeaderboardDates();
     console.log(userId);
     if (typeof userId === "undefined")
@@ -137,16 +147,33 @@ const Leaderboard = ({
           console.error("Error fetching leaderboard data:", error);
         });
     }
-  }, [currentLevel, gameMode]);
+  }, [currentLevel, gameMode, displayedWeek]);
   return (
     <div className="leaderboard">
-      {minimalMode ? (
-        <div></div>
-      ) : (
+      <div>
+        <h3>{`Leaderboard ${weekDates.start
+          .toDateString()
+          .slice(0, -4)} - ${weekDates.end.toDateString()}`}</h3>
         <div>
-          <h1>{`Leaderboard ${weekDates.start
-            .toDateString()
-            .slice(0, -4)} - ${weekDates.end.toDateString()}`}</h1>
+          <button
+            style={{
+              padding: "6px",
+              borderRadius: "8px",
+            }}
+            onClick={() => changeWeek("prev")}
+          >
+            {t("LeaderBoardPrevWeek")}
+          </button>
+          <button
+            style={{
+              padding: "6px",
+              borderRadius: "8px",
+            }}
+            onClick={() => changeWeek("next")}
+            disabled={displayedWeek === weekOfYear}
+          >
+            {t("LeaderBoardNextWeek")}
+          </button>
           <div className="buttons">
             {currentLevel && gameMode ? (
               <Link to={`/worldmaps/game/${currentLevel}?mode=${gameMode}`}>
@@ -159,7 +186,7 @@ const Leaderboard = ({
             )}
           </div>
         </div>
-      )}
+      </div>
 
       <LevelsDisplay
         levelsData={levelsData}

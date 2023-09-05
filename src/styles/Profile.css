@@ -1,6 +1,6 @@
 .profile {
   max-width: 80%; /* Adjust the width as needed */
-  margin: 0 auto;
+  margin: 5px auto;
   padding: 20px;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -33,6 +33,6 @@ p {
 @media screen and (max-width: 768px) {
   .profile {
     max-width: 100%;
-    padding: 0px;
+    padding: 5px;
   }
 }
