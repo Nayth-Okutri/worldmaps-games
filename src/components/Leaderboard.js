@@ -9,12 +9,14 @@ import {
   query,
   orderBy,
   limit,
+  where,
 } from "firebase/firestore";
 import {
   GAME_MODE_DUPLICATE,
   GAME_MODE_10_QUESTS,
   GAME_MODE_TIMEATTACK,
   GAME_MODE_ALLQUESTS,
+  ALLGAMEMODES,
   TIMEATTACK_TIME,
 } from "./Constants";
 import RankingTable from "./RankingTable";
@@ -27,9 +29,12 @@ const Leaderboard = ({
   minimalMode = false,
 }) => {
   const [levelLeaderboardData, setLevelLeaderboardData] = useState([]);
+
   const [displayedLeaderboardData, setDisplayedLeaderboardData] = useState([]);
   const level = +useParams().level || 1;
   const [currentLevel, setCurrentLevel] = useState(level);
+  const [prevLevel, setPrevLevel] = useState(0);
+  const [prevWeek, setPrevWeek] = useState(0);
   const [gameMode, setGameMode] = useState(0);
   const [weekDates, setWeekDates] = useState({
     start: new Date(),
@@ -64,8 +69,10 @@ const Leaderboard = ({
   };
   const changeWeek = (direction) => {
     if (direction === "prev") {
+      setPrevWeek(displayedWeek);
       setDisplayedWeek(displayedWeek - 1);
     } else if (direction === "next") {
+      setPrevWeek(displayedWeek);
       setDisplayedWeek(displayedWeek + 1);
     }
   };
@@ -78,7 +85,7 @@ const Leaderboard = ({
   };
   const getLeaderboardDataForLevel = async (level) => {
     setLevelLeaderboardData([]);
-
+    const gameModeArrays = {};
     let newLeaderboardData = [];
     const leaderboardCollectionRef = collection(getFirestore(), "leaderboard");
 
@@ -87,66 +94,61 @@ const Leaderboard = ({
       String(displayedWeek) + "/level" + String(level)
     );
     //A CHANGER
+
     const leaderboardSnapshot = await getDocs(
-      query(scoresCollectionRef, orderBy("score"), limit(100))
+      query(scoresCollectionRef, orderBy("score"), limit(100)),
+      { source: "server" }
     );
+    //console.log("leaderboardSnapshot " + leaderboardSnapshot);
+    ALLGAMEMODES.forEach((gameMode) => {
+      gameModeArrays[gameMode] = [];
+    });
     leaderboardSnapshot.forEach((score) => {
       const scoreData = score.data();
-      if (
-        !newLeaderboardData.some(
-          (existingScore) => existingScore.name === scoreData.name
-        )
-      ) {
-        newLeaderboardData.push(score.data());
-        console.log(score.data());
+      const gameMode = scoreData.gameMode;
+      if (!gameModeArrays[gameMode]) {
+        gameModeArrays[gameMode] = [];
+      }
+      const exists = gameModeArrays[gameMode].some(
+        (existingScore) => existingScore.name === scoreData.name
+      );
+      if (!exists) {
+        gameModeArrays[gameMode].push(scoreData);
+        console.log(gameModeArrays);
       }
     });
-    const sortedLevelLeaderboardData = [...newLeaderboardData].sort(
-      (a, b) => a.time - b.time
-    );
-    setLevelLeaderboardData(sortedLevelLeaderboardData);
-    return sortedLevelLeaderboardData;
+    console.log(gameModeArrays);
+
+    setLevelLeaderboardData(gameModeArrays);
+    setPrevWeek(displayedWeek);
+    return gameModeArrays;
   };
   useEffect(() => {
     if (displayedWeek === 0) setDisplayedWeek(weekOfYear);
     getLeaderboardDates();
     console.log(userId);
-    if (typeof userId === "undefined")
-      //Charge a tous les changements de gamemode au lieu de lire dans le level data !!
-      getLeaderboardDataForLevel(currentLevel)
-        .then((newLevelLeaderboardData) => {
-          if (gameMode !== 0) {
-            console.log("gameMode " + gameMode);
-            let subList = newLevelLeaderboardData.filter(
-              (data) => data.gameMode === gameMode
-            );
-            if (gameMode === GAME_MODE_TIMEATTACK)
-              subList = [...subList].sort((a, b) => b.score - a.score);
-            console.log(JSON.stringify(subList));
-            setDisplayedLeaderboardData(subList);
-          } else {
-            setDisplayedLeaderboardData(newLevelLeaderboardData);
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching leaderboard data:", error);
-        });
-    else {
-      getLeaderboardDataForLevel(currentLevel)
-        .then((newLevelLeaderboardData) => {
-          let subList = newLevelLeaderboardData.filter(
-            (data) => data.gameMode === gameMode
-          );
-          subList = subList.filter((data) => data.userId === userId);
+
+    //Charge a tous les changements de gamemode au lieu de lire dans le level data !!
+    getLeaderboardDataForLevel(currentLevel)
+      .then((newLevelLeaderboardData) => {
+        if (gameMode !== 0) {
+          console.log("gameMode " + gameMode);
+
+          let subList = newLevelLeaderboardData[gameMode];
           if (gameMode === GAME_MODE_TIMEATTACK)
             subList = [...subList].sort((a, b) => b.score - a.score);
-          console.log(JSON.stringify(subList));
+          else subList = [...subList].sort((a, b) => a.time - b.time);
+          if (typeof userId !== "undefined")
+            subList = subList.filter((data) => data.userId === userId);
+          console.log("subList " + JSON.stringify(subList));
           setDisplayedLeaderboardData(subList);
-        })
-        .catch((error) => {
-          console.error("Error fetching leaderboard data:", error);
-        });
-    }
+        } else {
+          //setDisplayedLeaderboardData(newLevelLeaderboardData);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching leaderboard data:", error);
+      });
   }, [currentLevel, gameMode, displayedWeek]);
   return (
     <div className="leaderboard">

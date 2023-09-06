@@ -5,12 +5,16 @@ import { useParams, useNavigate } from "react-router-dom";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import UserForm from "./UserForm";
 import HintPop from "./HintPop";
+
+import GameCommandIcons from "./GameCommandIcons";
+
 import {
   GAME_MODE_DUPLICATE,
   GAME_MODE_10_QUESTS,
   GAME_MODE_TIMEATTACK,
   GAME_MODE_ALLQUESTS,
   TIMEATTACK_TIME,
+  clickResults,
 } from "./Constants";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../auth";
@@ -49,7 +53,7 @@ const GameLevel = ({
   const [maxQuestHit, setMaxQuestHit] = useState(0);
   const [questHits, setQuestHits] = useState([]);
   const [clickNumber, setClickNumber] = useState(1);
-  const [questResult, setQuestResult] = useState(false);
+  const [questResult, setQuestResult] = useState(clickResults.Pending);
   const [gameEnded, setGameEnded] = useState(false);
   const [clickCloseRight, setClickCloseRight] = useState(false);
   const [clickCloseBottom, setClickCloseBottom] = useState(false);
@@ -70,6 +74,7 @@ const GameLevel = ({
   const { t } = useTranslation("gamequests");
   const { currentUser } = useAuth();
   const { player } = useUser();
+
   useEffect(() => {
     const cachedRef = descriptionRef.current;
     const queryParams = new URLSearchParams(window.location.search);
@@ -160,7 +165,7 @@ const GameLevel = ({
           }
           const currentQuestCount = Object.keys(workingQuests).length;
           setQuestCount(currentQuestCount);
-          console.log("currentQuestCount " + currentQuestCount);
+          //console.log("currentQuestCount " + currentQuestCount);
           if (
             currentQuestCount > 0 &&
             (typeof currentQuest === "undefined" ||
@@ -179,7 +184,7 @@ const GameLevel = ({
             setQuestHits([]);
             setCurrentQuest(newQuest);
             getImageSource(newQuest);
-            console.log("newQuest " + newQuest);
+            //console.log("newQuest " + newQuest);
             setShowRedQuestion(true); // Set the showRedQuestion state to true
             setTimeout(() => {
               setShowRedQuestion(false); // Reset the showRedQuestion state after 1 second
@@ -231,7 +236,7 @@ const GameLevel = ({
               }
             });
           }, 1000);
-          console.log("currentTime " + currentTime);
+          //console.log("currentTime " + currentTime);
 
           return () => clearInterval(interval);
         }
@@ -267,7 +272,7 @@ const GameLevel = ({
     if (image && container) {
       const isImageWiderThanViewport = image.clientWidth > window.innerWidth;
       //console.log(image.naturalWidth);
-      console.log(window.innerWidth);
+
       //console.log("isImageTallerThanViewport " + isImageWiderThanViewport);
       if (isImageWiderThanViewport) {
         container.classList.remove("center-only-when-fit");
@@ -300,7 +305,6 @@ const GameLevel = ({
     const x = e.clientX;
     const y = e.clientY;
 
-    console.log(x);
     setMenuX(x);
     setMenuY(y);
   };
@@ -328,6 +332,7 @@ const GameLevel = ({
   const saveScore = async (name, time) => {
     try {
       if (numberOfRightHits >= 1) {
+        console.log("saving score");
         const leaderboardCollectionRef = collection(
           getFirestore(),
           "leaderboard"
@@ -340,8 +345,7 @@ const GameLevel = ({
         const reccordedTime =
           gameMode !== GAME_MODE_TIMEATTACK ? time : TIMEATTACK_TIME - time;
         console.log("time " + time);
-
-        await addDoc(scoresCollectionRef, {
+        const newScore = {
           name: player ? player.userName : name,
           feedback: feedback,
           time: reccordedTime,
@@ -350,7 +354,9 @@ const GameLevel = ({
           level: level,
           date: new Date(),
           userId: currentUser ? currentUser.uid : "",
-        });
+        };
+        console.log("newScore " + newScore);
+        await addDoc(scoresCollectionRef, newScore);
       }
     } catch (error) {
       console.error("Error writing new score to Firebase Database", error);
@@ -438,6 +444,7 @@ const GameLevel = ({
     yPositionOnImage
   ) => {
     const prevIndicator = clickNumber === 1 ? [] : indicators;
+    setQuestResult(clickResults.Pending);
     if (clickNumber === 1) {
       setIndicators([]);
       //console.log("indicators " + JSON.stringify(indicators));
@@ -474,7 +481,7 @@ const GameLevel = ({
       );
       if (numberOfRightQuestHits === maxQuestHit) {
         console.log("done");
-        setQuestResult(true);
+        setQuestResult(clickResults.Correct);
         const hitObject = hits;
         //console.log(someHit);
         if (
@@ -486,13 +493,13 @@ const GameLevel = ({
 
         console.log(hitObject[currentQuest]);
         setHits(hitObject);
-      } else setQuestResult(false);
+      } else setQuestResult(clickResults.Incorrect);
     } else {
       setShouldDisplayMenu(false);
 
       //setClickNumber(clickNumber + 1);
     }
-
+    console.log("questResult " + questResult);
     //console.log([xPositionOnImage, yPositionOnImage]);
     const newIndicator = {
       x,
@@ -571,24 +578,23 @@ const GameLevel = ({
     return hashedFilename; // In case you're using ES modules
   };
   const getImageSource = (currentquest) => {
-    console.log("getImageSource " + workingQuests);
-    console.log("workingQuests[currentQuest] " + currentquest);
-    console.log("gameMode " + gameMode);
-    console.log(workingQuests);
+    //console.log("getImageSource " + workingQuests);
+    //console.log("workingQuests[currentQuest] " + currentquest);
+    //console.log("gameMode " + gameMode);
+    //console.log(workingQuests);
     if (
       typeof workingQuests !== "undefined" &&
       typeof workingQuests[currentquest] !== "undefined" &&
       gameMode !== GAME_MODE_DUPLICATE
     ) {
       {
-        console.log("ici");
+        //console.log("ici");
         const image = new Image();
 
         const hashedImagePath = getHashedAssetPath(`level-${level}`);
-        console.log("hashedImagePath " + hashedImagePath);
+
         image.src = hashedImagePath;
         image.onload = () => {
-          console.log("image.naturalWidth " + image.naturalWidth);
           setScaledWidth(image.naturalWidth * (zoomLevel / 100));
           setScaledHeight(image.naturalHeight * (zoomLevel / 100));
         };
@@ -601,16 +607,14 @@ const GameLevel = ({
       typeof workingQuests[currentquest].image !== "undefined"
     ) {
       {
-        console.log("la");
+        //console.log("la");
         const image = new Image();
         const hashedImagePath = getHashedAssetPath(
           `${workingQuests[currentquest].image}`
         );
         image.src = hashedImagePath;
-        console.log("image " + image.naturalWidth);
-        console.log("hashedImagePath " + hashedImagePath);
+
         image.onload = () => {
-          console.log("image.naturalWidth" + image.naturalWidth);
           setScaledWidth(image.naturalWidth * (zoomLevel / 100));
           setScaledHeight(image.naturalHeight * (zoomLevel / 100));
         };
@@ -621,6 +625,7 @@ const GameLevel = ({
       console.log("nothing"); // or provide a default image source
     }
   };
+
   return (
     <div
       className="game-container"
@@ -672,84 +677,12 @@ const GameLevel = ({
                   )}
               </p>
             )}
-          <div>
-            <span style={{ paddingRight: "10px" }}>
-              <img
-                style={{
-                  height: "20px",
-                  cursor: "pointer",
-                  transition: "opacity 0.3s",
-                }}
-                src={require("../assets/ZoomInIcon.png")}
-                alt="ZoomIn"
-                onClick={handleZoomIn}
-                title="ZoomIn" // Add a tooltip description
-                onMouseOver={(e) => {
-                  e.target.style.opacity = 0.7; // Change opacity on hover
-                }}
-                onMouseOut={(e) => {
-                  e.target.style.opacity = 1; // Restore opacity when not hovering
-                }}
-              />
-            </span>
-            <span style={{ paddingRight: "10px" }}>
-              <img
-                style={{
-                  height: "20px",
-                  cursor: "pointer",
-                  transition: "opacity 0.3s",
-                }}
-                src={require("../assets/ZoomOutIcon.png")}
-                alt="ZoomOut"
-                onClick={handleZoomOut}
-                title="ZoomOut" // Add a tooltip description
-                onMouseOver={(e) => {
-                  e.target.style.opacity = 0.7; // Change opacity on hover
-                }}
-                onMouseOut={(e) => {
-                  e.target.style.opacity = 1; // Restore opacity when not hovering
-                }}
-              />
-            </span>
-            <span style={{ paddingRight: "10px" }}>
-              <img
-                style={{
-                  height: "20px",
-                  cursor: "pointer",
-                  transition: "opacity 0.3s",
-                }}
-                src={require("../assets/HintIcon.png")}
-                alt="Hint"
-                onClick={handleHint}
-                title={t("hint")} // Add a tooltip description
-                onMouseOver={(e) => {
-                  e.target.style.opacity = 0.7; // Change opacity on hover
-                }}
-                onMouseOut={(e) => {
-                  e.target.style.opacity = 1; // Restore opacity when not hovering
-                }}
-              />
-            </span>
-            <span style={{ paddingRight: "10px" }}>
-              <img
-                style={{
-                  height: "20px",
-                  cursor: "pointer",
-                  transition: "opacity 0.3s",
-                }}
-                src={require("../assets/SkipIcon.png")}
-                alt="Skip"
-                onClick={skipQuestion}
-                title={t("skip")} // Add a tooltip description
-                onMouseOver={(e) => {
-                  e.target.style.opacity = 0.7; // Change opacity on hover
-                }}
-                onMouseOut={(e) => {
-                  e.target.style.opacity = 1; // Restore opacity when not hovering
-                }}
-              />
-            </span>
-          </div>
+          <GameCommandIcons
+            handleZoomIn={handleZoomIn}
+            handleZoomOut={handleZoomOut}
+            handleHint={handleHint}
+            skipQuestion={skipQuestion}
+          />
         </div>
         <div className="divider"></div> {/* Empty divider */}
         <div className="column">
@@ -757,25 +690,7 @@ const GameLevel = ({
         </div>
       </div>
       <div className="game" onClick={handleImageClick}>
-        {maxQuestHit === 1 && indicators.length > 0 && showHitTarget && (
-          <div
-            style={{
-              position: "absolute",
-              left: `${indicators[0].x - 20}px`,
-              top: `${indicators[0].y - 20}px`,
-              width: "40px",
-              height: "40px",
-              borderRadius: "50%",
-              backgroundColor: questResult
-                ? "rgba(0, 0, 255, 0.2)"
-                : "rgba(255, 0, 0, 0.2)",
-              border: questResult ? "2px dashed blue" : "2px dashed red",
-            }}
-          ></div>
-        )}
-
-        {maxQuestHit > 1 &&
-          showHitTarget &&
+        {showHitTarget &&
           indicators.map((indicator, index) => (
             <div
               key={index}
@@ -784,9 +699,21 @@ const GameLevel = ({
                 position: "absolute",
                 left: `${indicator.x}px`,
                 top: `${indicator.y}px`,
+                backgroundColor:
+                  questResult === clickResults.Pending
+                    ? "rgba(70, 70, 70, 0.4)"
+                    : questResult === clickResults.Incorrect
+                    ? "rgba(255, 0, 0, 0.2)"
+                    : "rgba(0, 255, 0, 0.2)",
+                border:
+                  questResult === clickResults.Pending
+                    ? "2px dashed black"
+                    : questResult === clickResults.Incorrect
+                    ? "2px dashed red"
+                    : "2px dashed green",
               }}
             >
-              {indicator.clickNumber}
+              {maxQuestHit > 1 && indicator.clickNumber}
             </div>
           ))}
         <SelectionMenu
@@ -818,6 +745,9 @@ const GameLevel = ({
     </div>
   );
 };
+
+export default GameLevel;
+
 /*  <Link to="/waldo">
           <button className="back">Return Home</button>
         </Link>
@@ -837,4 +767,3 @@ const GameLevel = ({
           );
         });
         */
-export default GameLevel;
