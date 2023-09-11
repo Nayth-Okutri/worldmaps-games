@@ -407,6 +407,51 @@ const GameLevel = ({
   const handleFeedbackInput = (e) => {
     setFeedback(e.target.value);
   };
+  const newActivityTitle = (time) => {
+    return `${t("LevelCompleted")} ${level} ${t("InTime")} ${time}s ${t(
+      "ForGameMode"
+    )} ${
+      GAME_MODE_DUPLICATE
+        ? t("GAME_MODE_DUPLICATE")
+        : GAME_MODE_10_QUESTS
+        ? t("GAME_MODE_10_QUESTS")
+        : GAME_MODE_TIMEATTACK
+        ? t("GAME_MODE_TIMEATTACK")
+        : GAME_MODE_ALLQUESTS
+        ? t("GAME_MODE_ALLQUESTS")
+        : GAME_MODE_ONEQUEST
+        ? t("GAME_MODE_ONEQUEST")
+        : ""
+    }`;
+  };
+  const logUserActivity = async (time) => {
+    try {
+      if (player) {
+        console.log("saving activity");
+        const usersCollectionRef = collection(getFirestore(), "users");
+        const activitiesCollectionRef = collection(
+          usersCollectionRef,
+          player.userName,
+          "userActivities"
+        );
+        console.log("activitiesCollectionRef " + activitiesCollectionRef);
+
+        const newActivity = {
+          type: "LevelCompleted",
+          activity: newActivityTitle(time),
+          time,
+          gameMode: gameMode,
+          score: numberOfRightHits,
+          level: level,
+          date: new Date(),
+        };
+        console.log("newActivity " + newActivity);
+        await addDoc(activitiesCollectionRef, newActivity);
+      }
+    } catch (error) {
+      console.error("Error writing new score to Firebase Database", error);
+    }
+  };
   const saveScore = async (name, time) => {
     try {
       if (numberOfRightHits >= 1) {
@@ -458,6 +503,7 @@ const GameLevel = ({
       let reccordedTime;
       if (gameMode !== GAME_MODE_TIMEATTACK) reccordedTime = endTime;
       else reccordedTime = currentTime;
+      logUserActivity(reccordedTime);
       saveScore(userName, reccordedTime);
       updateLeaderboardData();
       navigate(`/worldmaps/leaderboard/${level}`);

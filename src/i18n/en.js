@@ -5,9 +5,9 @@ const translation = {
     tenGameModeDescription:
       "10 Random Questions. Put your Geek knowledge to the test and locate the elements that match the given questions.",
     timeAttackGameModeDescription:
-      " Time Attack. Take on the clock and respond to as many questions as you can within a single minute.",
+      "Time Attack. Take on the clock and respond to as many questions as you can within a single minute.",
     allQuestsAttackGameModeDescription:
-      " Otaku Mastery. Demonstrate your expertise by swiftly answering all the questions from the deck.",
+      "Otaku Mastery. Demonstrate your expertise by swiftly answering all the questions from the deck.",
     OKResult: "Correct answer",
     NOKResult: "Incorrect answer",
     UserFormTitle1Part1: "You finished in ",
@@ -47,6 +47,14 @@ const translation = {
     quest: "quest",
     hint: "hint",
     skip: "Skip this question",
+    LevelCompleted: "Level Completed : ",
+    InTime: " in ",
+    ForGameMode: " in mode ",
+    GAME_MODE_DUPLICATE: "Duplicate hunt",
+    GAME_MODE_10_QUESTS: "10 Random Questions",
+    GAME_MODE_TIMEATTACK: "Time Attack",
+    GAME_MODE_ALLQUESTS: "Otaku Mastery",
+    GAME_MODE_ONEQUEST: "Unique quest",
     pokemon: {
       quest1: {
         title: "Find duplicate Pokemon",

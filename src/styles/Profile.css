@@ -36,3 +36,27 @@ p {
     padding: 5px;
   }
 }
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.styled-table th,
+.styled-table td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.styled-table th {
+  background-color: #f2f2f2;
+}
+
+.styled-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.styled-table tr:hover {
+  background-color: #ddd;
+}

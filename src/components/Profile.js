@@ -10,6 +10,8 @@ import {
   setDoc,
   getDoc,
   getDocs,
+  orderBy,
+  limit,
   deleteDoc,
 } from "firebase/firestore";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
@@ -23,6 +25,7 @@ const Profile = ({ levelsData, weekOfYear }) => {
   const [newUsername, setNewUsername] = useState("");
   const [isEditingUsername, setIsEditingUsername] = useState(false); // Track if the username is being edited
   const [error, setError] = useState(null);
+  const [userActivities, setUserActivities] = useState([]);
   // State to store user information
   const [userProfile, setUserProfile] = useState(null);
   const db = getFirestore();
@@ -35,25 +38,69 @@ const Profile = ({ levelsData, weekOfYear }) => {
         setUserProfile(snap.docs[0].data());
         setPlayer(snap.docs[0].data());
         console.log("currentUser " + currentUser);
+        return snap.docs[0].data().userName;
       } else {
         console.log("Soucis");
       }
     });
   };
 
+  const convertFBTimestampAsString = (FBTimestamp) => {
+    if (typeof FBTimestamp === "undefined") return "";
+    if (FBTimestamp.hasOwnProperty("seconds"))
+      return FBTimestamp.seconds.toString();
+    else return FBTimestamp;
+  };
+
+  const getTimeStamp = (FBTimestamp) => {
+    if (typeof FBTimestamp === "undefined") return "";
+    if (FBTimestamp.hasOwnProperty("seconds")) return FBTimestamp.seconds;
+    else return FBTimestamp;
+  };
+  const getDateFromFBTimestamp = (FBTimestamp) => {
+    const dateObject = new Date(getTimeStamp(FBTimestamp) * 1000);
+    const day = String(dateObject.getDate()).padStart(2, "0");
+    const month = String(dateObject.getMonth() + 1).padStart(2, "0");
+    const year = String(dateObject.getFullYear()).slice(-2);
+
+    return `${day}/${month}/${year}`;
+  };
+  const fetchUserActivities = async () => {
+    console.log("fetchUserActivities for " + player.userName);
+    if (player.userName !== "") {
+      const userActivitiesCollectionRef = collection(
+        getFirestore(),
+        "users",
+        player.userName + "/userActivities"
+      );
+
+      const activitiesSnapshot = await getDocs(
+        query(userActivitiesCollectionRef, orderBy("date"), limit(100)),
+        { source: "server" }
+      ).then((snap) => {
+        const newActivities = snap.docs.map((doc) => doc.data());
+        setUserActivities(newActivities);
+        console.log("userActivities " + JSON.stringify(userActivities));
+        snap.docs.forEach((doc) => {});
+      });
+    }
+  };
   useEffect(() => {
     // Fetch user profile data when the component mounts (you might need to adjust the data source)
+    console.log(player);
     if (currentUser) {
-      console.log(currentUser.email);
-      // Assuming you have a way to fetch user data based on the current user's ID
-      // Replace this with your actual user data fetching logic
-      fetchUserProfile(currentUser.uid)
-        .then(() => {})
-        .catch((error) => {
-          console.error("Error fetching user profile:", error);
-        });
+      if (!userProfile) {
+        console.log(currentUser.email);
+        // Assuming you have a way to fetch user data based on the current user's ID
+        // Replace this with your actual user data fetching logic
+        fetchUserProfile(currentUser.uid)
+          .then(() => {})
+          .catch((error) => {
+            console.error("Error fetching user profile:", error);
+          });
+      } else fetchUserActivities();
     }
-  }, [currentUser]);
+  }, [currentUser, player]);
   const handleUsernameChange = async () => {
     // Update the username in Firebase Firestore
     setError("");
@@ -125,7 +172,28 @@ const Profile = ({ levelsData, weekOfYear }) => {
           </h1>
           {error && <p className="error-message">{error}</p>}
           <p>Email: {userProfile.email}</p>
+          <h2>User Activities</h2>
+          <table className="styled-table">
+            <thead>
+              <tr>
+                <th>Activity</th>
+                <th>Date</th>
+                {/* Add more table headers as needed */}
+              </tr>
+            </thead>
+            <tbody>
+              {Array.isArray(userActivities) &&
+                userActivities.length > 0 &&
+                userActivities.map((activity, index) => (
+                  <tr key={index}>
+                    <td>{activity.activity}</td>
+                    <td>{getDateFromFBTimestamp(activity.date)}</td>
 
+                    {/* Add more table data cells as needed */}
+                  </tr>
+                ))}
+            </tbody>
+          </table>
           <h2>{t("ProfileMyScore")}</h2>
           <Leaderboard
             levelsData={levelsData}

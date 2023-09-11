@@ -48,6 +48,14 @@ const translation = {
     quest: "quête",
     hint: "indice",
     skip: "Passer la question",
+    LevelCompleted: "Niveau terminé : ",
+    InTime: " en ",
+    ForGameMode: " dans le mode ",
+    GAME_MODE_DUPLICATE: "Chasse aux doublons",
+    GAME_MODE_10_QUESTS: "10 questions aléatoires",
+    GAME_MODE_TIMEATTACK: "Attaque de temps",
+    GAME_MODE_ALLQUESTS: "Maîtrise des Otakus",
+    GAME_MODE_ONEQUEST: "Quête unique",
     pokemon: {
       quest1: {
         title: "Trouve le Pokemon en double",
