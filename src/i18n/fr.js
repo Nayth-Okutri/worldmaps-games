@@ -27,6 +27,7 @@ const translation = {
       "Créez un profil pour conserver vos scores au fil du temps !",
     LeaderBoardPrevWeek: "Semaine précédente",
     LeaderBoardNextWeek: "Semaine suivante",
+    PostFeedback: "Postez un feedback à Nayth",
     error: {
       LoginUserAlreadyExists: "Nom d'utilisateur déjà utilisé",
       LoginWrongPassword: "Mot de passe incorrect",

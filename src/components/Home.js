@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/home.css";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import LevelsDisplay from "./LevelsDisplay";
 import ModeDescription from "./ModeDescription";
-import { useTranslation } from "react-i18next";
+import Feedback from "./Feedback";
 
 const Home = ({ levelsData }) => {
   const [currentLevel, setCurrentLevel] = useState(0);
@@ -38,6 +39,7 @@ const Home = ({ levelsData }) => {
           <ModeDescription level={currentLevel} gameMode={gameMode} />
         }
       />
+      <Feedback />
     </div>
   );
 };
