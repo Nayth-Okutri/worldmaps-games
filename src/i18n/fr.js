@@ -38,6 +38,8 @@ const translation = {
       PasswordMustMatch: "Les mots de passe doivent correspondre",
       EmailAlreadyInUse: "Email déjà utilisé",
       QuestNotFound: "Quête non trouvée",
+      GameModeIncorrect: "Il n'y a pas de mode de jeu correspondant",
+      LevelNotFound: "Niveau non trouvé",
     },
   },
 

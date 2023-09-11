@@ -29,6 +29,14 @@ const GameLevel = ({
   const level = +useParams().level;
   const levelData = levelsData.filter((value) => value.level === level)[0];
 
+  const ALL_GAME_MODES = [
+    GAME_MODE_DUPLICATE,
+    GAME_MODE_10_QUESTS,
+    GAME_MODE_TIMEATTACK,
+    GAME_MODE_ALLQUESTS,
+    TIMEATTACK_TIME,
+    GAME_MODE_ONEQUEST,
+  ];
   const [menuX, setMenuX] = useState(0);
   const [menuY, setMenuY] = useState(0);
   const [shouldDisplayMenu, setShouldDisplayMenu] = useState(false);
@@ -92,10 +100,18 @@ const GameLevel = ({
         threshold: [1],
       }
     );
+    console.log(gameMode);
+    if (!ALL_GAME_MODES.includes(gameMode) && gameMode !== 0)
+      showCriticalError("error.GameModeIncorrect");
+    if (
+      levelsData.length > 0 &&
+      levelsData.filter((value) => value.level === level).length === 0
+    )
+      showCriticalError("error.LevelNotFound");
 
     observer.observe(cachedRef);
     const image = document.getElementById("levelImage");
-    if (!timerStarted) setZoomLevel(window.innerWidth > 768 ? 70 : 60);
+
     setScaledWidth(image.naturalWidth * (zoomLevel / 100));
     setScaledHeight(image.naturalHeight * (zoomLevel / 100));
     toggleCenteringClass();
@@ -116,7 +132,8 @@ const GameLevel = ({
             const duplicateQuestCount = Object.keys(duplicateQuests).length;
             console.log("duplicateQuestCount " + duplicateQuestCount);
 
-            if (duplicateQuestCount === 0) showCriticalError();
+            if (duplicateQuestCount === 0)
+              showCriticalError("error.QuestNotFound");
           }
 
           const duplicateQuestCount = Object.keys(workingQuests).length;
@@ -252,6 +269,7 @@ const GameLevel = ({
       case GAME_MODE_ALLQUESTS:
       case GAME_MODE_ONEQUEST:
         if (!gameEnded) {
+          console.log(" timer");
           setTimerStarted(true);
           const interval = setInterval(() => {
             setCurrentTime(
@@ -267,10 +285,14 @@ const GameLevel = ({
 
       case GAME_MODE_TIMEATTACK:
         // Code to start the timer at one minute and count down to zero
+
         if (!gameEnded) {
-          setTimerStarted(true);
+          console.log("start timer");
+
           const initialTime = TIMEATTACK_TIME; // 1 minute in seconds
+          console.log("timerStarted " + timerStarted);
           if (!timerStarted) setCurrentTime(initialTime);
+          setTimerStarted(true);
 
           const interval = setInterval(() => {
             setCurrentTime((prevTime) => {
@@ -288,9 +310,7 @@ const GameLevel = ({
           return () => clearInterval(interval);
         }
         break;
-      case GAME_MODE_DUPLICATE:
-        // Handle timer behavior for game mode 1
-        break;
+
       default:
         break;
     }
@@ -301,7 +321,7 @@ const GameLevel = ({
       window.removeEventListener("resize", toggleCenteringClass);
     };
   }, [
-    levelData,
+    levelsData,
     hits,
     currentQuest,
     questCount,

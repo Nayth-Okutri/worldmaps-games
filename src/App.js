@@ -7,19 +7,21 @@ import {
   orderBy,
   query,
 } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import firebaseConfig from "./firebaseConfig";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import { format, getISOWeek } from "date-fns";
 import GameLevel from "./components/GameLevel";
 import Profile from "./components/Profile";
 import Heading from "./components/Heading";
 import Home from "./components/Home";
+import NotFound from "./components/NotFound";
 import Leaderboard from "./components/Leaderboard";
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import firebaseConfig from "./firebaseConfig";
+
 import "./styles/app.css";
 import "./assets/fonts/Oswald-Bold.ttf";
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import { format, getISOWeek } from "date-fns";
 
 import en from "./i18n/en";
 import fr from "./i18n/fr";
@@ -115,6 +117,7 @@ function App() {
             }
           />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

@@ -37,7 +37,9 @@ const translation = {
       PassWordTooShort: "Password must be at least 6 characters long.",
       PasswordMustMatch: "Passwords must match",
       EmailAlreadyInUse: "Email already in use",
-      QuestNotFound: "Quest not dound",
+      QuestNotFound: "Quest not found",
+      GameModeIncorrect: "There is no game mode corresponding",
+      LevelNotFound: "There is no level found",
     },
   },
 
