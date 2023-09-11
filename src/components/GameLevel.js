@@ -7,13 +7,14 @@ import UserForm from "./UserForm";
 import HintPop from "./HintPop";
 
 import GameCommandIcons from "./GameCommandIcons";
-
+import ErrorModalWindow from "./ErrorModalWindow";
 import {
   GAME_MODE_DUPLICATE,
   GAME_MODE_10_QUESTS,
   GAME_MODE_TIMEATTACK,
   GAME_MODE_ALLQUESTS,
   TIMEATTACK_TIME,
+  GAME_MODE_ONEQUEST,
   clickResults,
 } from "./Constants";
 import { useTranslation } from "react-i18next";
@@ -66,6 +67,7 @@ const GameLevel = ({
   const [imageSource, setImageSource] = useState(null);
   let navigate = useNavigate();
   const [gameMode, setGameMode] = useState(0);
+  const [singleQuest, setSingleQuest] = useState(0);
   const [timerStarted, setTimerStarted] = useState(false);
   const [workingQuests, setWorkingQuests] = useState([]);
   const [descriptionIsSticky, setDescriptionIsSticky] = useState(false);
@@ -74,12 +76,15 @@ const GameLevel = ({
   const { t } = useTranslation("gamequests");
   const { currentUser } = useAuth();
   const { player } = useUser();
-
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [criticalError, setCriticalError] = useState("");
   useEffect(() => {
     const cachedRef = descriptionRef.current;
     const queryParams = new URLSearchParams(window.location.search);
     const modeParam = parseInt(queryParams.get("mode"));
+    const paramQuest = queryParams.get("quest");
     setGameMode(modeParam); // This will set the value of the 'mode' parameter
+    setSingleQuest(paramQuest);
     if (isNaN(modeParam)) setGameMode(GAME_MODE_10_QUESTS);
     const observer = new IntersectionObserver(
       ([e]) => setDescriptionIsSticky(e.intersectionRatio < 1),
@@ -93,13 +98,12 @@ const GameLevel = ({
     if (!timerStarted) setZoomLevel(window.innerWidth > 768 ? 70 : 60);
     setScaledWidth(image.naturalWidth * (zoomLevel / 100));
     setScaledHeight(image.naturalHeight * (zoomLevel / 100));
-
     toggleCenteringClass();
     window.addEventListener("resize", toggleCenteringClass);
 
     switch (gameMode) {
       case GAME_MODE_DUPLICATE:
-        if (levelData) {
+        if (levelData && !gameEnded) {
           setTranslationSpace(levelData.translationSpace);
           let duplicateQuests;
           //console.log("levelData " + JSON.stringify(levelData.quests));
@@ -112,7 +116,7 @@ const GameLevel = ({
             const duplicateQuestCount = Object.keys(duplicateQuests).length;
             console.log("duplicateQuestCount " + duplicateQuestCount);
 
-            if (duplicateQuestCount === 0) endGame();
+            if (duplicateQuestCount === 0) showCriticalError();
           }
 
           const duplicateQuestCount = Object.keys(workingQuests).length;
@@ -154,7 +158,7 @@ const GameLevel = ({
       case GAME_MODE_10_QUESTS:
       case GAME_MODE_ALLQUESTS:
       case GAME_MODE_TIMEATTACK:
-        if (levelData) {
+        if (levelData && !gameEnded) {
           let regularQuests;
           setTranslationSpace(levelData.translationSpace);
           if (questCount === 0) {
@@ -181,6 +185,47 @@ const GameLevel = ({
                 hits[newQuest] === true
               );
             }
+            console.log("rince");
+            setQuestHits([]);
+            setCurrentQuest(newQuest);
+            getImageSource(newQuest);
+            //console.log("newQuest " + newQuest);
+            setShowRedQuestion(true); // Set the showRedQuestion state to true
+            setTimeout(() => {
+              setShowRedQuestion(false); // Reset the showRedQuestion state after 1 second
+            }, 1000);
+          }
+        }
+        if (levelData && workingQuests[currentQuest]) {
+          setMaxQuestHit(
+            Object.keys(workingQuests[currentQuest].positions).length
+          );
+        }
+        break;
+      case GAME_MODE_ONEQUEST:
+        console.log("singleQuest " + singleQuest);
+        if (levelData && !gameEnded) {
+          if (questCount === 0) {
+            let regularQuests;
+            setTranslationSpace(levelData.translationSpace);
+            if (questCount === 0) {
+              regularQuests = levelData.quests.filter(
+                (quest) => quest.quest === singleQuest
+              );
+              setWorkingQuests(regularQuests);
+              const theQuestCount = Object.keys(regularQuests).length;
+              console.log("theQuestCount " + theQuestCount);
+
+              if (theQuestCount === 0) showCriticalError("error.QuestNotFound");
+            }
+            console.log("workingQuests " + workingQuests);
+            const currentQuestCount = Object.keys(workingQuests).length;
+            //if (currentQuestCount === 0) showCriticalError("NoQuestAvailable");
+            setQuestCount(currentQuestCount);
+            console.log(currentQuestCount);
+            console.log(workingQuests[0]);
+            setTranslationSpace(levelData.translationSpace);
+            let newQuest = 0;
             setQuestHits([]);
             setCurrentQuest(newQuest);
             getImageSource(newQuest);
@@ -198,12 +243,14 @@ const GameLevel = ({
         }
         break;
       default:
+        break;
     }
 
     switch (gameMode) {
       case GAME_MODE_DUPLICATE:
       case GAME_MODE_10_QUESTS:
       case GAME_MODE_ALLQUESTS:
+      case GAME_MODE_ONEQUEST:
         if (!gameEnded) {
           setTimerStarted(true);
           const interval = setInterval(() => {
@@ -263,9 +310,20 @@ const GameLevel = ({
     indicators,
     zoomLevel,
     gameMode,
+    scaledWidth,
     workingQuests,
   ]);
-
+  const onLevelImageLoad = () => {
+    const image = document.getElementById("levelImage");
+    const roundedZoomLevel = Math.floor(
+      (window.innerWidth / image.naturalWidth) * 100
+    );
+    setZoomLevel(Math.min(roundedZoomLevel, 100));
+    //console.log("roundedZoomLevel " + roundedZoomLevel);
+    setScaledWidth(image.naturalWidth * (roundedZoomLevel / 100));
+    setScaledHeight(image.naturalHeight * (roundedZoomLevel / 100));
+    toggleCenteringClass();
+  };
   const toggleCenteringClass = () => {
     const image = document.getElementById("levelImage");
     const container = document.querySelector(".game-container");
@@ -362,7 +420,12 @@ const GameLevel = ({
       console.error("Error writing new score to Firebase Database", error);
     }
   };
-
+  const showCriticalError = (errorMessage) => {
+    setGameEnded(true);
+    setCriticalError(errorMessage);
+    setGameEnded(true);
+    setShowErrorModal(true);
+  };
   const endGame = () => {
     setGameEnded(true);
     setEndTime((Date.now() - startTime.current) / 1000); // To milliseconds to seconds
@@ -396,6 +459,7 @@ const GameLevel = ({
       },
       0
     );
+    console.log("numberOfRightQuestHits " + numberOfRightQuestHits);
     setNumberOfRightHits(numberOfRightQuestHits);
     switch (gameMode) {
       case GAME_MODE_10_QUESTS:
@@ -405,6 +469,7 @@ const GameLevel = ({
         break;
       case GAME_MODE_DUPLICATE:
       case GAME_MODE_ALLQUESTS:
+      case GAME_MODE_ONEQUEST:
         if (numberOfRightQuestHits === Object.keys(workingQuests).length) {
           endGame();
         }
@@ -443,6 +508,7 @@ const GameLevel = ({
     xPositionOnImage,
     yPositionOnImage
   ) => {
+    console.log("_______________NEW CLICK ");
     const prevIndicator = clickNumber === 1 ? [] : indicators;
     setQuestResult(clickResults.Pending);
     if (clickNumber === 1) {
@@ -459,6 +525,7 @@ const GameLevel = ({
           yPositionOnImage
         )
       ) {
+        console.log("questHits avant " + questHits);
         const hitObject = questHits;
 
         hitObject[i] = true;
@@ -479,6 +546,7 @@ const GameLevel = ({
         },
         0
       );
+      console.log("questHits " + JSON.stringify(questHits));
       if (numberOfRightQuestHits === maxQuestHit) {
         console.log("done");
         setQuestResult(clickResults.Correct);
@@ -514,6 +582,7 @@ const GameLevel = ({
     console.log("clickNumber " + clickNumber);
     //console.log(clickResult);
     if (clickNumber >= maxQuestHit) {
+      console.log("rince");
       setQuestHits([]);
       setClickNumber(1);
     }
@@ -585,7 +654,7 @@ const GameLevel = ({
     if (
       typeof workingQuests !== "undefined" &&
       typeof workingQuests[currentquest] !== "undefined" &&
-      gameMode !== GAME_MODE_DUPLICATE
+      typeof workingQuests[currentquest].image === "undefined"
     ) {
       {
         //console.log("ici");
@@ -637,7 +706,7 @@ const GameLevel = ({
         }
       }}
     >
-      {" "}
+      {showErrorModal && <ErrorModalWindow errorMessage={criticalError} />}
       {levelData &&
         typeof currentQuest !== "undefined" &&
         !isNaN(currentQuest) &&
@@ -647,9 +716,9 @@ const GameLevel = ({
             y={window.innerWidth > 768 ? menuY + 120 : menuY + 130}
             shouldDisplay={showHint}
             content={
-              typeof workingQuests[currentQuest].question !== "undefined"
+              typeof workingQuests[currentQuest].quest !== "undefined"
                 ? t(
-                    `${translationSpace}.${workingQuests[currentQuest].question}.hint`
+                    `${translationSpace}.${workingQuests[currentQuest].quest}.hint`
                   )
                 : "No hints"
             }
@@ -673,7 +742,7 @@ const GameLevel = ({
                   `${gameMode !== GAME_MODE_10_QUESTS ? questCount : 10}` +
                   " " +
                   t(
-                    `${translationSpace}.${workingQuests[currentQuest].question}.title`
+                    `${translationSpace}.${workingQuests[currentQuest].quest}.title`
                   )}
               </p>
             )}
@@ -740,6 +809,7 @@ const GameLevel = ({
           alt={`Level ${level}`}
           width={scaledWidth}
           height={scaledHeight}
+          onLoad={onLevelImageLoad}
         />
       </div>
     </div>

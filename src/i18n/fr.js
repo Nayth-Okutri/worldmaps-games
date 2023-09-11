@@ -37,6 +37,7 @@ const translation = {
       PassWordTooShort: "Le mot de passe doit comporter au moins 6 caractères",
       PasswordMustMatch: "Les mots de passe doivent correspondre",
       EmailAlreadyInUse: "Email déjà utilisé",
+      QuestNotFound: "Quête non trouvée",
     },
   },
 

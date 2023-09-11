@@ -27,6 +27,7 @@ const translation = {
       "Create a profile to keep your scores persistent over time!",
     LeaderBoardPrevWeek: "Previous Week",
     LeaderBoardNextWeek: "Next Week",
+
     error: {
       LoginUserAlreadyExists: "User Name already in use",
       LoginWrongPassword: "Wrong password",
@@ -36,6 +37,7 @@ const translation = {
       PassWordTooShort: "Password must be at least 6 characters long.",
       PasswordMustMatch: "Passwords must match",
       EmailAlreadyInUse: "Email already in use",
+      QuestNotFound: "Quest not dound",
     },
   },
 

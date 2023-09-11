@@ -1,7 +1,7 @@
 export const level1Data = {
   quests: [
     {
-      question: "dquest1",
+      quest: "dquest1",
       type: 1,
       image: "level-1",
       positions: [
@@ -10,7 +10,7 @@ export const level1Data = {
       ],
     },
     {
-      question: "dquest2",
+      quest: "dquest2",
       type: 1,
       image: "level-1-dup1",
       positions: [
@@ -19,7 +19,7 @@ export const level1Data = {
       ],
     },
     {
-      question: "dquest3",
+      quest: "dquest3",
       type: 1,
       image: "level-1-dup2",
       positions: [
@@ -28,7 +28,7 @@ export const level1Data = {
       ],
     },
     {
-      question: "dquest4",
+      quest: "dquest4",
       type: 1,
       image: "level-1-dup3",
       positions: [
@@ -37,30 +37,30 @@ export const level1Data = {
       ],
     },
     {
-      question: "quest1",
+      quest: "quest1",
       positions: [
         { top: { x: 352, y: 1138 }, bottom: { x: 446, y: 1320 } },
         { top: { x: 1317, y: 190 }, bottom: { x: 1373, y: 255 } },
       ],
     },
     {
-      question: "quest2",
+      quest: "quest2",
       description: "Find Evee",
       positions: [{ top: { x: 530, y: 521 }, bottom: { x: 589, y: 580 } }],
     },
 
     {
-      question: "quest3",
+      quest: "quest3",
       description: "Find Snubbull",
       positions: [{ top: { x: 1017, y: 1142 }, bottom: { x: 1075, y: 1211 } }],
     },
     {
-      question: "quest4",
+      quest: "quest4",
       description: "Find Snubbull",
       positions: [{ top: { x: 785, y: 792 }, bottom: { x: 840, y: 842 } }],
     },
     {
-      question: "quest5",
+      quest: "quest5",
       description: "Find all starter Pokemons",
       positions: [
         { top: { x: 1150, y: 620 }, bottom: { x: 1253, y: 689 } },
@@ -70,27 +70,27 @@ export const level1Data = {
       ],
     },
     {
-      question: "quest6",
+      quest: "quest6",
       description: "Find Furret",
       positions: [{ top: { x: 412, y: 635 }, bottom: { x: 480, y: 687 } }],
     },
     {
-      question: "quest7",
+      quest: "quest7",
       description: "Find Pinsir",
       positions: [{ top: { x: 0, y: 420 }, bottom: { x: 38, y: 483 } }],
     },
     {
-      question: "quest8",
+      quest: "quest8",
       description: "Find Moltress",
       positions: [{ top: { x: 994, y: 1 }, bottom: { x: 1102, y: 94 } }],
     },
     {
-      question: "quest9",
+      quest: "quest9",
       description: "Find Mareep",
       positions: [{ top: { x: 1113, y: 1165 }, bottom: { x: 1207, y: 1238 } }],
     },
     {
-      question: "quest10",
+      quest: "quest10",
       description: "Find Grimer",
       positions: [{ top: { x: 568, y: 731 }, bottom: { x: 635, y: 783 } }],
     },
@@ -103,47 +103,47 @@ export const level1Data = {
 export const level2Data = {
   quests: [
     {
-      question: "quest1",
+      quest: "quest1",
       description: "Find Hayao Miyazaki",
       positions: [{ top: { x: 991, y: 859 }, bottom: { x: 1024, y: 949 } }],
     },
     {
-      question: "quest2",
+      quest: "quest2",
       description: "Find Baron",
 
       positions: [{ top: { x: 1048, y: 1234 }, bottom: { x: 1086, y: 1284 } }],
     },
     {
-      question: "quest3",
+      quest: "quest3",
       description: "Find Isao Takahata",
       positions: [{ top: { x: 955, y: 857 }, bottom: { x: 987, y: 965 } }],
     },
     {
-      question: "quest4",
+      quest: "quest4",
       description: "Find Dora",
       hint: "",
       positions: [{ top: { x: 628, y: 94 }, bottom: { x: 663, y: 127 } }],
     },
     {
-      question: "quest5",
+      quest: "quest5",
       description: "Find Curtis",
       hint: "",
       positions: [{ top: { x: 936, y: 1131 }, bottom: { x: 979, y: 1244 } }],
     },
     {
-      question: "quest6",
+      quest: "quest6",
       description: "Find Nonoko",
       hint: "",
       positions: [{ top: { x: 590, y: 1092 }, bottom: { x: 615, y: 1121 } }],
     },
     {
-      question: "quest7",
+      quest: "quest7",
       description: "Find Boh",
       hint: "",
       positions: [{ top: { x: 905, y: 1018 }, bottom: { x: 924, y: 1042 } }],
     },
     {
-      question: "quest8",
+      quest: "quest8",
       description: "Find all characters of Whisper of the Heart",
       hint: "",
       positions: [
@@ -153,13 +153,13 @@ export const level2Data = {
       ],
     },
     {
-      question: "quest9",
+      quest: "quest9",
       description: "Find Howl",
       hint: "He is transformed",
       positions: [{ top: { x: 1616, y: 58 }, bottom: { x: 1696, y: 150 } }],
     },
     {
-      question: "quest10",
+      quest: "quest10",
       description: "Find all the Totoros",
       positions: [
         { top: { x: 1330, y: 434 }, bottom: { x: 1414, y: 557 } },
@@ -167,79 +167,79 @@ export const level2Data = {
       ],
     },
     {
-      question: "quest11",
+      quest: "quest11",
       description: "Find Lili",
       hint: "It is Jiji's girlfriend(Kiki)",
       positions: [{ top: { x: 930, y: 660 }, bottom: { x: 960, y: 690 } }],
     },
     {
-      question: "quest12",
+      quest: "quest12",
       description: "Find Tombo",
       hint: "looks like Waldo (Kiki)",
       positions: [{ top: { x: 622, y: 1084 }, bottom: { x: 857, y: 1170 } }],
     },
     {
-      question: "quest13",
+      quest: "quest13",
       description: "Find Kushana",
       hint: "princess from Nausicaa",
       positions: [{ top: { x: 782, y: 885 }, bottom: { x: 809, y: 950 } }],
     },
     {
-      question: "quest14",
+      quest: "quest14",
       description: "Find Nausicaa",
       hint: "flying",
       positions: [{ top: { x: 588, y: 542 }, bottom: { x: 636, y: 646 } }],
     },
     {
-      question: "quest15",
+      quest: "quest15",
       description: "Find Asbel",
       hint: "prince from Nausicaa",
       positions: [{ top: { x: 603, y: 962 }, bottom: { x: 662, y: 1017 } }],
     },
     {
-      question: "quest16",
+      quest: "quest16",
       description: "Find Ponyo",
       hint: "surfing",
       positions: [{ top: { x: 1048, y: 96 }, bottom: { x: 1092, y: 146 } }],
     },
     {
-      question: "quest17",
+      quest: "quest17",
       description: "Find Sosuke",
       hint: "driving",
       positions: [{ top: { x: 1112, y: 76 }, bottom: { x: 1147, y: 207 } }],
     },
     {
-      question: "quest18",
+      quest: "quest18",
       description: "Find Ashitaka",
       hint: "from Mononoke",
       positions: [{ top: { x: 745, y: 170 }, bottom: { x: 785, y: 250 } }],
     },
     {
-      question: "quest19",
+      quest: "quest19",
       description: "Find Kiki",
       hint: "",
       positions: [{ top: { x: 1143, y: 1030 }, bottom: { x: 1181, y: 1120 } }],
     },
     {
-      question: "quest20",
+      quest: "quest20",
       description: "Find Ursula",
       hint: "from Kiki",
       positions: [{ top: { x: 1607, y: 910 }, bottom: { x: 1666, y: 995 } }],
     },
     {
-      question: "quest21",
+      quest: "quest21",
       description: "Find the princess Kaguya",
       hint: "",
       positions: [{ top: { x: 965, y: 411 }, bottom: { x: 1005, y: 483 } }],
     },
     {
-      question: "quest22",
+      quest: "quest22",
       description: "Find San",
       hint: "",
       positions: [{ top: { x: 847, y: 89 }, bottom: { x: 902, y: 216 } }],
     },
     {
-      question: "dquest1",
+      quest: "dquest1",
       type: 1,
       image: "level-2-dup1",
       positions: [
@@ -256,78 +256,78 @@ export const level2Data = {
 export const level3Data = {
   quests: [
     {
-      question: "quest1",
+      quest: "quest1",
       description: "Find Sora",
       hint: "from Kingdom Hearts",
       positions: [{ top: { x: 1344, y: 1230 }, bottom: { x: 1388, y: 1278 } }],
     },
     {
-      question: "quest2",
+      quest: "quest2",
       description: "Find the Highwind",
       hint: "FF7 airship",
       positions: [{ top: { x: 523, y: 223 }, bottom: { x: 626, y: 275 } }],
     },
     {
-      question: "quest3",
+      quest: "quest3",
       description: "Find Cloud",
       hint: "big blade",
       positions: [{ top: { x: 712, y: 998 }, bottom: { x: 740, y: 1042 } }],
     },
     {
-      question: "quest4",
+      quest: "quest4",
       description: "Find Ashley (Vagrant Story)",
       positions: [{ top: { x: 928, y: 998 }, bottom: { x: 959, y: 1042 } }],
     },
     {
-      question: "quest5",
+      quest: "quest5",
       description: "Find Terra (Final Fantasy)",
       hint: "on her mecha",
       positions: [{ top: { x: 1130, y: 673 }, bottom: { x: 1195, y: 742 } }],
     },
     {
-      question: "quest6",
+      quest: "quest6",
       description: "Find Bombo (Final Fantasy)",
       hint: "auto destructive",
       positions: [{ top: { x: 1295, y: 1213 }, bottom: { x: 1322, y: 1249 } }],
     },
     {
-      question: "quest7",
+      quest: "quest7",
       description: "Find Justin (Grandia)",
       hint: "at the end of the world",
       positions: [{ top: { x: 1787, y: 1154 }, bottom: { x: 1819, y: 1195 } }],
     },
     {
-      question: "quest8",
+      quest: "quest8",
       description: "Find 2B, 9s (Nier)",
       hint: "near the bridge",
       positions: [{ top: { x: 275, y: 1120 }, bottom: { x: 308, y: 1168 } }],
     },
     {
-      question: "quest9",
+      quest: "quest9",
       description: "Find Vivi (Final Fantasy)",
       hint: "black mage",
       positions: [{ top: { x: 386, y: 916 }, bottom: { x: 410, y: 950 } }],
     },
     {
-      question: "quest10",
+      quest: "quest10",
       description: "Find Flamy (Legend of Mana)",
       hint: "a dragon",
       positions: [{ top: { x: 439, y: 92 }, bottom: { x: 523, y: 188 } }],
     },
     {
-      question: "quest11",
+      quest: "quest11",
       description: "Find Nina (Breath of Fire)",
       hint: "next to Ryu",
       positions: [{ top: { x: 1496, y: 1226 }, bottom: { x: 1511, y: 1261 } }],
     },
     {
-      question: "quest12",
+      quest: "quest12",
       description: "Find the Behemot",
       hint: "from Final Fantasy",
       positions: [{ top: { x: 1512, y: 1123 }, bottom: { x: 1620, y: 1194 } }],
     },
     {
-      question: "quest13",
+      quest: "quest13",
       description: "Find the 2 Valkyries",
       hint: "from Odin Sphere and Valkyrie Profile",
       positions: [
@@ -336,37 +336,37 @@ export const level3Data = {
       ],
     },
     {
-      question: "quest14",
+      quest: "quest14",
       description: "Find the Prima Vista",
       hint: "airship from Final Fantasy IX",
       positions: [{ top: { x: 1490, y: 272 }, bottom: { x: 1583, y: 365 } }],
     },
     {
-      question: "quest15",
+      quest: "quest15",
       description: "Find Odin",
       hint: "from Odin Sphere",
       positions: [{ top: { x: 1109, y: 983 }, bottom: { x: 1187, y: 1060 } }],
     },
     {
-      question: "quest16",
+      quest: "quest16",
       description: "Find the Slime",
       hint: "from Dragon Quest",
       positions: [{ top: { x: 1000, y: 809 }, bottom: { x: 1080, y: 880 } }],
     },
     {
-      question: "quest17",
+      quest: "quest17",
       description: "Find Emil",
       hint: "from Nier",
       positions: [{ top: { x: 1174, y: 716 }, bottom: { x: 1238, y: 776 } }],
     },
     {
-      question: "quest18",
+      quest: "quest18",
       description: "Find the Minstrel",
       hint: "from Romancing Saga",
       positions: [{ top: { x: 903, y: 876 }, bottom: { x: 934, y: 916 } }],
     },
     {
-      question: "quest19",
+      quest: "quest19",
       description: "Find characters from Chrono Trigger",
       hint: "Chrono, Frog, Robot",
       positions: [
@@ -376,31 +376,31 @@ export const level3Data = {
       ],
     },
     {
-      question: "quest20",
+      quest: "quest20",
       description: "Find the Malboro",
       hint: "from Final Fantasy",
       positions: [{ top: { x: 220, y: 780 }, bottom: { x: 272, y: 829 } }],
     },
     {
-      question: "quest21",
+      quest: "quest21",
       description: "Find the Moogle",
       hint: "from Final Fantasy",
       positions: [{ top: { x: 747, y: 1167 }, bottom: { x: 769, y: 1194 } }],
     },
     {
-      question: "quest22",
+      quest: "quest22",
       description: "Find Torneko",
       hint: "from Dragon Quest fishing",
       positions: [{ top: { x: 1293, y: 802 }, bottom: { x: 1331, y: 845 } }],
     },
     {
-      question: "quest23",
+      quest: "quest23",
       description: "Find the Triforce",
       hint: "from Zelda",
       positions: [{ top: { x: 565, y: 930 }, bottom: { x: 629, y: 985 } }],
     },
     {
-      question: "dquest1",
+      quest: "dquest1",
       type: 1,
       image: "level-3-dup1",
       positions: [
@@ -417,31 +417,31 @@ export const level3Data = {
 export const level4Data = {
   quests: [
     {
-      question: "quest1",
+      quest: "quest1",
       description: "Find Link",
       hint: "He is green, not the wolf !",
       positions: [{ top: { x: 1107, y: 775 }, bottom: { x: 1144, y: 846 } }],
     },
     {
-      question: "quest2",
+      quest: "quest2",
       description: "Find Niko",
       hint: "from Wind Waker",
       positions: [{ top: { x: 1278, y: 929 }, bottom: { x: 1319, y: 992 } }],
     },
     {
-      question: "quest3",
+      quest: "quest3",
       description: "Find Malon",
       hint: "Keeper of Epona",
       positions: [{ top: { x: 1488, y: 485 }, bottom: { x: 1520, y: 543 } }],
     },
     {
-      question: "quest4",
+      quest: "quest4",
       description: "Find King of Red Lions",
       hint: "from Wind Waker",
       positions: [{ top: { x: 330, y: 677 }, bottom: { x: 426, y: 1063 } }],
     },
     {
-      question: "quest5",
+      quest: "quest5",
       description: "Find 4 Zelda princesses",
       hint: "From Wind waker, Breath of the Wild, Ocarina of Time and Spirit Tracks",
       positions: [
@@ -452,79 +452,79 @@ export const level4Data = {
       ],
     },
     {
-      question: "quest6",
+      quest: "quest6",
       description: "Find Medli",
       hint: "Priestress from Wind Waker",
       positions: [{ top: { x: 648, y: 456 }, bottom: { x: 695, y: 526 } }],
     },
     {
-      question: "quest7",
+      quest: "quest7",
       description: "Find the Wind Baton",
       hint: "from Wind Waker",
       positions: [{ top: { x: 1618, y: 439 }, bottom: { x: 1651, y: 493 } }],
     },
     {
-      question: "quest8",
+      quest: "quest8",
       description: "Find the Twilight Princess",
       hint: "It is Midna",
       positions: [{ top: { x: 1683, y: 420 }, bottom: { x: 1716, y: 462 } }],
     },
     {
-      question: "quest9",
+      quest: "quest9",
       description: "Find Saria",
       hint: "from Ocarina of Time",
       positions: [{ top: { x: 541, y: 297 }, bottom: { x: 583, y: 360 } }],
     },
     {
-      question: "quest10",
+      quest: "quest10",
       description: "Find Old Impa",
       hint: "from Skyward Sword",
       positions: [{ top: { x: 1271, y: 146 }, bottom: { x: 1337, y: 230 } }],
     },
     {
-      question: "quest11",
+      quest: "quest11",
       description: "Find the Wind Fish",
       hint: "from Links Awakening",
       positions: [{ top: { x: 1339, y: 265 }, bottom: { x: 1483, y: 341 } }],
     },
     {
-      question: "quest12",
+      quest: "quest12",
       description: "Find Cap Ezlo",
       hint: "from Links Awakening",
       positions: [{ top: { x: 1146, y: 153 }, bottom: { x: 1168, y: 190 } }],
     },
     {
-      question: "quest13",
+      quest: "quest13",
       description: "Find Groose",
       hint: "from Skyward Sword",
       positions: [{ top: { x: 770, y: 223 }, bottom: { x: 823, y: 287 } }],
     },
     {
-      question: "quest14",
+      quest: "quest14",
       description: "Find Valoo",
       hint: "from Wind Waker",
       positions: [{ top: { x: 247, y: 49 }, bottom: { x: 781, y: 147 } }],
     },
     {
-      question: "quest15",
+      quest: "quest15",
       description: "Find Revali",
       hint: "from Breath of the Wild",
       positions: [{ top: { x: 512, y: 22 }, bottom: { x: 677, y: 115 } }],
     },
     {
-      question: "quest16",
+      quest: "quest16",
       description: "Find the Zora Princess",
       hint: "from Breath of the Wild",
       positions: [{ top: { x: 1142, y: 266 }, bottom: { x: 1177, y: 328 } }],
     },
     {
-      question: "quest17",
+      quest: "quest17",
       description: "Find Tingle",
       hint: "from Wind Waker",
       positions: [{ top: { x: 1342, y: 433 }, bottom: { x: 1384, y: 490 } }],
     },
     {
-      question: "quest18",
+      quest: "quest18",
       description: "Find the 2 Korok",
       hint: "from Wind Waker",
       positions: [
@@ -533,13 +533,13 @@ export const level4Data = {
       ],
     },
     {
-      question: "quest19",
+      quest: "quest19",
       description: "Find Epona",
       hint: "from Ocarina",
       positions: [{ top: { x: 1151, y: 755 }, bottom: { x: 1238, y: 850 } }],
     },
     {
-      question: "quest20",
+      quest: "quest20",
       description: "Find different Gaepora",
       hint: "wise man",
       positions: [
@@ -548,13 +548,13 @@ export const level4Data = {
       ],
     },
     {
-      question: "quest21",
+      quest: "quest21",
       description: "Find Skull Kid",
       hint: "Majoras Mask",
       positions: [{ top: { x: 1175, y: 196 }, bottom: { x: 1211, y: 251 } }],
     },
     {
-      question: "quest22",
+      quest: "quest22",
       description: "Find different Ganondorf",
       hint: "vilain",
       positions: [
@@ -563,7 +563,7 @@ export const level4Data = {
       ],
     },
     {
-      question: "dquest1",
+      quest: "dquest1",
       type: 1,
       image: "level-4-dup1",
       positions: [
