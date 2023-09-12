@@ -75,7 +75,7 @@ const Profile = ({ levelsData, weekOfYear }) => {
       );
 
       const activitiesSnapshot = await getDocs(
-        query(userActivitiesCollectionRef, orderBy("date"), limit(100)),
+        query(userActivitiesCollectionRef, orderBy("date", "desc"), limit(100)),
         { source: "server" }
       ).then((snap) => {
         const newActivities = snap.docs.map((doc) => doc.data());

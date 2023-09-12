@@ -408,9 +408,11 @@ const GameLevel = ({
     setFeedback(e.target.value);
   };
   const newActivityTitle = (time) => {
-    return `${t("LevelCompleted")} ${level} ${t("InTime")} ${time}s ${t(
-      "ForGameMode"
-    )} ${
+    const reccordedTime =
+      gameMode !== GAME_MODE_TIMEATTACK ? time : TIMEATTACK_TIME - time;
+    return `${t("LevelCompleted")} ${levelData.name} ${t(
+      "InTime"
+    )} ${reccordedTime}s ${t("ForGameMode")} ${
       gameMode === GAME_MODE_DUPLICATE
         ? t("GAME_MODE_DUPLICATE")
         : gameMode === GAME_MODE_10_QUESTS
