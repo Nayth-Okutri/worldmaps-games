@@ -411,15 +411,15 @@ const GameLevel = ({
     return `${t("LevelCompleted")} ${level} ${t("InTime")} ${time}s ${t(
       "ForGameMode"
     )} ${
-      GAME_MODE_DUPLICATE
+      gameMode === GAME_MODE_DUPLICATE
         ? t("GAME_MODE_DUPLICATE")
-        : GAME_MODE_10_QUESTS
+        : gameMode === GAME_MODE_10_QUESTS
         ? t("GAME_MODE_10_QUESTS")
-        : GAME_MODE_TIMEATTACK
+        : gameMode === GAME_MODE_TIMEATTACK
         ? t("GAME_MODE_TIMEATTACK")
-        : GAME_MODE_ALLQUESTS
+        : gameMode === GAME_MODE_ALLQUESTS
         ? t("GAME_MODE_ALLQUESTS")
-        : GAME_MODE_ONEQUEST
+        : gameMode === GAME_MODE_ONEQUEST
         ? t("GAME_MODE_ONEQUEST")
         : ""
     }`;

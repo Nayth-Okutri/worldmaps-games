@@ -1,9 +1,9 @@
 const translation = {
   menu: {
     duplicateGameModeDescription:
-      "Chasse aux doublons. Trouvez un double dans une image remplie d'objets, de personnages ou d'éléments divers.",
+      "Chasse aux doublons. Trouve un double dans une image remplie d'objets, de personnages ou d'éléments divers.",
     tenGameModeDescription:
-      "10 questions aléatoires. Mettez vos connaissances de geek à l'épreuve et trouvez les éléments qui correspondent aux questions données.",
+      "10 questions aléatoires. Mettez vos connaissances de geek à l'épreuve et Trouve les éléments qui correspondent aux questions données.",
     timeAttackGameModeDescription:
       "Time Attack. Affrontez le chronomètre et répondez à autant de questions que possible en une minute.",
     allQuestsAttackGameModeDescription:
@@ -53,7 +53,7 @@ const translation = {
     ForGameMode: " dans le mode ",
     GAME_MODE_DUPLICATE: "Chasse aux doublons",
     GAME_MODE_10_QUESTS: "10 questions aléatoires",
-    GAME_MODE_TIMEATTACK: "Attaque de temps",
+    GAME_MODE_TIMEATTACK: "Contre la montre",
     GAME_MODE_ALLQUESTS: "Maîtrise des Otakus",
     GAME_MODE_ONEQUEST: "Quête unique",
     pokemon: {
@@ -62,18 +62,18 @@ const translation = {
         hint: "Un au premier plan un au dernier plan",
       },
       quest2: { title: "Trouve Evoli", hint: "Il est sur le manège" },
-      quest3: { title: "Trouver Snubbull", hint: "Il est comme un chien" },
-      quest4: { title: "Trouver Ramoloss", hint: "Il est à l'envers" },
+      quest3: { title: "Trouve Snubbull", hint: "Il est comme un chien" },
+      quest4: { title: "Trouve Ramoloss", hint: "Il est à l'envers" },
       quest5: {
-        title: "Trouver tous les Pokemons de départ",
+        title: "Trouve tous les Pokemons de départ",
         hint: "Il y a 4 groupes",
       },
-      quest6: { title: "Trouver Fouinar", hint: "Il est à côté d'Evee" },
-      quest7: { title: "Trouver Scarabrute", hint: "Il est à moitié caché" },
-      quest8: { title: "Trouver Sulfura", hint: "Il est légendaire" },
-      quest9: { title: "Trouver Wattouat", hint: "Il ressemble à un mouton" },
+      quest6: { title: "Trouve Fouinar", hint: "Il est à côté d'Evee" },
+      quest7: { title: "Trouve Scarabrute", hint: "Il est à moitié caché" },
+      quest8: { title: "Trouve Sulfura", hint: "Il est légendaire" },
+      quest9: { title: "Trouve Wattouat", hint: "Il ressemble à un mouton" },
       quest10: {
-        title: "Trouver Tadmorv",
+        title: "Trouve Tadmorv",
         hint: "Il ressemble à de la bouillie",
       },
       quest11: { title: "Trouve le Pokemon en double", hint: "Bonne chance" },
@@ -97,68 +97,68 @@ const translation = {
     },
     ghibli: {
       quest1: {
-        title: "Trouver Hayao Miyazaki",
+        title: "Trouve Hayao Miyazaki",
         hint: "",
       },
-      quest2: { title: "Find Baron", hint: "de Si tu tends l'oreille" },
-      quest3: { title: "Trouver Isao Takahata", hint: "" },
+      quest2: { title: "Trouve Baron", hint: "de Si tu tends l'oreille" },
+      quest3: { title: "Trouve Isao Takahata", hint: "" },
       quest4: {
-        title: "Trouver Dora",
+        title: "Trouve Dora",
         hint: "sur sa machine volante (Laputa)",
       },
       quest5: {
-        title: "Trouvez Curtis",
+        title: "Trouve Curtis",
         hint: "C'est un pilote américain (Porco Rosso)",
       },
-      quest6: { title: "Trouver Nonoko", hint: "avec sa famille (Yamada)" },
-      quest7: { title: "Trouver Boh", hint: "Il vole (Chihiro)" },
+      quest6: { title: "Trouve Nonoko", hint: "avec sa famille (Yamada)" },
+      quest7: { title: "Trouve Boh", hint: "Il vole (Chihiro)" },
       quest8: {
-        title: "Trouvez tous les personnages de Si tu tends l'oreille",
+        title: "Trouve tous les personnages de Si tu tends l'oreille",
         hint: "Il y en a 3",
       },
-      quest9: { title: "Trouver Howl", hint: "Il est transformé" },
+      quest9: { title: "Trouve Howl", hint: "Il est transformé" },
       quest10: {
-        title: "Trouver tous les Totoros",
+        title: "Trouve tous les Totoros",
         hint: "deux groupes",
       },
       quest11: {
-        title: "Trouver Lili",
+        title: "Trouve Lili",
         hint: "C'est la petite amie de Jiji (Kiki)",
       },
       quest12: {
-        title: "Trouver Tombo",
+        title: "Trouve Tombo",
         hint: "ressemble à Waldo (Kiki)",
       },
-      quest13: { title: "Trouver Kushana", hint: "princesse de Nausicaa" },
+      quest13: { title: "Trouve Kushana", hint: "princesse de Nausicaa" },
 
       quest14: {
-        title: "Trouver Nausicaa",
+        title: "Trouve Nausicaa",
         hint: "voler",
       },
       quest15: {
-        title: "Trouver Asbel",
+        title: "Trouve Asbel",
         hint: "prince de Nausicaa",
       },
-      quest16: { title: "Trouver Ponyo", hint: "surf" },
-      quest17: { title: "Trouver Sosuke", hint: "conduire" },
+      quest16: { title: "Trouve Ponyo", hint: "surf" },
+      quest17: { title: "Trouve Sosuke", hint: "conduire" },
       quest18: {
-        title: "Trouver Ashitaka",
+        title: "Trouve Ashitaka",
         hint: "de Mononoke",
       },
-      quest19: { title: "Trouver Kiki", hint: "voler" },
+      quest19: { title: "Trouve Kiki", hint: "voler" },
       quest20: {
-        title: "Trouver Ursula",
+        title: "Trouve Ursula",
         hint: "de Kiki",
       },
       quest21: {
-        title: "Trouvez la princesse Kaguya",
+        title: "Trouve la princesse Kaguya",
         hint: "",
       },
       quest22: {
-        title: "Trouver San",
+        title: "Trouve San",
         hint: "",
       },
-      quest23: { title: "Trouver San", hint: "" },
+
       dquest1: {
         title: "Trouve le personnage en double",
         hint: "",
@@ -166,74 +166,74 @@ const translation = {
     },
     jrpg: {
       quest1: {
-        title: "Trouver Sora",
+        title: "Trouve Sora",
         hint: "de Kingdom Hearts",
       },
-      quest2: { title: "Trouver le Highwind", hint: "dirigeable FF7" },
-      quest3: { title: "Find Cloud", hint: "big blade" },
-      quest4: { title: "Trouver Ashley", hint: "(Vagrant Story)" },
+      quest2: { title: "Trouve le Highwind", hint: "dirigeable FF7" },
+      quest3: { title: "Trouve Cloud", hint: "big blade" },
+      quest4: { title: "Trouve Ashley", hint: "(Vagrant Story)" },
       quest5: {
-        title: "Trouver Terra (Final Fantasy)",
+        title: "Trouve Terra (Final Fantasy)",
         hint: "sur son mecha",
       },
       quest6: {
-        title: "Trouver Bombo (Final Fantasy)",
+        title: "Trouve Bombo (Final Fantasy)",
         hint: "auto destructeur",
       },
       quest7: {
-        title: "Trouver Justin (Grandia)",
+        title: "Trouve Justin (Grandia)",
         hint: "au bout du monde",
       },
       quest8: {
-        title: "Trouver 2B, 9s (Nier)",
+        title: "Trouve 2B, 9s (Nier)",
         hint: "près du pont",
       },
-      quest9: { title: "Trouver Vivi (Final Fantasy)", hint: "mage noir" },
+      quest9: { title: "Trouve Vivi (Final Fantasy)", hint: "mage noir" },
       quest10: {
-        title: "Trouver Flamy (Legend of Mana)",
+        title: "Trouve Flamy (Legend of Mana)",
         hint: "un dragon",
       },
       quest11: {
-        title: "Trouver Nina (Breath of Fire)",
+        title: "Trouve Nina (Breath of Fire)",
         hint: "à côté de Ryu",
       },
       quest12: {
-        title: "Trouver le Behemot",
+        title: "Trouve le Behemot",
         hint: "créature de Final Fantasy",
       },
       quest13: {
-        title: "Trouver les 2 Walkyries",
-        hint: "de la Sphère d'Odin et du Profil de la Valkyrie",
+        title: "Trouve les 2 Walkyries",
+        hint: "de Odin Sphere et du Valkyrie Profile",
       },
 
       quest14: {
-        title: "Trouver le Prima Vista",
+        title: "Trouve le Prima Vista",
         hint: "dirigeable de Final Fantasy IX",
       },
       quest15: {
-        title: "Trouver Odin",
+        title: "Trouve Odin",
         hint: "de Odi Spheren",
       },
-      quest16: { title: "Find the Slime", hint: "from Dragon Quest" },
-      quest17: { title: "Trouver Emil", hint: "de Nier" },
-      quest18: { title: "Trouver le Ménestrel", hint: "de Romancing Saga" },
+      quest16: { title: "Trouve le Slime", hint: "de Dragon Quest" },
+      quest17: { title: "Trouve Emil", hint: "de Nier" },
+      quest18: { title: "Trouve le Ménestrel", hint: "de Romancing Saga" },
       quest19: {
-        title: "Trouvez les personnages de Chrono Trigger",
+        title: "Trouve les personnages de Chrono Trigger",
         hint: "Chrono, Frog, Robot",
       },
       quest20: {
-        title: "Trouver le Malboro",
+        title: "Trouve le Malboro",
         hint: "créature de Final Fantasy",
       },
       quest21: {
-        title: "Trouver le Moogle",
+        title: "Trouve le Moogle",
         hint: "de Final Fantasy",
       },
       quest22: {
-        title: "Trouver Torneko",
+        title: "Trouve Torneko",
         hint: "de Dragon Quest fishing",
       },
-      quest23: { title: "Trouver la Triforce", hint: "de Zelda" },
+      quest23: { title: "Trouve la Triforce", hint: "de Zelda" },
       dquest1: {
         title: "Trouve le personnage en double",
         hint: "",
@@ -241,65 +241,65 @@ const translation = {
     },
     zelda: {
       quest1: {
-        title: "Find Link",
+        title: "Trouve Link",
         hint: "Il est vert, pas le loup !",
       },
-      quest2: { title: "Trouver Niko", hint: "de Wind Waker" },
-      quest3: { title: "Trouver Malon", hint: "Gardien d'Epona" },
+      quest2: { title: "Trouve Niko", hint: "de Wind Waker" },
+      quest3: { title: "Trouve Malon", hint: "Gardien d'Epona" },
       quest4: {
-        title: "Trouver le Roi des Lions Rouges",
+        title: "Trouve le Roi des Lions Rouges",
         hint: "de Wind Waker",
       },
       quest5: {
-        title: "Trouvez 4 princesses Zelda",
-        hint: "From Wind Waker, Breath of the Wild, Ocarina of Time and Spirit Tracks",
+        title: "Trouve 4 princesses Zelda",
+        hint: "de Wind Waker, Breath of the Wild, Ocarina of Time and Spirit Tracks",
       },
-      quest6: { title: "Trouver Medli", hint: "Prêtresse de Wind Waker" },
-      quest7: { title: "Trouver le bâton du vent", hint: "de Wind Waker" },
+      quest6: { title: "Trouve Medli", hint: "Prêtresse de Wind Waker" },
+      quest7: { title: "Trouve le bâton du vent", hint: "de Wind Waker" },
       quest8: {
-        title: "Trouvez la Princesse du Crépuscule",
+        title: "Trouve la Princesse du Crépuscule",
         hint: "C'est Midna",
       },
-      quest9: { title: "Trouvez Saria", hint: "d'Ocarina of Time" },
+      quest9: { title: "Trouve Saria", hint: "d'Ocarina of Time" },
       quest10: {
-        title: "Trouver la vieille Impa",
+        title: "Trouve la vieille Impa",
         hint: "de Skyward Sword",
       },
       quest11: {
-        title: "Trouver le poisson du vent",
+        title: "Trouve le poisson rêve",
         hint: "de Links Awakening",
       },
       quest12: {
-        title: "Trouver le Cap Ezlo",
+        title: "Trouve le Cap Ezlo",
         hint: "à partir de Minish cap",
       },
-      quest13: { title: "Trouver Groose", hint: "de Skyward Sword" },
+      quest13: { title: "Trouve Groose", hint: "de Skyward Sword" },
 
       quest14: {
-        title: "Trouver Valoo",
+        title: "Trouve Valoo",
         hint: "de Wind Waker",
       },
       quest15: {
-        title: "Trouver Revali",
+        title: "Trouve Revali",
         hint: "de Breath of the Wild",
       },
       quest16: {
-        title: "Trouver la princesse Zora",
+        title: "Trouve la princesse Zora",
         hint: "de Breath of the Wild",
       },
-      quest17: { title: "Trouver Tingle", hint: "de Wind Waker" },
-      quest18: { title: "Trouver les 2 Korok", hint: "de Wind Waker" },
-      quest19: { title: "Trouver Epona", hint: "d'Ocarina" },
+      quest17: { title: "Trouve Tingle", hint: "de Wind Waker" },
+      quest18: { title: "Trouve les 2 Korok", hint: "de Wind Waker" },
+      quest19: { title: "Trouve Epona", hint: "d'Ocarina" },
       quest20: {
-        title: "Trouver différents Gaepora",
+        title: "Trouve différents Gaepora",
         hint: "homme sage",
       },
       quest21: {
-        title: "Trouver l'enfant au crâne",
+        title: "Trouve Skull Head",
         hint: "Masque de Majoras",
       },
       quest22: {
-        title: "Trouver un autre Ganondorf",
+        title: "Trouve un autre Ganondorf",
         hint: "vilain",
       },
       dquest1: {
