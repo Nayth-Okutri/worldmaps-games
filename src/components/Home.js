@@ -40,6 +40,7 @@ const Home = ({ levelsData }) => {
         }
       />
       <Feedback />
+      <p>© 2023 Studio Nayth – All rights reserved</p>
     </div>
   );
 };
