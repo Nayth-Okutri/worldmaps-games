@@ -412,7 +412,11 @@ const GameLevel = ({
       gameMode !== GAME_MODE_TIMEATTACK ? time : TIMEATTACK_TIME - time;
     return `${t("LevelCompleted")} ${levelData.name} ${t(
       "InTime"
-    )} ${reccordedTime}s ${t("ForGameMode")} ${
+    )} ${reccordedTime}s ${
+      gameMode === GAME_MODE_TIMEATTACK || gameMode === GAME_MODE_ALLQUESTS
+        ? `${t("WithScore")}${numberOfRightHits}`
+        : ""
+    } ${t("ForGameMode")} ${
       gameMode === GAME_MODE_DUPLICATE
         ? t("GAME_MODE_DUPLICATE")
         : gameMode === GAME_MODE_10_QUESTS

@@ -51,6 +51,7 @@ const translation = {
     LevelCompleted: "Niveau terminé : ",
     InTime: " en ",
     ForGameMode: " dans le mode ",
+    WithScore: " avec un score de ",
     GAME_MODE_DUPLICATE: "Chasse aux doublons",
     GAME_MODE_10_QUESTS: "10 questions aléatoires",
     GAME_MODE_TIMEATTACK: "Contre la montre",

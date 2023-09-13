@@ -50,6 +50,7 @@ const translation = {
     LevelCompleted: "Level Completed : ",
     InTime: " in ",
     ForGameMode: " in mode ",
+    WithScore: " with a score of ",
     GAME_MODE_DUPLICATE: "Duplicate hunt",
     GAME_MODE_10_QUESTS: "10 Random Questions",
     GAME_MODE_TIMEATTACK: "Time Attack",
