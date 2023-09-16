@@ -1,0 +1,72 @@
+.form-section {
+  max-width: 90%; /* Adjust the width as needed */
+  margin: 5px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  overflow: auto;
+}
+.character-form {
+  display: grid;
+  grid-template-columns: repeat(
+    14,
+    2rem
+  ); /* Adjust the width of the input fields */
+  gap: 0.5rem; /* Adjust the gap between the input fields */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+}
+
+.character-form input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+.invalid {
+  border: 1px solid red; /* Add border style for invalid input */
+}
+.error-message {
+  color: #ff0000; /* Red text color */
+  font-size: 14px; /* Font size */
+  margin-top: 5px; /* Spacing from the content above */
+  /* Add additional styling as needed, such as font-weight, text-align, etc. */
+}
+input {
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+.info-section {
+  width: 50%;
+
+  margin: 10px auto;
+  background-color: #f0f0f0; /* Light gray background color */
+  padding: 10px; /* Padding around the text */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Drop shadow effect */
+}
+
+.info-section p {
+  color: #333; /* Text color */
+}
+@media screen and (max-width: 768px) {
+  .character-form {
+    grid-template-columns: repeat(auto-fill, minmax(3rem, 1fr));
+  }
+  .form-section {
+    align-items: flex-start;
+  }
+}

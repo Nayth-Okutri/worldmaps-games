@@ -19,12 +19,15 @@ import Heading from "./components/Heading";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import Leaderboard from "./components/Leaderboard";
+import PopupForm from "./components/PopupForm";
+import PopupResults from "./components/PopupResults";
 
 import "./styles/app.css";
 import "./assets/fonts/Oswald-Bold.ttf";
 
 import en from "./i18n/en";
 import fr from "./i18n/fr";
+
 const app = initializeApp(firebaseConfig);
 function App() {
   i18n.init({
@@ -88,6 +91,8 @@ function App() {
       <Heading />
       <Routes>
         <Route path="/worldmaps" element={<Home levelsData={levelsData} />} />
+        <Route path="/worldmaps/popupform" element={<PopupForm />} />
+        <Route path="/worldmaps/popupresults" element={<PopupResults />} />
         <Route
           path="/worldmaps/profile"
           element={<Profile levelsData={levelsData} weekOfYear={weekOfYear} />}
