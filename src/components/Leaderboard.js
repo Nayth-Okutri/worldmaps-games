@@ -49,7 +49,6 @@ const Leaderboard = ({
   };
   const changeGameModeInDisplay = (mode) => {
     setGameMode(mode);
-    setGameMode(mode);
   };
   const getWeekDates = (year, weekNumber) => {
     const date = new Date(year, 0, 1); // January 1st of the year
