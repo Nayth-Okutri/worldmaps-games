@@ -85,16 +85,20 @@ const PopupForm = () => {
     if (
       e.nativeEvent.data === null &&
       e.nativeEvent.inputType === "deleteContentBackward" &&
-      index > 0
+      index >= 0
     ) {
       updatedCharacters[index] = "";
       setCharacters(updatedCharacters);
-      inputRefs[index - 1].current.focus();
+      if (index > 0) inputRefs[index - 1].current.focus();
       //} else if (e.key.match(validAlpha)) {
     } else if (e.nativeEvent.data.match(validAlpha)) {
       updatedCharacters[index] = e.nativeEvent.data;
       setCharacters(updatedCharacters);
-      if (e.nativeEvent.data.length > 0 && index < inputRefs.length - 1) {
+      if (
+        e.nativeEvent.data.length > 0 &&
+        index < inputRefs.length - 1 &&
+        inputRefs[index + 1].current !== null
+      ) {
         console.log(inputRefs[index + 1].current);
         inputRefs[index + 1].current.focus();
       }
@@ -129,6 +133,10 @@ const PopupForm = () => {
       console.error("Error writing new score to Firebase Database", error);
     }
   };
+  const clearInfo = () => {
+    setCharacters(Array(14).fill(""));
+    setEmail("");
+  };
   const handleSubmit = (e) => {
     setError(null);
     e.preventDefault();
@@ -146,8 +154,8 @@ const PopupForm = () => {
         setSuccessMessage("La réponse a été enregistrée!");
         setError("");
       } else {
-        //setError("Réponse incorrecte");
-        setError(characters);
+        setError("Réponse incorrecte");
+        //setError(characters);
       }
     }
     console.log("Submitted characters:", characters);
@@ -162,6 +170,7 @@ const PopupForm = () => {
 
       <input
         type="email"
+        value={email}
         placeholder="Email"
         onChange={(e) => setEmail(e.target.value)}
       />
@@ -178,9 +187,9 @@ const PopupForm = () => {
                 ? "invalid"
                 : ""
             }
-            onFocus={() => {
+            onFocus={(e) => {
               const updatedCharacters = [...characters];
-
+              e.target.select();
               setPrevchar(characters[index]);
               updatedCharacters[index] = "";
               //setCharacters(updatedCharacters);
@@ -206,7 +215,7 @@ const PopupForm = () => {
             {error}
           </p>
         )}
-        {successMessage && (
+        {!error && successMessage && (
           <p
             className="success-message"
             style={{ display: "inline-block", whiteSpace: "nowrap" }}
@@ -215,6 +224,7 @@ const PopupForm = () => {
           </p>
         )}
       </div>
+      <button onClick={clearInfo}>Clear</button>
       <button type="submit">Submit</button>
     </form>
   );
