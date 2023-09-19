@@ -14,6 +14,9 @@ const PopupForm = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [error, setError] = useState(null);
   const [prevchar, setPrevchar] = useState("");
+  const [isConsentChecked, setIsConsentChecked] = useState("");
+  const [newsletterChecked, setIsNewletterChecked] = useState("");
+
   const [inputValue, setInputValue] = useState("");
   const correctAnswer = [
     "o",
@@ -120,6 +123,7 @@ const PopupForm = () => {
         if (snap.docs.length === 0) {
           const newScore = {
             email,
+            newsletterChecked,
             date: new Date(),
           };
           console.log("newScore " + newScore);
@@ -133,6 +137,12 @@ const PopupForm = () => {
       console.error("Error writing new score to Firebase Database", error);
     }
   };
+  const handleConsentCheckboxChange = () => {
+    setIsConsentChecked(!isConsentChecked);
+  };
+  const handleNewsletterCheckboxChange = () => {
+    setIsNewletterChecked(!newsletterChecked);
+  };
   const clearInfo = () => {
     setCharacters(Array(14).fill(""));
     setEmail("");
@@ -140,7 +150,9 @@ const PopupForm = () => {
   const handleSubmit = (e) => {
     setError(null);
     e.preventDefault();
-    if (validateForm()) {
+    if (!isConsentChecked)
+      setError("Il faut accepter l'utilisation du mail pour le jeu");
+    else if (validateForm()) {
       if (
         characters.every(
           (val, index) =>
@@ -224,6 +236,22 @@ const PopupForm = () => {
           </p>
         )}
       </div>
+      <label className="checkbox-label">
+        <input
+          type="checkbox"
+          checked={isConsentChecked}
+          onChange={handleConsentCheckboxChange}
+        />
+        Je consens à l'utilisation de mon email pour le tirage au sort.
+      </label>
+      <label className="checkbox-label">
+        <input
+          type="checkbox"
+          checked={newsletterChecked}
+          onChange={handleNewsletterCheckboxChange}
+        />
+        J'accepte de recevoir la newsletter.
+      </label>
       <button onClick={clearInfo}>Clear</button>
       <button type="submit">Submit</button>
     </form>
