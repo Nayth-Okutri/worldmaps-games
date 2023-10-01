@@ -1,12 +1,7 @@
 import { Link } from "react-router-dom";
 import "../styles/userForm.css";
 import { useTranslation } from "react-i18next";
-import {
-  GAME_MODE_DUPLICATE,
-  GAME_MODE_10_QUESTS,
-  GAME_MODE_TIMEATTACK,
-  GAME_MODE_ALLQUESTS,
-} from "./Constants";
+import { GAME_MODE_TIMEATTACK } from "./Constants";
 const UserForm = ({
   shouldDisplay,
   time,

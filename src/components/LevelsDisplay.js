@@ -2,7 +2,7 @@ import "../styles/levelsDisplay.css";
 import { useState } from "react";
 import { collection, getFirestore, setDoc, doc } from "firebase/firestore";
 import { TypeAnimation } from "react-type-animation";
-
+import LoadingSpinner from "./LoadingSpinner";
 import {
   GAME_MODE_DUPLICATE,
   GAME_MODE_10_QUESTS,
@@ -46,14 +46,18 @@ const LevelsDisplay = ({
   const [hoveredLevel, setHoveredLevel] = useState(0); // State for tracking hovered level
   const [selectedMode, setSelectedMode] = useState();
   const [gameMode, setGameMode] = useState();
+  const [loading, setLoading] = useState(true);
 
   const showStyle = {
     height: "auto",
     maxWidth: "100%",
   };
-
+  const handleImageLoad = () => {
+    setLoading(false);
+  };
   return (
     <div className="levels-display">
+      {loading && <LoadingSpinner />}
       {levelsData.map((levelData) => {
         const level = levelData.level;
         const isHighlighted = hoveredLevel === level;
@@ -101,6 +105,7 @@ const LevelsDisplay = ({
                   style={{
                     opacity: level === highlight || isHighlighted ? 1 : 0.5,
                   }}
+                  onLoad={handleImageLoad}
                 />{" "}
                 {isHighlighted && (
                   <div className="type-animation">

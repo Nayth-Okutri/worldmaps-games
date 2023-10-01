@@ -20,6 +20,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../auth";
 import { useUser } from "../userContext";
+import LoadingSpinner from "./LoadingSpinner";
 const GameLevel = ({
   levelsData,
   isNameInLeaderboardRepeated,
@@ -86,6 +87,8 @@ const GameLevel = ({
   const { player } = useUser();
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [criticalError, setCriticalError] = useState("");
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const cachedRef = descriptionRef.current;
     const queryParams = new URLSearchParams(window.location.search);
@@ -333,11 +336,13 @@ const GameLevel = ({
     scaledWidth,
     workingQuests,
   ]);
+
   const onLevelImageLoad = () => {
     const image = document.getElementById("levelImage");
     const roundedZoomLevel = Math.floor(
       (window.innerWidth / image.naturalWidth) * 100
     );
+    setLoading(false);
     setZoomLevel(Math.min(roundedZoomLevel, 100));
     //console.log("roundedZoomLevel " + roundedZoomLevel);
     setScaledWidth(image.naturalWidth * (roundedZoomLevel / 100));
@@ -548,6 +553,8 @@ const GameLevel = ({
         break;
       case GAME_MODE_TIMEATTACK:
         if (currentTime <= 0) endGame();
+        break;
+      default:
         break;
     }
     if (numberOfRightQuestHits === Object.keys(workingQuests).length) {
@@ -875,6 +882,7 @@ const GameLevel = ({
           gameMode={gameMode}
           player={player}
         />
+        {loading && <LoadingSpinner />}
         <img
           id="levelImage"
           src={`${imageSource}`}
