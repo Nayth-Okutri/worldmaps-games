@@ -37,6 +37,15 @@ export const level1Data = {
       ],
     },
     {
+      quest: "dquest5",
+      type: 1,
+      image: "level-1-dup4",
+      positions: [
+        { top: { x: 711, y: 634 }, bottom: { x: 767, y: 696 } },
+        { top: { x: 1336, y: 1300 }, bottom: { x: 1436, y: 1353 } },
+      ],
+    },
+    {
       quest: "quest1",
       positions: [
         { top: { x: 352, y: 1138 }, bottom: { x: 446, y: 1320 } },

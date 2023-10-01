@@ -90,6 +90,10 @@ const translation = {
         title: "Find duplicate Pokemon",
         hint: "Good luck",
       },
+      dquest5: {
+        title: "Find duplicate Pokemon",
+        hint: "Good luck",
+      },
     },
     ghibli: {
       quest1: {

@@ -14,8 +14,8 @@ const PopupForm = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [error, setError] = useState(null);
   const [prevchar, setPrevchar] = useState("");
-  const [isConsentChecked, setIsConsentChecked] = useState("");
-  const [newsletterChecked, setIsNewletterChecked] = useState("");
+  const [isConsentChecked, setIsConsentChecked] = useState(false);
+  const [newsletterChecked, setIsNewletterChecked] = useState(false);
 
   const [inputValue, setInputValue] = useState("");
   const correctAnswer = [
@@ -146,6 +146,8 @@ const PopupForm = () => {
   const clearInfo = () => {
     setCharacters(Array(14).fill(""));
     setEmail("");
+    setIsNewletterChecked(false);
+    setIsConsentChecked(false);
   };
   const handleSubmit = (e) => {
     setError(null);
@@ -163,6 +165,8 @@ const PopupForm = () => {
         saveReply(email);
         setCharacters(Array(14).fill(""));
         setEmail("");
+        setIsNewletterChecked(false);
+        setIsConsentChecked(false);
         setSuccessMessage("La réponse a été enregistrée!");
         setError("");
       } else {
@@ -175,7 +179,7 @@ const PopupForm = () => {
 
   return (
     <form className="form-section" onSubmit={handleSubmit}>
-      <h2>POPUP FORM</h2>
+      <h2>REMPLIS LE FORMULAIRE ET GAGNE TON TABLEAU</h2>
       <div className="info-section">
         <p>Ecrire le mot mystère pour gagner un tableau de votre choix</p>
       </div>

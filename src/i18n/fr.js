@@ -95,6 +95,10 @@ const translation = {
         title: "Trouve le Pokemon en double",
         hint: "bon courage",
       },
+      dquest5: {
+        title: "Trouve le Pokemon en double",
+        hint: "bon courage",
+      },
     },
     ghibli: {
       quest1: {
