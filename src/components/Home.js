@@ -6,7 +6,7 @@ import LevelsDisplay from "./LevelsDisplay";
 import ModeDescription from "./ModeDescription";
 import Feedback from "./Feedback";
 
-const Home = ({ levelsData }) => {
+const Home = ({ levelsData, weekOfYear }) => {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [gameMode, setGameMode] = useState(0);
   const { t } = useTranslation("menu");
@@ -31,6 +31,7 @@ const Home = ({ levelsData }) => {
       </div>
 
       <LevelsDisplay
+        weekOfYear={weekOfYear}
         clickFunction={changeLevelInDisplay}
         useClickFunction={true}
         overrideIconClick={changeGameModeInDisplay}

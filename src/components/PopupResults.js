@@ -77,7 +77,7 @@ const PopupRepliesTable = () => {
         <tbody>
           {replies.map((reply, index) => (
             <tr key={index}>
-              <td>{reply.maskedEmail}</td>
+              <td>{reply.email}</td>
               <td>{getDateFromFBTimestamp(reply.date)}</td>
               <td>
                 {" "}

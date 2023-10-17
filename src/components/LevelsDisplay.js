@@ -1,5 +1,5 @@
 import "../styles/levelsDisplay.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { collection, getFirestore, setDoc, doc } from "firebase/firestore";
 import { TypeAnimation } from "react-type-animation";
 import LoadingSpinner from "./LoadingSpinner";
@@ -10,7 +10,8 @@ import {
   GAME_MODE_ALLQUESTS,
 } from "./Constants";
 import { level1Data, level2Data, level3Data, level4Data } from "./LevelData";
-
+import { useAuth } from "../auth";
+import { levelAvailability } from "../gameLevelConfig";
 const importLevels = async () => {
   try {
     //<button onClick={importLevels}>UPLOAD DATA</button>
@@ -34,6 +35,7 @@ const importLevels = async () => {
 };
 const LevelsDisplay = ({
   levelsData,
+  weekOfYear,
   clickFunction,
   displayIcons = true,
   useClickFunction = false,
@@ -46,8 +48,10 @@ const LevelsDisplay = ({
   const [hoveredLevel, setHoveredLevel] = useState(0); // State for tracking hovered level
   const [selectedMode, setSelectedMode] = useState();
   const [gameMode, setGameMode] = useState();
-  const [loading, setLoading] = useState(true);
+  const [userLevelsData, setUserLevelsData] = useState([]);
 
+  const [loading, setLoading] = useState(true);
+  const { currentUser } = useAuth();
   const showStyle = {
     height: "auto",
     maxWidth: "100%",
@@ -55,10 +59,22 @@ const LevelsDisplay = ({
   const handleImageLoad = () => {
     setLoading(false);
   };
+
+  useEffect(() => {
+    if (currentUser) {
+      setUserLevelsData(levelsData);
+    } else {
+      const availableLevels = levelAvailability[weekOfYear] || [];
+      const availableLevelData = levelsData.filter((level) =>
+        availableLevels.includes(level.level)
+      );
+      setUserLevelsData(availableLevelData);
+    }
+  }, [currentUser, levelsData, weekOfYear]);
   return (
     <div className="levels-display">
       {loading && <LoadingSpinner />}
-      {levelsData.map((levelData) => {
+      {userLevelsData.map((levelData) => {
         const level = levelData.level;
         const isHighlighted = hoveredLevel === level;
         const handleClick = () => {

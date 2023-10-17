@@ -90,7 +90,10 @@ function App() {
     <BrowserRouter>
       <Heading />
       <Routes>
-        <Route path="/worldmaps" element={<Home levelsData={levelsData} />} />
+        <Route
+          path="/worldmaps"
+          element={<Home levelsData={levelsData} weekOfYear={weekOfYear} />}
+        />
         <Route path="/worldmaps/popupform" element={<PopupForm />} />
         <Route path="/worldmaps/popupresults" element={<PopupResults />} />
         <Route
