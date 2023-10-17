@@ -84,3 +84,19 @@ input {
 
   margin-left: 0px;
 }
+.green-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: green;
+  border-radius: 50%;
+  margin-right: 5px; /* Espacement entre les ronds (ajustez selon vos besoins) */
+}
+.yellow-dot {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  border-radius: 50%;
+  margin-right: 5px; /* Espacement entre les ronds (ajustez selon vos besoins) */
+}
