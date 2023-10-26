@@ -2,7 +2,14 @@ import { useState, useRef, useEffect } from "react";
 import "../styles/gamelevel.css";
 import SelectionMenu from "./SelectionMenu";
 import { useParams, useNavigate } from "react-router-dom";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  where,
+  query,
+  getDocs,
+  getFirestore,
+} from "firebase/firestore";
 import UserForm from "./UserForm";
 import HintPop from "./HintPop";
 
@@ -548,38 +555,43 @@ const GameLevel = ({
     try {
       if (numberOfRightHits >= 1) {
         console.log("saving score");
-        const leaderboardCollectionRef = collection(
-          getFirestore(),
-          "weeklyContest"
+        const q = query(
+          collection(
+            getFirestore(),
+            "weeklyContest/" + String(weekOfYear) + "/Results"
+          ),
+          where("email", "==", email)
         );
-        const scoresCollectionRef = collection(
-          leaderboardCollectionRef,
-          String(weekOfYear) + "/Results"
-        );
-        console.log("scoresCollectionRef " + scoresCollectionRef);
-        const reccordedTime =
-          gameMode !== GAME_MODE_TIMEATTACK ? time : TIMEATTACK_TIME - time;
-        console.log("time " + time);
-        const newScore = {
-          name: player ? player.userName : name,
-          time: time,
-          email: email,
-          score: numberOfRightHits,
-          level: level,
-          date: new Date(),
-          userId: currentUser ? currentUser.uid : "",
-        };
-        if (feedback.trim() !== "" && name.trim() !== "") {
-          const commentsRef = collection(getFirestore(), "comments");
-          const newComment = {
-            text: feedback,
-            name,
-            date: new Date(),
-          };
-          await addDoc(commentsRef, newComment);
-        }
-        console.log("newScore " + newScore);
-        await addDoc(scoresCollectionRef, newScore);
+        await getDocs(q).then((snap) => {
+          if (snap.docs.length <= 0) {
+            const leaderboardCollectionRef = collection(
+              getFirestore(),
+              "weeklyContest"
+            );
+            const scoresCollectionRef = collection(
+              leaderboardCollectionRef,
+              String(weekOfYear) + "/Results"
+            );
+            console.log("scoresCollectionRef " + scoresCollectionRef);
+            const reccordedTime =
+              gameMode !== GAME_MODE_TIMEATTACK ? time : TIMEATTACK_TIME - time;
+            console.log("time " + time);
+            const newScore = {
+              name: player ? player.userName : name,
+              time: time,
+              email: email,
+              score: numberOfRightHits,
+              level: level,
+              date: new Date(),
+              userId: currentUser ? currentUser.uid : "",
+            };
+
+            console.log("newScore " + newScore);
+            return addDoc(scoresCollectionRef, newScore);
+          } else {
+            console.log("Soucis");
+          }
+        });
       }
     } catch (error) {
       console.error("Error writing new score to Firebase Database", error);
