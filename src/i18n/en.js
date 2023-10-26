@@ -30,7 +30,7 @@ const translation = {
     PostFeedback: "Post a feedback to Nayth",
     WeeklyContestTitle: "CONTEST OF THE WEEK",
     WeeklyContestDesc:
-      "Join the weekly quest for a chance to win! Just complete the quiz, provide your name and email on the board.",
+      "Join the weekly quest for a chance to win! Just complete the quiz, provide your name and email on the board. Draw revealed on instagram (@n.a.y.t.h) on",
     WeeklyMailConsent:
       "I consent to the use of my email address for the prize draw.",
     error: {

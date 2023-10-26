@@ -30,7 +30,7 @@ const translation = {
     PostFeedback: "Postez un feedback à Nayth",
     WeeklyContestTitle: "LE CONCOURS DE LA SEMAINE",
     WeeklyContestDesc:
-      "Participez à la quête hebdomadaire pour avoir une chance de gagner ! Il vous suffit de répondre au quiz et d'indiquer votre nom et votre adresse sur le tableau.",
+      "Participez à la quête hebdomadaire pour avoir une chance de gagner ! Il vous suffit de répondre au quiz et d'indiquer votre nom et votre adresse sur le tableau. Tirage au sort dévoilé sur instagram (@n.a.y.t.h) le ",
     WeeklyMailConsent:
       "Je consens à l'utilisation de mon email pour le tirage au sort.",
     error: {

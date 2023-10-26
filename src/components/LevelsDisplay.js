@@ -61,9 +61,25 @@ const LevelsDisplay = ({
     height: "auto",
     maxWidth: "100%",
   };
+  const currentYear = new Date().getFullYear();
   const handleImageLoad = () => {
     setLoading(false);
   };
+  function getNextMonday(weekOfYear, year) {
+    const januaryFirst = new Date(year, 0, 1);
+    const daysToMonday = (8 - januaryFirst.getDay()) % 7;
+    const firstMonday = new Date(year, 0, 1 + daysToMonday);
+
+    // Add the number of weeks to get to the desired week
+    const targetMonday = new Date(
+      firstMonday.getTime() + weekOfYear * 7 * 24 * 60 * 60 * 1000
+    );
+
+    const month = String(targetMonday.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+    const day = String(targetMonday.getDate()).padStart(2, "0");
+
+    return `${currentYear}-${month}-${day}`;
+  }
   let navigate = useNavigate();
   useEffect(() => {
     if (typeof weeklyContests[weekOfYear] !== "undefined")
@@ -90,7 +106,10 @@ const LevelsDisplay = ({
           }}
         >
           <h2>{t("WeeklyContestTitle")}</h2>
-          <p>{t("WeeklyContestDesc")}</p>
+          <p>
+            {t("WeeklyContestDesc")}
+            {getNextMonday(weekOfYear, currentYear)}
+          </p>
           <img
             src={require(`../assets/level-${
               contestOfTheWeek.match(/\d+/)[0]
