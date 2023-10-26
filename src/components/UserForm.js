@@ -112,7 +112,7 @@ const UserForm = ({
                 type="submit"
                 className="submit"
                 onClick={(e) => {
-                  handleForm(e);
+                  submitScore(e);
                 }}
               >
                 Submit Score
