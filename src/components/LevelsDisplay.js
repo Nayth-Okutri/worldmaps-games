@@ -2,6 +2,8 @@ import "../styles/levelsDisplay.css";
 import { useState, useEffect } from "react";
 import { collection, getFirestore, setDoc, doc } from "firebase/firestore";
 import { TypeAnimation } from "react-type-animation";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import LoadingSpinner from "./LoadingSpinner";
 import {
   GAME_MODE_DUPLICATE,
@@ -12,6 +14,8 @@ import {
 import { level1Data, level2Data, level3Data, level4Data } from "./LevelData";
 import { useAuth } from "../auth";
 import { levelAvailability } from "../gameLevelConfig";
+import { weeklyContests } from "../gameLevelConfig";
+
 const importLevels = async () => {
   try {
     //<button onClick={importLevels}>UPLOAD DATA</button>
@@ -49,9 +53,10 @@ const LevelsDisplay = ({
   const [selectedMode, setSelectedMode] = useState();
   const [gameMode, setGameMode] = useState();
   const [userLevelsData, setUserLevelsData] = useState([]);
-
+  const [contestOfTheWeek, setContestOfTheWeek] = useState();
   const [loading, setLoading] = useState(true);
   const { currentUser } = useAuth();
+  const { t } = useTranslation("menu");
   const showStyle = {
     height: "auto",
     maxWidth: "100%",
@@ -59,8 +64,11 @@ const LevelsDisplay = ({
   const handleImageLoad = () => {
     setLoading(false);
   };
-
+  let navigate = useNavigate();
   useEffect(() => {
+    if (typeof weeklyContests[weekOfYear] !== "undefined")
+      setContestOfTheWeek(weeklyContests[weekOfYear]);
+    console.log(contestOfTheWeek);
     if (currentUser) {
       setUserLevelsData(levelsData);
     } else {
@@ -74,6 +82,24 @@ const LevelsDisplay = ({
   return (
     <div className="levels-display">
       {loading && <LoadingSpinner />}
+      {contestOfTheWeek && (
+        <div
+          className="level image-container contest"
+          onClick={() => {
+            navigate(`/worldmaps/${contestOfTheWeek}`);
+          }}
+        >
+          <h2>{t("WeeklyContestTitle")}</h2>
+          <p>{t("WeeklyContestDesc")}</p>
+          <img
+            src={require(`../assets/level-${
+              contestOfTheWeek.match(/\d+/)[0]
+            }-thumb.jpg`)}
+            alt={`Level ${contestOfTheWeek.match(/\d+/)[0]}`}
+            onLoad={handleImageLoad}
+          />
+        </div>
+      )}
       {userLevelsData.map((levelData) => {
         const level = levelData.level;
         const isHighlighted = hoveredLevel === level;

@@ -73,7 +73,23 @@
   overflow-wrap: break-word;
   flex-flow: wrap;
 }
-
+.contest {
+  opacity: 1;
+  border: 1px solid #ccc; /* Add a border around the image */
+  max-width: 100%;
+  margin-bottom: 10px;
+  border: 2px solid #ff7f50; /* Adjust border color as needed */
+  background-color: #fffacd; /* Adjust background color as needed */
+  padding: 10px; /* Adjust padding as needed */
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+.contest h2 {
+  text-align: center;
+}
+.contest img {
+  height: 10rem;
+  opacity: 1;
+}
 .play {
   font-size: 1.5rem;
   padding: 10px 10px;

@@ -52,7 +52,9 @@
   border: 1px solid rgba(0, 0, 0, 0.25);
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
 }
-
+.user-form input[type="checkbox"] {
+  margin-right: 8px; /* Add some spacing between checkbox and text */
+}
 .user-form input.error {
   border: 1px solid #dc2626b2;
   box-shadow: 1px 1px 3px #dc262670;

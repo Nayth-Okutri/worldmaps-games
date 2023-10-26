@@ -28,6 +28,11 @@ const translation = {
     LeaderBoardPrevWeek: "Semaine précédente",
     LeaderBoardNextWeek: "Semaine suivante",
     PostFeedback: "Postez un feedback à Nayth",
+    WeeklyContestTitle: "LE CONCOURS DE LA SEMAINE",
+    WeeklyContestDesc:
+      "Participez à la quête hebdomadaire pour avoir une chance de gagner ! Il vous suffit de répondre au quiz et d'indiquer votre nom et votre adresse sur le tableau.",
+    WeeklyMailConsent:
+      "Je consens à l'utilisation de mon email pour le tirage au sort.",
     error: {
       LoginUserAlreadyExists: "Nom d'utilisateur déjà utilisé",
       LoginWrongPassword: "Mot de passe incorrect",
@@ -41,6 +46,7 @@ const translation = {
       QuestNotFound: "Quête non trouvée",
       GameModeIncorrect: "Il n'y a pas de mode de jeu correspondant",
       LevelNotFound: "Niveau non trouvé",
+      WeeklyNoCensent: "Il faut accepter l'utilisation du mail pour le jeu",
     },
   },
 

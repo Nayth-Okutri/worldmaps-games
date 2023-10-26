@@ -21,6 +21,7 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "../auth";
 import { useUser } from "../userContext";
 import LoadingSpinner from "./LoadingSpinner";
+import { weeklyContests } from "../gameLevelConfig";
 const GameLevel = ({
   levelsData,
   isNameInLeaderboardRepeated,
@@ -51,6 +52,7 @@ const GameLevel = ({
   const [currentTime, setCurrentTime] = useState(0);
 
   const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [feedback, setFeedback] = useState("");
   const [useFormValidation, setUseFormValidation] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -88,12 +90,14 @@ const GameLevel = ({
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [criticalError, setCriticalError] = useState("");
   const [loading, setLoading] = useState(true);
-
+  const [contestOfTheWeek, setContestOfTheWeek] = useState();
+  const [isContestOfTheWeek, setIsContestOfTheWeek] = useState(false);
   useEffect(() => {
     const cachedRef = descriptionRef.current;
     const queryParams = new URLSearchParams(window.location.search);
     const modeParam = parseInt(queryParams.get("mode"));
     const paramQuest = queryParams.get("quest");
+
     setGameMode(modeParam); // This will set the value of the 'mode' parameter
     setSingleQuest(paramQuest);
     if (isNaN(modeParam)) setGameMode(GAME_MODE_10_QUESTS);
@@ -103,6 +107,37 @@ const GameLevel = ({
         threshold: [1],
       }
     );
+    if (
+      typeof contestOfTheWeek === "undefined" &&
+      typeof weeklyContests[weekOfYear] !== "undefined"
+    ) {
+      setContestOfTheWeek(weeklyContests[weekOfYear]);
+      const weeklyGameLevel = weeklyContests[weekOfYear].match(/\d+/)[0];
+      const weeklyGameMode = weeklyContests[weekOfYear].match(/mode=(\d+)/)[1];
+      const weeklyQuestParam =
+        weeklyContests[weekOfYear].match(/quest=(\w+)/)[1];
+      console.log(
+        "params 0 : " + parseInt(weeklyGameLevel) + " " + parseInt(level)
+      );
+      console.log("params 1 : " + parseInt(weeklyGameMode) + " " + gameMode);
+
+      console.log("questParam : " + weeklyQuestParam);
+      if (
+        parseInt(weeklyGameLevel) === parseInt(level) &&
+        parseInt(weeklyGameMode) === modeParam
+      )
+        console.log(paramQuest);
+      if (
+        parseInt(weeklyGameMode) === GAME_MODE_ONEQUEST &&
+        weeklyQuestParam !== paramQuest
+      ) {
+        console.log("NOP");
+        setIsContestOfTheWeek(false);
+      } else {
+        console.log("-------CONTEST OF WEEK : ");
+        setIsContestOfTheWeek(true);
+      }
+    }
     console.log(gameMode);
     if (!ALL_GAME_MODES.includes(gameMode) && gameMode !== 0)
       showCriticalError("error.GameModeIncorrect");
@@ -401,7 +436,7 @@ const GameLevel = ({
   const handleUserNameInput = (e) => {
     const newUserName = e.target.value.slice(0, 20);
     if (useFormValidation) {
-      if (isNameInLeaderboardRepeated(newUserName, level)) {
+      if (newUserName === "") {
         setShowErrorMessage(true);
       } else {
         setShowErrorMessage(false);
@@ -411,6 +446,9 @@ const GameLevel = ({
   };
   const handleFeedbackInput = (e) => {
     setFeedback(e.target.value);
+  };
+  const handleEmailInput = (e) => {
+    setEmail(e.target.value);
   };
   const newActivityTitle = (time) => {
     const reccordedTime =
@@ -489,6 +527,57 @@ const GameLevel = ({
           date: new Date(),
           userId: currentUser ? currentUser.uid : "",
         };
+        if (feedback.trim() !== "" && name.trim() !== "") {
+          const commentsRef = collection(getFirestore(), "comments");
+          const newComment = {
+            text: feedback,
+            name,
+            date: new Date(),
+          };
+          await addDoc(commentsRef, newComment);
+        }
+        console.log("newScore " + newScore);
+        await addDoc(scoresCollectionRef, newScore);
+      }
+    } catch (error) {
+      console.error("Error writing new score to Firebase Database", error);
+    }
+  };
+
+  const saveContestScore = async (name, time, email) => {
+    try {
+      if (numberOfRightHits >= 1) {
+        console.log("saving score");
+        const leaderboardCollectionRef = collection(
+          getFirestore(),
+          "weeklyContest"
+        );
+        const scoresCollectionRef = collection(
+          leaderboardCollectionRef,
+          String(weekOfYear) + "/Results"
+        );
+        console.log("scoresCollectionRef " + scoresCollectionRef);
+        const reccordedTime =
+          gameMode !== GAME_MODE_TIMEATTACK ? time : TIMEATTACK_TIME - time;
+        console.log("time " + time);
+        const newScore = {
+          name: player ? player.userName : name,
+          time: time,
+          email: email,
+          score: numberOfRightHits,
+          level: level,
+          date: new Date(),
+          userId: currentUser ? currentUser.uid : "",
+        };
+        if (feedback.trim() !== "" && name.trim() !== "") {
+          const commentsRef = collection(getFirestore(), "comments");
+          const newComment = {
+            text: feedback,
+            name,
+            date: new Date(),
+          };
+          await addDoc(commentsRef, newComment);
+        }
         console.log("newScore " + newScore);
         await addDoc(scoresCollectionRef, newScore);
       }
@@ -511,13 +600,23 @@ const GameLevel = ({
   const submitScore = (event) => {
     event.preventDefault();
     if (userName || player) {
-      let reccordedTime;
-      if (gameMode !== GAME_MODE_TIMEATTACK) reccordedTime = endTime;
-      else reccordedTime = currentTime;
-      logUserActivity(reccordedTime);
-      saveScore(userName, reccordedTime);
-      updateLeaderboardData();
-      navigate(`/worldmaps/leaderboard/${level}`);
+      if (!isContestOfTheWeek) {
+        let reccordedTime;
+        if (gameMode !== GAME_MODE_TIMEATTACK) reccordedTime = endTime;
+        else reccordedTime = currentTime;
+        logUserActivity(reccordedTime);
+        saveScore(userName, reccordedTime);
+        updateLeaderboardData();
+        navigate(`/worldmaps/leaderboard/${level}`);
+      } else {
+        let reccordedTime;
+        if (gameMode !== GAME_MODE_TIMEATTACK) reccordedTime = endTime;
+        else reccordedTime = currentTime;
+        logUserActivity(reccordedTime);
+        saveContestScore(userName, reccordedTime, email);
+        updateLeaderboardData();
+        navigate(`/worldmaps/leaderboard/${level}`);
+      }
     } else {
       setUseFormValidation(true);
       setShowErrorMessage(true);
@@ -876,11 +975,13 @@ const GameLevel = ({
           time={endTime}
           submitScore={submitScore}
           handleInput={handleUserNameInput}
+          handleEmailInput={handleEmailInput}
           handleFeedbackInput={handleFeedbackInput}
           showErrorMessage={showErrorMessage}
           numberOfRightHits={numberOfRightHits}
           gameMode={gameMode}
           player={player}
+          isContestOfTheWeek={isContestOfTheWeek}
         />
         {loading && <LoadingSpinner />}
         <img
