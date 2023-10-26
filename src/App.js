@@ -21,6 +21,7 @@ import NotFound from "./components/NotFound";
 import Leaderboard from "./components/Leaderboard";
 import PopupForm from "./components/PopupForm";
 import PopupResults from "./components/PopupResults";
+import SlotMachine from "./components/SlotMachine";
 
 import "./styles/app.css";
 import "./assets/fonts/Oswald-Bold.ttf";
@@ -95,7 +96,7 @@ function App() {
           element={<Home levelsData={levelsData} weekOfYear={weekOfYear} />}
         />
         <Route path="/worldmaps/popupform" element={<PopupForm />} />
-        <Route path="/worldmaps/popupresults" element={<PopupResults />} />
+        <Route path="/worldmaps/popupresults" element={<SlotMachine />} />
         <Route
           path="/worldmaps/profile"
           element={<Profile levelsData={levelsData} weekOfYear={weekOfYear} />}
