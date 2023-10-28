@@ -98,7 +98,7 @@ const LevelsDisplay = ({
   return (
     <div className="levels-display">
       {loading && <LoadingSpinner />}
-      {contestOfTheWeek && (
+      {typeof contestOfTheWeek !== "undefined" && contestOfTheWeek && (
         <div
           className="level image-container contest"
           onClick={() => {

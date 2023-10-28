@@ -192,6 +192,7 @@ const Leaderboard = ({
       <LevelsDisplay
         levelsData={levelsData}
         clickFunction={changeLevelInDisplay}
+        weekOfYear={displayedWeek}
         useClickFunction={true}
         highlight={currentLevel}
         bareMode={true}
