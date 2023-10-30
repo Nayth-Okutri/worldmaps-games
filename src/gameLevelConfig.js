@@ -1,7 +1,7 @@
 export const levelAvailability = {
   42: [1, 2, 3],
   43: [1, 2, 3],
-  44: [1, 4, 5, 6],
+  44: [1, 2, 3, 4],
   45: [1, 7, 8, 9],
   46: [1, 10, 11, 12],
   47: [1, 2, 3],
@@ -13,11 +13,11 @@ export const levelAvailability = {
 };
 export const weeklyContests = {
   42: "game/1?mode=5&&quest=dquest1",
-  43: "game/1?mode=5&&quest=dquest1",
-  44: "game/1?mode=5&&quest=dquest1",
-  45: "game/1?mode=5&&quest=dquest1",
-  46: "game/1?mode=5&&quest=dquest1",
-  47: "game/1?mode=5&&quest=dquest1",
+  43: "game/1?mode=5&&quest=dquest2",
+  44: "game/1?mode=5&&quest=dquest2",
+  45: "game/1?mode=5&&quest=dquest3",
+  46: "game/1?mode=5&&quest=dquest4",
+  47: "game/1?mode=5&&quest=dquest5",
   48: "game/1?mode=5&&quest=dquest1",
   49: "game/1?mode=5&&quest=dquest1",
   50: "game/1?mode=5&&quest=dquest1",

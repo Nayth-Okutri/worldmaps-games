@@ -11,7 +11,13 @@ import {
   GAME_MODE_TIMEATTACK,
   GAME_MODE_ALLQUESTS,
 } from "./Constants";
-import { level1Data, level2Data, level3Data, level4Data } from "./LevelData";
+import {
+  level1Data,
+  level2Data,
+  level3Data,
+  level4Data,
+  level5Data,
+} from "./LevelData";
 import { useAuth } from "../auth";
 import { levelAvailability } from "../gameLevelConfig";
 import { weeklyContests } from "../gameLevelConfig";
@@ -19,7 +25,13 @@ import { weeklyContests } from "../gameLevelConfig";
 const importLevels = async () => {
   try {
     //<button onClick={importLevels}>UPLOAD DATA</button>
-    const levelsData = [level1Data, level2Data, level3Data, level4Data];
+    const levelsData = [
+      level1Data,
+      level2Data,
+      level3Data,
+      level4Data,
+      level5Data,
+    ];
     const dataLevelCollectionRef = collection(getFirestore(), "levelData");
     let docRef;
     levelsData.forEach((levelData) => {

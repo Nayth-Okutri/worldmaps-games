@@ -315,6 +315,69 @@ const translation = {
         hint: "",
       },
     },
+    nineties: {
+      quest1: {
+        title: "Find Bomberman",
+        hint: "",
+      },
+      quest2: { title: "Find Doom", hint: "First FPS from 1993" },
+      quest3: { title: "Find Freddy", hint: "from Queen" },
+      quest4: {
+        title: "Find Flurby",
+        hint: "the toy",
+      },
+      quest5: {
+        title: "Find Rocky",
+        hint: "The boxer",
+      },
+      quest6: {
+        title: "Find the Terminator",
+        hint: "",
+      },
+      quest7: { title: "Find Indiana Jones", hint: "" },
+      quest8: {
+        title: "Find Turtle in Times Arcade booth",
+        hint: "",
+      },
+      quest9: { title: "Find a Tamagochi", hint: "" },
+      quest10: {
+        title: "Find Chop Chop Master",
+        hint: "from Skyward Sword",
+      },
+      quest11: {
+        title: "Find Mario",
+        hint: "from Links Awakening",
+      },
+      quest12: {
+        title: "Find Sonic",
+        hint: "from Minish cap",
+      },
+      quest13: { title: "Find Optimus Prime", hint: "from Skyward Sword" },
+
+      quest14: {
+        title: "Find Falcor",
+        hint: "from Wind Waker",
+      },
+      quest15: {
+        title: "Find Willow",
+        hint: "from Breath of the Wild",
+      },
+      quest16: {
+        title: "Find Dark Vador ",
+        hint: "from Breath of the Wild",
+      },
+      quest17: { title: "Find Marty", hint: "from Wind Waker" },
+      quest18: {
+        title: "Find Pacman",
+        hint: "from Wind Waker",
+      },
+      quest19: { title: "Find Dorothée", hint: "from Ocarina" },
+
+      dquest1: {
+        title: "Find the duplicate character",
+        hint: "",
+      },
+    },
   },
 };
 export default translation;

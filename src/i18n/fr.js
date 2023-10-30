@@ -318,6 +318,70 @@ const translation = {
         hint: "",
       },
     },
+
+    nineties: {
+      quest1: {
+        title: "Trouve Bomberman",
+        hint: "",
+      },
+      quest2: { title: "Trouve Doom", hint: "First FPS from 1993" },
+      quest3: { title: "Trouve Freddy", hint: "from Queen" },
+      quest4: {
+        title: "Trouve Flurby",
+        hint: "the toy",
+      },
+      quest5: {
+        title: "Trouve Rocky",
+        hint: "The boxer",
+      },
+      quest6: {
+        title: "Trouve the Terminator",
+        hint: "",
+      },
+      quest7: { title: "Trouve Indiana Jones", hint: "" },
+      quest8: {
+        title: "Trouve Turtle in Times Arcade booth",
+        hint: "",
+      },
+      quest9: { title: "Trouve a Tamagochi", hint: "" },
+      quest10: {
+        title: "Trouve Chop Chop Master",
+        hint: "from Skyward Sword",
+      },
+      quest11: {
+        title: "Trouve Mario",
+        hint: "from Links Awakening",
+      },
+      quest12: {
+        title: "Trouve Sonic",
+        hint: "from Minish cap",
+      },
+      quest13: { title: "Trouve Optimus Prime", hint: "from Skyward Sword" },
+
+      quest14: {
+        title: "Trouve Falcor",
+        hint: "from Wind Waker",
+      },
+      quest15: {
+        title: "Trouve Willow",
+        hint: "from Breath of the Wild",
+      },
+      quest16: {
+        title: "Trouve Dark Vador ",
+        hint: "from Breath of the Wild",
+      },
+      quest17: { title: "Trouve Marty", hint: "from Wind Waker" },
+      quest18: {
+        title: "Trouve Pacman",
+        hint: "from Wind Waker",
+      },
+      quest19: { title: "Trouve Dorothée", hint: "from Ocarina" },
+
+      dquest1: {
+        title: "Trouve the duplicate character",
+        hint: "",
+      },
+    },
   },
 };
 export default translation;
