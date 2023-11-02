@@ -33,6 +33,7 @@ const translation = {
       "Participez à la quête hebdomadaire pour avoir une chance de gagner ! Il vous suffit de répondre au quiz et d'indiquer votre nom et votre adresse sur le tableau. Tirage au sort dévoilé sur instagram (@n.a.y.t.h) le ",
     WeeklyMailConsent:
       "Je consens à l'utilisation de mon email pour le tirage au sort.",
+    FindAction: "Trouve ",
     error: {
       LoginUserAlreadyExists: "Nom d'utilisateur déjà utilisé",
       LoginWrongPassword: "Mot de passe incorrect",
@@ -346,36 +347,99 @@ const translation = {
       quest9: { title: "Trouve a Tamagochi", hint: "" },
       quest10: {
         title: "Trouve Chop Chop Master",
-        hint: "from Skyward Sword",
+        hint: "",
       },
       quest11: {
         title: "Trouve Mario",
-        hint: "from Links Awakening",
+        hint: "",
       },
       quest12: {
         title: "Trouve Sonic",
-        hint: "from Minish cap",
+        hint: "",
       },
       quest13: { title: "Trouve Optimus Prime", hint: "from Skyward Sword" },
 
       quest14: {
         title: "Trouve Falcor",
-        hint: "from Wind Waker",
+        hint: "",
       },
       quest15: {
         title: "Trouve Willow",
-        hint: "from Breath of the Wild",
+        hint: "",
       },
       quest16: {
         title: "Trouve Dark Vador ",
-        hint: "from Breath of the Wild",
+        hint: "",
       },
       quest17: { title: "Trouve Marty", hint: "from Wind Waker" },
       quest18: {
         title: "Trouve Pacman",
-        hint: "from Wind Waker",
+        hint: "",
       },
       quest19: { title: "Trouve Dorothée", hint: "from Ocarina" },
+
+      dquest1: {
+        title: "Trouve the duplicate character",
+        hint: "",
+      },
+    },
+
+    tezuka: {
+      quest1: {
+        title: "Trouve Princess Saphyr",
+        hint: "",
+      },
+      quest2: { title: "Trouve Blackjack", hint: "" },
+      quest3: { title: "Trouve Bouddha", hint: "" },
+      quest4: {
+        title: "Trouve Unico",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Tamasaburo",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve the Dororo",
+        hint: "",
+      },
+      quest7: { title: "Trouve Moustache", hint: "" },
+      quest8: {
+        title: "Trouve Saruta",
+        hint: "",
+      },
+      quest9: { title: "Trouve Phenix", hint: "" },
+      quest10: {
+        title: "Trouve AstroBoy",
+        hint: "",
+      },
+      quest11: {
+        title: "Trouve Melmo",
+        hint: "",
+      },
+      quest12: {
+        title: "Trouve Rock",
+        hint: "",
+      },
+      quest13: { title: "Trouve Sharaku", hint: "" },
+
+      quest14: {
+        title: "Trouve Adolf",
+        hint: "",
+      },
+      quest15: {
+        title: "Trouve Prince Norman",
+        hint: "",
+      },
+      quest16: {
+        title: "Trouve Manjiro",
+        hint: "",
+      },
+      quest17: { title: "Trouve Barbara", hint: "" },
+      quest18: {
+        title: "Trouve l’Ara aux sept couleurs",
+        hint: "",
+      },
 
       dquest1: {
         title: "Trouve the duplicate character",

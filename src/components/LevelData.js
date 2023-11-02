@@ -708,3 +708,120 @@ export const level5Data = {
   level: 5,
   updateDate: new Date(),
 };
+
+export const level6Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Princess Knight",
+      hint: "",
+      positions: [{ top: { x: 1385, y: 405 }, bottom: { x: 1538, y: 637 } }],
+    },
+    {
+      quest: "quest2",
+      description: "Find Blackjack",
+      hint: "",
+      positions: [{ top: { x: 1101, y: 296 }, bottom: { x: 1227, y: 546 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find Bouddha",
+      hint: "from Queen",
+      positions: [{ top: { x: 274, y: 1080 }, bottom: { x: 347, y: 1178 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find Unico",
+      hint: "the toy",
+      positions: [{ top: { x: 1080, y: 561 }, bottom: { x: 1153, y: 625 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Tamasaburo",
+      hint: "The boxer",
+      positions: [{ top: { x: 973, y: 15 }, bottom: { x: 1022, y: 70 } }],
+    },
+    {
+      quest: "quest6",
+      description: "Find Dororo",
+      hint: "",
+      positions: [{ top: { x: 1709, y: 399 }, bottom: { x: 1831, y: 534 } }],
+    },
+    {
+      quest: "quest7",
+      description: "Find Mustache",
+      hint: "",
+      positions: [{ top: { x: 1642, y: 903 }, bottom: { x: 1733, y: 1068 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find Saruta",
+      hint: "",
+      positions: [{ top: { x: 1190, y: 1211 }, bottom: { x: 1297, y: 1333 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Phenix",
+      hint: "",
+      positions: [{ top: { x: 1388, y: 103 }, bottom: { x: 1755, y: 384 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find Atom",
+      hint: "",
+      positions: [{ top: { x: 341, y: 276 }, bottom: { x: 506, y: 439 } }],
+    },
+    {
+      quest: "quest11",
+      description: "Find Melmo",
+      hint: "",
+      positions: [{ top: { x: 1297, y: 18 }, bottom: { x: 1379, y: 192 } }],
+    },
+    {
+      quest: "quest12",
+      description: "Find Rock",
+      hint: "",
+      positions: [{ top: { x: 436, y: 900 }, bottom: { x: 531, y: 1037 } }],
+    },
+    {
+      quest: "quest13",
+      description: "Find Sharaku",
+      hint: "",
+      positions: [{ top: { x: 772, y: 30 }, bottom: { x: 863, y: 177 } }],
+    },
+    {
+      quest: "quest14",
+      description: "Find Adolf",
+      hint: "",
+      positions: [{ top: { x: 1791, y: 33 }, bottom: { x: 1858, y: 213 } }],
+    },
+    {
+      quest: "quest15",
+      description: "Find Prince Norman",
+      hint: "",
+      positions: [{ top: { x: 1043, y: 9 }, bottom: { x: 1123, y: 192 } }],
+    },
+    {
+      quest: "quest16",
+      description: "Find Manjiro",
+      hint: "",
+      positions: [{ top: { x: 1315, y: 448 }, bottom: { x: 1394, y: 613 } }],
+    },
+    {
+      quest: "quest17",
+      description: "Find Barbara",
+      hint: "",
+      positions: [{ top: { x: 167, y: 1120 }, bottom: { x: 235, y: 1217 } }],
+    },
+    {
+      quest: "quest18",
+      description: "Find Rainbow Parakeet",
+      hint: "",
+      positions: [{ top: { x: 1510, y: 851 }, bottom: { x: 1559, y: 1059 } }],
+    },
+  ],
+  translationSpace: "tezuka",
+  name: "TEZUKA",
+  level: 6,
+  updateDate: new Date(),
+};

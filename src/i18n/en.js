@@ -33,6 +33,7 @@ const translation = {
       "Join the weekly quest for a chance to win! Just complete the quiz, provide your name and email on the board. Draw revealed on instagram (@n.a.y.t.h) on",
     WeeklyMailConsent:
       "I consent to the use of my email address for the prize draw.",
+    FindAction: "Find ",
     error: {
       LoginUserAlreadyExists: "User Name already in use",
       LoginWrongPassword: "Wrong password",
@@ -187,16 +188,16 @@ const translation = {
         hint: "at the end of the world",
       },
       quest8: {
-        title: "Find 2B, 9s (Nier)",
+        title: "Find 2B, 9s",
         hint: "near the bridge",
       },
       quest9: { title: "Find Vivi (Final Fantasy)", hint: "black mage" },
       quest10: {
-        title: "Find Flamy (Legend of Mana)",
+        title: "Find Flamy",
         hint: "a dragon",
       },
       quest11: {
-        title: "Find Nina (Breath of Fire)",
+        title: "Find Nina",
         hint: "next to Ryu",
       },
       quest12: {
@@ -342,36 +343,99 @@ const translation = {
       quest9: { title: "Find a Tamagochi", hint: "" },
       quest10: {
         title: "Find Chop Chop Master",
-        hint: "from Skyward Sword",
+        hint: "",
       },
       quest11: {
         title: "Find Mario",
-        hint: "from Links Awakening",
+        hint: "",
       },
       quest12: {
         title: "Find Sonic",
-        hint: "from Minish cap",
+        hint: "",
       },
       quest13: { title: "Find Optimus Prime", hint: "from Skyward Sword" },
 
       quest14: {
         title: "Find Falcor",
-        hint: "from Wind Waker",
+        hint: "",
       },
       quest15: {
         title: "Find Willow",
-        hint: "from Breath of the Wild",
+        hint: "",
       },
       quest16: {
         title: "Find Dark Vador ",
-        hint: "from Breath of the Wild",
+        hint: "",
       },
-      quest17: { title: "Find Marty", hint: "from Wind Waker" },
+      quest17: { title: "Find Marty", hint: "" },
       quest18: {
         title: "Find Pacman",
-        hint: "from Wind Waker",
+        hint: "",
       },
       quest19: { title: "Find Dorothée", hint: "from Ocarina" },
+
+      dquest1: {
+        title: "Find the duplicate character",
+        hint: "",
+      },
+    },
+
+    tezuka: {
+      quest1: {
+        title: "Find Princess Knight ",
+        hint: "",
+      },
+      quest2: { title: "Find Blackjack", hint: "" },
+      quest3: { title: "Find Bouddha", hint: "" },
+      quest4: {
+        title: "Find Unico",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Tamasaburo",
+        hint: "",
+      },
+      quest6: {
+        title: "Find the Dororo",
+        hint: "",
+      },
+      quest7: { title: "Find Mustache", hint: "" },
+      quest8: {
+        title: "Find Saruta",
+        hint: "",
+      },
+      quest9: { title: "Find Phenix", hint: "" },
+      quest10: {
+        title: "Find Atom",
+        hint: "",
+      },
+      quest11: {
+        title: "Find Melmo",
+        hint: "",
+      },
+      quest12: {
+        title: "Find Rock",
+        hint: "",
+      },
+      quest13: { title: "Find Sharaku", hint: "" },
+
+      quest14: {
+        title: "Find Adolf",
+        hint: "",
+      },
+      quest15: {
+        title: "Find Prince Norman",
+        hint: "",
+      },
+      quest16: {
+        title: "Find Manjiro",
+        hint: "",
+      },
+      quest17: { title: "Find Barbara", hint: "" },
+      quest18: {
+        title: "Find Rainbow Parakeet",
+        hint: "",
+      },
 
       dquest1: {
         title: "Find the duplicate character",

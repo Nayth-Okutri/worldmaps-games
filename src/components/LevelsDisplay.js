@@ -17,6 +17,7 @@ import {
   level3Data,
   level4Data,
   level5Data,
+  level6Data,
 } from "./LevelData";
 import { useAuth } from "../auth";
 import { levelAvailability } from "../gameLevelConfig";
@@ -31,6 +32,7 @@ const importLevels = async () => {
       level3Data,
       level4Data,
       level5Data,
+      level6Data,
     ];
     const dataLevelCollectionRef = collection(getFirestore(), "levelData");
     let docRef;
