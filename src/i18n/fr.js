@@ -33,6 +33,8 @@ const translation = {
       "Participez à la quête hebdomadaire pour avoir une chance de gagner ! Il vous suffit de répondre au quiz et d'indiquer votre nom et votre adresse sur le tableau. Tirage au sort dévoilé sur instagram (@n.a.y.t.h) le ",
     WeeklyMailConsent:
       "Je consens à l'utilisation de mon email pour le tirage au sort.",
+    WeeklyContestFormDesc:
+      "Pour participer au concours de la semaine et avoir une chance de remporter un lot, veuillez entrer votre nom et votre adresse e-mail.",
     FindAction: "Trouve ",
     error: {
       LoginUserAlreadyExists: "Nom d'utilisateur déjà utilisé",

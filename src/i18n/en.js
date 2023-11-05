@@ -33,6 +33,8 @@ const translation = {
       "Join the weekly quest for a chance to win! Just complete the quiz, provide your name and email on the board. Draw revealed on instagram (@n.a.y.t.h) on",
     WeeklyMailConsent:
       "I consent to the use of my email address for the prize draw.",
+    WeeklyContestFormDesc:
+      "To enter this week's contest for a chance to win a prize, please enter your name and email address.",
     FindAction: "Find ",
     error: {
       LoginUserAlreadyExists: "User Name already in use",

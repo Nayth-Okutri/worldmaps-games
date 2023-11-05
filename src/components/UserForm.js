@@ -126,7 +126,7 @@ const UserForm = ({
           <h3>{t("WeeklyContestTitle")}</h3>
           <form>
             <div className="input-section">
-              <p>{t("UserFormScoreDescription")}</p>
+              <p>{t("WeeklyContestFormDesc")}</p>
               <label htmlFor="username">Username</label>
               {player ? (
                 <h2>{player.userName}</h2>
