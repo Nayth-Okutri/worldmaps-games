@@ -919,6 +919,7 @@ const GameLevel = ({
         className={`level-description ${descriptionIsSticky ? "sticky" : ""}`}
       >
         <div className="column">
+          {" "}
           {levelData &&
             typeof currentQuest !== "undefined" &&
             !isNaN(currentQuest) &&
@@ -942,11 +943,10 @@ const GameLevel = ({
             handleHint={handleHint}
             skipQuestion={skipQuestion}
           />
-        </div>
-        <div className="divider"></div> {/* Empty divider */}
-        <div className="column">
           <div className="timer">{currentTime}s</div>
         </div>
+        <div className="divider"></div> {/* Empty divider */}
+        <div className="column"></div>
       </div>
       <div className="game" onClick={handleImageClick}>
         {showHitTarget &&

@@ -162,5 +162,12 @@ max-width: 1170px;
     align-items: center; /* Center horizontally */
     text-align: center; /* Center text horizontally */
     padding: 10px; /* Adjust padding as needed */
+    top: 5px;
+    left: 5px;
+  }
+  .column {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Optional: Align items vertically within the container */
   }
 }
