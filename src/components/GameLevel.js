@@ -121,8 +121,10 @@ const GameLevel = ({
       setContestOfTheWeek(weeklyContests[weekOfYear]);
       const weeklyGameLevel = weeklyContests[weekOfYear].match(/\d+/)[0];
       const weeklyGameMode = weeklyContests[weekOfYear].match(/mode=(\d+)/)[1];
-      const weeklyQuestParam =
-        weeklyContests[weekOfYear].match(/quest=(\w+)/)[1];
+      let weeklyQuestParam;
+      const match = weeklyContests[weekOfYear].match(/quest=(\w+)/);
+      if (match) weeklyQuestParam = match[1];
+
       console.log(
         "params 0 : " + parseInt(weeklyGameLevel) + " " + parseInt(level)
       );
