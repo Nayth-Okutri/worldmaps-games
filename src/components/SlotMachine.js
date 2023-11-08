@@ -6,6 +6,7 @@ const SlotMachine = ({ items }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [rolling, setRolling] = useState(false);
   const slotRef = [useRef()];
+
   const [hasSelected, setHasSelected] = useState(false);
   useEffect(() => {
     // Add a class to the items when the component mounts
@@ -49,11 +50,15 @@ const SlotMachine = ({ items }) => {
       let chosenOption = options[randomOption];
       const offset = -chosenOption.offsetTop + 2;
       setTransform(`translateY(${offset}px)`);
-
+      setSelectedItem(randomOption);
       return items[randomOption];
     }
   };
-
+  const handleRevealEmail = () => {
+    if (items && items.length > 0) {
+      alert(items[selectedItem].email); // Assuming you want to alert the email of the first item
+    }
+  };
   return (
     <div className="SlotMachine">
       <div className="slot">
@@ -64,7 +69,7 @@ const SlotMachine = ({ items }) => {
               Array.isArray(items) &&
               items.map((item, i) => (
                 <div key={i}>
-                  <span>{item.email}</span>
+                  <span>{item.name}</span>
                 </div>
               ))}
           </div>
@@ -78,6 +83,9 @@ const SlotMachine = ({ items }) => {
       >
         {rolling ? "Rolling..." : "ROLL"}
       </div>
+      <button style={{ marginTop: "100px" }} onClick={handleRevealEmail}>
+        Email
+      </button>
     </div>
   );
 };
