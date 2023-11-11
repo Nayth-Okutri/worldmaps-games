@@ -448,6 +448,75 @@ const translation = {
         hint: "",
       },
     },
+
+    onepiece: {
+      quest1: {
+        title: "Trouve Arlong",
+        hint: "",
+      },
+      quest2: { title: "Trouve Bentham", hint: "" },
+      quest3: { title: "Trouve Marco", hint: "" },
+      quest4: {
+        title: "Trouve Rob Lucci",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Law",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve Charlos",
+        hint: "",
+      },
+      quest7: { title: "Trouve Charlotte Linlin", hint: "" },
+      quest8: {
+        title: "Trouve Buggy",
+        hint: "",
+      },
+      quest9: { title: "Trouve Crocodile", hint: "" },
+      quest10: {
+        title: "Trouve Gecko Moria",
+        hint: "",
+      },
+      quest11: {
+        title: "Trouve Enel",
+        hint: "",
+      },
+    },
+    naruto: {
+      quest1: {
+        title: "Trouve Gara",
+        hint: "",
+      },
+      quest2: { title: "Trouve Ten ten", hint: "" },
+      quest3: { title: "Trouve Jiraya", hint: "" },
+      quest4: {
+        title: "Trouve Neji",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Obito",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve Chiyo",
+        hint: "",
+      },
+      quest7: { title: "Trouve Konan", hint: "" },
+      quest8: {
+        title: "Trouve Shikamaru",
+        hint: "",
+      },
+      quest9: { title: "Trouve Karin", hint: "" },
+      quest10: {
+        title: "Trouve Onoki",
+        hint: "",
+      },
+      quest11: {
+        title: "Trouve les membre de l'équipe 7",
+        hint: "",
+      },
+    },
   },
 };
 export default translation;

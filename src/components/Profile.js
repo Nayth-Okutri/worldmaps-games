@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../auth"; // Import your authentication context or method
+import { useParams, useNavigate } from "react-router-dom";
 import "../styles/Profile.css";
 import {
   getFirestore,
@@ -14,6 +15,16 @@ import {
   limit,
   deleteDoc,
 } from "firebase/firestore";
+import {
+  level1Data,
+  level2Data,
+  level3Data,
+  level4Data,
+  level5Data,
+  level6Data,
+  level7Data,
+  level8Data,
+} from "./LevelData";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import Leaderboard from "./Leaderboard";
 import { useUser } from "../userContext";
@@ -30,6 +41,7 @@ const Profile = ({ levelsData, weekOfYear }) => {
   const [userProfile, setUserProfile] = useState(null);
   const db = getFirestore();
   const { t } = useTranslation("menu");
+  let navigate = useNavigate();
   const fetchUserProfile = async (uid) => {
     const q = query(collection(db, "users"), where("userId", "==", uid));
     await getDocs(q).then((snap) => {
@@ -101,6 +113,37 @@ const Profile = ({ levelsData, weekOfYear }) => {
       } else fetchUserActivities();
     }
   }, [currentUser, player]);
+
+  const importLevels = async () => {
+    try {
+      //<button onClick={importLevels}>UPLOAD DATA</button>
+      const levelsData = [
+        level1Data,
+        level2Data,
+        level3Data,
+        level4Data,
+        level5Data,
+        level6Data,
+        level7Data,
+        level8Data,
+      ];
+      const dataLevelCollectionRef = collection(getFirestore(), "levelData");
+      let docRef;
+      levelsData.forEach((levelData) => {
+        docRef = doc(getFirestore(), "levelData", "level" + levelData.level);
+
+        setDoc(docRef, levelData, { merge: true })
+          .then(() => {
+            console.log("Document added or updated successfully!");
+          })
+          .catch((error) => {
+            console.error("Error adding or updating document: ", error);
+          });
+      });
+    } catch (error) {
+      console.error("Error writing new score to Firebase Database", error);
+    }
+  };
   const handleUsernameChange = async () => {
     // Update the username in Firebase Firestore
     setError("");
@@ -138,6 +181,19 @@ const Profile = ({ levelsData, weekOfYear }) => {
   };
   return (
     <div className="profile">
+      {currentUser !== null &&
+        currentUser.uid === "0UwsYLspB9Z0Vke5KrWUdkRHZps1" && (
+          <div>
+            <button
+              onClick={() => {
+                navigate(`/worldmaps/weeklyResults`);
+              }}
+            >
+              weekly contest
+            </button>
+            <button onClick={importLevels}>UPLOAD DATA</button>{" "}
+          </div>
+        )}
       {userProfile ? (
         <>
           <img

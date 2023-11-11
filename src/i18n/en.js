@@ -444,6 +444,75 @@ const translation = {
         hint: "",
       },
     },
+
+    onepiece: {
+      quest1: {
+        title: "Find Arlong",
+        hint: "",
+      },
+      quest2: { title: "Find Bentham", hint: "" },
+      quest3: { title: "Find Marco", hint: "" },
+      quest4: {
+        title: "Find Rob Lucci",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Law",
+        hint: "",
+      },
+      quest6: {
+        title: "Find Charlos",
+        hint: "",
+      },
+      quest7: { title: "Find Charlotte Linlin", hint: "" },
+      quest8: {
+        title: "Find Buggy",
+        hint: "",
+      },
+      quest9: { title: "Find Crocodile", hint: "" },
+      quest10: {
+        title: "Find Gecko Moria",
+        hint: "",
+      },
+      quest11: {
+        title: "Find Enel",
+        hint: "",
+      },
+    },
+    naruto: {
+      quest1: {
+        title: "Find Gara",
+        hint: "",
+      },
+      quest2: { title: "Find Ten ten", hint: "" },
+      quest3: { title: "Find Jiraya", hint: "" },
+      quest4: {
+        title: "Find Neji",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Obito",
+        hint: "",
+      },
+      quest6: {
+        title: "Find Chiyo",
+        hint: "",
+      },
+      quest7: { title: "Find Konan", hint: "" },
+      quest8: {
+        title: "Find Shikamaru",
+        hint: "",
+      },
+      quest9: { title: "Find Karin", hint: "" },
+      quest10: {
+        title: "Find Onoki",
+        hint: "",
+      },
+      quest11: {
+        title: "Find Team 7 members",
+        hint: "",
+      },
+    },
   },
 };
 export default translation;

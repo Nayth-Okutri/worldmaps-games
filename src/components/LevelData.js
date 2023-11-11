@@ -825,3 +825,158 @@ export const level6Data = {
   level: 6,
   updateDate: new Date(),
 };
+
+export const level7Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Arlong",
+      hint: "",
+      positions: [{ top: { x: 528, y: 534 }, bottom: { x: 726, y: 748 } }],
+    },
+    {
+      quest: "quest2",
+      description: "Find Bentham",
+      hint: "",
+      positions: [{ top: { x: 14, y: 448 }, bottom: { x: 158, y: 604 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find Marco",
+      hint: "from Queen",
+      positions: [{ top: { x: 290, y: 316 }, bottom: { x: 352, y: 494 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find Rob Lucci",
+      hint: "the toy",
+      positions: [{ top: { x: 698, y: 570 }, bottom: { x: 854, y: 760 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Law",
+      hint: "The boxer",
+      positions: [{ top: { x: 74, y: 632 }, bottom: { x: 194, y: 766 } }],
+    },
+    {
+      quest: "quest6",
+      description: "Find Charlos",
+      hint: "",
+      positions: [{ top: { x: 1154, y: 1106 }, bottom: { x: 1320, y: 1304 } }],
+    },
+    {
+      quest: "quest7",
+      description: "Find Charlotte Linlin",
+      hint: "",
+      positions: [{ top: { x: 654, y: 312 }, bottom: { x: 810, y: 558 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find Buggy",
+      hint: "",
+      positions: [{ top: { x: 604, y: 982 }, bottom: { x: 710, y: 1144 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Crocodile",
+      hint: "",
+      positions: [{ top: { x: 406, y: 1028 }, bottom: { x: 588, y: 1336 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find Gecko Moria",
+      hint: "",
+      positions: [{ top: { x: 1308, y: 1028 }, bottom: { x: 1430, y: 1208 } }],
+    },
+    {
+      quest: "quest11",
+      description: "Find Enel",
+      hint: "",
+      positions: [{ top: { x: 86, y: 776 }, bottom: { x: 408, y: 978 } }],
+    },
+  ],
+  translationSpace: "onepiece",
+  name: "ONE PIECE",
+  level: 7,
+  updateDate: new Date(),
+};
+
+export const level8Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Gara",
+      hint: "",
+      positions: [{ top: { x: 1234, y: 1164 }, bottom: { x: 1371, y: 1351 } }],
+    },
+    {
+      quest: "quest2",
+      description: "Find Ten ten",
+      hint: "",
+      positions: [{ top: { x: 420, y: 1088 }, bottom: { x: 555, y: 1269 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find Jiraya",
+      hint: "from Queen",
+      positions: [{ top: { x: 300, y: 587 }, bottom: { x: 474, y: 757 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find Neji",
+      hint: "the toy",
+      positions: [{ top: { x: 1018, y: 986 }, bottom: { x: 1219, y: 1175 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Obito",
+      hint: "The boxer",
+      positions: [{ top: { x: 191, y: 740 }, bottom: { x: 282, y: 853 } }],
+    },
+    {
+      quest: "quest6",
+      description: "Find Chiyo",
+      hint: "",
+      positions: [{ top: { x: 698, y: 653 }, bottom: { x: 779, y: 792 } }],
+    },
+    {
+      quest: "quest7",
+      description: "Find Konan",
+      hint: "",
+      positions: [{ top: { x: 452, y: 407 }, bottom: { x: 559, y: 609 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find Shikamaru",
+      hint: "",
+      positions: [{ top: { x: 1480, y: 1071 }, bottom: { x: 1593, y: 1286 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Karin",
+      hint: "",
+      positions: [{ top: { x: 1539, y: 454 }, bottom: { x: 1630, y: 557 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find Onoki",
+      hint: "",
+      positions: [{ top: { x: 657, y: 315 }, bottom: { x: 805, y: 461 } }],
+    },
+    {
+      quest: "quest11",
+      description: "Find Team 7 members",
+      hint: "",
+      positions: [
+        { top: { x: 957, y: 489 }, bottom: { x: 1079, y: 707 } },
+        { top: { x: 1103, y: 635 }, bottom: { x: 1234, y: 909 } },
+        { top: { x: 1567, y: 1040 }, bottom: { x: 1637, y: 1223 } },
+        { top: { x: 1674, y: 876 }, bottom: { x: 1767, y: 1044 } },
+      ],
+    },
+  ],
+  translationSpace: "naruto",
+  name: "NARUTO",
+  level: 8,
+  updateDate: new Date(),
+};
