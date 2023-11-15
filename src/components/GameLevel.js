@@ -147,7 +147,7 @@ const GameLevel = ({
         setIsContestOfTheWeek(true);
       }
     }
-    console.log(gameMode);
+    console.log("level " + level);
     if (!ALL_GAME_MODES.includes(gameMode) && gameMode !== 0)
       showCriticalError("error.GameModeIncorrect");
     if (
@@ -163,7 +163,7 @@ const GameLevel = ({
     setScaledHeight(image.naturalHeight * (zoomLevel / 100));
     toggleCenteringClass();
     window.addEventListener("resize", toggleCenteringClass);
-
+    console.log("levelData" + JSON.stringify(levelData));
     switch (gameMode) {
       case GAME_MODE_DUPLICATE:
         if (levelData && !gameEnded) {
@@ -709,6 +709,10 @@ const GameLevel = ({
     }
     setClickNumber(clickNumber + 1);
     for (let i = 0; i < maxQuestHit; i++) {
+      console.log(
+        workingQuests[currentQuest].positions[i].top,
+        workingQuests[currentQuest].positions[i].bottom
+      );
       if (
         isClickWithinElement(
           workingQuests[currentQuest].positions[i].top,

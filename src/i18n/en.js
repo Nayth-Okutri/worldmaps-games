@@ -513,6 +513,71 @@ const translation = {
         hint: "",
       },
     },
+    gundam: {
+      quest1: {
+        title: "Find Sazabi",
+        hint: "",
+      },
+      quest2: { title: "Find The Witch from Mercury", hint: "" },
+      quest3: { title: "Find a Space colony", hint: "" },
+      quest4: {
+        title: "Find Magelan type spaceship",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Asteroid Base Axis",
+        hint: "",
+      },
+      quest6: {
+        title: "Find a Zaku",
+        hint: "",
+      },
+      quest7: { title: "Find Big Zam", hint: "" },
+      quest8: {
+        title: "Find Lala Sune",
+        hint: "",
+      },
+      quest9: { title: "Find Antogonist of Gundam Zeta", hint: "" },
+      quest10: {
+        title: "Find Seebook and Cecily",
+        hint: "",
+      },
+    },
+
+    metalgear: {
+      quest1: {
+        title: "Find Liquid Snake",
+        hint: "",
+      },
+      quest2: { title: "Find Solidus Snake", hint: "" },
+      quest3: { title: "Find Ninja", hint: "" },
+      quest4: {
+        title: "Find Meryl",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Skull Face",
+        hint: "",
+      },
+      quest6: {
+        title: "Find Ocelot",
+        hint: "",
+      },
+      quest7: { title: "Find Mist Unit", hint: "" },
+      quest8: {
+        title: "Find Raiden",
+        hint: "",
+      },
+      quest9: { title: "Find Miller", hint: "" },
+      quest10: {
+        title: "Find Sunny",
+        hint: "",
+      },
+      quest11: {
+        title: "Find Quiet",
+        hint: "",
+      },
+    },
   },
 };
 export default translation;

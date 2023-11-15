@@ -517,6 +517,72 @@ const translation = {
         hint: "",
       },
     },
+
+    gundam: {
+      quest1: {
+        title: "Trouve Sazabi",
+        hint: "",
+      },
+      quest2: { title: "Trouve The Witch from Mercury", hint: "" },
+      quest3: { title: "Trouve a Space colony", hint: "" },
+      quest4: {
+        title: "Trouve Magelan type spaceship",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Asteroid Base Axis",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve a Zaku",
+        hint: "",
+      },
+      quest7: { title: "Trouve Big Zam", hint: "" },
+      quest8: {
+        title: "Trouve Lala Sune",
+        hint: "",
+      },
+      quest9: { title: "Trouve Antogonist of Gundam Zeta", hint: "" },
+      quest10: {
+        title: "Trouve Seebook and Cecily",
+        hint: "",
+      },
+    },
+
+    metalgear: {
+      quest1: {
+        title: "Trouve Liquid Snake",
+        hint: "",
+      },
+      quest2: { title: "Trouve Solidus Snake", hint: "" },
+      quest3: { title: "Trouve Ninja", hint: "" },
+      quest4: {
+        title: "Trouve Meryl",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Skull Face",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve Ocelot",
+        hint: "",
+      },
+      quest7: { title: "Trouve Mist Unit", hint: "" },
+      quest8: {
+        title: "Trouve Raiden",
+        hint: "",
+      },
+      quest9: { title: "Trouve Miller", hint: "" },
+      quest10: {
+        title: "Trouve Sunny",
+        hint: "",
+      },
+      quest11: {
+        title: "Trouve Quiet",
+        hint: "",
+      },
+    },
   },
 };
 export default translation;

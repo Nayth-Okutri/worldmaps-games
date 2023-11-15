@@ -980,3 +980,147 @@ export const level8Data = {
   level: 8,
   updateDate: new Date(),
 };
+
+export const level9Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Sazabi",
+      hint: "",
+      positions: [{ top: { x: 696, y: 227 }, bottom: { x: 936, y: 654 } }],
+    },
+    {
+      quest: "quest2",
+      description: "Find The Witch from Mercury",
+      hint: "",
+      positions: [{ top: { x: 886, y: 734 }, bottom: { x: 1033, y: 892 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find a Space colony",
+      hint: "",
+      positions: [{ top: { x: 742, y: 923 }, bottom: { x: 1055, y: 1106 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find Magelan type spaceship",
+      hint: "",
+      positions: [{ top: { x: 61, y: 864 }, bottom: { x: 747, y: 1349 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Asteroid Base Axis",
+      hint: "",
+      positions: [{ top: { x: 1448, y: 249 }, bottom: { x: 1587, y: 335 } }],
+    },
+    {
+      quest: "quest6",
+      description: "Find a Zaku",
+      hint: "",
+      positions: [{ top: { x: 1593, y: 439 }, bottom: { x: 1801, y: 661 } }],
+    },
+    {
+      quest: "quest7",
+      description: "Find Big Zam",
+      hint: "",
+      positions: [{ top: { x: 586, y: 15 }, bottom: { x: 817, y: 246 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find Lala Sune",
+      hint: "",
+      positions: [{ top: { x: 1320, y: 321 }, bottom: { x: 1421, y: 379 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Antogonist of Gundam Zeta",
+      hint: "",
+      positions: [{ top: { x: 557, y: 562 }, bottom: { x: 764, y: 798 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find Seebook and Cecily",
+      hint: "",
+      positions: [{ top: { x: 1666, y: 288 }, bottom: { x: 1798, y: 361 } }],
+    },
+  ],
+  translationSpace: "gundam",
+  name: "GUNDAM",
+  level: 9,
+  updateDate: new Date(),
+};
+
+export const level10Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Liquid Snake",
+      hint: "",
+      positions: [{ top: { x: 806, y: 425 }, bottom: { x: 866, y: 590 } }],
+    },
+    {
+      quest: "quest2",
+      description: "Find Solidus Snake ",
+      hint: "",
+      positions: [{ top: { x: 714, y: 837 }, bottom: { x: 793, y: 992 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find Ninja",
+      hint: "",
+      positions: [{ top: { x: 1249, y: 152 }, bottom: { x: 1369, y: 264 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find Meryl",
+      hint: "",
+      positions: [{ top: { x: 1102, y: 919 }, bottom: { x: 1164, y: 1022 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Skull Face",
+      hint: "",
+      positions: [{ top: { x: 987, y: 445 }, bottom: { x: 1038, y: 529 } }],
+    },
+    {
+      quest: "quest6",
+      description: "Find Ocelot",
+      hint: "",
+      positions: [{ top: { x: 1441, y: 1111 }, bottom: { x: 1541, y: 1280 } }],
+    },
+    {
+      quest: "quest7",
+      description: "Find Mist Unit",
+      hint: "",
+      positions: [{ top: { x: 1203, y: 789 }, bottom: { x: 1309, y: 879 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find Raiden",
+      hint: "",
+      positions: [{ top: { x: 1556, y: 853 }, bottom: { x: 1657, y: 974 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Miller",
+      hint: "",
+      positions: [{ top: { x: 531, y: 540 }, bottom: { x: 584, y: 690 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find Sunny",
+      hint: "",
+      positions: [{ top: { x: 599, y: 518 }, bottom: { x: 643, y: 632 } }],
+    },
+    {
+      quest: "quest11",
+      description: "Find Quiet",
+      hint: "",
+      positions: [{ top: { x: 1717, y: 88 }, bottom: { x: 1757, y: 160 } }],
+    },
+  ],
+  translationSpace: "metalgear",
+  name: "METAL GEAR SOLID",
+  level: 10,
+  updateDate: new Date(),
+};
