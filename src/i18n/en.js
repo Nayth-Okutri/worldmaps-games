@@ -578,6 +578,92 @@ const translation = {
         hint: "",
       },
     },
+
+    dbz: {
+      quest1: {
+        title: "Find Cooler",
+        hint: "",
+      },
+      quest2: { title: "Find Ginyu", hint: "" },
+      quest3: { title: "Find Bojack", hint: "" },
+      quest4: {
+        title: "Find Android 14",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Garlic Jr",
+        hint: "",
+      },
+      quest6: {
+        title: "Find Janemba",
+        hint: "",
+      },
+      quest7: { title: "Find Master Kaio", hint: "" },
+      quest8: {
+        title: "Find Dabura",
+        hint: "",
+      },
+      quest9: { title: "Find Dr Gero", hint: "" },
+      quest10: {
+        title: "Find grandpa Gohan",
+        hint: "",
+      },
+      quest11: {
+        title: "Find Chaozu",
+        hint: "",
+      },
+    },
+
+    sailormoon: {
+      quest1: {
+        title: "Find Sailor Team",
+        hint: "",
+      },
+      quest2: { title: "Find Negamoon Sisters", hint: "" },
+      quest3: { title: "Find Jedite", hint: "" },
+      quest4: {
+        title: "Find Wiseman",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Naru",
+        hint: "",
+      },
+      quest6: {
+        title: "Find Black Lady",
+        hint: "",
+      },
+      quest7: { title: "Find Rubeus", hint: "" },
+      quest8: {
+        title: "Find Queen Beryl",
+        hint: "",
+      },
+      quest9: { title: "Find Queen Nehelenia", hint: "" },
+      quest10: {
+        title: "Find Alan and Ann",
+        hint: "",
+      },
+      quest11: {
+        title: "Find Sailor Galaxia",
+        hint: "",
+      },
+      quest12: {
+        title: "Find Helios",
+        hint: "",
+      },
+      quest13: {
+        title: "Find Princess Kakyuu",
+        hint: "",
+      },
+      quest14: {
+        title: "Find Motoki",
+        hint: "",
+      },
+      quest15: {
+        title: "Find Rhett Butler",
+        hint: "",
+      },
+    },
   },
 };
 export default translation;

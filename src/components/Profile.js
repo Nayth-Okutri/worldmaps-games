@@ -26,6 +26,8 @@ import {
   level8Data,
   level9Data,
   level10Data,
+  level11Data,
+  level12Data,
 } from "./LevelData";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import Leaderboard from "./Leaderboard";
@@ -130,6 +132,8 @@ const Profile = ({ levelsData, weekOfYear }) => {
         level8Data,
         level9Data,
         level10Data,
+        level11Data,
+        level12Data,
       ];
       const dataLevelCollectionRef = collection(getFirestore(), "levelData");
       let docRef;

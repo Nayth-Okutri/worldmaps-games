@@ -583,6 +583,92 @@ const translation = {
         hint: "",
       },
     },
+
+    dbz: {
+      quest1: {
+        title: "Trouve Cooler",
+        hint: "",
+      },
+      quest2: { title: "Trouve Ginyu", hint: "" },
+      quest3: { title: "Trouve Bojack", hint: "" },
+      quest4: {
+        title: "Trouve Android 14",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Garlic Jr",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve Janemba",
+        hint: "",
+      },
+      quest7: { title: "Trouve Master Kaio", hint: "" },
+      quest8: {
+        title: "Trouve Dabura",
+        hint: "",
+      },
+      quest9: { title: "Trouve Dr Gero", hint: "" },
+      quest10: {
+        title: "Trouve grandpa Gohan",
+        hint: "",
+      },
+      quest11: {
+        title: "Trouve Chaozu",
+        hint: "",
+      },
+    },
+
+    sailormoon: {
+      quest1: {
+        title: "Trouve Sailor Team",
+        hint: "",
+      },
+      quest2: { title: "Trouve Negamoon Sisters", hint: "" },
+      quest3: { title: "Trouve Jedite", hint: "" },
+      quest4: {
+        title: "Trouve Wiseman",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Naru",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve Black Lady",
+        hint: "",
+      },
+      quest7: { title: "Trouve Rubeus", hint: "" },
+      quest8: {
+        title: "Trouve Queen Beryl",
+        hint: "",
+      },
+      quest9: { title: "Trouve Queen Nehelenia", hint: "" },
+      quest10: {
+        title: "Trouve Alan and Ann",
+        hint: "",
+      },
+      quest11: {
+        title: "Trouve Sailor Galaxia",
+        hint: "",
+      },
+      quest12: {
+        title: "Trouve Helios",
+        hint: "",
+      },
+      quest13: {
+        title: "Trouve Princess Kakyuu",
+        hint: "",
+      },
+      quest14: {
+        title: "Trouve Motoki",
+        hint: "",
+      },
+      quest15: {
+        title: "Trouve Rhett Butler",
+        hint: "",
+      },
+    },
   },
 };
 export default translation;

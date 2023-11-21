@@ -1124,3 +1124,184 @@ export const level10Data = {
   level: 10,
   updateDate: new Date(),
 };
+
+export const level11Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Cooler",
+      hint: "",
+      positions: [{ top: { x: 1358, y: 510 }, bottom: { x: 1550, y: 685 } }],
+    },
+    {
+      quest: "quest2",
+      description: "Find Ginyu",
+      hint: "",
+      positions: [{ top: { x: 192, y: 58 }, bottom: { x: 394, y: 281 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find Bojack",
+      hint: "",
+      positions: [{ top: { x: 61, y: 891 }, bottom: { x: 150, y: 1004 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find Android 14",
+      hint: "",
+      positions: [{ top: { x: 1790, y: 240 }, bottom: { x: 1865, y: 394 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Garlic Jr",
+      hint: "",
+      positions: [{ top: { x: 1323, y: 1015 }, bottom: { x: 1378, y: 1056 } }],
+    },
+    {
+      quest: "quest6",
+      description: "Find Janemba",
+      hint: "",
+      positions: [{ top: { x: 1594, y: 802 }, bottom: { x: 1786, y: 953 } }],
+    },
+    {
+      quest: "quest7",
+      description: "Find Master Kaio",
+      hint: "",
+      positions: [{ top: { x: 1409, y: 932 }, bottom: { x: 1543, y: 1087 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find Dabura",
+      hint: "",
+      positions: [{ top: { x: 1680, y: 6 }, bottom: { x: 1820, y: 137 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Dr Gero",
+      hint: "",
+      positions: [{ top: { x: 113, y: 188 }, bottom: { x: 157, y: 240 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find grandpa Gohan",
+      hint: "",
+      positions: [{ top: { x: 696, y: 1231 }, bottom: { x: 751, y: 1275 } }],
+    },
+    {
+      quest: "quest11",
+      description: "Find Chaozu",
+      hint: "",
+      positions: [{ top: { x: 342, y: 761 }, bottom: { x: 404, y: 829 } }],
+    },
+  ],
+  translationSpace: "dbz",
+  name: "DRAGON BALL Z",
+  level: 11,
+  updateDate: new Date(),
+};
+
+export const level12Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Sailor Team",
+      hint: "",
+      positions: [
+        { top: { x: 215, y: 647 }, bottom: { x: 278, y: 786 } },
+        { top: { x: 362, y: 315 }, bottom: { x: 420, y: 438 } },
+        { top: { x: 1080, y: 149 }, bottom: { x: 1141, y: 286 } },
+        { top: { x: 1026, y: 692 }, bottom: { x: 1098, y: 838 } },
+        { top: { x: 1514, y: 290 }, bottom: { x: 1555, y: 440 } },
+        { top: { x: 1335, y: 518 }, bottom: { x: 1397, y: 643 } },
+      ],
+    },
+    {
+      quest: "quest2",
+      description: "Find Negamoon Sisters",
+      hint: "",
+      positions: [{ top: { x: 1528, y: 965 }, bottom: { x: 1667, y: 1055 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find Jedite",
+      hint: "",
+      positions: [{ top: { x: 557, y: 305 }, bottom: { x: 598, y: 430 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find Wiseman",
+      hint: "",
+      positions: [{ top: { x: 997, y: 924 }, bottom: { x: 1065, y: 1010 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Naru",
+      hint: "",
+      positions: [{ top: { x: 600, y: 938 }, bottom: { x: 641, y: 1063 } }],
+    },
+    {
+      quest: "quest6",
+      description: "Find Black Lady",
+      hint: "",
+      positions: [{ top: { x: 940, y: 930 }, bottom: { x: 1014, y: 1061 } }],
+    },
+    {
+      quest: "quest7",
+      description: "Find Rubeus",
+      hint: "",
+      positions: [{ top: { x: 741, y: 1049 }, bottom: { x: 829, y: 1165 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find Queen Beryl",
+      hint: "",
+      positions: [{ top: { x: 856, y: 239 }, bottom: { x: 938, y: 395 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Queen Nehelenia",
+      hint: "",
+      positions: [{ top: { x: 1672, y: 805 }, bottom: { x: 1719, y: 934 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find Alan, Ann",
+      hint: "",
+      positions: [{ top: { x: 1208, y: 645 }, bottom: { x: 1274, y: 825 } }],
+    },
+    {
+      quest: "quest11",
+      description: "Find Sailor Galaxia",
+      hint: "",
+      positions: [{ top: { x: 491, y: 450 }, bottom: { x: 545, y: 565 } }],
+    },
+    {
+      quest: "quest12",
+      description: "Find Helios",
+      hint: "",
+      positions: [{ top: { x: 1428, y: 1045 }, bottom: { x: 1622, y: 1247 } }],
+    },
+    {
+      quest: "quest13",
+      description: "Find Princess Kakyuu",
+      hint: "",
+      positions: [{ top: { x: 692, y: 180 }, bottom: { x: 747, y: 309 } }],
+    },
+    {
+      quest: "quest14",
+      description: "Find Motoki",
+      hint: "",
+      positions: [{ top: { x: 1145, y: 192 }, bottom: { x: 1196, y: 315 } }],
+    },
+    {
+      quest: "quest15",
+      description: "Find Rhett Butler",
+      hint: "",
+      positions: [{ top: { x: 854, y: 444 }, bottom: { x: 901, y: 493 } }],
+    },
+  ],
+  translationSpace: "sailormoon",
+  name: "SAILOR MOON",
+  level: 12,
+  updateDate: new Date(),
+};
