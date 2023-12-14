@@ -669,6 +669,338 @@ const translation = {
         hint: "",
       },
     },
+
+    berserk: {
+      quest1: {
+        title: "Trouve Schierke",
+        hint: "",
+      },
+      quest2: { title: "Trouve Pippin", hint: "" },
+      quest3: { title: "Trouve Sonia", hint: "" },
+      quest4: {
+        title: "Trouve Demon horse",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Farnèse",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve Casca",
+        hint: "",
+      },
+      quest7: { title: "Trouve Mozgus", hint: "" },
+      quest8: {
+        title: "Trouve Charlotte",
+        hint: "",
+      },
+      quest9: { title: "Trouve Schnoz", hint: "" },
+      quest10: {
+        title: "Trouve Isidro",
+        hint: "",
+      },
+      quest11: {
+        title: "Trouve Serpico",
+        hint: "",
+      },
+    },
+    nier: {
+      quest1: {
+        title: "Trouve Pod 042",
+        hint: "",
+      },
+      quest2: { title: "Trouve Eve", hint: "" },
+      quest3: { title: "Trouve Simone", hint: "" },
+      quest4: {
+        title: "Trouve Girl in Red",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Seere",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve Weiss",
+        hint: "",
+      },
+      quest7: { title: "Trouve Android A2", hint: "" },
+      quest8: {
+        title: "Trouve Android 2B",
+        hint: "",
+      },
+      quest9: { title: "Trouve Kaine", hint: "" },
+      quest10: {
+        title: "Trouve Pascal",
+        hint: "",
+      },
+      quest11: {
+        title: "Trouve Emil",
+        hint: "",
+      },
+    },
+
+    demonslayer: {
+      quest1: {
+        title: "Trouve Tanjiro",
+        hint: "",
+      },
+      quest2: { title: "Trouve Nezuko", hint: "" },
+      quest3: { title: "Trouve Inosuke", hint: "" },
+      quest4: {
+        title: "Trouve Muzan",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Zenitsu",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve Tomioka",
+        hint: "",
+      },
+      quest7: { title: "Trouve Genya", hint: "" },
+      quest8: {
+        title: "Trouve Kanao",
+        hint: "",
+      },
+      quest9: { title: "Trouve Rengoku", hint: "" },
+      quest10: {
+        title: "Trouve Kanroji",
+        hint: "",
+      },
+      quest11: {
+        title: "Trouve Rui",
+        hint: "",
+      },
+      quest12: {
+        title: "Trouve Daki",
+        hint: "",
+      },
+    },
+    hunter: {
+      quest1: {
+        title: "Trouve Gon",
+        hint: "",
+      },
+      quest2: { title: "Trouve Netero", hint: "" },
+      quest3: { title: "Trouve Biscuit", hint: "" },
+      quest4: {
+        title: "Trouve Nanika",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Morel",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve Komugi",
+        hint: "",
+      },
+      quest7: { title: "Trouve Knuckle", hint: "" },
+      quest8: {
+        title: "Trouve Chrollo",
+        hint: "",
+      },
+      quest9: { title: "Trouve Kurapika", hint: "" },
+      quest10: {
+        title: "Trouve Leolio",
+        hint: "",
+      },
+      quest11: {
+        title: "Trouve Genthru",
+        hint: "",
+      },
+      quest12: {
+        title: "Trouve Togashi",
+        hint: "",
+      },
+    },
+    jojo: {
+      quest1: {
+        title: "Trouve Star Platinum",
+        hint: "",
+      },
+      quest2: { title: "Trouve The World", hint: "" },
+      quest3: { title: "Trouve Killer Queen", hint: "" },
+      quest4: {
+        title: "Trouve King Crimson",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Made in Heaven",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve Spice Girl",
+        hint: "",
+      },
+      quest7: { title: "Trouve Bruno Buccellati", hint: "" },
+      quest8: {
+        title: "Trouve D4C",
+        hint: "",
+      },
+      quest9: { title: "Trouve Joseph Joestar", hint: "" },
+      quest10: {
+        title: "Trouve Johnny Joestar",
+        hint: "",
+      },
+      quest11: {
+        title: "Trouve Rohan",
+        hint: "",
+      },
+      quest12: {
+        title: "Trouve Jonathan Joestar",
+        hint: "",
+      },
+    },
+
+    persona: {
+      quest1: {
+        title: "Trouve Shiho",
+        hint: "",
+      },
+      quest2: { title: "Trouve Mara", hint: "" },
+      quest3: { title: "Trouve Kawakami", hint: "" },
+      quest4: {
+        title: "Trouve Futaba",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Buchimaru",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve Jack Frost",
+        hint: "",
+      },
+      quest7: { title: "Trouve Alice", hint: "" },
+      quest8: {
+        title: "Trouve Calling card",
+        hint: "",
+      },
+      quest9: { title: "Trouve Lala-chan", hint: "" },
+      quest10: {
+        title: "Trouve Makoto",
+        hint: "",
+      },
+      quest11: {
+        title: "Trouve Igor",
+        hint: "",
+      },
+      quest12: {
+        title: "Trouve Sae",
+        hint: "",
+      },
+    },
+
+    gainax: {
+      quest1: {
+        title: "Trouve Kamina",
+        hint: "",
+      },
+      quest2: { title: "Trouve Ebichu", hint: "" },
+      quest3: { title: "Trouve King Kitan", hint: "" },
+      quest4: {
+        title: "Trouve Naota",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Lucy",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve King",
+        hint: "",
+      },
+      quest7: { title: "Trouve Mako", hint: "" },
+      quest8: {
+        title: "Trouve Captain Nemo",
+        hint: "",
+      },
+      quest9: { title: "Trouve Akko", hint: "" },
+      quest10: {
+        title: "Trouve Asuka",
+        hint: "",
+      },
+      quest11: {
+        title: "Trouve Kanti",
+        hint: "",
+      },
+      quest12: {
+        title: "Trouve Yoko",
+        hint: "",
+      },
+    },
+
+    snk: {
+      quest1: {
+        title: "Trouve Eren",
+        hint: "",
+      },
+      quest2: { title: "Trouve Mikasa", hint: "" },
+      quest3: { title: "Trouve Levi", hint: "" },
+      quest4: {
+        title: "Trouve War Hammer Titan ",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Armored Titan",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve Jaw Titan",
+        hint: "",
+      },
+      quest7: { title: "Trouve Historia", hint: "" },
+      quest8: {
+        title: "Trouve Annie",
+        hint: "",
+      },
+      quest9: { title: "Trouve Hange", hint: "" },
+      quest10: {
+        title: "Trouve Beast Titan",
+        hint: "",
+      },
+      quest11: {
+        title: "Trouve Cart Titan",
+        hint: "",
+      },
+    },
+
+    clamp: {
+      quest1: {
+        title: "Trouve Clow Reed",
+        hint: "",
+      },
+      quest2: { title: "Trouve Mokona", hint: "" },
+      quest3: { title: "Trouve Kamui", hint: "" },
+      quest4: {
+        title: "Trouve Kobato",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Shaolan Li",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve Chii",
+        hint: "",
+      },
+      quest7: { title: "Trouve Yuzuriha", hint: "" },
+      quest8: {
+        title: "Trouve Tomoyo",
+        hint: "",
+      },
+      quest9: { title: "Trouve Suh", hint: "" },
+      quest10: {
+        title: "Trouve Ioryogi",
+        hint: "",
+      },
+      quest11: {
+        title: "Trouve Sakura",
+        hint: "",
+      },
+    },
   },
 };
 export default translation;

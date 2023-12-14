@@ -1305,3 +1305,715 @@ export const level12Data = {
   level: 12,
   updateDate: new Date(),
 };
+
+export const level13Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Schierke",
+      hint: "",
+      positions: [{ top: { x: 1514, y: 246 }, bottom: { x: 1673, y: 395 } }],
+    },
+    {
+      quest: "quest2",
+      description: "Find Pippin",
+      hint: "",
+      positions: [{ top: { x: 1400, y: 952 }, bottom: { x: 1537, y: 1151 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find Sonia",
+      hint: "",
+      positions: [{ top: { x: 337, y: 823 }, bottom: { x: 415, y: 1022 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find Demon horse",
+      hint: "",
+      positions: [{ top: { x: 597, y: 1100 }, bottom: { x: 692, y: 1259 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Farnèse",
+      hint: "",
+      positions: [{ top: { x: 1645, y: 849 }, bottom: { x: 1763, y: 1059 } }],
+    },
+    {
+      quest: "quest6",
+      description: "Find Casca",
+      hint: "",
+      positions: [{ top: { x: 1410, y: 818 }, bottom: { x: 1479, y: 929 } }],
+    },
+    {
+      quest: "quest7",
+      description: "Find Mozgus",
+      hint: "",
+      positions: [{ top: { x: 68, y: 294 }, bottom: { x: 249, y: 526 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find Charlotte",
+      hint: "",
+      positions: [{ top: { x: 637, y: 740 }, bottom: { x: 692, y: 899 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Schnoz",
+      hint: "",
+      positions: [{ top: { x: 1045, y: 1091 }, bottom: { x: 1106, y: 1148 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find Isidro",
+      hint: "",
+      positions: [{ top: { x: 1345, y: 390 }, bottom: { x: 1476, y: 506 } }],
+    },
+    {
+      quest: "quest11",
+      description: "Find Serpico",
+      hint: "",
+      positions: [{ top: { x: 1657, y: 677 }, bottom: { x: 1788, y: 897 } }],
+    },
+  ],
+  translationSpace: "berserk",
+  name: "BERSERK",
+  level: 13,
+  updateDate: new Date(),
+};
+
+export const level14Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Pod 042",
+      hint: "",
+      positions: [{ top: { x: 530, y: 437 }, bottom: { x: 582, y: 528 } }],
+    },
+    {
+      quest: "quest2",
+      description: "Find Eve",
+      hint: "",
+      positions: [{ top: { x: 1039, y: 227 }, bottom: { x: 1079, y: 261 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find Simone",
+      hint: "",
+      positions: [{ top: { x: 1083, y: 755 }, bottom: { x: 1172, y: 888 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find Girl in Red",
+      hint: "",
+      positions: [{ top: { x: 427, y: 340 }, bottom: { x: 479, y: 446 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Seere",
+      hint: "",
+      positions: [{ top: { x: 1222, y: 177 }, bottom: { x: 1249, y: 269 } }],
+    },
+    {
+      quest: "quest6",
+      description: "Find Weiss",
+      hint: "",
+      positions: [{ top: { x: 1516, y: 693 }, bottom: { x: 1597, y: 753 } }],
+    },
+    {
+      quest: "quest7",
+      description: "Find Android A2",
+      hint: "",
+      positions: [{ top: { x: 1412, y: 313 }, bottom: { x: 1525, y: 474 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find Android 2B",
+      hint: "",
+      positions: [{ top: { x: 711, y: 496 }, bottom: { x: 871, y: 674 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Kaine",
+      hint: "",
+      positions: [{ top: { x: 1597, y: 708 }, bottom: { x: 1666, y: 859 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find Pascal",
+      hint: "",
+      positions: [{ top: { x: 101, y: 913 }, bottom: { x: 204, y: 1009 } }],
+    },
+    {
+      quest: "quest11",
+      description: "Find Emil",
+      hint: "",
+      positions: [
+        { top: { x: 1486, y: 792 }, bottom: { x: 1540, y: 901 } },
+        { top: { x: 1079, y: 562 }, bottom: { x: 1158, y: 1039 } },
+        { top: { x: 1651, y: 1283 }, bottom: { x: 1728, y: 1345 } },
+      ],
+    },
+  ],
+  translationSpace: "nier",
+  name: "NIER",
+  level: 14,
+  updateDate: new Date(),
+};
+
+export const level15Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Tanjiro",
+      hint: "",
+      positions: [{ top: { x: 788, y: 333 }, bottom: { x: 937, y: 481 } }],
+    },
+    {
+      quest: "quest2",
+      description: "Find Nezuko",
+      hint: "",
+      positions: [{ top: { x: 461, y: 483 }, bottom: { x: 687, y: 629 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find Inosuke",
+      hint: "",
+      positions: [{ top: { x: 1196, y: 443 }, bottom: { x: 1335, y: 656 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find Muzan",
+      hint: "",
+      positions: [{ top: { x: 834, y: 1012 }, bottom: { x: 924, y: 1252 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Zenitsu",
+      hint: "",
+      positions: [{ top: { x: 1181, y: 806 }, bottom: { x: 1317, y: 981 } }],
+    },
+    {
+      quest: "quest6",
+      description: "Find Tomioka",
+      hint: "",
+      positions: [{ top: { x: 796, y: 745 }, bottom: { x: 886, y: 856 } }],
+    },
+    {
+      quest: "quest7",
+      description: "Find Genya",
+      hint: "",
+      positions: [{ top: { x: 1395, y: 375 }, bottom: { x: 1460, y: 486 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find Kanao",
+      hint: "",
+      positions: [{ top: { x: 1210, y: 147 }, bottom: { x: 1304, y: 292 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Rengoku",
+      hint: "",
+      positions: [{ top: { x: 1007, y: 668 }, bottom: { x: 1077, y: 792 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find Kanroji",
+      hint: "",
+      positions: [{ top: { x: 264, y: 376 }, bottom: { x: 392, y: 509 } }],
+    },
+    {
+      quest: "quest11",
+      description: "Find Rui",
+      hint: "",
+      positions: [{ top: { x: 1584, y: 892 }, bottom: { x: 1626, y: 1040 } }],
+    },
+    {
+      quest: "quest12",
+      description: "Find Daki",
+      hint: "",
+      positions: [{ top: { x: 67, y: 881 }, bottom: { x: 198, y: 979 } }],
+    },
+  ],
+  translationSpace: "demonslayer",
+  name: "DEMON SLAYER",
+  level: 15,
+  updateDate: new Date(),
+};
+
+export const level16Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Gon",
+      hint: "",
+      positions: [{ top: { x: 748, y: 212 }, bottom: { x: 871, y: 440 } }],
+    },
+    {
+      quest: "quest2",
+      description: "Find Netero",
+      hint: "",
+      positions: [{ top: { x: 394, y: 929 }, bottom: { x: 607, y: 1262 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find Biscuit",
+      hint: "",
+      positions: [{ top: { x: 687, y: 730 }, bottom: { x: 853, y: 870 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find Nanika",
+      hint: "",
+      positions: [{ top: { x: 1287, y: 585 }, bottom: { x: 1506, y: 744 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Morel",
+      hint: "",
+      positions: [{ top: { x: 517, y: 901 }, bottom: { x: 649, y: 1170 } }],
+    },
+    {
+      quest: "quest6",
+      description: "Find Komugi",
+      hint: "",
+      positions: [{ top: { x: 131, y: 1142 }, bottom: { x: 240, y: 1237 } }],
+    },
+    {
+      quest: "quest7",
+      description: "Find Knuckle",
+      hint: "",
+      positions: [{ top: { x: 624, y: 610 }, bottom: { x: 716, y: 761 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find Chrollo",
+      hint: "",
+      positions: [{ top: { x: 1047, y: 834 }, bottom: { x: 1156, y: 1053 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Kurapika",
+      hint: "",
+      positions: [{ top: { x: 310, y: 515 }, bottom: { x: 428, y: 739 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find Leolio",
+      hint: "",
+      positions: [{ top: { x: 1246, y: 201 }, bottom: { x: 1415, y: 387 } }],
+    },
+    {
+      quest: "quest11",
+      description: "Find Genthru",
+      hint: "",
+      positions: [{ top: { x: 1066, y: 155 }, bottom: { x: 1256, y: 310 } }],
+    },
+    {
+      quest: "quest12",
+      description: "Find Togashi",
+      hint: "",
+      positions: [{ top: { x: 1486, y: 673 }, bottom: { x: 1532, y: 709 } }],
+    },
+  ],
+  translationSpace: "hunter",
+  name: "HUNTER x HUNTER",
+  level: 16,
+  updateDate: new Date(),
+};
+
+export const level17Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Star Platinum",
+      hint: "",
+      positions: [{ top: { x: 924, y: 488 }, bottom: { x: 1050, y: 600 } }],
+    },
+    {
+      quest: "quest2",
+      description: "Find The World",
+      hint: "",
+      positions: [{ top: { x: 803, y: 546 }, bottom: { x: 954, y: 667 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find Killer Queen",
+      hint: "",
+      positions: [{ top: { x: 594, y: 247 }, bottom: { x: 695, y: 362 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find King Crimson",
+      hint: "",
+      positions: [{ top: { x: 1020, y: 967 }, bottom: { x: 1136, y: 1118 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Made in Heaven",
+      hint: "",
+      positions: [{ top: { x: 1433, y: 702 }, bottom: { x: 1506, y: 886 } }],
+    },
+    {
+      quest: "quest6",
+      description: "Find Spice Girl",
+      hint: "",
+      positions: [{ top: { x: 546, y: 702 }, bottom: { x: 599, y: 755 } }],
+    },
+    {
+      quest: "quest7",
+      description: "Find Bruno Buccellati",
+      hint: "",
+      positions: [{ top: { x: 781, y: 1133 }, bottom: { x: 866, y: 1234 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find D4C",
+      hint: "",
+      positions: [{ top: { x: 229, y: 934 }, bottom: { x: 307, y: 1101 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Joseph Joestar",
+      hint: "",
+      positions: [{ top: { x: 262, y: 609 }, bottom: { x: 332, y: 765 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find Johnny Joestar",
+      hint: "",
+      positions: [{ top: { x: 377, y: 839 }, bottom: { x: 448, y: 985 } }],
+    },
+    {
+      quest: "quest11",
+      description: "Find Rohan",
+      hint: "",
+      positions: [{ top: { x: 312, y: 566 }, bottom: { x: 375, y: 690 } }],
+    },
+    {
+      quest: "quest12",
+      description: "Find Jonathan Joestar",
+      hint: "",
+      positions: [{ top: { x: 456, y: 282 }, bottom: { x: 521, y: 375 } }],
+    },
+  ],
+  translationSpace: "jojo",
+  name: "JOJO",
+  level: 17,
+  updateDate: new Date(),
+};
+
+export const level18Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Shiho",
+      hint: "",
+      positions: [{ top: { x: 176, y: 967 }, bottom: { x: 234, y: 1096 } }],
+    },
+    {
+      quest: "quest2",
+      description: "Find Mara",
+      hint: "",
+      positions: [{ top: { x: 1239, y: 1191 }, bottom: { x: 1337, y: 1302 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find Kawakami",
+      hint: "",
+      positions: [{ top: { x: 108, y: 907 }, bottom: { x: 173, y: 1035 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find Futaba",
+      hint: "",
+      positions: [{ top: { x: 1060, y: 214 }, bottom: { x: 1191, y: 307 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Buchimaru",
+      hint: "",
+      positions: [{ top: { x: 760, y: 972 }, bottom: { x: 798, y: 1025 } }],
+    },
+    {
+      quest: "quest6",
+      description: "Find Jack Frost",
+      hint: "",
+      positions: [{ top: { x: 675, y: 524 }, bottom: { x: 720, y: 597 } }],
+    },
+    {
+      quest: "quest7",
+      description: "Find Alice",
+      hint: "",
+      positions: [{ top: { x: 425, y: 758 }, bottom: { x: 476, y: 864 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find Calling card",
+      hint: "",
+      positions: [{ top: { x: 1731, y: 831 }, bottom: { x: 1819, y: 942 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Lala-chan",
+      hint: "",
+      positions: [{ top: { x: 448, y: 1073 }, bottom: { x: 514, y: 1184 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find Makoto",
+      hint: "",
+      positions: [{ top: { x: 1035, y: 607 }, bottom: { x: 1116, y: 723 } }],
+    },
+    {
+      quest: "quest11",
+      description: "Find Igor",
+      hint: "",
+      positions: [{ top: { x: 939, y: 1224 }, bottom: { x: 995, y: 1302 } }],
+    },
+    {
+      quest: "quest12",
+      description: "Find Sae",
+      hint: "",
+      positions: [
+        { top: { x: 277, y: 768 }, bottom: { x: 327, y: 909 } },
+        { top: { x: 1385, y: 640 }, bottom: { x: 1496, y: 783 } },
+      ],
+    },
+  ],
+  translationSpace: "persona",
+  name: "PERSONA 5 ROYAL",
+  level: 18,
+  updateDate: new Date(),
+};
+
+export const level19Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Kamina",
+      hint: "",
+      positions: [{ top: { x: 1073, y: 826 }, bottom: { x: 1166, y: 1002 } }],
+    },
+    {
+      quest: "quest2",
+      description: "Find Ebichu",
+      hint: "",
+      positions: [{ top: { x: 796, y: 1053 }, bottom: { x: 816, y: 1096 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find King Kitan",
+      hint: "",
+      positions: [{ top: { x: 1723, y: 279 }, bottom: { x: 1844, y: 451 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find Naota",
+      hint: "",
+      positions: [{ top: { x: 710, y: 461 }, bottom: { x: 834, y: 589 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Lucy",
+      hint: "",
+      positions: [{ top: { x: 1520, y: 340 }, bottom: { x: 1584, y: 480 } }],
+    },
+    {
+      quest: "quest6",
+      description: "Find King",
+      hint: "",
+      positions: [{ top: { x: 1468, y: 1058 }, bottom: { x: 1534, y: 1121 } }],
+    },
+    {
+      quest: "quest7",
+      description: "Find Mako",
+      hint: "",
+      positions: [{ top: { x: 1713, y: 879 }, bottom: { x: 1758, y: 1015 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find Captain Nemo",
+      hint: "",
+      positions: [{ top: { x: 1214, y: 874 }, bottom: { x: 1274, y: 1098 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Akko",
+      hint: "",
+      positions: [{ top: { x: 312, y: 687 }, bottom: { x: 408, y: 864 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find Asuka",
+      hint: "",
+      positions: [{ top: { x: 113, y: 1106 }, bottom: { x: 317, y: 1164 } }],
+    },
+    {
+      quest: "quest11",
+      description: "Find Kanti",
+      hint: "",
+      positions: [{ top: { x: 1547, y: 783 }, bottom: { x: 1650, y: 1028 } }],
+    },
+    {
+      quest: "quest12",
+      description: "Find Yoko",
+      hint: "",
+      positions: [{ top: { x: 1242, y: 403 }, bottom: { x: 1297, y: 544 } }],
+    },
+  ],
+  translationSpace: "gainax",
+  name: "GAINAX TRIGGER",
+  level: 19,
+  updateDate: new Date(),
+};
+
+export const level20Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Eren",
+      hint: "",
+      positions: [{ top: { x: 1007, y: 597 }, bottom: { x: 1166, y: 788 } }],
+    },
+    {
+      quest: "quest2",
+      description: "Find Mikasa",
+      hint: "",
+      positions: [{ top: { x: 1229, y: 60 }, bottom: { x: 1451, y: 413 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find Levi",
+      hint: "",
+      positions: [{ top: { x: 642, y: 254 }, bottom: { x: 740, y: 370 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find War Hammer Titan ",
+      hint: "",
+      positions: [{ top: { x: 1509, y: 499 }, bottom: { x: 1562, y: 675 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Armored Titan",
+      hint: "",
+      positions: [{ top: { x: 539, y: 589 }, bottom: { x: 687, y: 765 } }],
+    },
+    {
+      quest: "quest6",
+      description: "Find Jaw Titan",
+      hint: "",
+      positions: [{ top: { x: 1647, y: 677 }, bottom: { x: 1741, y: 760 } }],
+    },
+    {
+      quest: "quest7",
+      description: "Find Historia",
+      hint: "",
+      positions: [{ top: { x: 927, y: 1096 }, bottom: { x: 997, y: 1252 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find Annie",
+      hint: "",
+      positions: [{ top: { x: 1597, y: 861 }, bottom: { x: 1660, y: 1043 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Hange",
+      hint: "",
+      positions: [{ top: { x: 1040, y: 113 }, bottom: { x: 1111, y: 259 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find Beast Titan",
+      hint: "",
+      positions: [{ top: { x: 307, y: 314 }, bottom: { x: 405, y: 466 } }],
+    },
+    {
+      quest: "quest11",
+      description: "Find Cart Titan",
+      hint: "",
+      positions: [{ top: { x: 148, y: 375 }, bottom: { x: 257, y: 473 } }],
+    },
+  ],
+  translationSpace: "snk",
+  name: "ATTACK ON TITAN",
+  level: 20,
+  updateDate: new Date(),
+};
+
+export const level21Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Clow Reed",
+      hint: "",
+      positions: [{ top: { x: 1500, y: 834 }, bottom: { x: 1605, y: 1065 } }],
+    },
+    {
+      quest: "quest2",
+      description: "Find Mokona",
+      hint: "",
+      positions: [{ top: { x: 1272, y: 1146 }, bottom: { x: 1350, y: 1209 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find Kamui",
+      hint: "",
+      positions: [{ top: { x: 1267, y: 400 }, bottom: { x: 1342, y: 670 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find Kobato",
+      hint: "",
+      positions: [{ top: { x: 1141, y: 870 }, bottom: { x: 1200, y: 1118 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Shaolan Li",
+      hint: "",
+      positions: [{ top: { x: 219, y: 206 }, bottom: { x: 337, y: 370 } }],
+    },
+    {
+      quest: "quest6",
+      description: "Find Chii",
+      hint: "",
+      positions: [{ top: { x: 362, y: 894 }, bottom: { x: 501, y: 1123 } }],
+    },
+    {
+      quest: "quest7",
+      description: "Find Yuzuriha",
+      hint: "",
+      positions: [{ top: { x: 362, y: 304 }, bottom: { x: 428, y: 531 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find Tomoyo",
+      hint: "",
+      positions: [{ top: { x: 1436, y: 25 }, bottom: { x: 1554, y: 244 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Suh",
+      hint: "",
+      positions: [{ top: { x: 972, y: 899 }, bottom: { x: 1030, y: 1164 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find Ioryogi",
+      hint: "",
+      positions: [{ top: { x: 1355, y: 990 }, bottom: { x: 1451, y: 1080 } }],
+    },
+    {
+      quest: "quest11",
+      description: "Find Sakura",
+      hint: "",
+      positions: [{ top: { x: 697, y: 539 }, bottom: { x: 924, y: 763 } }],
+    },
+  ],
+  translationSpace: "clamp",
+  name: "CLAMP",
+  level: 21,
+  updateDate: new Date(),
+};

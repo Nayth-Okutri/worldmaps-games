@@ -664,6 +664,338 @@ const translation = {
         hint: "",
       },
     },
+
+    berserk: {
+      quest1: {
+        title: "Find Schierke",
+        hint: "",
+      },
+      quest2: { title: "Find Pippin", hint: "" },
+      quest3: { title: "Find Sonia", hint: "" },
+      quest4: {
+        title: "Find Demon horse",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Farnèse",
+        hint: "",
+      },
+      quest6: {
+        title: "Find Casca",
+        hint: "",
+      },
+      quest7: { title: "Find Mozgus", hint: "" },
+      quest8: {
+        title: "Find Charlotte",
+        hint: "",
+      },
+      quest9: { title: "Find Schnoz", hint: "" },
+      quest10: {
+        title: "Find Isidro",
+        hint: "",
+      },
+      quest11: {
+        title: "Find Serpico",
+        hint: "",
+      },
+    },
+    nier: {
+      quest1: {
+        title: "Find Pod 042",
+        hint: "",
+      },
+      quest2: { title: "Find Eve", hint: "" },
+      quest3: { title: "Find Simone", hint: "" },
+      quest4: {
+        title: "Find Girl in Red",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Seere",
+        hint: "",
+      },
+      quest6: {
+        title: "Find Weiss",
+        hint: "",
+      },
+      quest7: { title: "Find Android A2", hint: "" },
+      quest8: {
+        title: "Find Android 2B",
+        hint: "",
+      },
+      quest9: { title: "Find Kaine", hint: "" },
+      quest10: {
+        title: "Find Pascal",
+        hint: "",
+      },
+      quest11: {
+        title: "Find Emil",
+        hint: "",
+      },
+    },
+
+    demonslayer: {
+      quest1: {
+        title: "Find Tanjiro",
+        hint: "",
+      },
+      quest2: { title: "Find Nezuko", hint: "" },
+      quest3: { title: "Find Inosuke", hint: "" },
+      quest4: {
+        title: "Find Muzan",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Zenitsu",
+        hint: "",
+      },
+      quest6: {
+        title: "Find Tomioka",
+        hint: "",
+      },
+      quest7: { title: "Find Genya", hint: "" },
+      quest8: {
+        title: "Find Kanao",
+        hint: "",
+      },
+      quest9: { title: "Find Rengoku", hint: "" },
+      quest10: {
+        title: "Find Kanroji",
+        hint: "",
+      },
+      quest11: {
+        title: "Find Rui",
+        hint: "",
+      },
+      quest12: {
+        title: "Find Daki",
+        hint: "",
+      },
+    },
+    hunter: {
+      quest1: {
+        title: "Find Gon",
+        hint: "",
+      },
+      quest2: { title: "Find Netero", hint: "" },
+      quest3: { title: "Find Biscuit", hint: "" },
+      quest4: {
+        title: "Find Nanika",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Morel",
+        hint: "",
+      },
+      quest6: {
+        title: "Find Komugi",
+        hint: "",
+      },
+      quest7: { title: "Find Knuckle", hint: "" },
+      quest8: {
+        title: "Find Chrollo",
+        hint: "",
+      },
+      quest9: { title: "Find Kurapika", hint: "" },
+      quest10: {
+        title: "Find Leolio",
+        hint: "",
+      },
+      quest11: {
+        title: "Find Genthru",
+        hint: "",
+      },
+      quest12: {
+        title: "Find Togashi",
+        hint: "",
+      },
+    },
+    jojo: {
+      quest1: {
+        title: "Find Star Platinum",
+        hint: "",
+      },
+      quest2: { title: "Find The World", hint: "" },
+      quest3: { title: "Find Killer Queen", hint: "" },
+      quest4: {
+        title: "Find King Crimson",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Made in Heaven",
+        hint: "",
+      },
+      quest6: {
+        title: "Find Spice Girl",
+        hint: "",
+      },
+      quest7: { title: "Find Bruno Buccellati", hint: "" },
+      quest8: {
+        title: "Find D4C",
+        hint: "",
+      },
+      quest9: { title: "Find Joseph Joestar", hint: "" },
+      quest10: {
+        title: "Find Johnny Joestar",
+        hint: "",
+      },
+      quest11: {
+        title: "Find Rohan",
+        hint: "",
+      },
+      quest12: {
+        title: "Find Jonathan Joestar",
+        hint: "",
+      },
+    },
+
+    persona: {
+      quest1: {
+        title: "Find Shiho",
+        hint: "",
+      },
+      quest2: { title: "Find Mara", hint: "" },
+      quest3: { title: "Find Kawakami", hint: "" },
+      quest4: {
+        title: "Find Futaba",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Buchimaru",
+        hint: "",
+      },
+      quest6: {
+        title: "Find Jack Frost",
+        hint: "",
+      },
+      quest7: { title: "Find Alice", hint: "" },
+      quest8: {
+        title: "Find Calling card",
+        hint: "",
+      },
+      quest9: { title: "Find Lala-chan", hint: "" },
+      quest10: {
+        title: "Find Makoto",
+        hint: "",
+      },
+      quest11: {
+        title: "Find Igor",
+        hint: "",
+      },
+      quest12: {
+        title: "Find Sae",
+        hint: "",
+      },
+    },
+
+    gainax: {
+      quest1: {
+        title: "Find Kamina",
+        hint: "",
+      },
+      quest2: { title: "Find Ebichu", hint: "" },
+      quest3: { title: "Find King Kitan", hint: "" },
+      quest4: {
+        title: "Find Naota",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Lucy",
+        hint: "",
+      },
+      quest6: {
+        title: "Find King",
+        hint: "",
+      },
+      quest7: { title: "Find Mako", hint: "" },
+      quest8: {
+        title: "Find Captain Nemo",
+        hint: "",
+      },
+      quest9: { title: "Find Akko", hint: "" },
+      quest10: {
+        title: "Find Asuka",
+        hint: "",
+      },
+      quest11: {
+        title: "Find Kanti",
+        hint: "",
+      },
+      quest12: {
+        title: "Find Yoko",
+        hint: "",
+      },
+    },
+
+    snk: {
+      quest1: {
+        title: "Find Eren",
+        hint: "",
+      },
+      quest2: { title: "Find Mikasa", hint: "" },
+      quest3: { title: "Find Levi", hint: "" },
+      quest4: {
+        title: "Find War Hammer Titan ",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Armored Titan",
+        hint: "",
+      },
+      quest6: {
+        title: "Find Jaw Titan",
+        hint: "",
+      },
+      quest7: { title: "Find Historia", hint: "" },
+      quest8: {
+        title: "Find Annie",
+        hint: "",
+      },
+      quest9: { title: "Find Hange", hint: "" },
+      quest10: {
+        title: "Find Beast Titan",
+        hint: "",
+      },
+      quest11: {
+        title: "Find Cart Titan",
+        hint: "",
+      },
+    },
+
+    clamp: {
+      quest1: {
+        title: "Find Clow Reed",
+        hint: "",
+      },
+      quest2: { title: "Find Mokona", hint: "" },
+      quest3: { title: "Find Kamui", hint: "" },
+      quest4: {
+        title: "Find Kobato",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Shaolan Li",
+        hint: "",
+      },
+      quest6: {
+        title: "Find Chii",
+        hint: "",
+      },
+      quest7: { title: "Find Yuzuriha", hint: "" },
+      quest8: {
+        title: "Find Tomoyo",
+        hint: "",
+      },
+      quest9: { title: "Find Suh", hint: "" },
+      quest10: {
+        title: "Find Ioryogi",
+        hint: "",
+      },
+      quest11: {
+        title: "Find Sakura",
+        hint: "",
+      },
+    },
   },
 };
 export default translation;
