@@ -11,46 +11,11 @@ import {
   GAME_MODE_TIMEATTACK,
   GAME_MODE_ALLQUESTS,
 } from "./Constants";
-import {
-  level1Data,
-  level2Data,
-  level3Data,
-  level4Data,
-  level5Data,
-  level6Data,
-} from "./LevelData";
+
 import { useAuth } from "../auth";
 import { levelAvailability } from "../gameLevelConfig";
 import { weeklyContests } from "../gameLevelConfig";
 
-const importLevels = async () => {
-  try {
-    //<button onClick={importLevels}>UPLOAD DATA</button>
-    const levelsData = [
-      level1Data,
-      level2Data,
-      level3Data,
-      level4Data,
-      level5Data,
-      level6Data,
-    ];
-    const dataLevelCollectionRef = collection(getFirestore(), "levelData");
-    let docRef;
-    levelsData.forEach((levelData) => {
-      docRef = doc(getFirestore(), "levelData", "level" + levelData.level);
-
-      setDoc(docRef, levelData, { merge: true })
-        .then(() => {
-          console.log("Document added or updated successfully!");
-        })
-        .catch((error) => {
-          console.error("Error adding or updating document: ", error);
-        });
-    });
-  } catch (error) {
-    console.error("Error writing new score to Firebase Database", error);
-  }
-};
 const LevelsDisplay = ({
   levelsData,
   weekOfYear,

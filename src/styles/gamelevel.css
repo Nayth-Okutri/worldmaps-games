@@ -31,7 +31,9 @@
 .level-description.sticky {
   box-shadow: 0px 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
-
+.level-description.minimal {
+  display: none;
+}
 .level-description p {
   font-size: 1.25rem;
 }

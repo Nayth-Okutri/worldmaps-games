@@ -1,0 +1,41 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+}
+
+.sidebar {
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 25%;
+}
+
+.game-level {
+  flex: 1;
+  padding: 20px;
+}
+.quest-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quest-link {
+  text-decoration: none;
+  color: #333; /* Change the color as needed */
+  display: block;
+  padding: 5px 0; /* Adjust padding as desired */
+}
+
+.quest-link:hover {
+  background-color: #f0f0f0; /* Optional: Add hover background color */
+}
+
+.quest-link.selected {
+  color: blue; /* Change to the color you want for selected item */
+  /* Add any other styles for the selected item */
+}

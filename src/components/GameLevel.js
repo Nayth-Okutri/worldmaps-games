@@ -34,8 +34,18 @@ const GameLevel = ({
   isNameInLeaderboardRepeated,
   updateLeaderboardData,
   weekOfYear,
+  inputLevel,
+  inputGameMode,
+  inputQuest,
+  minimalMode,
+  forceReload = false,
+  reloadDone,
 }) => {
-  const level = +useParams().level;
+  //const level = +useParams().level;
+  const { level: urlLevel } = useParams(); // Get the 'level' parameter from the URL
+
+  // Set 'level' to the URL parameter if it exists, otherwise use the inputLevel
+  const level = urlLevel ? +urlLevel : inputLevel;
   const levelData = levelsData.filter((value) => value.level === level)[0];
 
   const ALL_GAME_MODES = [
@@ -99,6 +109,8 @@ const GameLevel = ({
   const [loading, setLoading] = useState(true);
   const [contestOfTheWeek, setContestOfTheWeek] = useState();
   const [isContestOfTheWeek, setIsContestOfTheWeek] = useState(false);
+  const [prevQuest, setPrevQuest] = useState();
+
   useEffect(() => {
     const cachedRef = descriptionRef.current;
     const queryParams = new URLSearchParams(window.location.search);
@@ -107,7 +119,17 @@ const GameLevel = ({
 
     setGameMode(modeParam); // This will set the value of the 'mode' parameter
     setSingleQuest(paramQuest);
-    if (isNaN(modeParam)) setGameMode(GAME_MODE_10_QUESTS);
+    if (typeof inputQuest !== "undefined") setSingleQuest(inputQuest);
+    console.log(inputGameMode);
+    if (isNaN(modeParam) && isNaN(inputGameMode))
+      setGameMode(GAME_MODE_10_QUESTS);
+    else if (!isNaN(inputGameMode)) setGameMode(inputGameMode);
+
+    if (!isNaN(inputLevel)) {
+      const hashedImagePath = getHashedAssetPath(`level-${inputLevel}`);
+      setImageSource(hashedImagePath);
+    }
+
     const observer = new IntersectionObserver(
       ([e]) => setDescriptionIsSticky(e.intersectionRatio < 1),
       {
@@ -148,15 +170,17 @@ const GameLevel = ({
       }
     }
     console.log("level " + level);
+
     if (!ALL_GAME_MODES.includes(gameMode) && gameMode !== 0)
       showCriticalError("error.GameModeIncorrect");
     if (
       levelsData.length > 0 &&
+      !isNaN(level) &&
       levelsData.filter((value) => value.level === level).length === 0
     )
       showCriticalError("error.LevelNotFound");
 
-    observer.observe(cachedRef);
+    if (typeof cachedRef !== "undefined") observer.observe(cachedRef);
     const image = document.getElementById("levelImage");
 
     setScaledWidth(image.naturalWidth * (zoomLevel / 100));
@@ -268,11 +292,12 @@ const GameLevel = ({
         break;
       case GAME_MODE_ONEQUEST:
         console.log("singleQuest " + singleQuest);
+        console.log("singleQuest " + prevQuest);
         if (levelData && !gameEnded) {
-          if (questCount === 0) {
+          if (questCount === 0 || singleQuest !== prevQuest || forceReload) {
             let regularQuests;
             setTranslationSpace(levelData.translationSpace);
-            if (questCount === 0) {
+            if (questCount === 0 || singleQuest !== prevQuest || forceReload) {
               regularQuests = levelData.quests.filter(
                 (quest) => quest.quest === singleQuest
               );
@@ -298,6 +323,8 @@ const GameLevel = ({
             setTimeout(() => {
               setShowRedQuestion(false); // Reset the showRedQuestion state after 1 second
             }, 1000);
+            setPrevQuest(singleQuest);
+            if (typeof reloadDone !== "undefined") reloadDone();
           }
         }
         if (levelData && workingQuests[currentQuest]) {
@@ -369,6 +396,9 @@ const GameLevel = ({
     };
   }, [
     levelsData,
+    inputLevel,
+    inputQuest,
+    singleQuest,
     hits,
     currentQuest,
     questCount,
@@ -606,9 +636,11 @@ const GameLevel = ({
     setShowErrorModal(true);
   };
   const endGame = () => {
-    setGameEnded(true);
-    setEndTime((Date.now() - startTime.current) / 1000); // To milliseconds to seconds
-    setShouldDisplayForm(true);
+    if (!minimalMode) {
+      setGameEnded(true);
+      setEndTime((Date.now() - startTime.current) / 1000); // To milliseconds to seconds
+      setShouldDisplayForm(true);
+    }
   };
 
   const submitScore = (event) => {
@@ -920,9 +952,12 @@ const GameLevel = ({
             }
           />
         )}
+
       <div
         ref={descriptionRef}
-        className={`level-description ${descriptionIsSticky ? "sticky" : ""}`}
+        className={`level-description ${descriptionIsSticky ? "sticky" : ""} ${
+          minimalMode ? "minimal" : ""
+        }`}
       >
         <div className="column">
           {" "}
@@ -954,6 +989,7 @@ const GameLevel = ({
         <div className="divider"></div> {/* Empty divider */}
         <div className="column"></div>
       </div>
+
       <div className="game" onClick={handleImageClick}>
         {showHitTarget &&
           indicators.map((indicator, index) => (

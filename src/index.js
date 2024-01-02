@@ -5,7 +5,7 @@ import { AuthProvider } from "./auth";
 import { UserProvider } from "./userContext"; // Import the UserProvider from your context file
 
 if (process.env.NODE_ENV === "production") {
-  console.log = () => {};
+  //  console.log = () => {};
   console.error = () => {};
   console.debug = () => {};
 }

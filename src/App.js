@@ -23,7 +23,7 @@ import PopupForm from "./components/PopupForm";
 import PopupResults from "./components/PopupResults";
 import SlotMachine from "./components/SlotMachine";
 import WeeklyContestDraw from "./components/WeeklyContestDraw";
-
+import Catalog from "./components/Catalog";
 import "./styles/app.css";
 import "./assets/fonts/Oswald-Bold.ttf";
 
@@ -50,6 +50,7 @@ function App() {
   const [levelsData, setLevelsData] = useState([]);
   const [leaderboardData, setLeaderboardData] = useState([]);
   const [weekOfYear, setWeekOfYear] = useState(0);
+
   const getLeaderboardData = async () => {
     console.log("weekOfYear " + weekOfYear);
     const leaderboardCollectionRef = collection(getFirestore(), "leaderboard");
@@ -90,11 +91,20 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Heading />
       <Routes>
         <Route
+          path="/worldmaps/catalog"
+          element={<Catalog levelsData={levelsData} weekOfYear={weekOfYear} />}
+        />
+        <Route path="/" element={<Heading />} />
+        <Route
           path="/worldmaps"
-          element={<Home levelsData={levelsData} weekOfYear={weekOfYear} />}
+          element={
+            <>
+              <Heading />
+              <Home levelsData={levelsData} weekOfYear={weekOfYear} />{" "}
+            </>
+          }
         />
         <Route path="/worldmaps/popupform" element={<PopupForm />} />
         <Route
@@ -107,17 +117,26 @@ function App() {
         />
         <Route
           path="/worldmaps/profile"
-          element={<Profile levelsData={levelsData} weekOfYear={weekOfYear} />}
+          element={
+            <>
+              <Heading />
+              <Profile levelsData={levelsData} weekOfYear={weekOfYear} />
+            </>
+          }
         />
+
         <Route
           path="worldmaps/leaderboard"
           element={
-            <Leaderboard
-              levelsData={levelsData}
-              weekOfYear={weekOfYear}
-              leaderboardData={leaderboardData}
-              minimalMode={false}
-            />
+            <>
+              <Heading />
+              <Leaderboard
+                levelsData={levelsData}
+                weekOfYear={weekOfYear}
+                leaderboardData={leaderboardData}
+                minimalMode={false}
+              />
+            </>
           }
         >
           <Route path=":level" element={<div></div>} />
@@ -126,15 +145,26 @@ function App() {
           <Route
             path=":level"
             element={
-              <GameLevel
-                levelsData={levelsData}
-                updateLeaderboardData={getLeaderboardData}
-                weekOfYear={weekOfYear}
-              />
+              <>
+                <Heading />
+                <GameLevel
+                  levelsData={levelsData}
+                  updateLeaderboardData={getLeaderboardData}
+                  weekOfYear={weekOfYear}
+                />
+              </>
             }
           />
         </Route>
-        <Route path="*" element={<NotFound />} />
+        <Route
+          path="*"
+          element={
+            <>
+              <Heading />
+              <NotFound />
+            </>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

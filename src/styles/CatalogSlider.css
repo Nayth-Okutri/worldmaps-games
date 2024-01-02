@@ -1,0 +1,19 @@
+.levels-display-hor {
+  display: flex; /* Use flexbox for horizontal alignment */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  gap: 10px; /* Add some space between items */
+}
+
+.level {
+  flex: 0 0 200px; /* Maintain a fixed width of 200px */
+  text-align: center; /* Center-align contents */
+}
+
+.level img {
+  width: 100%; /* Ensure images fill their containers */
+}
+
+.level h2 {
+  /* Style the title below the thumbnail */
+  margin-top: 5px; /* Add space between thumbnail and title */
+}
