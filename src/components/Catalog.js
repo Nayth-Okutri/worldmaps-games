@@ -12,7 +12,7 @@ import {
   GAME_MODE_ONEQUEST,
 } from "./Constants";
 
-const LeftSidebar = ({ levelsData, level, onQuestClick }) => {
+const LeftSidebar = ({ levelsData, level, onQuestClick, completedQuests }) => {
   const { t } = useTranslation("gamequests");
   const [translationSpace, setTranslationSpace] = useState();
   const levelData = levelsData.filter((value) => value.level === level)[0];
@@ -50,7 +50,7 @@ const LeftSidebar = ({ levelsData, level, onQuestClick }) => {
               href="#"
               className={`quest-link ${
                 selectedQuestIndex === index ? "selected" : ""
-              }`}
+              } ${completedQuests.includes(quest.quest) ? "completed" : ""}`}
               onClick={() => handleQuestClick(index)}
             >
               {t(`${translationSpace}.${workingQuests[index].quest}.title`)}
@@ -69,9 +69,11 @@ const Catalog = ({
   const [inputLevel, setInputLevel] = useState(1);
   const [inputQuest, setInputQuest] = useState("quest1");
   const [forceReload, setForceReload] = useState(false);
+  const [completedQuests, setCompletedQuests] = useState([]);
   const handleThumbClick = (index) => {
     // Update the inputLevel state with the clicked index
     console.log("update to ", index);
+    setCompletedQuests([]);
     setInputLevel(index);
   };
   const onQuestClick = (index) => {
@@ -85,6 +87,13 @@ const Catalog = ({
 
     setForceReload(false);
   };
+
+  const onQuestSuccess = (questName) => {
+    setCompletedQuests((prevCompletedQuests) => [
+      ...prevCompletedQuests,
+      questName,
+    ]);
+  };
   useEffect(() => {
     console.log("update to ");
   }, [inputLevel, forceReload]);
@@ -94,6 +103,7 @@ const Catalog = ({
       <div className="main-content">
         <div className="sidebar">
           <LeftSidebar
+            completedQuests={completedQuests}
             levelsData={levelsData}
             level={inputLevel}
             onQuestClick={onQuestClick}
@@ -109,6 +119,7 @@ const Catalog = ({
             minimalMode={true}
             forceReload={forceReload}
             reloadDone={reloadDone}
+            onQuestSuccess={onQuestSuccess}
           />
         </div>
       </div>

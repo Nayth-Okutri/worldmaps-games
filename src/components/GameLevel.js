@@ -40,6 +40,7 @@ const GameLevel = ({
   minimalMode,
   forceReload = false,
   reloadDone,
+  onQuestSuccess,
 }) => {
   //const level = +useParams().level;
   const { level: urlLevel } = useParams(); // Get the 'level' parameter from the URL
@@ -640,6 +641,8 @@ const GameLevel = ({
       setGameEnded(true);
       setEndTime((Date.now() - startTime.current) / 1000); // To milliseconds to seconds
       setShouldDisplayForm(true);
+    } else {
+      if (typeof onQuestSuccess !== "undefined") onQuestSuccess(singleQuest);
     }
   };
 

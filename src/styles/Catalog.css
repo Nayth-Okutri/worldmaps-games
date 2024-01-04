@@ -36,6 +36,11 @@
 }
 
 .quest-link.selected {
-  color: blue; /* Change to the color you want for selected item */
-  /* Add any other styles for the selected item */
+  color: blue;
+  font-weight: bold;
+}
+
+.quest-link.completed {
+  color: green; /* Change to the color you want for selected item */
+  text-decoration: line-through;
 }
