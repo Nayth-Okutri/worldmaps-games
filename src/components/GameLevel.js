@@ -124,8 +124,6 @@ const GameLevel = ({
     if (typeof inputQuest !== "undefined") {
       console.log("restart quest");
       setSingleQuest(inputQuest);
-      setNumberOfRightHits(0);
-      setHits({});
     }
     console.log(inputGameMode);
     if (isNaN(modeParam) && isNaN(inputGameMode))
@@ -648,6 +646,8 @@ const GameLevel = ({
       setEndTime((Date.now() - startTime.current) / 1000); // To milliseconds to seconds
       setShouldDisplayForm(true);
     } else {
+      setNumberOfRightHits(0);
+      setHits({});
       if (typeof onQuestSuccess !== "undefined") onQuestSuccess(singleQuest);
     }
   };

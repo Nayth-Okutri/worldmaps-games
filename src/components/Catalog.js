@@ -21,12 +21,21 @@ const LeftSidebar = ({
 }) => {
   const { t } = useTranslation("gamequests");
   const [translationSpace, setTranslationSpace] = useState();
-  const levelData = levelsData.filter((value) => value.level === level)[0];
+
   const [questCount, setQuestCount] = useState(null);
   const [workingQuests, setWorkingQuests] = useState([]);
   const [selectedQuestIndex, setSelectedQuestIndex] = useState(null);
   const [selectedMap, setSelectedMap] = useState(null);
+  const [sortedLevelsData, setSortedLevelsData] = useState([]);
 
+  const levelData = levelsData.filter((value) => value.level === level)[0];
+  useEffect(() => {
+    // Sort levels data and update sortedLevelsData
+    const sortedData = levelsData
+      .slice()
+      .sort((a, b) => a.catalogOrder - b.catalogOrder);
+    setSortedLevelsData(sortedData);
+  }, [levelsData]);
   useEffect(() => {
     let regularQuests;
     if (levelData) {
@@ -66,42 +75,48 @@ const LeftSidebar = ({
       <h2>CARTES</h2>
       <ul className="map-list">
         {/* Affichage de la liste des cartes */}
-        {levelsData.map((mapData, index) => (
-          <li key={index}>
-            <a
-              className={selectedMap === index ? "selected" : ""}
-              onClick={() => {
-                handleMapClick(index + 1);
-                handleMapSelection(index);
-              }}
-            >
-              {mapData.name.toUpperCase()}
-            </a>
-            {selectedMap === index && (
-              <div>
-                <ul className="quest-list">
-                  {levelsData[selectedMap].quests.map((quest, index) => (
-                    <li key={index}>
-                      <a
-                        href="#"
-                        className={`quest-link ${
-                          selectedQuestIndex === index ? "selected" : ""
-                        } ${
-                          completedQuests.includes(quest.quest)
-                            ? "completed"
-                            : ""
-                        }`}
-                        onClick={() => handleQuestClick(index)}
-                      >
-                        {t(`${translationSpace}.${quest.quest}.title`)}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </li>
-        ))}
+        {typeof sortedLevelsData !== "undefined" &&
+          sortedLevelsData.map((mapData, index) => (
+            <li key={index}>
+              <a
+                className={selectedMap === index ? "selected" : ""}
+                onClick={() => {
+                  const originalIndex = levelsData.findIndex(
+                    (item) => item.level === mapData.level
+                  );
+                  handleMapClick(originalIndex + 1);
+                  handleMapSelection(index);
+                }}
+              >
+                {mapData.name.toUpperCase()}
+              </a>
+              {selectedMap === index && (
+                <div>
+                  <ul className="quest-list">
+                    {sortedLevelsData[selectedMap].quests.map(
+                      (quest, index) => (
+                        <li key={index}>
+                          <a
+                            href="#"
+                            className={`quest-link ${
+                              selectedQuestIndex === index ? "selected" : ""
+                            } ${
+                              completedQuests.includes(quest.quest)
+                                ? "completed"
+                                : ""
+                            }`}
+                            onClick={() => handleQuestClick(index)}
+                          >
+                            {t(`${translationSpace}.${quest.quest}.title`)}
+                          </a>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              )}
+            </li>
+          ))}
       </ul>
     </div>
   );

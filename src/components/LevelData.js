@@ -107,6 +107,7 @@ export const level1Data = {
   translationSpace: "pokemon",
   name: "Pokemon Fair",
   level: 1,
+  catalogOrder: 7,
   updateDate: new Date(),
 };
 export const level2Data = {
@@ -260,6 +261,7 @@ export const level2Data = {
   translationSpace: "ghibli",
   name: "Ghibli",
   level: 2,
+  catalogOrder: 1,
   updateDate: new Date(),
 };
 export const level3Data = {
@@ -421,6 +423,7 @@ export const level3Data = {
   translationSpace: "jrpg",
   name: "J-RPG",
   level: 3,
+  catalogOrder: 4,
   updateDate: new Date(),
 };
 export const level4Data = {
@@ -584,6 +587,7 @@ export const level4Data = {
   translationSpace: "zelda",
   name: "ZELDA",
   level: 4,
+  catalogOrder: 3,
   updateDate: new Date(),
 };
 export const level5Data = {
@@ -706,6 +710,7 @@ export const level5Data = {
   translationSpace: "nineties",
   name: "90s",
   level: 5,
+  catalogOrder: 20,
   updateDate: new Date(),
 };
 
@@ -823,6 +828,7 @@ export const level6Data = {
   translationSpace: "tezuka",
   name: "TEZUKA",
   level: 6,
+  catalogOrder: 19,
   updateDate: new Date(),
 };
 
@@ -898,6 +904,7 @@ export const level7Data = {
   translationSpace: "onepiece",
   name: "ONE PIECE",
   level: 7,
+  catalogOrder: 5,
   updateDate: new Date(),
 };
 
@@ -978,6 +985,7 @@ export const level8Data = {
   translationSpace: "naruto",
   name: "NARUTO",
   level: 8,
+  catalogOrder: 12,
   updateDate: new Date(),
 };
 
@@ -1047,6 +1055,7 @@ export const level9Data = {
   translationSpace: "gundam",
   name: "GUNDAM",
   level: 9,
+  catalogOrder: 17,
   updateDate: new Date(),
 };
 
@@ -1122,6 +1131,7 @@ export const level10Data = {
   translationSpace: "metalgear",
   name: "METAL GEAR SOLID",
   level: 10,
+  catalogOrder: 18,
   updateDate: new Date(),
 };
 
@@ -1197,6 +1207,7 @@ export const level11Data = {
   translationSpace: "dbz",
   name: "DRAGON BALL Z",
   level: 11,
+  catalogOrder: 16,
   updateDate: new Date(),
 };
 
@@ -1303,6 +1314,7 @@ export const level12Data = {
   translationSpace: "sailormoon",
   name: "SAILOR MOON",
   level: 12,
+  catalogOrder: 15,
   updateDate: new Date(),
 };
 
@@ -1378,6 +1390,7 @@ export const level13Data = {
   translationSpace: "berserk",
   name: "BERSERK",
   level: 13,
+  catalogOrder: 2,
   updateDate: new Date(),
 };
 
@@ -1457,6 +1470,7 @@ export const level14Data = {
   translationSpace: "nier",
   name: "NIER",
   level: 14,
+  catalogOrder: 13,
   updateDate: new Date(),
 };
 
@@ -1538,6 +1552,7 @@ export const level15Data = {
   translationSpace: "demonslayer",
   name: "DEMON SLAYER",
   level: 15,
+  catalogOrder: 12,
   updateDate: new Date(),
 };
 
@@ -1619,6 +1634,7 @@ export const level16Data = {
   translationSpace: "hunter",
   name: "HUNTER x HUNTER",
   level: 16,
+  catalogOrder: 12,
   updateDate: new Date(),
 };
 
@@ -1700,6 +1716,7 @@ export const level17Data = {
   translationSpace: "jojo",
   name: "JOJO",
   level: 17,
+  catalogOrder: 6,
   updateDate: new Date(),
 };
 
@@ -1784,6 +1801,7 @@ export const level18Data = {
   translationSpace: "persona",
   name: "PERSONA 5 ROYAL",
   level: 18,
+  catalogOrder: 9,
   updateDate: new Date(),
 };
 
@@ -1865,6 +1883,7 @@ export const level19Data = {
   translationSpace: "gainax",
   name: "GAINAX TRIGGER",
   level: 19,
+  catalogOrder: 8,
   updateDate: new Date(),
 };
 
@@ -1940,6 +1959,7 @@ export const level20Data = {
   translationSpace: "snk",
   name: "ATTACK ON TITAN",
   level: 20,
+  catalogOrder: 6,
   updateDate: new Date(),
 };
 
@@ -2015,5 +2035,6 @@ export const level21Data = {
   translationSpace: "clamp",
   name: "CLAMP",
   level: 21,
+  catalogOrder: 15,
   updateDate: new Date(),
 };

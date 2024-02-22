@@ -24,11 +24,13 @@ import PopupResults from "./components/PopupResults";
 import SlotMachine from "./components/SlotMachine";
 import WeeklyContestDraw from "./components/WeeklyContestDraw";
 import Catalog from "./components/Catalog";
+import Weekly from "./components/Weekly";
 import "./styles/app.css";
 import "./assets/fonts/Oswald-Bold.ttf";
 
 import en from "./i18n/en";
 import fr from "./i18n/fr";
+import { weeklyContests } from "./gameLevelConfig";
 
 const app = initializeApp(firebaseConfig);
 function App() {
@@ -47,10 +49,11 @@ function App() {
       fr,
     },
   });
+
   const [levelsData, setLevelsData] = useState([]);
   const [leaderboardData, setLeaderboardData] = useState([]);
   const [weekOfYear, setWeekOfYear] = useState(0);
-
+  const [contestOfTheWeek, setContestOfTheWeek] = useState();
   const getLeaderboardData = async () => {
     console.log("weekOfYear " + weekOfYear);
     const leaderboardCollectionRef = collection(getFirestore(), "leaderboard");
@@ -84,6 +87,8 @@ function App() {
   };
 
   useEffect(() => {
+    if (typeof weeklyContests[weekOfYear] !== "undefined")
+      setContestOfTheWeek(weeklyContests[weekOfYear]);
     const currentDate = new Date();
     setWeekOfYear(getISOWeek(currentDate));
     getLevelData();
@@ -124,7 +129,14 @@ function App() {
             </>
           }
         />
-
+        <Route
+          path="worldmaps/weekly"
+          element={
+            <>
+              <Weekly weekOfYear={weekOfYear} />
+            </>
+          }
+        />
         <Route
           path="worldmaps/leaderboard"
           element={
@@ -169,5 +181,6 @@ function App() {
     </BrowserRouter>
   );
 }
+
 export const auth = getAuth(app);
 export default App;
