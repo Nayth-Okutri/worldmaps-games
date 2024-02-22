@@ -19,6 +19,7 @@ export const levelAvailability = {
   52: [1, 4, 5, 6],
 };
 export const weeklyContests = {
+  8: "game/1?mode=5&&quest=dquest5",
   42: "game/1?mode=5&&quest=dquest1",
   43: "game/1?mode=5&&quest=dquest2",
   44: "game/1?mode=5&&quest=dquest2",

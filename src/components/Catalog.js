@@ -12,49 +12,94 @@ import {
   GAME_MODE_ONEQUEST,
 } from "./Constants";
 
-const LeftSidebar = ({ levelsData, level, onQuestClick, completedQuests }) => {
+const LeftSidebar = ({
+  levelsData,
+  level,
+  onQuestClick,
+  completedQuests,
+  handleMapClick,
+}) => {
   const { t } = useTranslation("gamequests");
   const [translationSpace, setTranslationSpace] = useState();
   const levelData = levelsData.filter((value) => value.level === level)[0];
-  const [questCount, setQuestCount] = useState(0);
+  const [questCount, setQuestCount] = useState(null);
   const [workingQuests, setWorkingQuests] = useState([]);
   const [selectedQuestIndex, setSelectedQuestIndex] = useState(null);
+  const [selectedMap, setSelectedMap] = useState(null);
 
   useEffect(() => {
     let regularQuests;
     if (levelData) {
       setTranslationSpace(levelData.translationSpace);
-      if (questCount === 0) {
-        regularQuests = levelData.quests.filter(
-          (quest) => typeof quest.type === "undefined" || quest.type !== 1
-        );
-        setWorkingQuests(regularQuests);
-      }
+
+      regularQuests = levelData.quests.filter(
+        (quest) => typeof quest.type === "undefined" || quest.type !== 1
+      );
+      setWorkingQuests(regularQuests);
+
       const currentQuestCount = Object.keys(workingQuests).length;
       setQuestCount(currentQuestCount);
     }
-  }, [level]);
+  }, [level, levelData]);
   const handleQuestClick = (index) => {
     // Call the onQuestClick function with the clicked quest's index
     console.log("test");
     setSelectedQuestIndex(index); // Update the selected index
     onQuestClick(workingQuests[index].quest);
   };
+  const handleMapSelection = (index) => {
+    console.log("test " + index);
+    if (selectedMap === index) {
+      // If clicking on the same map, clear the selected map and reset the quest list
+      console.log("ici " + index);
+      setSelectedMap(null);
+      setSelectedQuestIndex(null);
+    } else {
+      console.log("la " + index);
+      // If clicking on a different map, update the selected map
+      setSelectedMap(index);
+      setSelectedQuestIndex(null);
+    }
+  };
   return (
     <div>
-      <h2>CHERCHE</h2>
-      <ul className="quest-list">
-        {workingQuests.map((quest, index) => (
+      <h2>CARTES</h2>
+      <ul className="map-list">
+        {/* Affichage de la liste des cartes */}
+        {levelsData.map((mapData, index) => (
           <li key={index}>
             <a
-              href="#"
-              className={`quest-link ${
-                selectedQuestIndex === index ? "selected" : ""
-              } ${completedQuests.includes(quest.quest) ? "completed" : ""}`}
-              onClick={() => handleQuestClick(index)}
+              className={selectedMap === index ? "selected" : ""}
+              onClick={() => {
+                handleMapClick(index + 1);
+                handleMapSelection(index);
+              }}
             >
-              {t(`${translationSpace}.${workingQuests[index].quest}.title`)}
+              {mapData.name.toUpperCase()}
             </a>
+            {selectedMap === index && (
+              <div>
+                <ul className="quest-list">
+                  {levelsData[selectedMap].quests.map((quest, index) => (
+                    <li key={index}>
+                      <a
+                        href="#"
+                        className={`quest-link ${
+                          selectedQuestIndex === index ? "selected" : ""
+                        } ${
+                          completedQuests.includes(quest.quest)
+                            ? "completed"
+                            : ""
+                        }`}
+                        onClick={() => handleQuestClick(index)}
+                      >
+                        {t(`${translationSpace}.${quest.quest}.title`)}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </li>
         ))}
       </ul>
@@ -89,6 +134,7 @@ const Catalog = ({
   };
 
   const onQuestSuccess = (questName) => {
+    console.log("onQuestSuccess");
     setCompletedQuests((prevCompletedQuests) => [
       ...prevCompletedQuests,
       questName,
@@ -99,7 +145,6 @@ const Catalog = ({
   }, [inputLevel, forceReload]);
   return (
     <div className="app-container">
-      <CatalogSlider levelsData={levelsData} clickFunction={handleThumbClick} />
       <div className="main-content">
         <div className="sidebar">
           <LeftSidebar
@@ -107,6 +152,7 @@ const Catalog = ({
             levelsData={levelsData}
             level={inputLevel}
             onQuestClick={onQuestClick}
+            handleMapClick={handleThumbClick}
           />
         </div>
         <div className="game-level">
@@ -120,6 +166,7 @@ const Catalog = ({
             forceReload={forceReload}
             reloadDone={reloadDone}
             onQuestSuccess={onQuestSuccess}
+            targetImageRatio={0.8}
           />
         </div>
       </div>

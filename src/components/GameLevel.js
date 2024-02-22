@@ -41,6 +41,7 @@ const GameLevel = ({
   forceReload = false,
   reloadDone,
   onQuestSuccess,
+  targetImageRatio = 1,
 }) => {
   //const level = +useParams().level;
   const { level: urlLevel } = useParams(); // Get the 'level' parameter from the URL
@@ -120,7 +121,12 @@ const GameLevel = ({
 
     setGameMode(modeParam); // This will set the value of the 'mode' parameter
     setSingleQuest(paramQuest);
-    if (typeof inputQuest !== "undefined") setSingleQuest(inputQuest);
+    if (typeof inputQuest !== "undefined") {
+      console.log("restart quest");
+      setSingleQuest(inputQuest);
+      setNumberOfRightHits(0);
+      setHits({});
+    }
     console.log(inputGameMode);
     if (isNaN(modeParam) && isNaN(inputGameMode))
       setGameMode(GAME_MODE_10_QUESTS);
@@ -184,11 +190,11 @@ const GameLevel = ({
     if (typeof cachedRef !== "undefined") observer.observe(cachedRef);
     const image = document.getElementById("levelImage");
 
-    setScaledWidth(image.naturalWidth * (zoomLevel / 100));
-    setScaledHeight(image.naturalHeight * (zoomLevel / 100));
+    setScaledWidth(image.naturalWidth * targetImageRatio * (zoomLevel / 100));
+    setScaledHeight(image.naturalHeight * targetImageRatio * (zoomLevel / 100));
     toggleCenteringClass();
     window.addEventListener("resize", toggleCenteringClass);
-    console.log("levelData" + JSON.stringify(levelData));
+    //console.log("levelData" + JSON.stringify(levelData));
     switch (gameMode) {
       case GAME_MODE_DUPLICATE:
         if (levelData && !gameEnded) {

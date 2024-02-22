@@ -1,6 +1,7 @@
 .app-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  height: 100vh;
 }
 
 .main-content {
@@ -11,24 +12,66 @@
 .sidebar {
   background-color: #f2f2f2;
   padding: 20px;
-  width: 25%;
+  width: 17%;
+  height: 100vh;
+  overflow-y: auto;
 }
-
-.game-level {
-  flex: 1;
-  padding: 20px;
-}
-.quest-list {
+.map-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+.map-list a {
+  display: block;
+  padding: 8px;
+  font-size: 16px;
+  text-decoration: none;
+  color: #336699;
+}
 
+.map-list a:hover {
+  background-color: #e0e0e0;
+}
+.map-list a.selected {
+  font-weight: bold;
+  color: blue; /* Color for selected map */
+}
+.game-level {
+  flex: 1;
+  padding: 20px;
+  max-width: 80%;
+  overflow-y: auto;
+}
+.quest-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+
+.quest-list h3 {
+  margin-top: 20px;
+}
+
+.quest-list li {
+  margin-bottom: 5px;
+}
+
+.quest-list a {
+  display: block;
+  padding: 5px 10px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #993366;
+}
+.quest-list a.selected {
+  font-weight: bold;
+  color: blue;
+}
 .quest-link {
   text-decoration: none;
-  color: #333; /* Change the color as needed */
+  color: #993366; /* Change the color as needed */
   display: block;
-  padding: 5px 0; /* Adjust padding as desired */
+  padding: 10px 0; /* Adjust padding as desired */
 }
 
 .quest-link:hover {
