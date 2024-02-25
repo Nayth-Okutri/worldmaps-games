@@ -670,7 +670,7 @@ const GameLevel = ({
         logUserActivity(reccordedTime);
         saveContestScore(userName, reccordedTime, email);
         updateLeaderboardData();
-        navigate(`/worldmaps/leaderboard/${level}`);
+        navigate(`/worldmaps/weeklyRanking`);
       }
     } else {
       setUseFormValidation(true);

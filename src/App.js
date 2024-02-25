@@ -23,6 +23,7 @@ import PopupForm from "./components/PopupForm";
 import PopupResults from "./components/PopupResults";
 import SlotMachine from "./components/SlotMachine";
 import WeeklyContestDraw from "./components/WeeklyContestDraw";
+import WeeklyRanking from "./components/WeeklyRanking";
 import Catalog from "./components/Catalog";
 import Weekly from "./components/Weekly";
 import "./styles/app.css";
@@ -119,6 +120,15 @@ function App() {
         <Route
           path="/worldmaps/weeklyResults"
           element={<WeeklyContestDraw weekOfYear={weekOfYear} />}
+        />
+        <Route
+          path="/worldmaps/weeklyRanking"
+          element={
+            <>
+              <Heading />
+              <WeeklyRanking weekOfYear={weekOfYear} />{" "}
+            </>
+          }
         />
         <Route
           path="/worldmaps/profile"
