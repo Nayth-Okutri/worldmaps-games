@@ -87,6 +87,7 @@ const WeeklyContestDraw = ({ weekOfYear }) => {
             <thead>
               <tr>
                 <th>MAIL</th>
+                <th>TEMPS</th>
                 <th>DATE</th>
 
                 {/* Add more table headers as needed */}
@@ -96,6 +97,7 @@ const WeeklyContestDraw = ({ weekOfYear }) => {
               {replies.map((reply, index) => (
                 <tr key={index}>
                   <td>{reply.name}</td>
+                  <td>{reply.time}</td>
                   <td>{getDateFromFBTimestamp(reply.date)}</td>
 
                   {/* Add more table data cells as needed */}
