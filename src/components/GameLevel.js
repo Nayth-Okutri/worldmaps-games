@@ -44,10 +44,12 @@ const GameLevel = ({
   targetImageRatio = 1,
 }) => {
   //const level = +useParams().level;
+
   const { level: urlLevel } = useParams(); // Get the 'level' parameter from the URL
 
   // Set 'level' to the URL parameter if it exists, otherwise use the inputLevel
-  const level = urlLevel ? +urlLevel : inputLevel;
+  const level = urlLevel ? +urlLevel : parseInt(inputLevel);
+
   const levelData = levelsData.filter((value) => value.level === level)[0];
 
   const ALL_GAME_MODES = [
@@ -125,11 +127,12 @@ const GameLevel = ({
       console.log("restart quest");
       setSingleQuest(inputQuest);
     }
-    console.log(inputGameMode);
+    console.log("inputGameMode " + inputGameMode);
     if (isNaN(modeParam) && isNaN(inputGameMode))
       setGameMode(GAME_MODE_10_QUESTS);
     else if (!isNaN(inputGameMode)) setGameMode(inputGameMode);
 
+    console.log("inputLevel " + inputLevel);
     if (!isNaN(inputLevel)) {
       const hashedImagePath = getHashedAssetPath(`level-${inputLevel}`);
       setImageSource(hashedImagePath);
@@ -153,11 +156,16 @@ const GameLevel = ({
       if (match) weeklyQuestParam = match[1];
 
       console.log(
-        "params 0 : " + parseInt(weeklyGameLevel) + " " + parseInt(level)
+        "this week params 0 : " +
+          parseInt(weeklyGameLevel) +
+          " " +
+          parseInt(level)
       );
-      console.log("params 1 : " + parseInt(weeklyGameMode) + " " + gameMode);
+      console.log(
+        "this week  params 1 : " + parseInt(weeklyGameMode) + " " + gameMode
+      );
 
-      console.log("questParam : " + weeklyQuestParam);
+      console.log("this week questParam : " + weeklyQuestParam);
       if (
         parseInt(weeklyGameLevel) === parseInt(level) &&
         parseInt(weeklyGameMode) === modeParam
@@ -167,7 +175,7 @@ const GameLevel = ({
         parseInt(weeklyGameMode) === GAME_MODE_ONEQUEST &&
         weeklyQuestParam !== paramQuest
       ) {
-        console.log("NOP");
+        console.log("weekly quest : NOP");
         setIsContestOfTheWeek(false);
       } else {
         console.log("-------CONTEST OF WEEK : ");
@@ -182,8 +190,13 @@ const GameLevel = ({
       levelsData.length > 0 &&
       !isNaN(level) &&
       levelsData.filter((value) => value.level === level).length === 0
-    )
+    ) {
+      console.log(
+        "levelsData.length " +
+          levelsData.filter((value) => value.level === level).length
+      );
       showCriticalError("error.LevelNotFound");
+    }
 
     if (typeof cachedRef !== "undefined") observer.observe(cachedRef);
     const image = document.getElementById("levelImage");
@@ -889,6 +902,7 @@ const GameLevel = ({
     //console.log("gameMode " + gameMode);
     //console.log(workingQuests);
     if (
+      !isNaN(level) &&
       typeof workingQuests !== "undefined" &&
       typeof workingQuests[currentquest] !== "undefined" &&
       typeof workingQuests[currentquest].image === "undefined"

@@ -86,7 +86,47 @@ function App() {
     });
     setLevelsData(newLevelData);
   };
-
+  const gameIndexToName = {
+    1: "pokemon",
+    2: "ghibli",
+    3: "jrpg",
+    4: "jrpg",
+    5: "90s",
+    6: "tezuka",
+    7: "onepiece",
+    8: "naruto",
+    9: "gundam",
+    10: "metalgear",
+    11: "dragonball",
+    12: "sailormoon",
+    13: "berserk",
+    14: "nier",
+    15: "demonslayers",
+    16: "hunterxhunter",
+    17: "jojo",
+    18: "persona",
+    19: "gainax",
+    20: "attackontitan",
+    21: "clamp",
+  };
+  const gameRoutes = Object.entries(gameIndexToName).map(
+    ([index, gameName]) => (
+      <Route
+        key={index}
+        path={`/worldmaps/game/${gameName}`}
+        element={
+          <>
+            <Heading />
+            <GameLevel
+              levelsData={levelsData}
+              weekOfYear={weekOfYear}
+              inputLevel={index}
+            />
+          </>
+        }
+      />
+    )
+  );
   useEffect(() => {
     if (typeof weeklyContests[weekOfYear] !== "undefined")
       setContestOfTheWeek(weeklyContests[weekOfYear]);
@@ -178,6 +218,7 @@ function App() {
             }
           />
         </Route>
+        {gameRoutes}
         <Route
           path="*"
           element={
