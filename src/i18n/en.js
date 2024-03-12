@@ -165,6 +165,10 @@ const translation = {
         title: "Find the duplicate character",
         hint: "",
       },
+      dquest2: {
+        title: "Find the duplicate main character",
+        hint: "",
+      },
     },
     jrpg: {
       quest1: {

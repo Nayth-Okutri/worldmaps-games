@@ -257,6 +257,15 @@ export const level2Data = {
         { top: { x: 1338, y: 990 }, bottom: { x: 1374, y: 1055 } },
       ],
     },
+    {
+      quest: "dquest2",
+      type: 1,
+      image: "level-2-dup2",
+      positions: [
+        { top: { x: 1048, y: 96 }, bottom: { x: 1097, y: 143 } },
+        { top: { x: 820, y: 1045 }, bottom: { x: 856, y: 1099 } },
+      ],
+    },
   ],
   translationSpace: "ghibli",
   name: "Ghibli",

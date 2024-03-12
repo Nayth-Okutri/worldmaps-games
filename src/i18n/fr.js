@@ -177,6 +177,10 @@ const translation = {
         title: "Trouve le personnage en double",
         hint: "",
       },
+      dquest2: {
+        title: "Trouve le personnage principal en double",
+        hint: "",
+      },
     },
     jrpg: {
       quest1: {

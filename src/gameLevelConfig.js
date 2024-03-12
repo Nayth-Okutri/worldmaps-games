@@ -56,7 +56,7 @@ export const weeklyContests = {
   8: "game/1?mode=5&&quest=dquest4",
   9: "game/1?mode=5&&quest=dquest4",
   10: "game/1?mode=5&&quest=dquest4",
-  11: "game/1?mode=5&&quest=dquest4",
+  11: "game/2?mode=5&&quest=dquest2",
   12: "game/1?mode=5&&quest=dquest5",
   42: "game/1?mode=5&&quest=dquest1",
   43: "game/1?mode=5&&quest=dquest2",
