@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import CatalogSlider from "./CatalogSlider"; // Import your CatalogSlider component
 import GameLevel from "./GameLevel"; // Import your GameLevel component
 import "../styles/Catalog.css";
+import LanguageDropdown from "./LanguageDropdown";
 import {
   GAME_MODE_DUPLICATE,
   GAME_MODE_10_QUESTS,
@@ -72,7 +73,26 @@ const LeftSidebar = ({
   };
   return (
     <div>
-      <h2>CARTES</h2>
+      <div
+        className="Header-Link"
+        style={{ display: "flex", alignItems: "center" }}
+      >
+        <a
+          href="https://nayth.art/shop/"
+          className="external-link"
+          style={{
+            marginRight: "10px",
+            textDecoration: "none",
+            color: "#333",
+            fontSize: "16px",
+            fontWeight: "bold",
+          }}
+        >
+          SHOP
+        </a>
+        <LanguageDropdown />
+      </div>
+      <h2>WORLDMAPS</h2>
       <ul className="map-list">
         {/* Affichage de la liste des cartes */}
         {typeof sortedLevelsData !== "undefined" &&
