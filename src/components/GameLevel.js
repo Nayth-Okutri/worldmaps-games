@@ -120,11 +120,12 @@ const GameLevel = ({
     const queryParams = new URLSearchParams(window.location.search);
     const modeParam = parseInt(queryParams.get("mode"));
     const paramQuest = queryParams.get("quest");
-
+    console.log("_________________Start of Gamelevel Component ");
     setGameMode(modeParam); // This will set the value of the 'mode' parameter
     setSingleQuest(paramQuest);
+
     if (typeof inputQuest !== "undefined") {
-      console.log("restart quest");
+      console.log("restart quest with " + inputQuest);
       setSingleQuest(inputQuest);
     }
     console.log("inputGameMode " + inputGameMode);
@@ -310,20 +311,32 @@ const GameLevel = ({
         break;
       case GAME_MODE_ONEQUEST:
         console.log("singleQuest " + singleQuest);
-        console.log("singleQuest " + prevQuest);
+        console.log("single prev Quest " + prevQuest);
+
         if (levelData && !gameEnded) {
           if (questCount === 0 || singleQuest !== prevQuest || forceReload) {
             let regularQuests;
             setTranslationSpace(levelData.translationSpace);
             if (questCount === 0 || singleQuest !== prevQuest || forceReload) {
-              regularQuests = levelData.quests.filter(
-                (quest) => quest.quest === singleQuest
-              );
-              setWorkingQuests(regularQuests);
-              const theQuestCount = Object.keys(regularQuests).length;
-              console.log("theQuestCount " + theQuestCount);
-
-              if (theQuestCount === 0) showCriticalError("error.QuestNotFound");
+              if (singleQuest === "none") {
+                if (workingQuests.length !== 0) setWorkingQuests([]);
+                setShouldDisplayMenu(false);
+                setQuestHits([]);
+                setShowHitTarget(false);
+                setShowHint(false);
+                setShowHint(false);
+                if (typeof reloadDone !== "undefined") reloadDone();
+              } else {
+                regularQuests = levelData.quests.filter(
+                  (quest) => quest.quest === singleQuest
+                );
+                setWorkingQuests(regularQuests);
+                const theQuestCount = Object.keys(regularQuests).length;
+                console.log("theQuestCount " + theQuestCount);
+                if (theQuestCount === 0)
+                  showCriticalError("error.QuestNotFound");
+                if (typeof reloadDone !== "undefined") reloadDone();
+              }
             }
             console.log("workingQuests " + workingQuests);
             const currentQuestCount = Object.keys(workingQuests).length;
@@ -342,7 +355,6 @@ const GameLevel = ({
               setShowRedQuestion(false); // Reset the showRedQuestion state after 1 second
             }, 1000);
             setPrevQuest(singleQuest);
-            if (typeof reloadDone !== "undefined") reloadDone();
           }
         }
         if (levelData && workingQuests[currentQuest]) {
@@ -361,7 +373,6 @@ const GameLevel = ({
       case GAME_MODE_ALLQUESTS:
       case GAME_MODE_ONEQUEST:
         if (!gameEnded) {
-          console.log(" timer");
           setTimerStarted(true);
           const interval = setInterval(() => {
             setCurrentTime(
@@ -755,86 +766,88 @@ const GameLevel = ({
     yPositionOnImage
   ) => {
     console.log("_______________NEW CLICK ");
-    const prevIndicator = clickNumber === 1 ? [] : indicators;
-    setQuestResult(clickResults.Pending);
-    if (clickNumber === 1) {
-      setIndicators([]);
-      //console.log("indicators " + JSON.stringify(indicators));
-    }
-    setClickNumber(clickNumber + 1);
-    for (let i = 0; i < maxQuestHit; i++) {
-      console.log(
-        workingQuests[currentQuest].positions[i].top,
-        workingQuests[currentQuest].positions[i].bottom
-      );
-      if (
-        isClickWithinElement(
-          workingQuests[currentQuest].positions[i].top,
-          workingQuests[currentQuest].positions[i].bottom,
-          xPositionOnImage,
-          yPositionOnImage
-        )
-      ) {
-        console.log("questHits avant " + questHits);
-        const hitObject = questHits;
-
-        hitObject[i] = true;
-        setQuestHits(hitObject);
-        console.log("ok " + i);
+    if (workingQuests.length > 0) {
+      const prevIndicator = clickNumber === 1 ? [] : indicators;
+      setQuestResult(clickResults.Pending);
+      if (clickNumber === 1) {
+        setIndicators([]);
+        //console.log("indicators " + JSON.stringify(indicators));
       }
-    }
-    if (clickNumber >= maxQuestHit) {
-      if (!shouldDisplayMenu) setShouldDisplayMenu(true);
-      if (!showHitTarget) setShowHitTarget(true);
-      const hitObject = questHits;
-      const numberOfRightQuestHits = Object.keys(hitObject).reduce(
-        (previous, current) => {
-          if (hitObject[current]) {
-            return previous + 1;
-          }
-          return previous;
-        },
-        0
-      );
-      console.log("questHits " + JSON.stringify(questHits));
-      if (numberOfRightQuestHits === maxQuestHit) {
-        console.log("done");
-        setQuestResult(clickResults.Correct);
-        const hitObject = hits;
-        //console.log(someHit);
+      setClickNumber(clickNumber + 1);
+      for (let i = 0; i < maxQuestHit; i++) {
+        console.log(
+          workingQuests[currentQuest].positions[i].top,
+          workingQuests[currentQuest].positions[i].bottom
+        );
         if (
-          !Object.keys(hits).includes(currentQuest) ||
-          hits[currentQuest] === false
+          isClickWithinElement(
+            workingQuests[currentQuest].positions[i].top,
+            workingQuests[currentQuest].positions[i].bottom,
+            xPositionOnImage,
+            yPositionOnImage
+          )
         ) {
-          hitObject[currentQuest] = true;
+          console.log("questHits avant " + questHits);
+          const hitObject = questHits;
+
+          hitObject[i] = true;
+          setQuestHits(hitObject);
+          console.log("ok " + i);
         }
+      }
+      if (clickNumber >= maxQuestHit) {
+        if (!shouldDisplayMenu) setShouldDisplayMenu(true);
+        if (!showHitTarget) setShowHitTarget(true);
+        const hitObject = questHits;
+        const numberOfRightQuestHits = Object.keys(hitObject).reduce(
+          (previous, current) => {
+            if (hitObject[current]) {
+              return previous + 1;
+            }
+            return previous;
+          },
+          0
+        );
+        console.log("questHits " + JSON.stringify(questHits));
+        if (numberOfRightQuestHits === maxQuestHit) {
+          console.log("done");
+          setQuestResult(clickResults.Correct);
+          const hitObject = hits;
+          //console.log(someHit);
+          if (
+            !Object.keys(hits).includes(currentQuest) ||
+            hits[currentQuest] === false
+          ) {
+            hitObject[currentQuest] = true;
+          }
 
-        console.log(hitObject[currentQuest]);
-        setHits(hitObject);
-      } else setQuestResult(clickResults.Incorrect);
-    } else {
-      setShouldDisplayMenu(false);
+          console.log(hitObject[currentQuest]);
+          setHits(hitObject);
+        } else setQuestResult(clickResults.Incorrect);
+      } else {
+        setShouldDisplayMenu(false);
 
-      //setClickNumber(clickNumber + 1);
-    }
-    console.log("questResult " + questResult);
-    //console.log([xPositionOnImage, yPositionOnImage]);
-    const newIndicator = {
-      x,
-      y,
-      clickNumber,
-      display: "inline",
-    };
-    setIndicators([...prevIndicator, newIndicator]);
-    console.log("indicators " + JSON.stringify(indicators));
+        //setClickNumber(clickNumber + 1);
+      }
+      console.log("questResult " + questResult);
+      //console.log([xPositionOnImage, yPositionOnImage]);
+      const newIndicator = {
+        x,
+        y,
+        clickNumber,
+        display: "inline",
+      };
+      setIndicators([...prevIndicator, newIndicator]);
+      console.log("indicators " + JSON.stringify(indicators));
 
-    console.log("questHits" + JSON.stringify(questHits));
-    console.log("clickNumber " + clickNumber);
-    //console.log(clickResult);
-    if (clickNumber >= maxQuestHit) {
-      console.log("rince");
-      setQuestHits([]);
-      setClickNumber(1);
+      console.log("questHits" + JSON.stringify(questHits));
+      console.log("clickNumber " + clickNumber);
+      //console.log(clickResult);
+      if (clickNumber >= maxQuestHit) {
+        console.log("rince");
+        setQuestHits([]);
+        setClickNumber(1);
+      }
     }
   };
   const computeXPositionOnImage = (e) => {
@@ -865,7 +878,7 @@ const GameLevel = ({
     const xPositionOnImage = Math.floor(computeXPositionOnImage(e));
     const yPositionOnImage = Math.floor(computeYPositionOnImage(e));
     setShowHint(false);
-    console.log([xPositionOnImage, yPositionOnImage]);
+    console.log("handleImageClick " + [(xPositionOnImage, yPositionOnImage)]);
     let target = e.target;
     let isInsideSelectionMenu = false;
 
@@ -876,7 +889,7 @@ const GameLevel = ({
       }
       target = target.parentElement;
     }
-    setShowHitTarget(true);
+    if (workingQuests.length > 0) setShowHitTarget(true);
     if (!isInsideSelectionMenu) {
       evaluateMultipleTargetHit(
         e.clientX - bounds.left,
@@ -885,7 +898,7 @@ const GameLevel = ({
         yPositionOnImage
       );
     } else {
-      console.log(isInsideSelectionMenu);
+      console.log("isInsideSelectionMenu " + isInsideSelectionMenu);
       setShouldDisplayMenu(false);
       setShowHitTarget(false);
     }
@@ -942,7 +955,7 @@ const GameLevel = ({
         setImageSource(hashedImagePath);
       }
     } else {
-      console.log("nothing"); // or provide a default image source
+      console.log("default image source"); // or provide a default image source
     }
   };
 

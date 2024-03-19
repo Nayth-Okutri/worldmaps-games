@@ -82,8 +82,25 @@
   color: blue;
   font-weight: bold;
 }
-
+.Header-Link,
+.Language-Dropdown {
+  margin-bottom: 10px; /* Add space between SHOP and Language Dropdown */
+}
 .quest-link.completed {
   color: green; /* Change to the color you want for selected item */
   text-decoration: line-through;
+}
+.left-sidebar-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure the sidebar takes the full height of its parent */
+}
+
+.map-list {
+  flex-grow: 1; /* Allow the list of maps to grow and occupy the available space */
+}
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 20%; /* Adjust the width as needed */
+  }
 }

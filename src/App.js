@@ -81,7 +81,6 @@ function App() {
     const levelsSnapshot = await getDocs(levelsQuery);
     let newLevelData = [];
     levelsSnapshot.forEach((level) => {
-      console.log(level.data());
       newLevelData.push(level.data());
     });
     setLevelsData(newLevelData);
