@@ -89,7 +89,7 @@ function App() {
     1: "pokemon",
     2: "ghibli",
     3: "jrpg",
-    4: "jrpg",
+    4: "zelda",
     5: "90s",
     6: "tezuka",
     7: "onepiece",

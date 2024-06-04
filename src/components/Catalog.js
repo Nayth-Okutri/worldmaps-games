@@ -246,6 +246,7 @@ const Catalog = ({
   };
   useEffect(() => {
     if (
+      typeof levelsData[inputLevel] !== "undefined" &&
       levelsData[inputLevel].quests
         .filter((quest) => !quest.type || quest.type !== 1)
         .every((quest) => completedQuests.includes(quest.quest))
@@ -268,6 +269,7 @@ const Catalog = ({
     const index = Object.keys(gameIndexToName).find(
       (key) => gameIndexToName[key] === paramName
     );
+    console.log("index " + index);
     if (index) {
       setInputLevel(parseInt(index));
       setSelectedMapIndex(parseInt(index));

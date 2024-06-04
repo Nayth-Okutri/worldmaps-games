@@ -64,7 +64,8 @@ const LevelsDisplay = ({
     if (typeof weeklyContests[weekOfYear] !== "undefined")
       setContestOfTheWeek(weeklyContests[weekOfYear]);
     console.log(contestOfTheWeek);
-    if (currentUser) {
+    setUserLevelsData(levelsData);
+    /*if (currentUser) {
       setUserLevelsData(levelsData);
     } else {
       const availableLevels = levelAvailability[weekOfYear] || [];
@@ -72,7 +73,7 @@ const LevelsDisplay = ({
         availableLevels.includes(level.level)
       );
       setUserLevelsData(availableLevelData);
-    }
+    }*/
   }, [currentUser, levelsData, weekOfYear]);
   return (
     <div className="levels-display">
