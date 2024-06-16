@@ -1005,6 +1005,55 @@ const translation = {
         hint: "",
       },
     },
+
+    xenoblade: {
+      quest1: {
+        title: "Trouve Alpha",
+        hint: "",
+      },
+      quest2: { title: "Trouve Zanza", hint: "" },
+      quest3: { title: "Trouve Klaus", hint: "" },
+      quest4: {
+        title: "Trouve Weltall-Id",
+        hint: "",
+      },
+      quest5: {
+        title: "Trouve Shulk",
+        hint: "",
+      },
+      quest6: {
+        title: "Trouve Rex",
+        hint: "",
+      },
+      quest7: { title: "Trouve Noah", hint: "" },
+      quest8: {
+        title: "Trouve Fiora",
+        hint: "",
+      },
+      quest9: { title: "Trouve Matthew", hint: "" },
+      quest10: {
+        title: "Trouve Melia",
+        hint: "",
+      },
+      quest11: {
+        title: "Trouve Kosmos",
+        hint: "",
+      },
+      quest12: {
+        title: "Trouve Face Nemesis",
+        hint: "",
+      },
+      quest13: { title: "Trouve Dunban", hint: "" },
+      quest14: {
+        title: "Trouve Mythra",
+        hint: "",
+      },
+      quest15: { title: "Trouve Shania", hint: "" },
+      quest16: {
+        title: "Trouve Eunie",
+        hint: "",
+      },
+    },
   },
 };
 export default translation;

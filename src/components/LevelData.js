@@ -2047,3 +2047,118 @@ export const level21Data = {
   catalogOrder: 15,
   updateDate: new Date(),
 };
+
+export const level22Data = {
+  quests: [
+    {
+      quest: "quest1",
+      description: "Find Alpha",
+      hint: "",
+      positions: [
+        { top: { x: 932, y: 150 }, bottom: { x: 989, y: 280 } },
+        { top: { x: 702, y: 186 }, bottom: { x: 754, y: 282 } },
+      ],
+    },
+    {
+      quest: "quest2",
+      description: "Find Zanza",
+      hint: "",
+      positions: [{ top: { x: 737, y: 495 }, bottom: { x: 806, y: 595 } }],
+    },
+    {
+      quest: "quest3",
+      description: "Find Klaus",
+      hint: "",
+      positions: [{ top: { x: 1164, y: 289 }, bottom: { x: 1202, y: 326 } }],
+    },
+    {
+      quest: "quest4",
+      description: "Find Weltall-Id",
+      hint: "",
+      positions: [{ top: { x: 832, y: 669 }, bottom: { x: 941, y: 780 } }],
+    },
+    {
+      quest: "quest5",
+      description: "Find Shulk",
+      hint: "",
+      positions: [
+        { top: { x: 1367, y: 600 }, bottom: { x: 1408, y: 729 } },
+        { top: { x: 1270, y: 306 }, bottom: { x: 1336, y: 381 } },
+      ],
+    },
+    {
+      quest: "quest6",
+      description: "Find Rex",
+      hint: "",
+      positions: [
+        { top: { x: 604, y: 1031 }, bottom: { x: 660, y: 1143 } },
+        { top: { x: 465, y: 273 }, bottom: { x: 521, y: 329 } },
+      ],
+    },
+    {
+      quest: "quest7",
+      description: "Find Noah",
+      hint: "",
+      positions: [{ top: { x: 337, y: 577 }, bottom: { x: 393, y: 671 } }],
+    },
+    {
+      quest: "quest8",
+      description: "Find Fiora",
+      hint: "",
+      positions: [{ top: { x: 1249, y: 666 }, bottom: { x: 1336, y: 736 } }],
+    },
+    {
+      quest: "quest9",
+      description: "Find Matthew",
+      hint: "",
+      positions: [{ top: { x: 1227, y: 94 }, bottom: { x: 1273, y: 200 } }],
+    },
+    {
+      quest: "quest10",
+      description: "Find Melia",
+      hint: "",
+      positions: [{ top: { x: 1357, y: 790 }, bottom: { x: 1488, y: 876 } }],
+    },
+    {
+      quest: "quest11",
+      description: "Find Kosmos",
+      hint: "",
+      positions: [{ top: { x: 1717, y: 239 }, bottom: { x: 1763, y: 308 } }],
+    },
+    {
+      quest: "quest12",
+      description: "Find Face Nemesis",
+      hint: "",
+      positions: [{ top: { x: 1471, y: 652 }, bottom: { x: 1625, y: 800 } }],
+    },
+    {
+      quest: "quest13",
+      description: "Find Dunban",
+      hint: "",
+      positions: [{ top: { x: 1683, y: 736 }, bottom: { x: 1768, y: 860 } }],
+    },
+    {
+      quest: "quest14",
+      description: "Find Mythra",
+      hint: "",
+      positions: [{ top: { x: 1460, y: 200 }, bottom: { x: 1560, y: 300 } }],
+    },
+    {
+      quest: "quest15",
+      description: "Find Shania",
+      hint: "",
+      positions: [{ top: { x: 200, y: 930 }, bottom: { x: 260, y: 1080 } }],
+    },
+    {
+      quest: "quest16",
+      description: "Find Eunie",
+      hint: "",
+      positions: [{ top: { x: 50, y: 330 }, bottom: { x: 330, y: 475 } }],
+    },
+  ],
+  translationSpace: "xenoblade",
+  name: "XENOBLADE",
+  level: 22,
+  catalogOrder: 22,
+  updateDate: new Date(),
+};

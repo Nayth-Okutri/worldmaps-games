@@ -107,6 +107,7 @@ function App() {
     19: "gainax",
     20: "attackontitan",
     21: "clamp",
+    22: "xenoblade",
   };
   const gameRoutes = Object.entries(gameIndexToName).map(
     ([index, gameName]) => (

@@ -1000,6 +1000,55 @@ const translation = {
         hint: "",
       },
     },
+
+    xenoblade: {
+      quest1: {
+        title: "Find Alpha",
+        hint: "",
+      },
+      quest2: { title: "Find Zanza", hint: "" },
+      quest3: { title: "Find Klaus", hint: "" },
+      quest4: {
+        title: "Find Weltall-Id",
+        hint: "",
+      },
+      quest5: {
+        title: "Find Shulk",
+        hint: "",
+      },
+      quest6: {
+        title: "Find Rex",
+        hint: "",
+      },
+      quest7: { title: "Find Noah", hint: "" },
+      quest8: {
+        title: "Find Fiora",
+        hint: "",
+      },
+      quest9: { title: "Find Matthew", hint: "" },
+      quest10: {
+        title: "Find Melia",
+        hint: "",
+      },
+      quest11: {
+        title: "Find Kosmos",
+        hint: "",
+      },
+      quest12: {
+        title: "Find Face Nemesis",
+        hint: "",
+      },
+      quest13: { title: "Find Dunban", hint: "" },
+      quest14: {
+        title: "Find Mythra",
+        hint: "",
+      },
+      quest15: { title: "Find Shania", hint: "" },
+      quest16: {
+        title: "Find Eunie",
+        hint: "",
+      },
+    },
   },
 };
 export default translation;

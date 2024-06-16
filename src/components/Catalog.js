@@ -52,6 +52,7 @@ const LeftSidebar = ({
     19: 10,
     20: 6,
     21: 5,
+    22: 22,
   };
   const levelData = levelsData.filter((value) => value.level === level)[0];
   useEffect(() => {
@@ -195,7 +196,7 @@ const Catalog = ({
     1: "pokemon",
     2: "ghibli",
     3: "jrpg",
-    4: "jrpg",
+    4: "zelda",
     5: "90s",
     6: "tezuka",
     7: "onepiece",
@@ -213,6 +214,7 @@ const Catalog = ({
     19: "gainax",
     20: "attackontitan",
     21: "clamp",
+    22: "xenoblade",
   };
   const handleThumbClick = (index) => {
     // Update the inputLevel state with the clicked index
