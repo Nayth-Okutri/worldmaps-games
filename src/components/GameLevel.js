@@ -998,6 +998,7 @@ const GameLevel = ({
         <div className="column">
           {" "}
           {levelData &&
+            !minimalMode &&
             typeof currentQuest !== "undefined" &&
             !isNaN(currentQuest) &&
             workingQuests[currentQuest] && (
@@ -1019,8 +1020,9 @@ const GameLevel = ({
             handleZoomOut={handleZoomOut}
             handleHint={handleHint}
             skipQuestion={skipQuestion}
+            minimalMode={minimalMode}
           />
-          <div className="timer">{currentTime}s</div>
+          {!minimalMode && <div className="timer">{currentTime}s</div>}
         </div>
         <div className="divider"></div> {/* Empty divider */}
         <div className="column"></div>

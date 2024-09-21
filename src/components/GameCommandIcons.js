@@ -6,6 +6,7 @@ const GameCommandIcons = ({
   handleZoomOut,
   handleHint,
   skipQuestion,
+  minimalMode,
 }) => {
   const { t } = useTranslation("gamequests");
 
@@ -49,44 +50,48 @@ const GameCommandIcons = ({
           }}
         />
       </span>
-      <span style={{ paddingRight: "10px" }}>
-        <img
-          style={{
-            height: "20px",
-            cursor: "pointer",
-            transition: "opacity 0.3s",
-          }}
-          src={require("../assets/HintIcon.png")}
-          alt="Hint"
-          onClick={handleHint}
-          title={t("hint")} // Add a tooltip description
-          onMouseOver={(e) => {
-            e.target.style.opacity = 0.7; // Change opacity on hover
-          }}
-          onMouseOut={(e) => {
-            e.target.style.opacity = 1; // Restore opacity when not hovering
-          }}
-        />
-      </span>
-      <span style={{ paddingRight: "10px" }}>
-        <img
-          style={{
-            height: "20px",
-            cursor: "pointer",
-            transition: "opacity 0.3s",
-          }}
-          src={require("../assets/SkipIcon.png")}
-          alt="Skip"
-          onClick={skipQuestion}
-          title={t("skip")} // Add a tooltip description
-          onMouseOver={(e) => {
-            e.target.style.opacity = 0.7; // Change opacity on hover
-          }}
-          onMouseOut={(e) => {
-            e.target.style.opacity = 1; // Restore opacity when not hovering
-          }}
-        />
-      </span>
+      {!minimalMode && (
+        <>
+          <span style={{ paddingRight: "10px" }}>
+            <img
+              style={{
+                height: "20px",
+                cursor: "pointer",
+                transition: "opacity 0.3s",
+              }}
+              src={require("../assets/HintIcon.png")}
+              alt="Hint"
+              onClick={handleHint}
+              title={t("hint")} // Add a tooltip description
+              onMouseOver={(e) => {
+                e.target.style.opacity = 0.7; // Change opacity on hover
+              }}
+              onMouseOut={(e) => {
+                e.target.style.opacity = 1; // Restore opacity when not hovering
+              }}
+            />
+          </span>
+          <span style={{ paddingRight: "10px" }}>
+            <img
+              style={{
+                height: "20px",
+                cursor: "pointer",
+                transition: "opacity 0.3s",
+              }}
+              src={require("../assets/SkipIcon.png")}
+              alt="Skip"
+              onClick={skipQuestion}
+              title={t("skip")} // Add a tooltip description
+              onMouseOver={(e) => {
+                e.target.style.opacity = 0.7; // Change opacity on hover
+              }}
+              onMouseOut={(e) => {
+                e.target.style.opacity = 1; // Restore opacity when not hovering
+              }}
+            />
+          </span>
+        </>
+      )}
     </div>
   );
 };
