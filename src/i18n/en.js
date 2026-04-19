@@ -8,8 +8,8 @@ const translation = {
       "Time Attack. Take on the clock and respond to as many questions as you can within a single minute.",
     allQuestsAttackGameModeDescription:
       "Otaku Mastery. Demonstrate your expertise by swiftly answering all the questions from the deck.",
-    OKResult: "Correct answer",
-    NOKResult: "Incorrect answer",
+    OKResult: "Found!",
+    NOKResult: "Try Again",
     UserFormTitle1Part1: "You finished in ",
     UserFormTitle1Part2: " seconds with a score ",
     UserFormTitle2Part1: "You got ",
@@ -65,6 +65,10 @@ const translation = {
     GAME_MODE_TIMEATTACK: "Time Attack",
     GAME_MODE_ALLQUESTS: "Otaku Mastery",
     GAME_MODE_ONEQUEST: "Unique quest",
+    ObjectivesComplete: "OBJECTIVES COMPLETE",
+    ObjectivesCompleteText:
+      "Great find! Uncover every detail and behind-the-scenes secret in the official artbook.",
+    ObjectivesCompleteButton: "SEE THE ARTBOOK",
     pokemon: {
       quest1: {
         title: "Find duplicate Pokemon",

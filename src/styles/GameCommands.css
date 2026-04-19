@@ -1,0 +1,42 @@
+.game-commands-wrapper {
+  position: absolute;
+  /* On le place en haut à droite, mais SOUS la navbar */
+  top: 80px;
+  right: 20px;
+  display: flex;
+  flex-direction: column; /* Alignement vertical pour un look HUD */
+  gap: 10px;
+  z-index: 999; /* Très élevé pour être au-dessus de la map */
+}
+
+.command-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 15, 20, 0.8); /* Look sombre comme ton header */
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.command-btn:hover {
+  background: #a855f7; /* Violet comme ton shop */
+  transform: scale(1.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.command-btn:active {
+  transform: scale(0.95);
+}
+
+/* Juice spécifique pour l'indice */
+.command-btn.hint:hover {
+  background: #facc15; /* Jaune pour l'ampoule */
+  color: #000;
+}

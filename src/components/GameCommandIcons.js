@@ -1,5 +1,6 @@
-import "../styles/selectionMenu.css";
-import { useTranslation } from "react-i18next";
+import React from "react";
+import { ZoomIn, ZoomOut, Lightbulb, SkipForward } from "lucide-react";
+import "../styles/GameCommands.css";
 
 const GameCommandIcons = ({
   handleZoomIn,
@@ -8,88 +9,32 @@ const GameCommandIcons = ({
   skipQuestion,
   minimalMode,
 }) => {
-  const { t } = useTranslation("gamequests");
-
   return (
-    <div>
-      <span style={{ paddingRight: "10px" }}>
-        <img
-          style={{
-            height: "20px",
-            cursor: "pointer",
-            transition: "opacity 0.3s",
-          }}
-          src={require("../assets/ZoomInIcon.png")}
-          alt="ZoomIn"
-          onClick={handleZoomIn}
-          title="ZoomIn" // Add a tooltip description
-          onMouseOver={(e) => {
-            e.target.style.opacity = 0.7; // Change opacity on hover
-          }}
-          onMouseOut={(e) => {
-            e.target.style.opacity = 1; // Restore opacity when not hovering
-          }}
-        />
-      </span>
-      <span style={{ paddingRight: "10px" }}>
-        <img
-          style={{
-            height: "20px",
-            cursor: "pointer",
-            transition: "opacity 0.3s",
-          }}
-          src={require("../assets/ZoomOutIcon.png")}
-          alt="ZoomOut"
-          onClick={handleZoomOut}
-          title="ZoomOut" // Add a tooltip description
-          onMouseOver={(e) => {
-            e.target.style.opacity = 0.7; // Change opacity on hover
-          }}
-          onMouseOut={(e) => {
-            e.target.style.opacity = 1; // Restore opacity when not hovering
-          }}
-        />
-      </span>
+    <div className="game-commands-wrapper">
+      <button className="command-btn" onClick={handleZoomIn} title="Zoom In">
+        <ZoomIn size={20} />
+      </button>
+
+      <button className="command-btn" onClick={handleZoomOut} title="Zoom Out">
+        <ZoomOut size={20} />
+      </button>
+
       {!minimalMode && (
         <>
-          <span style={{ paddingRight: "10px" }}>
-            <img
-              style={{
-                height: "20px",
-                cursor: "pointer",
-                transition: "opacity 0.3s",
-              }}
-              src={require("../assets/HintIcon.png")}
-              alt="Hint"
-              onClick={handleHint}
-              title={t("hint")} // Add a tooltip description
-              onMouseOver={(e) => {
-                e.target.style.opacity = 0.7; // Change opacity on hover
-              }}
-              onMouseOut={(e) => {
-                e.target.style.opacity = 1; // Restore opacity when not hovering
-              }}
-            />
-          </span>
-          <span style={{ paddingRight: "10px" }}>
-            <img
-              style={{
-                height: "20px",
-                cursor: "pointer",
-                transition: "opacity 0.3s",
-              }}
-              src={require("../assets/SkipIcon.png")}
-              alt="Skip"
-              onClick={skipQuestion}
-              title={t("skip")} // Add a tooltip description
-              onMouseOver={(e) => {
-                e.target.style.opacity = 0.7; // Change opacity on hover
-              }}
-              onMouseOut={(e) => {
-                e.target.style.opacity = 1; // Restore opacity when not hovering
-              }}
-            />
-          </span>
+          <button
+            className="command-btn hint"
+            onClick={handleHint}
+            title="Hint"
+          >
+            <Lightbulb size={20} />
+          </button>
+          <button
+            className="command-btn skip"
+            onClick={skipQuestion}
+            title="Skip"
+          >
+            <SkipForward size={20} />
+          </button>
         </>
       )}
     </div>

@@ -20,6 +20,7 @@ import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import Leaderboard from "./components/Leaderboard";
 import PopupForm from "./components/PopupForm";
+import GameHub from "./components/GameHub";
 import PopupResults from "./components/PopupResults";
 import SlotMachine from "./components/SlotMachine";
 import WeeklyContestDraw from "./components/WeeklyContestDraw";
@@ -153,6 +154,10 @@ function App() {
           }
         />
         <Route path="/worldmaps/popupform" element={<PopupForm />} />
+        <Route
+          path="/worldmaps/play"
+          element={<GameHub levelsData={levelsData} />}
+        />
         <Route
           path="/worldmaps/popupresults"
           element={<WeeklyContestDraw weekOfYear={weekOfYear} />}

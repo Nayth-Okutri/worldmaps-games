@@ -42,6 +42,7 @@ const GameLevel = ({
   reloadDone,
   onQuestSuccess,
   targetImageRatio = 1,
+  completedQuests,
 }) => {
   //const level = +useParams().level;
 
@@ -114,7 +115,7 @@ const GameLevel = ({
   const [contestOfTheWeek, setContestOfTheWeek] = useState();
   const [isContestOfTheWeek, setIsContestOfTheWeek] = useState(false);
   const [prevQuest, setPrevQuest] = useState();
-
+  const [showArtbookModal, setShowArtbookModal] = useState(false);
   useEffect(() => {
     const cachedRef = descriptionRef.current;
     const queryParams = new URLSearchParams(window.location.search);
@@ -439,7 +440,27 @@ const GameLevel = ({
     scaledWidth,
     workingQuests,
   ]);
+  const EndOfGameModal = ({ show, onGoToArtbook }) => {
+    if (!show) return null;
 
+    return (
+      <div className="end-game-overlay">
+        <div className="end-game-modal">
+          <h2>{t("ObjectivesComplete")}</h2>
+          <p>{t("ObjectivesCompleteText")}</p>
+          <div className="artbook-preview">
+            <img
+              src={require("../assets/TomePrevSD.png")}
+              alt="Artbook Nayth"
+            />
+          </div>
+          <button className="artbook-button" onClick={onGoToArtbook}>
+            {t("ObjectivesCompleteButton")}
+          </button>
+        </div>
+      </div>
+    );
+  };
   const onLevelImageLoad = () => {
     const image = document.getElementById("levelImage");
     const roundedZoomLevel = Math.floor(
@@ -672,6 +693,7 @@ const GameLevel = ({
     } else {
       setNumberOfRightHits(0);
       setHits({});
+      setShowArtbookModal(true);
       if (typeof onQuestSuccess !== "undefined") onQuestSuccess(singleQuest);
     }
   };
@@ -701,44 +723,65 @@ const GameLevel = ({
       setShowErrorMessage(true);
     }
   };
-
   const evaluateEndOfGame = () => {
     const hitObject = hits;
-    console.log("hits" + JSON.stringify(hits));
     const numberOfRightQuestHits = Object.keys(hitObject).reduce(
       (previous, current) => {
-        if (hitObject[current]) {
-          return previous + 1;
-        }
+        if (hitObject[current]) return previous + 1;
         return previous;
       },
       0
     );
-    console.log("numberOfRightQuestHits " + numberOfRightQuestHits);
+
     setNumberOfRightHits(numberOfRightQuestHits);
+
     switch (gameMode) {
       case GAME_MODE_10_QUESTS:
-        if (numberOfRightQuestHits === 10) {
-          endGame();
-        }
+        if (numberOfRightQuestHits === 10) endGame();
         break;
+
       case GAME_MODE_DUPLICATE:
       case GAME_MODE_ALLQUESTS:
-      case GAME_MODE_ONEQUEST:
+        // Pour ces modes, on finit quand workingQuests est vide
         if (numberOfRightQuestHits === Object.keys(workingQuests).length) {
           endGame();
         }
         break;
+
+      case GAME_MODE_ONEQUEST:
+        const totalQuestsInLevel = levelData.quests.length;
+        // Attention : vérifie que completedQuests contient bien les IDs uniques
+        const alreadyDoneCount = completedQuests ? completedQuests.length : 0;
+
+        console.log(
+          "Progression :",
+          alreadyDoneCount + 1,
+          "/",
+          totalQuestsInLevel
+        );
+
+        if (alreadyDoneCount + 1 >= totalQuestsInLevel) {
+          endGame();
+        } else {
+          if (typeof onQuestSuccess !== "undefined") {
+            setTimeout(() => {
+              onQuestSuccess(singleQuest);
+              setHits({});
+            }, 1500);
+          }
+        }
+        break;
+
       case GAME_MODE_TIMEATTACK:
         if (currentTime <= 0) endGame();
         break;
+
       default:
         break;
     }
-    if (numberOfRightQuestHits === Object.keys(workingQuests).length) {
-      endGame();
-    }
-    console.log("numberOfRightHits " + numberOfRightQuestHits);
+
+    // --- ON SUPPRIME LE BLOC endGame() QUI ÉTAIT ICI ---
+    console.log("Calcul terminé pour cette frame");
   };
   const skipQuestion = () => {
     let newQuest = Math.floor(Math.random() * questCount);
@@ -759,96 +802,96 @@ const GameLevel = ({
       setShowRedQuestion(false); // Reset the showRedQuestion state after 1 second
     }, 1000);
   };
-  const evaluateMultipleTargetHit = (
-    x,
-    y,
-    xPositionOnImage,
-    yPositionOnImage
-  ) => {
-    console.log("_______________NEW CLICK ");
-    if (workingQuests.length > 0) {
-      const prevIndicator = clickNumber === 1 ? [] : indicators;
-      setQuestResult(clickResults.Pending);
-      if (clickNumber === 1) {
-        setIndicators([]);
-        //console.log("indicators " + JSON.stringify(indicators));
-      }
-      setClickNumber(clickNumber + 1);
-      for (let i = 0; i < maxQuestHit; i++) {
-        console.log(
-          workingQuests[currentQuest].positions[i].top,
-          workingQuests[currentQuest].positions[i].bottom
-        );
-        if (
-          isClickWithinElement(
-            workingQuests[currentQuest].positions[i].top,
-            workingQuests[currentQuest].positions[i].bottom,
-            xPositionOnImage,
-            yPositionOnImage
-          )
-        ) {
-          console.log("questHits avant " + questHits);
-          const hitObject = questHits;
+  const evaluateMultipleTargetHit = (x, y, xPos, yPos) => {
+    console.log("_______________NEW CLICK");
 
-          hitObject[i] = true;
-          setQuestHits(hitObject);
-          console.log("ok " + i);
+    if (!workingQuests[currentQuest]) return "fail";
+
+    const positions = workingQuests[currentQuest].positions;
+
+    // 🔁 on calcule le prochain clickNumber proprement
+    const nextClickNumber = clickNumber + 1;
+
+    // reset indicators si nouveau cycle
+    if (clickNumber === 1) {
+      setIndicators([]);
+    }
+
+    setQuestResult(clickResults.Pending);
+
+    // 🔥 CLONE obligatoire
+    const newQuestHits = { ...questHits };
+
+    let didHitSomething = false;
+
+    // 🔍 check des zones
+    for (let i = 0; i < maxQuestHit; i++) {
+      if (
+        isClickWithinElement(positions[i].top, positions[i].bottom, xPos, yPos)
+      ) {
+        didHitSomething = true;
+
+        if (!newQuestHits[i]) {
+          newQuestHits[i] = true;
+          console.log("✅ hit zone", i);
+        } else {
+          console.log("⚠️ duplicate zone", i);
         }
       }
-      if (clickNumber >= maxQuestHit) {
-        if (!shouldDisplayMenu) setShouldDisplayMenu(true);
-        if (!showHitTarget) setShowHitTarget(true);
-        const hitObject = questHits;
-        const numberOfRightQuestHits = Object.keys(hitObject).reduce(
-          (previous, current) => {
-            if (hitObject[current]) {
-              return previous + 1;
-            }
-            return previous;
-          },
-          0
-        );
-        console.log("questHits " + JSON.stringify(questHits));
-        if (numberOfRightQuestHits === maxQuestHit) {
-          console.log("done");
-          setQuestResult(clickResults.Correct);
-          const hitObject = hits;
-          //console.log(someHit);
-          if (
-            !Object.keys(hits).includes(currentQuest) ||
-            hits[currentQuest] === false
-          ) {
-            hitObject[currentQuest] = true;
-          }
+    }
 
-          console.log(hitObject[currentQuest]);
-          setHits(hitObject);
-        } else setQuestResult(clickResults.Incorrect);
-      } else {
-        setShouldDisplayMenu(false);
+    setQuestHits(newQuestHits);
 
-        //setClickNumber(clickNumber + 1);
-      }
-      console.log("questResult " + questResult);
-      //console.log([xPositionOnImage, yPositionOnImage]);
-      const newIndicator = {
-        x,
-        y,
-        clickNumber,
-        display: "inline",
-      };
-      setIndicators([...prevIndicator, newIndicator]);
-      console.log("indicators " + JSON.stringify(indicators));
+    // 🎯 indicator
+    const newIndicator = {
+      x,
+      y,
+      clickNumber,
+      display: "inline",
+    };
 
-      console.log("questHits" + JSON.stringify(questHits));
-      console.log("clickNumber " + clickNumber);
-      //console.log(clickResult);
-      if (clickNumber >= maxQuestHit) {
-        console.log("rince");
-        setQuestHits([]);
+    setIndicators((prev) =>
+      clickNumber === 1 ? [newIndicator] : [...prev, newIndicator]
+    );
+
+    // 🎯 FIN DE TENTATIVE
+    if (nextClickNumber > maxQuestHit) {
+      const totalFound = Object.values(newQuestHits).filter(Boolean).length;
+
+      console.log("Résultat:", totalFound, "/", maxQuestHit);
+
+      setShouldDisplayMenu(true);
+      setShowHitTarget(true);
+
+      if (totalFound === maxQuestHit) {
+        console.log("🏆 SUCCESS");
+
+        setQuestResult(clickResults.Correct);
+
+        setHits((prev) => ({
+          ...prev,
+          [currentQuest]: true,
+        }));
+
         setClickNumber(1);
+        setQuestHits({});
+        return "success";
+      } else {
+        console.log("❌ FAIL");
+
+        setQuestResult(clickResults.Incorrect);
+
+        setClickNumber(1);
+        setQuestHits({});
+        return "fail";
       }
     }
+
+    // ➡️ CONTINUE
+    setClickNumber(nextClickNumber);
+    setShouldDisplayMenu(false);
+
+    return "continue";
   };
   const computeXPositionOnImage = (e) => {
     const bounds = e.target.getBoundingClientRect();
@@ -874,9 +917,28 @@ const GameLevel = ({
     return (y / ch) * ih;
   };
   const handleImageClick = (e) => {
+    const isAlreadyDone =
+      hits[currentQuest] === true ||
+      (completedQuests && completedQuests.includes(inputQuest));
+
+    if (
+      isAlreadyDone ||
+      gameEnded ||
+      workingQuests.length === 0 ||
+      inputQuest === "none"
+    ) {
+      console.log("Action bloquée : Quête terminée ou mode exploration");
+
+      // TRÈS IMPORTANT : On s'assure que le menu est caché
+      setShouldDisplayMenu(false);
+      setShowHitTarget(false);
+      return; // On stoppe tout ici
+    }
     const bounds = e.target.getBoundingClientRect();
     const xPositionOnImage = Math.floor(computeXPositionOnImage(e));
     const yPositionOnImage = Math.floor(computeYPositionOnImage(e));
+    console.log("workingQuests ", workingQuests);
+
     setShowHint(false);
     console.log("handleImageClick " + [(xPositionOnImage, yPositionOnImage)]);
     let target = e.target;
@@ -890,19 +952,15 @@ const GameLevel = ({
       target = target.parentElement;
     }
     if (workingQuests.length > 0) setShowHitTarget(true);
-    if (!isInsideSelectionMenu) {
-      evaluateMultipleTargetHit(
-        e.clientX - bounds.left,
-        e.clientY - bounds.top,
-        xPositionOnImage,
-        yPositionOnImage
-      );
-    } else {
-      console.log("isInsideSelectionMenu " + isInsideSelectionMenu);
-      setShouldDisplayMenu(false);
-      setShowHitTarget(false);
+    const result = evaluateMultipleTargetHit(
+      e.clientX - bounds.left,
+      e.clientY - bounds.top,
+      xPositionOnImage,
+      yPositionOnImage
+    );
+    if (result === "success") {
+      evaluateEndOfGame();
     }
-    evaluateEndOfGame();
   };
   // Helper function to generate hashed asset paths
   const getHashedAssetPath = (filename) => {
@@ -1074,6 +1132,15 @@ const GameLevel = ({
           gameMode={gameMode}
           player={player}
           isContestOfTheWeek={isContestOfTheWeek}
+        />
+        <EndOfGameModal
+          show={showArtbookModal}
+          onGoToArtbook={() =>
+            window.open(
+              "https://nayth.art/shop/artbook-worldmaps-150-pages/",
+              "_blank"
+            )
+          }
         />
         {loading && <LoadingSpinner />}
         <img

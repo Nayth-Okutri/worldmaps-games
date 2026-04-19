@@ -8,8 +8,8 @@ const translation = {
       "Time Attack. Affrontez le chronomètre et répondez à autant de questions que possible en une minute.",
     allQuestsAttackGameModeDescription:
       "Otaku Mastery. Démontrez votre expertise en répondant rapidement à toutes les questions du jeu.",
-    OKResult: "Bonne réponse",
-    NOKResult: "Mauvaise réponse",
+    OKResult: "Trouvé !",
+    NOKResult: "Essaye encore",
     UserFormTitle1Part1: "Vous avez terminé en ",
     UserFormTitle1Part2: " secondes avec un score ",
     UserFormTitle2Part1: "Vous avez obtenu ",
@@ -66,6 +66,10 @@ const translation = {
     GAME_MODE_TIMEATTACK: "Contre la montre",
     GAME_MODE_ALLQUESTS: "Maîtrise des Otakus",
     GAME_MODE_ONEQUEST: "Quête unique",
+    ObjectivesComplete: "OBJECTIVES COMPLETE",
+    ObjectivesCompleteText:
+      "Tu as l'oeil ! Découvre les coulisses et les détails de ces illustrations dans l'artbook officiel.",
+    ObjectivesCompleteButton: "VOIR L'ARTBOOK",
     pokemon: {
       quest1: {
         title: "Trouve le Pokemon en double",
