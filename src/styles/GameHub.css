@@ -2,7 +2,7 @@
   width: 100vw;
   display: flex;
   flex-direction: column;
-  background-color: #1a1a1a; /* Fond sombre pour faire ressortir tes maps */
+  background-color: #062c3f; /* Fond sombre pour faire ressortir tes maps */
 
   min-height: 100vh;
   overflow-y: auto; /* Active le scroll vertical sur tout le jeu */
@@ -90,7 +90,7 @@
 .map-item:hover,
 .quest-item:hover {
   background: rgba(255, 255, 255, 0.1); /* Hover subtil */
-  color: #4ade80; /* Une couleur néon pour le côté futuriste */
+  color: #eab308; /* Une couleur néon pour le côté futuriste */
 }
 
 .quest-item.is-done {
@@ -110,7 +110,7 @@
 .progress-fill {
   height: 100%;
 
-  background: #3b82f6;
+  background: #eab308;
   transition: width 0.4s ease-out;
 }
 
@@ -133,7 +133,7 @@
   min-width: 100%;
 }
 .nav-shop-btn {
-  color: #a855f7; /* Un violet plus lumineux */
+  color: #eab308;
   text-shadow: 0 0 10px rgba(168, 85, 247, 0.4); /* Petit effet "Glow" néon */
   font-weight: 800;
   letter-spacing: 1px;
@@ -147,7 +147,7 @@
   backdrop-filter: blur(10px);
   padding: 10px 25px;
   border-radius: 50px; /* Look pilule */
-  border: 1px solid rgba(168, 85, 247, 0.5); /* Bordure violette néon */
+  border: 1px solid rgba(234, 178, 8, 0.5); /* Bordure violette néon */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -159,7 +159,7 @@
 
 .quest-label {
   font-size: 10px;
-  color: #a855f7;
+  color: #eab308;
   font-weight: 800;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -180,4 +180,15 @@
     opacity: 1;
     transform: translate(-50%, 0);
   }
+}
+
+/* État déjà visité */
+.nav-shop-btn:visited {
+  color: #f472b6; /* Par exemple, le rose fuchsia de ta DA pour marquer la différence */
+}
+
+/* Optionnel : État au survol (hover) */
+.nav-shop-btn:hover {
+  color: #ffffff;
+  text-shadow: 0 0 8px #eab308;
 }

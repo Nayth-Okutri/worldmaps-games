@@ -1,7 +1,7 @@
 .game-commands-wrapper {
-  position: absolute;
+  position: fixed;
   /* On le place en haut à droite, mais SOUS la navbar */
-  top: 80px;
+  top: 100px;
   right: 20px;
   display: flex;
   flex-direction: column; /* Alignement vertical pour un look HUD */
@@ -10,25 +10,37 @@
 }
 
 .command-btn {
-  width: 44px;
-  height: 44px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(15, 15, 20, 0.8); /* Look sombre comme ton header */
+  background: rgba(15, 15, 20, 0.5); /* Look sombre comme ton header */
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid #eab308;
   border-radius: 12px;
   color: white;
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
+.command-btn svg {
+  width: 44px; /* Ajuste selon tes préférences */
+  height: 44px;
+  stroke-width: 3px; /* Pour que le dessin soit plus gras, comme tes doodles */
+  transition: transform 0.2s ease;
+  display: block;
+}
 
-.command-btn:hover {
-  background: #a855f7; /* Violet comme ton shop */
+/* Optionnel : faire grossir l'icône encore plus au survol */
+.command-btn:hover svg {
   transform: scale(1.1);
-  border-color: rgba(255, 255, 255, 0.5);
+  stroke-width: 3px;
+}
+.command-btn:hover {
+  background: #416bb3; /* Violet comme ton shop */
+  transform: scale(1.1);
+  border: 4px solid #eab308;
 }
 
 .command-btn:active {

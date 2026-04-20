@@ -12,11 +12,11 @@ const GameCommandIcons = ({
   return (
     <div className="game-commands-wrapper">
       <button className="command-btn" onClick={handleZoomIn} title="Zoom In">
-        <ZoomIn size={20} />
+        <ZoomIn size={35} strokeWidth={2.5} />
       </button>
 
       <button className="command-btn" onClick={handleZoomOut} title="Zoom Out">
-        <ZoomOut size={20} />
+        <ZoomOut size={35} strokeWidth={2.5} />
       </button>
 
       {!minimalMode && (
