@@ -202,32 +202,30 @@ const GuestbookPage = () => {
       </div>
       {/* WALL */}
       <div className="masonry-grid">
-        {filteredEntries
-          .filter((e) => e.approved)
-          .map((entry) => {
-            // Extraire l'année de l'objet Timestamp de Firebase
-            const date = entry.createdAt?.toDate();
+        {filteredEntries.map((entry) => {
+          // Extraire l'année de l'objet Timestamp de Firebase
+          const date = entry.createdAt?.toDate();
 
-            const year = date ? date.getFullYear() : "2026";
+          const year = date ? date.getFullYear() : "2026";
 
-            return (
-              <article key={entry.id} className="log-card">
-                {/* Le Badge de l'année */}
-                <div className="year-stamp">{year}</div>
+          return (
+            <article key={entry.id} className="log-card">
+              {/* Le Badge de l'année */}
+              <div className="year-stamp">{year}</div>
 
-                {entry.imageUrl && (
-                  <img src={entry.imageUrl} alt={`Sighting by ${entry.name}`} />
-                )}
+              {entry.imageUrl && (
+                <img src={entry.imageUrl} alt={`Sighting by ${entry.name}`} />
+              )}
 
-                <div className="card-content">
-                  <p className="message">"{entry.message}"</p>
-                  <p className="author">
-                    {t("SightingBy")} — {entry.name}
-                  </p>
-                </div>
-              </article>
-            );
-          })}
+              <div className="card-content">
+                <p className="message">"{entry.message}"</p>
+                <p className="author">
+                  {t("SightingBy")} — {entry.name}
+                </p>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </div>
   );
