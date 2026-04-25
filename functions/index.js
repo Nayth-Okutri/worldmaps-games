@@ -57,7 +57,7 @@ exports.onSightingsApproved = onDocumentUpdated(
           html: `
           <p>Thank you for your message</p>
           <p>Here is your PDF :</p>
-          <a href="https://u.pcloud.link/publink/show?code=XZRatE5Z2aHknASsSJBYAgdbqtugcRfgioCV">
+          <a href="https://u.pcloud.link/publink/show?code=XZbhEE5Z2d6IlLX40FHYrIpbme4jEQd52weV">
             Download
           </a>
         `,
