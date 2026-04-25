@@ -51,7 +51,22 @@ const translation = {
       WeeklyNoCensent: "You must accept the use of e-mail for the game",
     },
   },
-
+  guestbook: {
+    GuestbookTitle: "Travelers’ Sightings",
+    PlaceholderName: "Traveler Identity (Name)",
+    PlaceholderMessage: "Describe your discovery or leave a note...",
+    PlaceholderEmail:
+      "Private mail (won't be published) - Required to receive the gift",
+    UploadAction: "Capture an image of the Relic",
+    SubmitButton: "Seal log entry",
+    SightingBy: "Sighting by",
+    AlertSuccess:
+      "Entry recorded in the Multiversal Archives. Thank you, Traveler. ✨",
+    AlertError: "A temporal rift prevented the transmission. Please try again.",
+    AlertRequired: "Identity and testimony are required for the archive.",
+    AlertInvalidEmail:
+      "The mail address seems incorrect. Please check your scroll!",
+  },
   gamequests: {
     quest: "quest",
     hint: "hint",

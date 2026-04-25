@@ -16,6 +16,8 @@ import { format, getISOWeek } from "date-fns";
 import GameLevel from "./components/GameLevel";
 import Profile from "./components/Profile";
 import Heading from "./components/Heading";
+import GuestbookPage from "./components/TravelersWall";
+import AdminSightings from "./components/AdminSightings";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import Leaderboard from "./components/Leaderboard";
@@ -153,6 +155,8 @@ function App() {
             </>
           }
         />
+        <Route path="/worldmaps/curator" element={<AdminSightings />} />
+        <Route path="/worldmaps/logbook" element={<GuestbookPage />} />
         <Route path="/worldmaps/popupform" element={<PopupForm />} />
         <Route
           path="/worldmaps/play"

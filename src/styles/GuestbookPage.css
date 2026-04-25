@@ -1,0 +1,145 @@
+/* GuestbookPage.css */
+@font-face {
+  font-family: "HoeflerTextBlack";
+  src: url("../fonts/HoeflerTextBlack.ttf") format("opentype"); /* ou .ttf si c'est le cas */
+  font-weight: normal;
+  font-style: normal;
+}
+
+.guestbook-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+  background-color: #f4f1ea; /* Couleur Munken Lynx */
+  min-height: 100vh;
+  font-family: "Georgia", serif; /* Ou ta typo "Story" */
+}
+
+.guestbook-title {
+  display: flex;
+  flex-direction: column;
+  font-family: "HoeflerTextBlack", serif;
+  gap: 25px;
+  max-width: 600px;
+  margin: 0 auto 80px auto;
+  background: white;
+  padding: 40px;
+  border-radius: 2px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
+}
+
+/* FORMULAIRE - Style "Logbook" */
+.guestbook-form {
+  background: #fff;
+  padding: 25px;
+  border: 1px solid #d4af37; /* Liseré doré */
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 60px;
+  box-shadow: 5px 5px 0px rgba(212, 175, 55, 0.2); /* Ombre décalée style retro */
+}
+
+.guestbook-form input,
+.guestbook-form textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  font-family: inherit;
+  outline-color: #d4af37;
+}
+.guestbook-form input[type="text"],
+.guestbook-form input[type="email"],
+.guestbook-form textarea {
+  border: none;
+  border-bottom: 1px solid #d4af37; /* Ligne dorée */
+  padding: 10px 5px;
+  background: transparent;
+  font-family: "Georgia", serif;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+.guestbook-form button {
+  background: #1a2a44;
+  color: #d4af37;
+  padding: 15px;
+  border: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.guestbook-form button:hover {
+  background: #d4af37;
+  color: #1a2a44;
+}
+
+/* GRILLE MASONRY */
+.masonry-grid {
+  column-count: 3;
+  column-gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .masonry-grid {
+    column-count: 2;
+  }
+}
+@media (max-width: 480px) {
+  .masonry-grid {
+    column-count: 1;
+  }
+}
+
+/* CARDS - Style "Polaroïd / Scrapbook" */
+.log-card {
+  break-inside: avoid;
+  background: white;
+  padding: 12px 12px 40px 12px; /* Fond plus large en bas pour le nom */
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transform: rotate(var(--rotation)); /* Appliqué en JS via inline style */
+  transition: 0.3s;
+  position: relative; /* Pour positionner l'année par rapport à la carte */
+}
+
+.log-card img {
+  width: 100%;
+  filter: sepia(20%); /* Petit filtre "archive" sur les photos clients */
+  margin-bottom: 10px;
+}
+
+.card-content p {
+  font-style: italic;
+  line-height: 1.4;
+
+  font-size: 0.95rem;
+}
+
+.author {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #d4af37;
+  text-align: right;
+  font-family: "Courier New", Courier, monospace; /* Style "tampon" ou machine à écrire */
+}
+.year-stamp {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #d4af37;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #d4af37;
+  text-transform: uppercase;
+  background: white;
+  z-index: 10;
+}

@@ -52,7 +52,22 @@ const translation = {
       WeeklyNoCensent: "Il faut accepter l'utilisation du mail pour le jeu",
     },
   },
-
+  guestbook: {
+    GuestbookTitle: "Archives des Observateurs",
+    PlaceholderName: "Identité du Voyageur (Nom)",
+    PlaceholderMessage: "Décrivez votre trouvaille ou laissez un mot...",
+    PlaceholderEmail:
+      "Courrier privé (non publié) - Requis pour recevoir le cadeau",
+    UploadAction: "Capturer une image de la Relique",
+    SubmitButton: "Sceller l'entrée au journal",
+    SightingBy: "Observation de",
+    AlertSuccess:
+      "Entrée enregistrée dans les archives du Multivers. Merci, Voyageur.",
+    AlertError: "Une faille temporelle a empêché l'envoi. Réessayez plus tard.",
+    AlertRequired: "L'identité et le témoignage sont requis pour l'archive.",
+    AlertInvalidEmail:
+      "L'adresse de courrier semble erronée. Vérifiez votre parchemin !",
+  },
   gamequests: {
     quest: "quête",
     hint: "indice",
