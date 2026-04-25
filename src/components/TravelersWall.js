@@ -116,8 +116,13 @@ const GuestbookPage = () => {
 
   return (
     <div className="guestbook-container">
-      <div className="nav-right">
-        <LanguageDropdown />
+      <div className="guestbook-nav">
+        <a href="https://nayth.art" className="back-link">
+          ← nayth.art
+        </a>
+        <div className="nav-right">
+          <LanguageDropdown />
+        </div>
       </div>
       <h2 style={{ textAlign: "center", marginBottom: 40 }}>
         {t("GuestbookTitle")}
@@ -173,6 +178,12 @@ const GuestbookPage = () => {
           📖 Artbooks
         </button>
         <button
+          onClick={() => setFilter("saigon")}
+          className={filter === "saigon" ? "active" : ""}
+        >
+          🏮Saigon
+        </button>
+        <button
           onClick={() => setFilter("print")}
           className={filter === "print" ? "active" : ""}
         >
@@ -196,6 +207,7 @@ const GuestbookPage = () => {
           .map((entry) => {
             // Extraire l'année de l'objet Timestamp de Firebase
             const date = entry.createdAt?.toDate();
+
             const year = date ? date.getFullYear() : "2026";
 
             return (
