@@ -40,11 +40,13 @@
   gap: 15px;
   margin-bottom: 60px;
   box-shadow: 5px 5px 0px rgba(212, 175, 55, 0.2); /* Ombre décalée style retro */
+  margin-bottom: 10px;
 }
 
 .guestbook-form input,
 .guestbook-form textarea {
   padding: 12px;
+  width: 100%;
   border: 1px solid #ccc;
   background: #fafafa;
   font-family: inherit;
@@ -142,4 +144,36 @@
   text-transform: uppercase;
   background: white;
   z-index: 10;
+}
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap; /* Permet de passer à la ligne sur petit écran */
+  justify-content: center;
+  gap: 8px;
+  margin: 10px 0;
+  padding: 0;
+}
+
+.filter-bar button {
+  background: none;
+  border: 1px solid #1a2a44;
+  color: #1a2a44;
+  padding: 8px 16px;
+  font-family: "PaquartAntique", serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 2px; /* Style plus "papier" que "arrondi" */
+}
+
+/* Style quand le filtre est sélectionné */
+.filter-bar button.active {
+  background-color: #1a2a44;
+  color: #d4af37;
+  border-color: #d4af37;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.filter-separator {
+  display: none; /* On cache les barres verticales sur mobile pour gagner de la place */
 }

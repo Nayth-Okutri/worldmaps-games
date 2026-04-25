@@ -28,10 +28,15 @@ const GuestbookPage = () => {
   const [filter, setFilter] = useState("all");
 
   // Filtrage des entrées
-  const filteredEntries = entries.filter((entry) => {
-    if (filter === "all") return true;
-    return entry.source === filter;
-  });
+  const filteredEntries = entries
+    .filter((e) => e.approved) // On ne garde que les validés
+    .filter((entry) => {
+      if (filter === "all") return true;
+
+      // Filtre par source (guestbook, twitter...)
+      // OU par catégorie (commission, artbook...)
+      return entry.source === filter || entry.category === filter;
+    });
   // 📥 FETCH
   const validateEmail = (email) => {
     return String(email)
@@ -144,20 +149,49 @@ const GuestbookPage = () => {
         <button type="submit">{t("SubmitButton")}</button>
       </form>
       <div className="filter-bar">
+        {/* Filtres Généraux */}
         <button
           onClick={() => setFilter("all")}
           className={filter === "all" ? "active" : ""}
         >
           All Lore
         </button>
-        <button onClick={() => setFilter("guestbook")}>Sightings</button>
-        <button onClick={() => setFilter("twitter")}>
-          📜 Scrolls (Twitter)
+
+        <span className="filter-separator">|</span>
+
+        {/* Filtres par Produits (Tags manuels) */}
+        <button
+          onClick={() => setFilter("commission")}
+          className={filter === "commission" ? "active" : ""}
+        >
+          🎨 Commissions
+        </button>
+        <button
+          onClick={() => setFilter("artbook")}
+          className={filter === "artbook" ? "active" : ""}
+        >
+          📖 Artbooks
+        </button>
+        <button
+          onClick={() => setFilter("print")}
+          className={filter === "print" ? "active" : ""}
+        >
+          🖼️ Prints
+        </button>
+
+        <span className="filter-separator">|</span>
+
+        {/* Filtre par Source */}
+        <button
+          onClick={() => setFilter("twitter")}
+          className={filter === "twitter" ? "active" : ""}
+        >
+          📜 Scrolls
         </button>
       </div>
       {/* WALL */}
       <div className="masonry-grid">
-        {entries
+        {filteredEntries
           .filter((e) => e.approved)
           .map((entry) => {
             // Extraire l'année de l'objet Timestamp de Firebase

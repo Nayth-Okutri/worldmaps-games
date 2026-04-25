@@ -16,7 +16,18 @@ const AdminSightings = () => {
   const [pending, setPending] = useState([]);
   const [passphrase, setPassphrase] = useState("");
   const [isAuthorized, setIsAuthorized] = useState(false);
-
+  const btnTagStyle = (bg, color) => ({
+    flex: 1,
+    padding: "8px",
+    background: bg,
+    color: color,
+    border: `1px solid ${color}`,
+    borderRadius: "4px",
+    fontSize: "0.8rem",
+    fontWeight: "bold",
+    cursor: "pointer",
+    minWidth: "100px",
+  });
   const checkPass = (e) => {
     if (e.target.value.toUpperCase() === "RACCOON") {
       setIsAuthorized(true);
@@ -51,6 +62,19 @@ const AdminSightings = () => {
     const ref = doc(db, "sightings", id);
     await updateDoc(ref, { approved: true });
     setPending(pending.filter((p) => p.id !== id));
+  };
+  const approveWithTag = async (id, tag = "guestbook") => {
+    try {
+      const ref = doc(db, "sightings", id);
+      await updateDoc(ref, {
+        approved: true,
+        category: tag,
+      });
+      // On retire de la liste "pending" localement
+      setPending(pending.filter((p) => p.id !== id));
+    } catch (error) {
+      console.error("Erreur approbation:", error);
+    }
   };
 
   const remove = async (id) => {
@@ -141,33 +165,68 @@ const AdminSightings = () => {
               — {entry.name} ({entry.email})
             </p>
 
-            <div style={{ marginTop: "15px", display: "flex", gap: "10px" }}>
-              <button
-                onClick={() => approve(entry.id)}
-                style={{
-                  flex: 1,
-                  padding: "12px",
-                  background: "#1a2a44",
-                  color: "#d4af37",
-                  border: "none",
-                  cursor: "pointer",
-                  fontWeight: "bold",
-                }}
-              >
-                APPROUVER
-              </button>
-              <button
-                onClick={() => remove(entry.id)}
-                style={{
-                  padding: "12px",
-                  background: "#fdeaea",
-                  color: "#9e1a1a",
-                  border: "none",
-                  cursor: "pointer",
-                }}
-              >
-                🗑️
-              </button>
+            <div
+              style={{
+                marginTop: "15px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "8px",
+              }}
+            >
+              {/* Première ligne : Approbation par catégorie */}
+              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                <button
+                  onClick={() => approveWithTag(entry.id, "commission")}
+                  style={btnTagStyle("#e3f2fd", "#0d47a1")} // Bleu clair
+                >
+                  🎨 Commission
+                </button>
+                <button
+                  onClick={() => approveWithTag(entry.id, "artbook")}
+                  style={btnTagStyle("#f3e5f5", "#4a148c")} // Violet
+                >
+                  📖 Artbook
+                </button>
+                <button
+                  onClick={() => approveWithTag(entry.id, "print")}
+                  style={btnTagStyle("#e8f5e9", "#1b5e20")} // Vert
+                >
+                  🖼️ Print
+                </button>
+              </div>
+
+              {/* Deuxième ligne : Approbation standard et Suppression */}
+              <div style={{ display: "flex", gap: "8px" }}>
+                <button
+                  onClick={() => approveWithTag(entry.id, "guestbook")}
+                  style={{
+                    flex: 2,
+                    padding: "12px",
+                    background: "#1a2a44",
+                    color: "#d4af37",
+                    border: "none",
+                    cursor: "pointer",
+                    fontWeight: "bold",
+                    borderRadius: "4px",
+                  }}
+                >
+                  APPROUVER (Standard)
+                </button>
+                <button
+                  onClick={() => remove(entry.id)}
+                  style={{
+                    flex: 1,
+                    padding: "12px",
+                    background: "#fdeaea",
+                    color: "#9e1a1a",
+                    border: "none",
+                    cursor: "pointer",
+                    borderRadius: "4px",
+                  }}
+                >
+                  🗑️
+                </button>
+              </div>
             </div>
           </div>
         ))}

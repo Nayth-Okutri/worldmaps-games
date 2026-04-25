@@ -56,8 +56,7 @@ const translation = {
     GuestbookTitle: "Archives des Observateurs",
     PlaceholderName: "Identité du Voyageur (Nom)",
     PlaceholderMessage: "Décrivez votre trouvaille ou laissez un mot...",
-    PlaceholderEmail:
-      "Courrier privé (non publié) - Requis pour recevoir le cadeau",
+    PlaceholderEmail: "E-mail (Privé) • Pour votre cadeau",
     UploadAction: "Capturer une image de la Relique",
     SubmitButton: "Sceller l'entrée au journal",
     SightingBy: "Observation de",

@@ -52,13 +52,13 @@ exports.onSightingsApproved = onDocumentUpdated(
         const msg = {
           to: email,
           from: "contact@nayth.art",
-          subject: "Merci pour ton message ✨",
-          text: "Voici ton cadeau",
+          subject: "Thank you for your message!!",
+          text: "Here is your gift",
           html: `
-          <p>Merci pour ton message ✨</p>
-          <p>Voici ton PDF :</p>
+          <p>Thank you for your message</p>
+          <p>Here is your PDF :</p>
           <a href="https://u.pcloud.link/publink/show?code=XZRatE5Z2aHknASsSJBYAgdbqtugcRfgioCV">
-            Télécharger
+            Download
           </a>
         `,
         };

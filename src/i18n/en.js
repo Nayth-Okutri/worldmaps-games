@@ -55,8 +55,7 @@ const translation = {
     GuestbookTitle: "Travelers’ Sightings",
     PlaceholderName: "Traveler Identity (Name)",
     PlaceholderMessage: "Describe your discovery or leave a note...",
-    PlaceholderEmail:
-      "Private mail (won't be published) - Required to receive the gift",
+    PlaceholderEmail: "Email (Private) • For your gift",
     UploadAction: "Capture an image of the Relic",
     SubmitButton: "Seal log entry",
     SightingBy: "Sighting by",
