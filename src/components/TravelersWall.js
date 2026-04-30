@@ -42,14 +42,14 @@ const GuestbookPage = () => {
     return String(email)
       .toLowerCase()
       .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       );
   };
   const fetchEntries = async () => {
     const q = query(
       entriesCollectionRef,
       orderBy("createdAt", "desc"),
-      limit(20)
+      limit(20),
     );
 
     const snapshot = await getDocs(q);
@@ -64,7 +64,39 @@ const GuestbookPage = () => {
   useEffect(() => {
     fetchEntries();
   }, []);
+  const Spoiler = ({ children }) => {
+    const [revealed, setRevealed] = useState(false);
 
+    return (
+      <span
+        onClick={() => setRevealed(!revealed)}
+        style={{
+          background: revealed ? "transparent" : "#000",
+          color: revealed ? "#000" : "#000",
+          borderBottom: "1px dashed #999",
+          cursor: "pointer",
+          padding: "2px 4px",
+        }}
+      >
+        {children}
+      </span>
+    );
+  };
+  const renderMessage = (text) => {
+    if (!text) return null;
+
+    const parts = text.split(/(\[spoiler\].*?\[\/spoiler\])/g);
+
+    return parts.map((part, index) => {
+      if (part.startsWith("[spoiler]")) {
+        const content = part.replace("[spoiler]", "").replace("[/spoiler]", "");
+
+        return <Spoiler key={index}>{content}</Spoiler>;
+      }
+
+      return <span key={index}>{part}</span>;
+    });
+  };
   // ✍️ SUBMIT
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -218,7 +250,7 @@ const GuestbookPage = () => {
               )}
 
               <div className="card-content">
-                <p className="message">"{entry.message}"</p>
+                <p className="message">"{renderMessage(entry.message)}"</p>
                 <p className="author">
                   {t("SightingBy")} — {entry.name}
                 </p>
