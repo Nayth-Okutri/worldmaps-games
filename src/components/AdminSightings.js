@@ -226,6 +226,12 @@ const AdminSightings = () => {
                   📖 Artbook
                 </button>
                 <button
+                  onClick={() => approveWithTag(entry.id, "saigon")}
+                  style={btnTagStyle("#f3e5f5", "#4a148c")}
+                >
+                  🏮 Saigon
+                </button>
+                <button
                   onClick={() => approveWithTag(entry.id, "print")}
                   style={btnTagStyle("#e8f5e9", "#1b5e20")}
                 >

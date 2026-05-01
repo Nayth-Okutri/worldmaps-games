@@ -131,8 +131,8 @@
 }
 .year-stamp {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: -10px;
+  right: -10px;
   width: 40px;
   height: 40px;
   border: 2px solid #d4af37;
