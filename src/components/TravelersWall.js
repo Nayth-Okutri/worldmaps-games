@@ -26,6 +26,7 @@ const GuestbookPage = () => {
   const [translationSpace, setTranslationSpace] = useState();
   const { t } = useTranslation("guestbook");
   const [filter, setFilter] = useState("all");
+  const [country, setCountry] = useState("");
 
   // Filtrage des entrées
   const filteredEntries = entries
@@ -101,7 +102,7 @@ const GuestbookPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!name || !message) {
+    if (!name || !message || !image || !country) {
       alert(t("AlertRequired"));
       return;
     }
@@ -121,12 +122,13 @@ const GuestbookPage = () => {
 
       const newEntry = {
         name,
+        country,
         message,
         email,
         imageUrl,
         source: "guestbook",
         createdAt: new Date(),
-        approved: false, // ou false si modération
+        approved: false,
       };
 
       await addDoc(entriesCollectionRef, newEntry);
@@ -136,7 +138,7 @@ const GuestbookPage = () => {
       setMessage("");
       setEmail("");
       setImage(null);
-
+      setCountry("");
       fetchEntries();
 
       alert(t("AlertSuccess"));
@@ -167,14 +169,23 @@ const GuestbookPage = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-
+        <input
+          placeholder="Country"
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+        />
         <textarea
           placeholder={t("PlaceholderMessage")}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <label className="file-label">{t("UploadAction")}</label>
-        <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+        <label className="file-label">{t("UploadAction")} *required</label>
+        <input
+          type="file"
+          required
+          accept="image/*"
+          onChange={(e) => setImage(e.target.files[0])}
+        />
 
         <input
           type="email"
@@ -182,7 +193,9 @@ const GuestbookPage = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-
+        <p className="gift-info">
+          Submit a sighting and receive the digital PDF artbook gift by email.
+        </p>
         <button type="submit">{t("SubmitButton")}</button>
       </form>
       <div className="filter-bar">
@@ -252,7 +265,7 @@ const GuestbookPage = () => {
               <div className="card-content">
                 <p className="message">"{renderMessage(entry.message)}"</p>
                 <p className="author">
-                  {t("SightingBy")} — {entry.name}
+                  {t("SightingBy")} — {entry.name} ({entry.country})
                 </p>
               </div>
             </article>
